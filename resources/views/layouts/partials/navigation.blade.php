@@ -1,7 +1,7 @@
 <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar blue darken-1 fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.php">
+      <a class="navbar-brand" href="{{ route('home') }}">
         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
         Buy &#38; Travel
       </a>
@@ -26,7 +26,7 @@
                           <i class="fa fa-user"></i> Account </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarAccount">
                 <a class="dropdown-item" href="register.php"><i class="fa fa-user-plus"></i> Sign Up</a>
-                <a class="dropdown-item" href="signin.php"><i class="fa fa-sign-in"></i> Sign in</a>
+                <a class="dropdown-item" href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Sign in</a>
               </div>
             </li>
         </ul>

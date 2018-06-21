@@ -60,7 +60,7 @@
   </head>
   <!-- #ENDS# Header -->
 
-  <body class="index">
+  <body {!! Request::is('/')? 'class="index"':'' !!}>
     
 	@include('layouts.partials.loader')
 	@include('layouts.partials.navigation')
