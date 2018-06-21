@@ -1,0 +1,204 @@
+/*!
+ * Start Bootstrap - Modern Business (https://startbootstrap.com/template-overviews/modern-business)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
+ */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+
+  .index {
+    padding-top: 0px;
+  }
+}
+
+footer {
+    display:none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: auto;
+    width: 100%;
+}
+
+/* Overwriting Styles ================================= */
+
+.dtp .dtp-buttons {
+    padding: 0 0em 0em 0em;
+    text-align: right;
+}
+
+.light-font .breadcrumb-item + .breadcrumb-item::before {
+    color: #fff; }
+.light-font .breadcrumb-item.active {
+    color: #cfd8dc; }
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #AED6F1;
+}
+
+.carousel-item {
+  max-height: 65vh;
+}
+
+.bc-icons .breadcrumb-item + .breadcrumb-item::before {
+    content: none; 
+}
+.bc-icons .breadcrumb-item {
+    color: #eeeeee; 
+}
+.bc-icons .breadcrumb-item.active {
+    color: #AED6F1; 
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.list-group-item.active {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+
+div.mce-fullscreen {
+    z-index: 1050;
+}
+
+.bootstrap-tagsinput {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  box-shadow: none !important;
+  border: none !important; 
+}
+
+/* Page Loader ================================= */
+.page-loader-wrapper {
+  z-index: 99999999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+  text-align: center; }
+  .page-loader-wrapper p {
+    font-size: 30px;
+    margin-top: 10px;
+  }
+  .page-loader-wrapper .loader {
+    position: relative;
+    top: calc(50% - 30px);
+  }
+
+/* Preloaders ================================== */
+
+.md-preloader .pl-blue {
+  stroke: #1e88e5; }
+
+
+.preloader {
+  display: inline-block;
+  position: relative;
+  width: 75px;
+  height: 75px; 
+  -webkit-animation: container-rotate 1568ms linear infinite;
+  -moz-animation: container-rotate 1568ms linear infinite;
+  -o-animation: container-rotate 1568ms linear infinite;
+  animation: container-rotate 1568ms linear infinite; }
+
+.spinner-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-color: #F44336;
+  -ms-opacity: 1;
+  opacity: 1;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -moz-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -o-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both; }
+  .spinner-layer.pl-blue {
+    border-color: #1e88e5; 
+  }
+
+.right {
+  float: right !important; }
+
+.gap-patch {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 10%;
+  height: 100%;
+  overflow: hidden;
+  border-color: inherit; }
+.gap-patch.circle {
+    width: 1000%;
+    left: -450%; }
+
+.circle-clipper {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-color: inherit; }
+.circle-clipper .circle {
+  width: 200%;
+  height: 100%;
+  border-width: 3px;
+  border-style: solid;
+  border-color: inherit;
+  border-bottom-color: transparent !important;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  -webkit-animation: none;
+  animation: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0; }
+.circle-clipper.left .circle {
+  left: 0;
+  border-right-color: transparent !important;
+  -webkit-transform: rotate(129deg);
+  -moz-transform: rotate(129deg);
+  -ms-transform: rotate(129deg);
+  -o-transform: rotate(129deg);
+  transform: rotate(129deg);
+  -webkit-animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -moz-animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -o-animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: left-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both; }
+.circle-clipper.right .circle {
+  left: -100%;
+  border-left-color: transparent !important;
+  -webkit-transform: rotate(-129deg);
+  -moz-transform: rotate(-129deg);
+  -ms-transform: rotate(-129deg);
+  -o-transform: rotate(-129deg);
+  transform: rotate(-129deg);
+  -webkit-animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -moz-animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -o-animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: right-spin 1333ms cubic-bezier(0.4, 0, 0.2, 1) infinite both; }
+
+
+/* Your custom styles */
