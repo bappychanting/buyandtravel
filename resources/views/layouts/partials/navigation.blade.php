@@ -22,7 +22,7 @@
           </ul>
           <ul class="navbar-nav ml-auto nav-flex-icons">
             @guest          
-              <li class="nav-item {{ Route::is('register') || Route::is('login') || Route::is('password.request') || Route::is('login') ? 'active':'' }} dropdown">
+              <li class="nav-item {{ Route::is('login') || Route::is('register') ? 'active':'' }} dropdown">
               <a class="nav-link dropdown-toggle" id="navbarAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-user"></i> Account </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarAccount">

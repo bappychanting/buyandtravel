@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('dob')->unsigned()->nullable();
-            $table->string('contact');
-            $table->text('address');
+            $table->string('contact')->unique();
+            $table->text('address')->nullable();
             $table->tinyInteger('gender')->default(1);
             $table->string('avatar')->default('default.jpg');
             $table->timestamp('last_login_at')->nullable();
