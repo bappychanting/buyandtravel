@@ -37,8 +37,26 @@
                         <p class="red-text">{{ $errors->first('email') }}</p>
                     @endif
 
+                    <!-- Material input password -->
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix grey-text"></i>
+                        {!! Form::password('password', array('class' =>'form-control', 'id'=>'password')) !!}
+                        {!! Form::label('password', 'Your password') !!}
+                    </div>
+
+                    @if ($errors->has('password'))
+                        <p class="red-text">{{ $errors->first('password') }}</p>
+                    @endif
+
+                    <!-- Material confirm password -->
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix grey-text"></i>
+                        {!! Form::password('password_confirmation', array('class' =>'form-control', 'id'=>'password-confirm')) !!}
+                        {!! Form::label('password-confirm', 'Confirm Your password') !!}
+                    </div>
+
                     <div class="text-center mt-4">
-                      {!! Form::submit('Send Password Reset Link', array('class' =>'btn btn-primary')) !!}
+                      {!! Form::submit('Reset Password', array('class' =>'btn btn-primary')) !!}
                     </div>
 
                     </div>

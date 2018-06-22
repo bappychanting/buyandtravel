@@ -85,6 +85,13 @@ div.mce-fullscreen {
   border: none !important; 
 }
 
+/* Bootstrap Notify ============================ */
+.bootstrap-notify-container {
+  max-width: 320px;
+  text-align: center; 
+}
+
+
 /* Alerts ====================================== */
 .alert {
   -webkit-border-radius: 0;
@@ -96,29 +103,37 @@ div.mce-fullscreen {
   -ms-box-shadow: none;
   box-shadow: none;
   border: none;
-  color: #fff !important; }
-  .alert .alert-link {
+  color: #fff !important; 
+}
+
+.alert .alert-link {
     color: #fff;
     text-decoration: underline;
-    font-weight: bold; }
+    font-weight: bold; 
+}
 
 .alert-success {
-  background-color: #2b982b; }
+  background-color: #2b982b; 
+}
 
 .alert-info {
-  background-color: #00b0e4; }
+  background-color: #00b0e4; 
+}
 
 .alert-warning {
-  background-color: #ff9600 !important; }
+  background-color: #ff9600 !important; 
+}
 
 .alert-danger {
-  background-color: #fb483a !important; }
+  background-color: #fb483a !important; 
+}
 
 .alert-dismissible .close {
   color: #fff;
   opacity: 1;
   border: none;
-  text-shadow: none; }
+  text-shadow: none; 
+}
 
 
 /* Page Loader ================================= */
