@@ -22,6 +22,12 @@ body {
   }
 }
 
+
+.hidden {
+    visibility: hidden;
+}
+
+
 footer {
     display:none;
     position: absolute;
@@ -87,7 +93,6 @@ div.mce-fullscreen {
 
 /* Bootstrap Notify ============================ */
 .bootstrap-notify-container {
-  max-width: 320px;
   text-align: center; 
 }
 

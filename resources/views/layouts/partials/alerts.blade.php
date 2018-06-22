@@ -1,23 +1,20 @@
-@if($error->any())
-  <p class="font-bold col-red">{!! $errors->first() !!}</p>
-@endif
 @if (session('info'))
     @foreach(session('info') as $info)
-	    {!! Form::hidden('info_message', $info) !!}
+	    <div class="info_messages hidden">{{ $info }}</div>
 	@endforeach
 @endif
 @if (session('success'))
     @foreach(session('success') as $success)
-	    {!! Form::hidden('success_message', $success) !!}
+	    <div class="success_messages hidden">{{ $success }}</div>
 	@endforeach
 @endif
 @if (session('error'))
     @foreach(session('error') as $error)
-	    {!! Form::hidden('error_message', $error) !!}
+	    <div class="error_messages hidden">{{ $error }}</div>
 	@endforeach
 @endif
 @if (session('warning'))
     @foreach(session('warning') as $warning)
-	    {!! Form::hidden('warning_message', $warning) !!}
+	    <div class="warning_messages hidden">{{ $warning }}</div>
 	@endforeach
 @endif
