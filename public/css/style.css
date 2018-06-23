@@ -92,10 +92,16 @@ div.mce-fullscreen {
 }
 
 /* Bootstrap Notify ============================ */
-.bootstrap-notify-container {
-  text-align: center; 
+[data-notify="container"] {
+  border-width: 0px;
+  border-left: 15px solid rgb(255, 240, 106);
+  border-radius: 0px;
+  box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.3);
 }
-
+[data-notify="container"] > [data-notify="title"] {
+  font-size: large;
+  margin-bottom: 5px;
+}
 
 /* Alerts ====================================== */
 .alert {
@@ -103,10 +109,10 @@ div.mce-fullscreen {
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   border-radius: 0;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -ms-box-shadow: none;
-  box-shadow: none;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border: none;
   color: #fff !important; 
 }
