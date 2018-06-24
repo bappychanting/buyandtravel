@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Session;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +28,11 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        Session::flash('success', array('Successfully regsitered!'));
+        return route('user.profile');
+    }
 
     /**
      * Create a new controller instance.

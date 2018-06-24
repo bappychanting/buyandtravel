@@ -50,19 +50,19 @@ $(document).ready(function(){
       // Notifications
     if ($(".success_messages").length) {
         $( ".success_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "success", "bottom", "left", 'animated fadeInDown', 'animated fadeOutUp');
+          showNotification($( this ).text(), "", "#", "success", "bottom", "left", 20, 150, 'animated fadeInDown', 'animated fadeOutUp');
           setTimeout(function () { doThis($li); }, 5000 * (i + 1));
         });
     } 
     if ($(".error_messages").length) {
         $( ".error_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "error", "bottom", "left", 'animated fadeInDown', 'animated fadeOutUp');
+          showNotification($( this ).text(), "", "#", "error", "bottom", "left", 20, 150, 'animated fadeInDown', 'animated fadeOutUp');
           setTimeout(function () { doThis($li); }, 5000 * (i + 1));
         });
     } 
     if ($(".warning_messages").length) {
         $( ".warning_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "warning", "bottom", "left", 'animated fadeInDown', 'animated fadeOutUp');
+          showNotification($( this ).text(), "", "#", "warning", "bottom", "left", 20, 150, 'animated fadeInDown', 'animated fadeOutUp');
           setTimeout(function () { doThis($li); }, 5000 * (i + 1));
         });
     } 
@@ -97,11 +97,11 @@ $(function () {
      });
 });
 
-function showNotification(title, text, redirect, colorName, placementFrom, placementAlign, animateEnter, animateExit) {
+function showNotification(title, text, redirect, colorName, placementFrom, placementAlign, offsetFrom, offsetAlign, animateEnter, animateExit) {
     if (title === null || text === '') { text = ''; }
     if (text === null || text === '') { text = ''; }
     if (colorName === null || colorName === '') { colorName = 'bg-black'; }
-    if (redirect === null || redirect === '') { redirect = '/contact'; }
+    if (redirect === null || redirect === '') { redirect = '#'; }
     if (animateEnter === null || animateEnter === '') { animateEnter = 'animated fadeInDown'; }
     if (animateExit === null || animateExit === '') { animateExit = 'animated fadeOutUp'; }
     var allowDismiss = true;
@@ -125,7 +125,10 @@ function showNotification(title, text, redirect, colorName, placementFrom, place
         from: placementFrom,
         align: placementAlign
       },
-      offset: 20,
+      offset: {
+        x: offsetFrom,
+        y: offsetAlign
+      },  
       spacing: 10,
       z_index: 1031,
       delay: 2000,
