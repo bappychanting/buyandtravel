@@ -16,6 +16,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Auth::routes();
 
-Route::group(['prefix' => 'user', 'namespace' => 'User'], function () {
-	Route::get('/summery', 'ProfileController@index')->name('user.summery');
+Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
+	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
+	Route::put('/updateinfo/{id}', 'ProfileController@updateInformation')->name('update.information');
 });
