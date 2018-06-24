@@ -31,7 +31,7 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
         Session::flash('success', array('Successfully regsitered!'));
-        return route('user.profile');
+        return route('user.summery');
     }
 
     /**

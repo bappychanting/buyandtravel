@@ -26,7 +26,7 @@
 
           <!-- Content Column -->
           <div class="col-lg-10 mb-4">
-            <h2 class="animated bounceInRight">Jessica Clark</h2>
+            <h2 class="animated bounceInRight">{{ $user->name }}</h2>
 
             <!-- Nav tabs -->
             <div class="tabs-wrapper"> 
@@ -58,31 +58,56 @@
                           </div>
                         </div>
                         <div class="col-lg-6 mb-4">
-                         <p>
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            jessica@hotmail.com
-                          </p>
-
-                          <p>
-                            <i class="fa fa-phone prefix grey-text"></i>
-                            01712423414
-                          </p>
-
-                          <p>
-                            <i class="fa fa-address-card prefix grey-text"></i>
-                            394/1, West Monipur, Mirpur, Dhaka-1216
-                          </p>
                           <div class="btn-group" role="group" aria-label="Basic example">
-                              <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#modalLoginForm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Update Profile Picture</a>
-                              <a href="#" class="btn btn-blue btn-sm"><i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Profile verified</a>
+                              <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#modalLoginForm">
+                                <i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Update Profile Picture
+                              </a>
+                              <a href="#" class="btn btn-blue btn-sm">
+                                @if($user->verified == 1)
+                                  <i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>
+                                  Profile verified
+                                @else
+                                  <i class="fa fa-warning fa-sm pr-2" aria-hidden="true"></i>
+                                  Profile not yet verified
+                                @endif
+                              </a>
                           </div>
+                            
+                            <h4 class="mt-4">User Information</h4><hr>
+
+                            <p>
+                              <i class="fa fa-envelope prefix grey-text"></i>
+                              {{ $user->email }}
+                            </p>
+
+                            <p>
+                              <i class="fa fa-phone prefix grey-text"></i>
+                              {{ str_replace('-', '', $user->contact) }}
+                            </p>
+
+                            <p>
+                              <i class="fa fa-venus-mars prefix grey-text"></i>
+                              @if($user->gender == 1)
+                                {{ 'Male' }}
+                              @elseif($user->gender == 2)
+                                {{ 'Female' }}
+                              @else
+                                <span class="red-text">{{ 'Not updated yet' }}</span> 
+                              @endif  
+                            </p>
+
+                            <p>
+                              <i class="fa fa-address-card prefix grey-text"></i>
+                              {!! empty($user->adress) ? '<span class="red-text">Not updated yet</span>' : $user->adress !!}
+                            </p>
                         </div>
                       </div>
-                      <h6 class="mb-3 font-weight-bold dark-grey-text">Summery</h6>
+                      <h4>Summery</h4><hr>
                       <ul>
-                        <li>500 Requests</li>
-                        <li>35 Orders</li>
-                        <li>viewed 355 times</li>
+                        <li>Requests Recieved: 500</li>
+                        <li>Orders Given: 200</li>
+                        <li>Offers Recieved: 500</li>
+                        <li>Upcoming Travels: 2</li>
                       </ul>
 
                 </div>

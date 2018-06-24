@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('dob')->unsigned()->nullable();
             $table->string('contact')->unique();
             $table->text('address')->nullable();
-            $table->tinyInteger('gender')->default(1);
+            $table->tinyInteger('gender')->default(0);
             $table->tinyInteger('verified')->default(0);
             $table->string('avatar')->default('default.jpg');
             $table->timestamp('last_login_at')->nullable();

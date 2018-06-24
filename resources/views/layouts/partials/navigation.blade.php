@@ -66,7 +66,7 @@
                         <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-purple" aria-labelledby="navbarDropdownMenuLink-5">
-                        <a class="dropdown-item" href="{{ route('user.profile') }}"><i class="fa fa-user"></i> Your Content</a>
+                        <a class="dropdown-item" href="{{ route('user.summery') }}"><i class="fa fa-user"></i> Your Content</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Log out</a>

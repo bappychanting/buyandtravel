@@ -32,7 +32,7 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         Session::flash('success', array('Login successful!'));
-        return route('user.profile');
+        return route('user.summery');
     }
 
     /**
