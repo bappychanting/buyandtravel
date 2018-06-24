@@ -27,12 +27,16 @@
                     <!-- Material input text -->
                     <div class="md-form">
                         <i class="fa fa-envelope prefix grey-text"></i>
-                        {!! Form::email('email', old('email'), array('class' =>'form-control', 'id'=>'email')) !!}
-                        {!! Form::label('email', 'Your email') !!}
+                        {!! Form::text('identity', old('identity'), array('class' =>'form-control', 'id'=>'identity')) !!}
+                        {!! Form::label('identity', 'Your username or email') !!}
                     </div>
 
-                    @if ($errors->has('email'))
-                        <p class="red-text">{{ $errors->first('email') }}</p>
+                    @if ($errors->has('identity'))
+                        <p class="red-text">{{ $errors->first('identity') }}</p>
+                    @endif
+
+                    @if(session()->has('login_error'))
+                      <p class="red-text">{{ session()->get('login_error') }}</p>
                     @endif
 
                     <!-- Material input password -->

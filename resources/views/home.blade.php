@@ -66,61 +66,64 @@
           </div>
       </div>
 
-      <!-- row -->
-
-      <div class="row">
-        <div class="col-lg-6 mb-5">
-          <div class="card card-cascade mb-4">
-            <div class="view gradient-card-header blue-gradient">
-              <h5 class="card-header-title">Find Travelers</h5>
-            </div>
-            <div class="card-body">
-              <div class="md-form">
-                  <i class="fa fa-plane prefix grey-text"></i>
-                  <input type="email" class="form-control">
-                  <label for="materialFormLoginEmailEx">From</label>
-              </div>
-
-              <!-- Material input password -->
-              <div class="md-form">
-                  <i class="fa fa-truck prefix grey-text"></i>
-                  <input type="password" class="form-control">
-                  <label for="materialFormLoginPasswordEx">To</label>
-              </div>
-
-              <div class="text-center mt-4">
-                  <button class="btn btn-primary btn-md" type="submit"><i class="fa fa-search"></i> Find</button>
+      <!-- find -->
+        <div class="card card-cascade mb-4">
+          <div class="view gradient-card-header blue-gradient">
+            <h5 class="card-header-title">
+                <i class="fa fa-truck prefix"></i> Find Orders
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row ">
+              <div class="col-lg-5">
+                  <div class="md-form">
+                      <input type="email" class="form-control">
+                      <label for="materialFormLoginEmailEx">From</label>
+                  </div>
+              </div>    
+              <div class="col-lg-5">
+                  <div class="md-form">
+                      <input type="password" class="form-control">
+                      <label for="materialFormLoginPasswordEx">To</label>
+                  </div>
+              </div>    
+              <div class="col-lg-2">
+                  <div class="text-center mt-4">
+                      <button class="btn btn-primary btn-md" type="submit"><i class="fa fa-search"></i> Find</button>
+                  </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 mb-5">
-          <div class="card card-cascade mb-4">
-            <div class="view gradient-card-header blue-gradient">
-              <h5 class="card-header-title">Find Orders</h5>
-            </div>
-            <div class="card-body">
-              <div class="md-form">
-                  <i class="fa fa-plane prefix grey-text"></i>
-                  <input type="email" class="form-control">
-                  <label for="materialFormLoginEmailEx">From</label>
-              </div>
-
-              <!-- Material input password -->
-              <div class="md-form">
-                  <i class="fa fa-truck prefix grey-text"></i>
-                  <input type="password" class="form-control">
-                  <label for="materialFormLoginPasswordEx">To</label>
-              </div>
-
-              <div class="text-center mt-4">
-                  <button class="btn btn-primary btn-md" type="submit"><i class="fa fa-search"></i> Find</button>
+        <div class="card card-cascade mb-4">
+          <div class="view gradient-card-header blue-gradient">
+            <h5 class="card-header-title">
+                <i class="fa fa-plane prefix"></i> Find Travelers
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row ">
+              <div class="col-lg-5">
+                  <div class="md-form">
+                      <input type="email" class="form-control">
+                      <label for="materialFormLoginEmailEx">From</label>
+                  </div>
+              </div>    
+              <div class="col-lg-5">
+                  <div class="md-form">
+                      <input type="password" class="form-control">
+                      <label for="materialFormLoginPasswordEx">To</label>
+                  </div>
+              </div>    
+              <div class="col-lg-2">
+                  <div class="text-center mt-4">
+                      <button class="btn btn-primary btn-md" type="submit"><i class="fa fa-search"></i> Find</button>
+                  </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- /.row -->
+      <!-- /.find -->
 
         <!-- Portfolio Section -->
         <h2 class="my-4 blue-text">News</h2>

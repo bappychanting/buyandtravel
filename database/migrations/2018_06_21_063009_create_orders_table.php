@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('expected_price');
             $table->string('referenceLink');
             $table->string('additinoal_details', 5000);
+            $table->integer('views')->default(0);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
