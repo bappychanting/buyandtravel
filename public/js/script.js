@@ -56,7 +56,7 @@ $(document).ready(function(){
     } 
     if ($(".error_messages").length) {
         $( ".error_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "error", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+          showNotification($( this ).text(), "", "#", "danger", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           setTimeout(function () { doThis($li); }, 5000 * (i + 1));
         });
     } 

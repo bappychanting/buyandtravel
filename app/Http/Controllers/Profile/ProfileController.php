@@ -93,12 +93,23 @@ class ProfileController extends Controller
     public function updatepassword(Request $request, $id)
     {
         $user = $this->user->findorfail($id);
+        $messages = [
+            'old_password.required' => 'Please enter current password',
+            'password.required' => 'Please enter new password',
+        ];
         $this->validate(request(),[
-            'password' => 'required|string|min:6|confirmed',
-        ]);  
-        $user->password = Hash::make($request->password);
-        $user->save();
-        Session::flash('success', array('Password Successfully updated!'));
-        return redirect(route('user.userinfo'));
+            'old_password' => 'required',
+            'password' => 'required|string|min:6|confirmed',   
+          ], $messages);
+
+        if(Hash::check($request->old_password, Auth::User()->password)){ 
+            $user->password = Hash::make($request->password);
+            $user->save();
+            Session::flash('success', array('Password Successfully updated!'));
+            return redirect(route('user.userinfo'));
+        }
+        else{
+            return redirect()->back()->withErrors(['old_password'=> 'Please enter correct current password']);
+        }  
     }
 }

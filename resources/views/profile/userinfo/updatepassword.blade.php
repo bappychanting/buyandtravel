@@ -60,8 +60,19 @@
                     <!-- Material input password -->
                     <div class="md-form">
                         <i class="fa fa-lock prefix grey-text"></i>
+                        {!! Form::password('old_password', array('class' =>'form-control', 'id'=>'old_password')) !!}
+                        {!! Form::label('old_password', 'Your current password') !!}
+                    </div>
+
+                    @if ($errors->has('old_password'))
+                        <p class="red-text">{{ $errors->first('old_password') }}</p>
+                    @endif
+
+                    <!-- Material input password -->
+                    <div class="md-form">
+                        <i class="fa fa-lock prefix grey-text"></i>
                         {!! Form::password('password', array('class' =>'form-control', 'id'=>'password')) !!}
-                        {!! Form::label('password', 'Your password') !!}
+                        {!! Form::label('password', 'Your new password') !!}
                     </div>
 
                     @if ($errors->has('password'))
@@ -72,7 +83,7 @@
                     <div class="md-form">
                         <i class="fa fa-lock prefix grey-text"></i>
                         {!! Form::password('password_confirmation', array('class' =>'form-control', 'id'=>'password-confirm')) !!}
-                        {!! Form::label('password-confirm', 'Confirm Your password') !!}
+                        {!! Form::label('password-confirm', 'Confirm new password') !!}
                     </div>
 
                     @if ($errors->has('condition'))
