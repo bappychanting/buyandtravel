@@ -19,6 +19,10 @@ Auth::routes();
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
 	Route::get('/userinfo', 'ProfileController@userinfo')->name('profile.userinfo');
+	Route::get('/edituserinfo', 'ProfileController@edituserinfo')->name('profile.edituserinfo');
+	Route::get('/editcontactinfo', 'ProfileController@editcontactinfo')->name('profile.editcontactinfo');
+	Route::get('/editpassword', 'ProfileController@editpassword')->name('profile.editpassword');
 	Route::put('/updateuserInfo/{id}', 'ProfileController@updateuserInfo')->name('update.updateuserInfo');
 	Route::put('/updatecontactinfo/{id}', 'ProfileController@updatecontactinfo')->name('update.updatecontactinfo');
+	Route::put('/updatepassword/{id}', 'ProfileController@updatepassword')->name('update.updatepassword');
 });

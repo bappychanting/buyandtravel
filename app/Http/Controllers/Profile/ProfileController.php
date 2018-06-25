@@ -3,8 +3,9 @@ namespace App\Http\Controllers\Profile;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
@@ -34,34 +35,70 @@ class ProfileController extends Controller
     public function userinfo()
     {
         $user = Auth::user();
-        return view('profile.userinfo', compact('user'));
+        return view('profile.userinfo.index', compact('user'));
     }
 
-    public function updateuserInfo(ProfileRequest $request, $id)
+    public function edituserinfo()
+    {
+        $user = Auth::user();
+        return view('profile.userinfo.updateuserinfo', compact('user'));
+    }
+
+
+    public function updateuserInfo(Request $request, $id)
+    {
+
+        $user = $this->user->findorfail($id);
+        $this->validate(request(),[
+            'name' => 'required|string|max:255',
+            'gender' => 'required',
+            'dob' => 'required|date_format:d/m/Y|before_or_equal:'.Carbon::now()->subYears(18)->format('d/m/Y'),
+        ]);      
+        $user->name = $request->name;
+        $user->gender = $request->gender;
+        $user->dob = Carbon::createFromFormat('d/m/Y', $request->dob)->toDateTimeString();
+        $user->save();
+        Session::flash('success', array('User Information Successfully updated!'));
+        return redirect(route('profile.userinfo'));
+    }
+
+    public function editcontactinfo()
+    {
+        $user = Auth::user();
+        return view('profile.userinfo.updatecontactinfo', compact('user'));
+    }
+
+    public function updatecontactinfo(Request $request, $id)
     {
         $user = $this->user->findorfail($id);
-        $user->name = $request->name;
+        $this->validate(request(),[
+            'email' => 'required|string|email|max:50|unique:users,email,'.$id,
+            'contact' => 'required|string|max:20|min:17|unique:users,contact,'.$id,
+            'address' => 'required',
+        ]);  
         $user->email = $request->email;
         $user->contact = $request->contact;
-        $user->gender = $request->gender;
-        $user->dob = strtotime($request->dob);
         $user->address = $request->address;
         $user->save();
-        Session::flash('success', array('Profile Successfully updated!'));
-        return view('profile.summery', compact('user'));
+        Session::flash('success', array('Contact Information Successfully updated!'));
+        return redirect(route('profile.userinfo'));
     }
 
-    public function updatecontactinfo(ProfileRequest $request, $id)
+    public function editpassword()
     {
-        /*$user = $this->user->findorfail($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->contact = $request->contact;
-        $user->gender = $request->gender;
-        $user->dob = strtotime($request->dob);
-        $user->address = $request->address;
+        $user = Auth::user();
+        return view('profile.userinfo.updatepassword', compact('user'));
+    }
+
+    public function updatepassword(Request $request, $id)
+    {
+        $user = $this->user->findorfail($id);
+        $this->validate(request(),[
+            'password' => 'required|string|min:6|confirmed',
+        ]);  
+        $user->password = Hash::make($request->password);
         $user->save();
-        Session::flash('success', array('Profile Successfully updated!'));*/
-        return view('profile.summery', compact('user'));
+        Session::flash('success', array('Password Successfully updated!'));
+        return redirect(route('profile.userinfo'));
     }
 }
