@@ -13,7 +13,7 @@ class ProfileRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,10 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:50|unique:users',
+            // 'email' => 'required|string|email|max:50|unique:users',
+            'email' => 'required|string|email|max:50|unique:users,email,$this->id,id',
             'contact' => 'required|string|max:20|min:17|unique:users',
+            // 'contact' => 'required|string|max:20|min:17|unique:users,contact,$this->id,id',
             'gender' => 'required',
             'dob' => 'required|date|before_or_equal:'.\Carbon\Carbon::now()->subYears(18)->format('Y-m-d'),
             'address' => 'required',

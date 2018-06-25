@@ -18,5 +18,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
-	Route::put('/updateinfo/{id}', 'ProfileController@updateInformation')->name('update.information');
+	Route::get('/userinfo', 'ProfileController@userinfo')->name('profile.userinfo');
+	Route::put('/updateuserInfo/{id}', 'ProfileController@updateuserInfo')->name('update.updateuserInfo');
+	Route::put('/updatecontactinfo/{id}', 'ProfileController@updatecontactinfo')->name('update.updatecontactinfo');
 });

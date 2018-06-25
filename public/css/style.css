@@ -93,6 +93,7 @@ div.mce-fullscreen {
 
 /* Bootstrap Notify ============================ */
 [data-notify="container"] {
+  max-width: 320px;
   border-width: 0px;
   border-left: 15px solid rgb(255, 240, 106);
   border-radius: 0px;

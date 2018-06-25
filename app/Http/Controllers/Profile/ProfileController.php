@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers\Profile;
+use Session;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,7 +31,13 @@ class ProfileController extends Controller
         return view('profile.summery', compact('user'));
     }
 
-    public function updateInformation(ProfileRequest $request, $id)
+    public function userinfo()
+    {
+        $user = Auth::user();
+        return view('profile.userinfo', compact('user'));
+    }
+
+    public function updateuserInfo(ProfileRequest $request, $id)
     {
         $user = $this->user->findorfail($id);
         $user->name = $request->name;
@@ -42,6 +48,20 @@ class ProfileController extends Controller
         $user->address = $request->address;
         $user->save();
         Session::flash('success', array('Profile Successfully updated!'));
+        return view('profile.summery', compact('user'));
+    }
+
+    public function updatecontactinfo(ProfileRequest $request, $id)
+    {
+        /*$user = $this->user->findorfail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->contact = $request->contact;
+        $user->gender = $request->gender;
+        $user->dob = strtotime($request->dob);
+        $user->address = $request->address;
+        $user->save();
+        Session::flash('success', array('Profile Successfully updated!'));*/
         return view('profile.summery', compact('user'));
     }
 }

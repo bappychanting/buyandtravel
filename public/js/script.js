@@ -50,19 +50,19 @@ $(document).ready(function(){
       // Notifications
     if ($(".success_messages").length) {
         $( ".success_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "success", "bottom", "left", 20, 150, 'animated fadeInDown', 'animated fadeOutUp');
+          showNotification($( this ).text(), "", "#", "success", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           setTimeout(function () { doThis($li); }, 5000 * (i + 1));
         });
     } 
     if ($(".error_messages").length) {
         $( ".error_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "error", "bottom", "left", 20, 150, 'animated fadeInDown', 'animated fadeOutUp');
+          showNotification($( this ).text(), "", "#", "error", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           setTimeout(function () { doThis($li); }, 5000 * (i + 1));
         });
     } 
     if ($(".warning_messages").length) {
         $( ".warning_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "warning", "bottom", "left", 20, 150, 'animated fadeInDown', 'animated fadeOutUp');
+          showNotification($( this ).text(), "", "#", "warning", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           setTimeout(function () { doThis($li); }, 5000 * (i + 1));
         });
     } 
