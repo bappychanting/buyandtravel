@@ -18,11 +18,15 @@ Auth::routes();
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
-	Route::get('/userinfo', 'ProfileController@userinfo')->name('profile.userinfo');
-	Route::get('/edituserinfo', 'ProfileController@edituserinfo')->name('profile.edituserinfo');
-	Route::get('/editcontactinfo', 'ProfileController@editcontactinfo')->name('profile.editcontactinfo');
-	Route::get('/editpassword', 'ProfileController@editpassword')->name('profile.editpassword');
-	Route::put('/updateuserInfo/{id}', 'ProfileController@updateuserInfo')->name('update.updateuserInfo');
-	Route::put('/updatecontactinfo/{id}', 'ProfileController@updatecontactinfo')->name('update.updatecontactinfo');
-	Route::put('/updatepassword/{id}', 'ProfileController@updatepassword')->name('update.updatepassword');
+
+	Route::group(['prefix' => 'user'], function(){
+		Route::get('/', 'ProfileController@userinfo')->name('user.userinfo');
+		Route::get('/edituser', 'ProfileController@edituser')->name('user.edituser');
+		Route::put('/updateuser/{id}', 'ProfileController@updateuser')->name('user.updateuser');
+		Route::get('/editcontact', 'ProfileController@editcontact')->name('user.editcontact');
+		Route::put('/updatecontact/{id}', 'ProfileController@updatecontact')->name('user.updatecontact');
+		Route::get('/editpassword', 'ProfileController@editpassword')->name('user.editpassword');
+		Route::put('/updatepassword/{id}', 'ProfileController@updatepassword')->name('user.updatepassword');
+	});
+
 });

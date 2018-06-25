@@ -37,13 +37,13 @@
                         <a class="nav-link waves-light active" data-toggle="tab" href="#userinfo" role="tab">User Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('profile.edituserinfo') }}">Update User Information</a>
+                        <a class="nav-link waves-light" href="{{ route('user.edituser') }}">Update User Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('profile.editcontactinfo') }}">Update Contact Information</a>
+                        <a class="nav-link waves-light" href="{{ route('user.editcontact') }}">Update Contact Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('profile.editpassword') }}">Update Password</a>
+                        <a class="nav-link waves-light" href="{{ route('user.editpassword') }}">Update Password</a>
                     </li>
                 </ul>
             </div>

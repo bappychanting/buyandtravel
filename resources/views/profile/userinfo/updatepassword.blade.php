@@ -34,13 +34,13 @@
             <div class="tabs-wrapper"> 
                 <ul class="nav classic-tabs tabs-blue" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('profile.userinfo') }}">User Information</a>
+                        <a class="nav-link waves-light" href="{{ route('user.userinfo') }}">User Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('profile.edituserinfo') }}">Update User Information</a>
+                        <a class="nav-link waves-light" href="{{ route('user.edituser') }}">Update User Information</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('profile.editcontactinfo') }}">Update Contact Information</a>
+                        <a class="nav-link waves-light" href="{{ route('user.editcontact') }}">Update Contact Information</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-light active" data-toggle="tab" href="editpassword" role="tab">Update Password</a>
@@ -55,7 +55,7 @@
 
                   <h4>Update Password</h4><hr>
 
-                  {!! Form::open(['method' => 'put', 'route' => ['update.updatepassword', $user->id]]) !!}
+                  {!! Form::open(['method' => 'put', 'route' => ['user.updatepassword', $user->id]]) !!}
 
                     <!-- Material input password -->
                     <div class="md-form">

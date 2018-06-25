@@ -38,14 +38,14 @@ class ProfileController extends Controller
         return view('profile.userinfo.index', compact('user'));
     }
 
-    public function edituserinfo()
+    public function edituser()
     {
         $user = Auth::user();
         return view('profile.userinfo.updateuserinfo', compact('user'));
     }
 
 
-    public function updateuserInfo(Request $request, $id)
+    public function updateuser(Request $request, $id)
     {
 
         $user = $this->user->findorfail($id);
@@ -59,16 +59,16 @@ class ProfileController extends Controller
         $user->dob = Carbon::createFromFormat('d/m/Y', $request->dob)->toDateTimeString();
         $user->save();
         Session::flash('success', array('User Information Successfully updated!'));
-        return redirect(route('profile.userinfo'));
+        return redirect(route('user.userinfo'));
     }
 
-    public function editcontactinfo()
+    public function editcontact()
     {
         $user = Auth::user();
         return view('profile.userinfo.updatecontactinfo', compact('user'));
     }
 
-    public function updatecontactinfo(Request $request, $id)
+    public function updatecontact(Request $request, $id)
     {
         $user = $this->user->findorfail($id);
         $this->validate(request(),[
@@ -81,7 +81,7 @@ class ProfileController extends Controller
         $user->address = $request->address;
         $user->save();
         Session::flash('success', array('Contact Information Successfully updated!'));
-        return redirect(route('profile.userinfo'));
+        return redirect(route('user.userinfo'));
     }
 
     public function editpassword()
@@ -99,6 +99,6 @@ class ProfileController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
         Session::flash('success', array('Password Successfully updated!'));
-        return redirect(route('profile.userinfo'));
+        return redirect(route('user.userinfo'));
     }
 }
