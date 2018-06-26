@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Profile;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\VerifyUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +39,34 @@ class ProfileController extends Controller
         return view('profile.userinfo.index', compact('user'));
     }
 
+    public function verifyUser()
+    {
+        // Add a modal, button to send email and Define user veriable
+        Mail::to($user->email)->send(new VerifyMail($user));
+        return view('profile.userinfo.index', compact('user'));
+    }
+
+
+    public function verifyUser($token)
+    {
+        $verifyUser = VerifyUser::where('token', $token)->first();
+        if(isset($verifyUser) ){
+            $user = $verifyUser->user;
+            if(!$user->verified) {
+                $verifyUser->user->verified = 1;
+                $verifyUser->user->save();
+                $status = "Your account is not now verified!";
+            }else{
+                $status = "The account associated with this email is already verified!";
+            }
+        }else{
+            $status = "Sorry, there was a problem with verifying your account.";
+            return view('profile.userinfo.verify', compact('status'));
+        }
+        return view('profile.userinfo.verify', compact('status'));
+    }
+
+
     public function edituser()
     {
         $user = Auth::user();
@@ -47,7 +76,6 @@ class ProfileController extends Controller
 
     public function updateuser(Request $request, $id)
     {
-
         $user = $this->user->findorfail($id);
         $this->validate(request(),[
             'name' => 'required|string|max:255',

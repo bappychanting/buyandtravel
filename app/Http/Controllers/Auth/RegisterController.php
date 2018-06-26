@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 use Session;
+use Mail;
 use App\User;
+use App\VerifyUser;
+use App\Mail\VerifyMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,8 +33,9 @@ class RegisterController extends Controller
      */
     protected function redirectTo()
     {
+            // Add a mail has been sent text under title
         Session::flash('success', array('Successfully regsitered!'));
-        return route('profile.userinfo');
+        return route('user.userinfo');
     }
 
     /**
@@ -75,7 +79,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'username' => $data['username'],
             'role' => 3,
@@ -83,5 +88,14 @@ class RegisterController extends Controller
             'contact' => $data['contact'],
             'password' => Hash::make($data['password']),
         ]);
+ 
+        $verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => str_random(40)
+        ]);
+ 
+        // Mail::to($user->email)->send(new VerifyMail($user));
+ 
+        return $user;
     }
 }

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('contact')->unique();
             $table->text('address')->nullable();
             $table->tinyInteger('gender')->default(0);
-            $table->tinyInteger('verified')->default(0);
+            $table->boolean('verified')->default(false);
             $table->string('avatar')->default('default.jpg');
             $table->timestamp('last_login_at')->nullable();
             $table->timestamp('last_logout_at')->nullable();
