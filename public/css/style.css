@@ -104,6 +104,10 @@ div.mce-fullscreen {
   margin-bottom: 5px;
 }
 
+[data-notify="container"] > [data-notify="message"] {
+  font-size: small;
+}
+
 /* Alerts ====================================== */
 .alert {
   -webkit-border-radius: 0;

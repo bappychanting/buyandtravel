@@ -7,6 +7,9 @@ function footerAlign() {
 }
 
 $(document).ready(function(){
+
+  time = 0;
+
   $('.mdb-select').material_select();
   footerAlign();
   setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
@@ -48,22 +51,28 @@ $(document).ready(function(){
     });
 
       // Notifications
-    if ($(".success_messages").length) {
-        $( ".success_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "success", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
-          setTimeout(function () { doThis($li); }, 5000 * (i + 1));
+    if ($(".info_messages").length) {
+        $( ".info_messages" ).each(function(i) {
+          notificationLoop(time, $(this), "#", "info", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+          time++;
         });
     } 
-    if ($(".error_messages").length) {
-        $( ".error_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "danger", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
-          setTimeout(function () { doThis($li); }, 5000 * (i + 1));
+    if ($(".success_messages").length) {
+        $( ".success_messages" ).each(function() {
+          notificationLoop(time, $(this), "#", "success", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+          time++;
         });
     } 
     if ($(".warning_messages").length) {
-        $( ".warning_messages" ).each(function( i ) {
-          showNotification($( this ).text(), "", "#", "warning", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
-          setTimeout(function () { doThis($li); }, 5000 * (i + 1));
+        $( ".warning_messages" ).each(function(i) {
+          notificationLoop(time, $(this), "#", "warning", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+          time++;
+        });
+    } 
+    if ($(".error_messages").length) {
+        $( ".error_messages" ).each(function(i) {
+          notificationLoop(time, $(this), "#", "error", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+          time++;
         });
     } 
 
@@ -96,6 +105,12 @@ $(function () {
       ]
      });
 });
+
+function notificationLoop(time, data, redirect, colorName, placementFrom, placementAlign, offsetFrom, offsetAlign, animateEnter, animateExit){
+  setTimeout(function () {   
+    showNotification(data.find('h1').text(), data.find('p').text(), redirect, colorName, placementFrom, placementAlign, offsetFrom, offsetAlign, animateEnter, animateExit);                                       
+  }, 1000 * time)
+}
 
 function showNotification(title, text, redirect, colorName, placementFrom, placementAlign, offsetFrom, offsetAlign, animateEnter, animateExit) {
     if (title === null || text === '') { text = ''; }
@@ -147,7 +162,7 @@ function showNotification(title, text, redirect, colorName, placementFrom, place
       template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
                   '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
                   '<span data-notify="title">{1}</span>' +
-                  '<span data-notify="message">{2}</span>' +
+                  '<br><span data-notify="message">{2}</span>' +
                   '<div class="progress" data-notify="progressbar">' +
                     '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
                   '</div>' +

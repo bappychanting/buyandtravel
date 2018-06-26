@@ -16,6 +16,9 @@ class ProfileController extends Controller
      *
      * @return void
      */
+
+    protected $user;
+     
     public function __construct(User $user)
     {
         $this->user = $user;
@@ -39,9 +42,9 @@ class ProfileController extends Controller
         return view('profile.userinfo.index', compact('user'));
     }
 
-    public function verifyUser()
+    public function verificationMail()
     {
-        // Add a modal, button to send email and Define user veriable
+        $user = Auth::user();
         Mail::to($user->email)->send(new VerifyMail($user));
         return view('profile.userinfo.index', compact('user'));
     }

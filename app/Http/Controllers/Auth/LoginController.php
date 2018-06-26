@@ -31,7 +31,7 @@ class LoginController extends Controller
     // protected $redirectTo = '/home';
     protected function redirectTo()
     {
-        Session::flash('success', array('Login successful!'));
+        Session::flash('success', array('Login successful!'=>''));
         return route('profile.summery');
     }
 
