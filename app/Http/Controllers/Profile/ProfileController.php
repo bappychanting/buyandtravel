@@ -44,21 +44,22 @@ class ProfileController extends Controller
 
     public function verificationMail()
     {
-        $user = Auth::user();
-        Mail::to($user->email)->send(new VerifyMail($user));
-        return view('profile.userinfo.index', compact('user'));
+        // $user = Auth::user();
+        // Mail::to($user->email)->send(new VerifyMail($user));
+        return redirect()->back()->with('success', array('Mail has been sent'=>'Please open your mail and check your inbox for verification link'));
     }
 
 
     public function verifyUser($token)
     {
+
         $verifyUser = VerifyUser::where('token', $token)->first();
         if(isset($verifyUser) ){
             $user = $verifyUser->user;
             if(!$user->verified) {
                 $verifyUser->user->verified = 1;
                 $verifyUser->user->save();
-                $status = "Your account is not now verified!";
+                $status = "Your account is now verified!";
             }else{
                 $status = "The account associated with this email is already verified!";
             }

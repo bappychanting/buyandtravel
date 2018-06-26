@@ -91,18 +91,20 @@
                             </p>
 
                         <div class="btn-group mt-4" role="group" aria-label="Basic example">
-                            <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#modalLoginForm">
+                            <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#updateimage">
                               <i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Update Profile Picture
                             </a>
-                            <a href="#" class="btn btn-blue btn-sm">
-                              @if($user->verified == 1)
+                            @if($user->verified)
+                              <a href="#" class="btn btn-blue btn-sm">
                                 <i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>
                                 Profile verified
-                              @else
+                              </a>
+                            @else
+                              <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#verifyAccount">
                                 <i class="fa fa-warning fa-sm pr-2" aria-hidden="true"></i>
                                 Profile not yet verified
-                              @endif
-                            </a>
+                              </a>
+                            @endif
                         </div>
                       </div>
                     </div>
@@ -129,8 +131,8 @@
         <!-- /.row -->
 
     </div>
-    <!-- View Profile -->
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- Update Image -->
+    <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -149,7 +151,28 @@
             </div>
         </div>
     </div>
-    <!-- View Profile -->
+    <!-- Update Image -->
+
+    <!-- Verification link -->
+    <div class="modal fade" id="verifyAccount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Verify Profile</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <p>Click the verification link sent to your email after registration to verify your account. If you did not receive any mail, click the below button to resend verification link</p>
+                    <div class="btn-group mt-4" role="group" aria-label="Basic example">
+                      <a href="{{ route('user.verification') }}" class="btn btn-primary"><i class="fa fa-send fa-sm pr-2"" aria-hidden="true"></i>Resend verification link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Verification link -->
 
 @endsection
 

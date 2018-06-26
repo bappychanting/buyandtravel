@@ -20,8 +20,10 @@
           </ol>
       </div>
 
-      <h2 class="animated fadeIn my-5">{{ $user->name }}</h2>
-      <!-- Add a redirect to home button -->
+      <h2 class="animated zoomIn text-center my-5 light-green-text">{{ $status }}</h2>
+      <center>
+        <a href="{{ route('profile.summery') }}" class="btn btn-primary"><i class="fa fa-send fa-sm pr-2"" aria-hidden="true"></i>Redirect to user homepage</a>
+      </center>
 
     </div>
 

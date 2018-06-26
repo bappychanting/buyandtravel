@@ -15,10 +15,12 @@ Route::get('/', 'HomeController@index')->name('buyandtravel');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Auth::routes();
-Route::get('/user/verify/{token}', 'Profile\ProfileController@verifyUser');
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
+
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
+	Route::get('/user/verify/{token}', 'ProfileController@verifyUser')->name('user.verify');
+	Route::get('/user/verificationlink', 'ProfileController@verificationMail')->name('user.verification');
 
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/', 'ProfileController@userinfo')->name('user.userinfo');
