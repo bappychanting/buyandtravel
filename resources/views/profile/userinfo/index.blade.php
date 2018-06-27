@@ -143,10 +143,19 @@
                 </div>
                 <div class="modal-body mx-3">
                     <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-                    <div class="btn-group mt-4" role="group" aria-label="Basic example">
-                      <a href="view_user.php" class="btn btn-blue btn-sm"><i class="fa fa-user fa-sm pr-2" aria-hidden="true"></i>Select</a>
-                      <a href="view_order.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Update</a>
-                    </div>
+                    {!! Form::open(['class'=>'md-form', 'method' => 'post', 'route' => 'store', 'enctype' => 'multipart/form-data']) !!}
+                        <input type="hidden" name="token" value="{{ csrf_token() }}">
+                        <div class="file-field">
+                            <div class="btn btn-primary btn-sm float-left">
+                                <span>Choose file</span>
+                                <input type="file" name="image">
+                            </div>
+                            <div class="file-path-wrapper">
+                               <input class="file-path validate" type="text" placeholder="Upload your file">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-sm">Upload Image</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

@@ -10,7 +10,8 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "webpatser/laravel-countries": "dev-master",
-        "laravelcollective/html": "^5.6"
+        "laravelcollective/html": "^5.6",
+        "verot/class.upload.php": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

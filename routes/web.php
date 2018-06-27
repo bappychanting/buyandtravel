@@ -14,6 +14,8 @@
 Route::get('/', 'HomeController@index')->name('buyandtravel');
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
+Route::post('/storeImage', 'Profile\ProfileController@store')->name('store');
+
 Auth::routes();
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {

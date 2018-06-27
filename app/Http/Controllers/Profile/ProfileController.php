@@ -1,12 +1,13 @@
 <?php
 namespace App\Http\Controllers\Profile;
 use Session;
-use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\VerifyUser;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
@@ -16,6 +17,13 @@ class ProfileController extends Controller
      *
      * @return void
      */
+
+        // Create a dummy image and method in the controller for image not found
+    public function store(Request $request)
+    {
+        $path = $request->file('image')->store('upload');
+        echo $path;
+    }
 
     protected $user;
      
