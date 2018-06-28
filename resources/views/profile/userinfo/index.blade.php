@@ -56,11 +56,14 @@
                     <div class="row">
                       <div class="col-lg-6 mb-4">
                         <div class="view overlay z-depth-1-half">
-                            <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid rounded" alt="First sample image">
+                            <img src="{{ file_exists(public_path($user->avatar)) ? asset($user->avatar) : 'http://via.placeholder.com/450x350' }}" class="img-fluid rounded" alt="First sample image">
                             <a>
                                 <div class="mask"></div>
                             </a>
                         </div>
+                        @if ($errors->has('image'))
+                            <p class="red-text mt-4">{{ $errors->first('image') }}</p>
+                        @endif
                       </div>
                       <div class="col-lg-6 mb-4">                            
                           <h4>User Information</h4><hr>
@@ -133,31 +136,44 @@
     </div>
     <!-- Update Image -->
     <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+            <!--Content-->
             <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Update Profile Picture</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+                <!--Header-->
+                <div class="modal-header">
+                    <img src="http://via.placeholder.com/450x450" alt="avatar" class="rounded-circle img-responsive">
                 </div>
-                <div class="modal-body mx-3">
-                    <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
-                    {!! Form::open(['class'=>'md-form', 'method' => 'post', 'route' => 'store', 'enctype' => 'multipart/form-data']) !!}
-                        <input type="hidden" name="token" value="{{ csrf_token() }}">
-                        <div class="file-field">
-                            <div class="btn btn-primary btn-sm float-left">
-                                <span>Choose file</span>
-                                <input type="file" name="image">
-                            </div>
-                            <div class="file-path-wrapper">
-                               <input class="file-path validate" type="text" placeholder="Upload your file">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-success btn-sm">Upload Image</button>
+                <!--Body-->
+                <div class="modal-body text-center mb-1">
+
+                    <h5 class="mt-1 mb-2">Update Profile Picture</h5>
+
+                    <div class="progress primary-color-dark">
+                        <div class="indeterminate"></div>
+                    </div>
+
+                    {!! Form::open(['class'=>'md-form', 'method' => 'put', 'route' => ['user.updateImage', $user->id], 'enctype' => 'multipart/form-data']) !!}
+
+                      <div class="file-field">
+                          <div class="btn btn-primary btn-sm float-left">
+                              <span>Select</span>
+                              {!! Form::file("image") !!}
+                          </div>
+                          <div class="file-path-wrapper">
+                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'Choose your file']) !!}
+                          </div>
+                      </div>
+                      <div class="text-center mt-4">
+                          {{ Form::button('Upload Image <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-cyan mt-1 btn-md'] ) }}
+                      </div>
+
                     {!! Form::close() !!}
+
                 </div>
+
             </div>
+            <!--/.Content-->
         </div>
     </div>
     <!-- Update Image -->

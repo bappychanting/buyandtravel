@@ -18,13 +18,6 @@ class ProfileController extends Controller
      * @return void
      */
 
-        // Create a dummy image and method in the controller for image not found
-    public function store(Request $request)
-    {
-        $path = $request->file('image')->store('upload');
-        echo $path;
-    }
-
     protected $user;
      
     public function __construct(User $user)
@@ -121,6 +114,19 @@ class ProfileController extends Controller
         $user->address = $request->address;
         $user->save();
         Session::flash('success', array('Contact Information Successfully updated!'));
+        return redirect(route('user.userinfo'));
+    }
+
+    public function updateImage(Request $request, $id)
+    {        
+        $user = $this->user->findorfail($id);
+        $this->validate(request(),[
+            'image' => 'required|max:500'
+        ]);  
+        $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 350);
+        $user->avatar = $image;
+        $user->save();
+        Session::flash('success', array('Avatar Successfully updated!'=>''));
         return redirect(route('user.userinfo'));
     }
 
