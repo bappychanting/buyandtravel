@@ -80,6 +80,21 @@ $(document).ready(function(){
         readURL(this, $(this).index());
     });
 
+    (function() {
+      $('.upload_image').ajaxForm({
+        beforeSend: function() {
+        },
+        uploadProgress: function() {
+          $(".avatar_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2'>Uploading Image</h5><div class='progress primary-color-dark'><div class='indeterminate'></div></div></div>");
+        },
+        success: function() {
+          $(".avatar_modal").empty().append("<div class='modal-body text-center mb-1'><h5 class='mt-1 mb-2 light-green-text'><i class='fa fa-check-circle'></i> Image Uploaded</h5></div>").fadeIn("slow");        
+        },
+        complete: function(xhr) {
+          location.reload();
+        }
+      }); 
+    })();
 
 });
 

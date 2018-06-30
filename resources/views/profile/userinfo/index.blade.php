@@ -138,7 +138,7 @@
     <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
             <!--Content-->
-            <div class="modal-content modal-image">
+            <div class="modal-content avatar_modal">
 
                 <!--Header-->
                 <div class="modal-header">
@@ -149,11 +149,7 @@
 
                     <h5 class="mt-1 mb-2">Update Profile Picture</h5>
 
-                    <div class="progress primary-color-dark">
-                        <div class="indeterminate"></div>
-                    </div>
-
-                    {!! Form::open(['class'=>'md-form', 'method' => 'put', 'route' => ['user.updateImage', $user->id], 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['user.updateImage', $user->id], 'enctype' => 'multipart/form-data']) !!}
 
                       <div class="file-field">
                           <div class="btn btn-primary btn-sm float-left">

@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <!-- CSRF Token -->
-  	<meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon-->
     <link rel="icon" href="{!! asset('favicon.png') !!}"/>
@@ -79,6 +79,7 @@
 
     <!-- Bootstrap core JavaScript -->
  	{{Html::script('js/jquery.min.js')}}
+    {{Html::script('js/jquery.form.js')}}
 
     <!-- Bootstrap tooltips -->
  	{{Html::script('js/popper.min.js')}}

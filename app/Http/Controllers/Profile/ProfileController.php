@@ -126,7 +126,7 @@ class ProfileController extends Controller
         $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 350);
         $user->avatar = $image;
         $user->save();
-        Session::flash('success', array('Avatar Successfully updated!'=>''));
+        // Session::flash('success', array('Avatar Successfully updated!'=>''));
         return redirect(route('user.userinfo'));
     }
 
