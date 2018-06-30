@@ -52,7 +52,7 @@ $(document).ready(function(){
 
       // Notifications
     if ($(".info_messages").length) {
-        $( ".info_messages" ).each(function(i) {
+        $( ".info_messages" ).each(function() {
           notificationLoop(time, $(this), "#", "info", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           time++;
         });
@@ -64,17 +64,21 @@ $(document).ready(function(){
         });
     } 
     if ($(".warning_messages").length) {
-        $( ".warning_messages" ).each(function(i) {
+        $( ".warning_messages" ).each(function() {
           notificationLoop(time, $(this), "#", "warning", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           time++;
         });
     } 
     if ($(".error_messages").length) {
-        $( ".error_messages" ).each(function(i) {
+        $( ".error_messages" ).each(function() {
           notificationLoop(time, $(this), "#", "error", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           time++;
         });
     } 
+
+    $('.input_image').change(function() {
+        readURL(this, $(this).index());
+    });
 
 
 });
@@ -83,7 +87,16 @@ $( window ).resize(function() {
   footerAlign();
 });
 
-
+function readURL(input, i) {
+    i = i-1;
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.preview_input').eq(i).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 $(function () {
     tinymce.init({

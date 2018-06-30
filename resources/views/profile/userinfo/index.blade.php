@@ -138,11 +138,11 @@
     <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
             <!--Content-->
-            <div class="modal-content">
+            <div class="modal-content modal-image">
 
                 <!--Header-->
                 <div class="modal-header">
-                    <img src="http://via.placeholder.com/450x450" alt="avatar" class="rounded-circle img-responsive">
+                    <img src="http://via.placeholder.com/450x450" alt="avatar" class="rounded-circle img-responsive preview_input">
                 </div>
                 <!--Body-->
                 <div class="modal-body text-center mb-1">
@@ -158,7 +158,7 @@
                       <div class="file-field">
                           <div class="btn btn-primary btn-sm float-left">
                               <span>Select</span>
-                              {!! Form::file("image") !!}
+                              {!! Form::file("image", ['class'=>'input_image']) !!}
                           </div>
                           <div class="file-path-wrapper">
                               {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'Choose your file']) !!}
