@@ -91,7 +91,7 @@ class ProfileController extends Controller
         $user->gender = $request->gender;
         $user->dob = Carbon::createFromFormat('d/m/Y', $request->dob)->toDateTimeString();
         $user->save();
-        Session::flash('success', array('User Information Successfully updated!'));
+        Session::flash('success', array('Success'=>'User Information Successfully updated!'));
         return redirect(route('user.userinfo'));
     }
 
@@ -113,7 +113,7 @@ class ProfileController extends Controller
         $user->contact = $request->contact;
         $user->address = $request->address;
         $user->save();
-        Session::flash('success', array('Contact Information Successfully updated!'));
+        Session::flash('success', array('Success'=>'Contact Information Successfully updated!'));
         return redirect(route('user.userinfo'));
     }
 
@@ -123,7 +123,7 @@ class ProfileController extends Controller
         $this->validate(request(),[
             'image' => 'required|max:500'
         ]);  
-        $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 350);
+        $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 450);
         $user->avatar = $image;
         $user->save();
         // Session::flash('success', array('Avatar Successfully updated!'=>''));
