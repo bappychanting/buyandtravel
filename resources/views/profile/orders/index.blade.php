@@ -31,7 +31,7 @@
           <div class="col-lg-10 mb-4">
             <h2>List of Orders</h2>
             <p>Following are the list of orders you have added.</p>
-          <a class="btn btn-md btn-primary mb-4" href="add_order.php"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Order</a>
+          <a class="btn btn-md btn-primary mb-4" href="{{ route('orders.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Order</a>
           <!-- Material input email -->
                 <div class="md-form">
                     <input type="email" class="form-control">

@@ -26,7 +26,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        return view('profile.orders.create', compact('user'));
     }
 
     /**
