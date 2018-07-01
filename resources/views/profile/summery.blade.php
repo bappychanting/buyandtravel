@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || Profile || ")
+@section('title', $user->name." || Summery || ")
 
 @section('content')
 

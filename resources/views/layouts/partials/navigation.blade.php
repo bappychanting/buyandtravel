@@ -63,7 +63,7 @@
                 </li>  
                 <li class="nav-item avatar dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/100?text=No+Profile+Picture+Found' }}" class="img-fluid rounded-circle z-depth-0">
+                        <img src="{{ file_exists(Auth::user()->avatar) ? asset(Auth::user()->avatar) : 'http://via.placeholder.com/100?text=No+Profile+Picture+Found' }}" class="img-fluid rounded-circle z-depth-0">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-purple" aria-labelledby="navbarDropdownMenuLink-5">
                         <a class="dropdown-item" href="{{ route('profile.summery') }}"><i class="fa fa-user"></i> Your Content</a>

@@ -22,6 +22,8 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/user/verify/{token}', 'ProfileController@verifyUser')->name('user.verify');
 	Route::get('/user/verificationlink', 'ProfileController@verificationMail')->name('user.verification');
 
+	Route::resource('orders', 'OrderController');
+
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/', 'ProfileController@userinfo')->name('user.userinfo');
 		Route::put('/storeImage/{id}', 'ProfileController@updateImage')->name('user.updateImage');
