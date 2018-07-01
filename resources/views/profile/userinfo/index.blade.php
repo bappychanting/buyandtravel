@@ -56,7 +56,7 @@
                     <div class="row">
                       <div class="col-lg-6 mb-4">
                         <div class="view overlay z-depth-1-half">
-                            <img src="{{ file_exists(public_path($user->avatar)) ? asset($user->avatar) : 'http://via.placeholder.com/450x350' }}" class="img-fluid rounded" alt="First sample image">
+                            <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450x350' }}" class="img-fluid rounded" alt="First sample image">
                             <a>
                                 <div class="mask"></div>
                             </a>
