@@ -3,7 +3,7 @@
             <div class="list-group">
               <a href="{{ route('profile.summery') }}" class="list-group-item {{Route::is('profile.summery')? 'active':''}}">Summery</a>
               <a href="{{ route('orders.index') }}" class="list-group-item {{Route::is('orders*')? 'active':''}}">Orders</a>
-              <a href="user_travel_schedules.php" class="list-group-item">Travel History</a>
+              <a href="{{ route('travel.index') }}" class="list-group-item {{Route::is('travel*')? 'active':''}}">Travel History</a>
               <a href="user_requests.php" class="list-group-item">Requests</a>
               <a href="user_offers.php" class="list-group-item">Offers</a>
               <a href="{{ route('user.userinfo') }}" class="list-group-item {{Route::is('user*')? 'active':''}}">View Profile</a>

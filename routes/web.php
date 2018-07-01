@@ -23,6 +23,7 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/user/verificationlink', 'ProfileController@verificationMail')->name('user.verification');
 
 	Route::resource('orders', 'OrderController');
+	Route::resource('travel', 'TravelController');
 
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/', 'ProfileController@userinfo')->name('user.userinfo');
