@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Profile;
-
+use Countries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -27,7 +27,9 @@ class TravelController extends Controller
     public function create()
     {
         $user = Auth::user();
-        return view('profile.travel.create', compact('user'));
+        $countries = Countries::getListForSelect();
+        // return $countries;
+        return view('profile.travel.create', compact('user', 'countries'));
     }
 
     /**

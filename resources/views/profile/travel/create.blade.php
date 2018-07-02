@@ -32,15 +32,15 @@
           <div class="col-lg-10 mb-4">
             <h2>Add Travel History</h2>
             <p class="font-weight-bold">Please Input Following Details</p>
+
+              {!! Form::open(['method' => 'post', 'route' => ['travel.store']]) !!}
               <div class="demo-masked-input">
 
                 <select class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
-                    <option value="" disabled selected>Choose your country</option>
-                    <option value="1">USA</option>
-                    <option value="2">Germany</option>
-                    <option value="3">France</option>
-                    <option value="4">Poland</option>
-                    <option value="5">Japan</option>
+                  <option value="" disabled selected>Country You are Traveling to</option>
+                  @foreach($countries as $id => $country)
+                    <option value="{{ $id }}">{{ $country }}</option>
+                  @endforeach
                 </select>
 
                 <!-- Material input text -->
@@ -69,19 +69,20 @@
 
                 <!-- Material input text -->
                 <p class="font-weight-bold my-3">Add Tags</p>
-                {!! Form::text('tags', null, array('data-role' =>'tagsinput')) !!}
+                  {!! Form::text('tags', null, array('placeholder'=>'Seperate tags with commas', 'data-role' =>'tagsinput')) !!}
                 <hr>
 
                 <p class="font-weight-bold my-3">Add Travel Details</p>
                 <!-- Material Editor -->
                 <div class="md-form">
-                    <textarea class="editor">
-                    </textarea>
+                    {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
                 </div>
 
                 <div class="text-center my-4">
-                    <a class="btn btn-primary" href="user_travel_schedule_details.php">Submit</a>
+                    {!! Form::submit('Add Travel Schedule', array('class' =>'btn btn-primary')) !!}
                 </div>
+
+                {!! Form::close() !!}
               </div>
           </div>
         </div>
