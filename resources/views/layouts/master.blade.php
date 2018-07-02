@@ -37,14 +37,8 @@
     <!-- Bootstrap Tagsinput Css -->
     {{ Html::style('plugins/bootstrap-tagsinput/bootstrap-tagsinput.css') }}
 
-    <!-- Bootstrap Select Css -->
-    {{ Html::style('plugins/bootstrap-select/css/bootstrap-select.css') }}
-
     <!-- Bootstrap Material Datetime Picker Css -->
     {{ Html::style('plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css') }}
-
-    <!-- Bootstrap Select Css -->
-    {{ Html::style('plugins/bootstrap-select/css/bootstrap-select.css') }}
 
     <!-- Image Slider Css -->
     {{ Html::style('plugins/light-gallery/css/lightgallery.css') }}
@@ -92,9 +86,6 @@
 
     <!-- Bootstrap Notify -->
  	{{Html::script('plugins/bootstrap-notify/bootstrap-notify.min.js')}}
-
-    <!-- Select Plugin Js -->
- 	{{Html::script('plugins/bootstrap-select/js/bootstrap-select.js')}}
 
     <!-- Light Gallery Plugin Js -->
  	{{Html::script('plugins/light-gallery/js/lightgallery-all.js')}}

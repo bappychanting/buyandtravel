@@ -34,45 +34,48 @@
             <p class="font-weight-bold">Please Input Following Details</p>
               <div class="demo-masked-input">
 
-                <!-- Material input text -->
-                <div class="md-form">
-                    <input type="text" class="form-control" name="name" id="name">
-                    <label for="name">Destination</label>
-                </div>
-                <!-- Material input text -->
+                <select class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
+                    <option value="" disabled selected>Choose your country</option>
+                    <option value="1">USA</option>
+                    <option value="2">Germany</option>
+                    <option value="3">France</option>
+                    <option value="4">Poland</option>
+                    <option value="5">Japan</option>
+                </select>
 
                 <!-- Material input text -->
                 <div class="md-form">
-                    <input type="text" class="form-control datepicker" id="pruce">
-                    <label for="pruce">Travel Date</label>
+                  {!! Form::label('city', 'City') !!}
+                  {!! Form::text('city', null, array('class' =>'form-control')) !!}
                 </div>
 
                 <!-- Material input text -->
                 <div class="md-form">
-                    <input type="text" class="form-control datepicker" id="link">
-                    <label for="link">Leave Date</label>
+                  {!! Form::label('destination', 'Destination') !!}
+                  {!! Form::text('destination', null, array('class' =>'form-control')) !!}
+                </div>
+
+                <!-- Material input text -->
+                <div class="md-form">
+                  {!! Form::label('arrival_date', 'Travel Start Date') !!}
+                  {!! Form::text('arrival_date', null, array('class' =>'form-control datepicker')) !!}
+                </div>
+
+                <!-- Material input text -->
+                <div class="md-form">
+                  {!! Form::label('leave_date', 'Travel End Date') !!}
+                  {!! Form::text('leave_date', null, array('class' =>'form-control datepicker')) !!}
                 </div>
 
                 <!-- Material input text -->
                 <p class="font-weight-bold my-3">Add Tags</p>
-                <input type="text" data-role="tagsinput" value="Amsterdam,Washington,Sydney,Beijing,Cairo"><hr>
+                {!! Form::text('tags', null, array('data-role' =>'tagsinput')) !!}
+                <hr>
 
                 <p class="font-weight-bold my-3">Add Travel Details</p>
                 <!-- Material Editor -->
                 <div class="md-form">
                     <textarea class="editor">
-                        <h2>WYSIWYG Editor</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ullamcorper sapien non nisl facilisis bibendum in quis tellus. Duis in urna bibendum turpis pretium fringilla. Aenean neque velit, porta eget mattis ac, imperdiet quis nisi. Donec non dui et tortor vulputate luctus. Praesent consequat rhoncus velit, ut molestie arcu venenatis sodales.</p>
-                        <h3>Lacinia</h3>
-                        <ul>
-                            <li>Suspendisse tincidunt urna ut velit ullamcorper fermentum.</li>
-                            <li>Nullam mattis sodales lacus, in gravida sem auctor at.</li>
-                            <li>Praesent non lacinia mi.</li>
-                            <li>Mauris a ante neque.</li>
-                            <li>Aenean ut magna lobortis nunc feugiat sagittis.</li>
-                        </ul>
-                        <h3>Pellentesque adipiscing</h3>
-                        <p>Maecenas quis ante ante. Nunc adipiscing rhoncus rutrum. Pellentesque adipiscing urna mi, ut tempus lacus ultrices ac. Pellentesque sodales, libero et mollis interdum, dui odio vestibulum dolor, eu pellentesque nisl nibh quis nunc. Sed porttitor leo adipiscing venenatis vehicula. Aenean quis viverra enim. Praesent porttitor ut ipsum id ornare.</p>
                     </textarea>
                 </div>
 
