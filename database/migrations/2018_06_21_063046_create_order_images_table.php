@@ -17,8 +17,8 @@ class CreateOrderImagesTable extends Migration
             $table->increments('id');
             $table->string('src');
             $table->string('alt');
-            $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->integer('order')->unsigned();
+            $table->foreign('order')->references('id')->on('orders');
             $table->timestamps();
         });
     }

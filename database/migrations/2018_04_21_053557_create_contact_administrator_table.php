@@ -17,8 +17,8 @@ class CreateContactAdministratorTable extends Migration
             $table->increments('id');
             $table->string('subject');
             $table->string('details', 5000);
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user')->unsigned();
+            $table->foreign('user')->references('id')->on('users');
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();
         });

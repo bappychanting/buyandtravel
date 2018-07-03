@@ -16,10 +16,10 @@ class CreateRequestMessageTable extends Migration
         Schema::create('request_message', function (Blueprint $table) {
             $table->increments('id');
             $table->string('message_body', 5000);
-            $table->integer('request_id')->unsigned();
-            $table->foreign('request_id')->references('id')->on('request_traveler');
-            $table->integer('sender_id')->unsigned();
-            $table->foreign('sender_id')->references('id')->on('users');
+            $table->integer('request')->unsigned();
+            $table->foreign('request')->references('id')->on('request_traveler');
+            $table->integer('sender')->unsigned();
+            $table->foreign('sender')->references('id')->on('users');
             $table->integer('seen')->unsigned()->nullable();
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();

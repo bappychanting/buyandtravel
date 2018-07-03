@@ -17,10 +17,10 @@ class CreateReviewUserTable extends Migration
             $table->increments('id');
             $table->tinyInteger('rating')->default(1);
             $table->string('review_details', 5000);
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('reviewing_user_id')->unsigned();
-            $table->foreign('reviewing_user_id')->references('id')->on('users');
+            $table->integer('user')->unsigned();
+            $table->foreign('user')->references('id')->on('users');
+            $table->integer('reviewing_user')->unsigned();
+            $table->foreign('reviewing_user')->references('id')->on('users');
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();
         });

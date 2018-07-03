@@ -40,6 +40,10 @@ class ProfileController extends Controller
     public function userinfo()
     {
         $user = Auth::user();
+        if(session('image')){
+            Session::flash('success', array(session('image')=>''));
+            session()->forget('image');
+        }
         return view('profile.userinfo.index', compact('user'));
     }
 
@@ -126,7 +130,7 @@ class ProfileController extends Controller
         $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 450);
         $user->avatar = $image;
         $user->save();
-        // Session::flash('success', array('Avatar Successfully updated!'=>''));
+        session()->put('image', 'Avatar Successfully updated!');
         return redirect(route('user.userinfo'));
     }
 

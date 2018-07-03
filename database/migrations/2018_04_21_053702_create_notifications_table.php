@@ -17,8 +17,8 @@ class CreateNotificationsTable extends Migration
             $table->increments('id');
             $table->string('notification_details');
             $table->string('icon');
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('user')->unsigned();
+            $table->foreign('user')->references('id')->on('users');
             $table->tinyInteger('viewed')->default(0);
             $table->timestamps();
         });

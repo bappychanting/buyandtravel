@@ -28,7 +28,6 @@ class TravelController extends Controller
     {
         $user = Auth::user();
         $countries = Countries::getListForSelect();
-        // return $countries;
         return view('profile.travel.create', compact('user', 'countries'));
     }
 

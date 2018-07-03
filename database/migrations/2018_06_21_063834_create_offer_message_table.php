@@ -16,10 +16,10 @@ class CreateOfferMessageTable extends Migration
         Schema::create('offer_message', function (Blueprint $table) {
             $table->increments('id');
             $table->string('message_body', 5000);
-            $table->integer('offer_id')->unsigned();
-            $table->foreign('offer_id')->references('id')->on('offers');
-            $table->integer('sender_id')->unsigned();
-            $table->foreign('sender_id')->references('id')->on('users');
+            $table->integer('offer')->unsigned();
+            $table->foreign('offer')->references('id')->on('offers');
+            $table->integer('sender')->unsigned();
+            $table->foreign('sender')->references('id')->on('users');
             $table->integer('seen')->unsigned()->nullable();
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();
