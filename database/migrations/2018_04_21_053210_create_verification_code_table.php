@@ -15,7 +15,7 @@ class CreateVerificationCodeTable extends Migration
     {
         Schema::create('verification_code', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->integer('user')->unsigned();
             $table->foreign('user')->references('id')->on('users');
             $table->timestamps();

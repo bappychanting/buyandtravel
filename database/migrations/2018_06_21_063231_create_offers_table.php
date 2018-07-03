@@ -15,10 +15,10 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('product_quantity');
-            $table->string('asking_price');
+            $table->tinyInteger('product_quantity')->nullable()->default(1);
+            $table->string('asking_price')->nullable();
             $table->integer('delivery_date')->unsigned()->nullable();
-            $table->string('additinoal_details', 5000);
+            $table->string('additinoal_details', 5000)->nullable();
             $table->tinyInteger('accepted')->default(0);
             $table->tinyInteger('delivered')->default(0);
             $table->tinyInteger('received')->default(0);

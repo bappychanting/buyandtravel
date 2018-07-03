@@ -35,17 +35,21 @@
 
               {!! Form::open(['method' => 'post', 'route' => ['travel.store']]) !!}
               <div class="demo-masked-input">
+                
+                {{-- Form::select('size', $countries, null, array('class' =>'mdb-select colorful-select dropdown-primary', 'searchable'=>'Search here..')) --}}
 
-                {!! Form::select('size', $countries, null, array('class' =>'mdb-select colorful-select dropdown-primary', 'searchable'=>'Search here..')) !!}
+                {!! Form::hidden('user', $user->id) !!}
 
-                <!-- {!! Form::select('animal', ['Cats' => ['leopard' => 'Leopard'], 'Dogs' => ['spaniel' => 'Spaniel']]) !!} -->
-
-                <select class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
+                <select name="country" class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
                   <option value="" disabled selected>Country You are Traveling to</option>
                   @foreach($countries as $id => $country)
                     <option value="{{ $id }}">{{ $country }}</option>
                   @endforeach
                 </select>
+
+                @if ($errors->has('country'))
+                    <p class="red-text">{{ $errors->first('country') }}</p>
+                @endif
 
                 <!-- Material input text -->
                 <div class="md-form">
@@ -53,11 +57,19 @@
                   {!! Form::text('city', null, array('class' =>'form-control')) !!}
                 </div>
 
+                @if ($errors->has('city'))
+                    <p class="red-text">{{ $errors->first('city') }}</p>
+                @endif
+
                 <!-- Material input text -->
                 <div class="md-form">
                   {!! Form::label('destination', 'Destination') !!}
                   {!! Form::text('destination', null, array('class' =>'form-control')) !!}
                 </div>
+
+                @if ($errors->has('destination'))
+                    <p class="red-text">{{ $errors->first('destination') }}</p>
+                @endif
 
                 <!-- Material input text -->
                 <div class="md-form">
@@ -65,22 +77,38 @@
                   {!! Form::text('arrival_date', null, array('class' =>'form-control datepicker')) !!}
                 </div>
 
+                @if ($errors->has('arrival_date'))
+                    <p class="red-text">{{ $errors->first('arrival_date') }}</p>
+                @endif
+
                 <!-- Material input text -->
                 <div class="md-form">
                   {!! Form::label('leave_date', 'Travel End Date') !!}
                   {!! Form::text('leave_date', null, array('class' =>'form-control datepicker')) !!}
                 </div>
 
+                @if ($errors->has('leave_date'))
+                    <p class="red-text">{{ $errors->first('leave_date') }}</p>
+                @endif
+
                 <!-- Material input text -->
                 <p class="font-weight-bold my-3">Add Tags</p>
                   {!! Form::text('tags', null, array('placeholder'=>'Seperate tags with commas', 'data-role' =>'tagsinput')) !!}
                 <hr>
+
+                @if ($errors->has('tags'))
+                    <p class="red-text">{{ $errors->first('tags') }}</p>
+                @endif
 
                 <p class="font-weight-bold my-3">Add Travel Details</p>
                 <!-- Material Editor -->
                 <div class="md-form">
                     {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
                 </div>
+
+                @if ($errors->has('additional_details'))
+                    <p class="red-text">{{ $errors->first('additional_details') }}</p>
+                @endif
 
                 <div class="text-center my-4">
                     {!! Form::submit('Add Travel Schedule', array('class' =>'btn btn-primary')) !!}

@@ -40,6 +40,26 @@ class TravelController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request, [
+            'country' => 'required',
+            'city' => 'required|max:50',
+            'destination' => 'required|max:500',
+            'arrival_date' => 'required',
+            'leave_date' => 'required',
+            'tags' => 'required',
+        ]);
+
+        /*protected $fillable = ['concept','description','amount','status','date'];
+        {{ Form::select('status', ['0' => 'Paid', '1' => 'Unpaid'], null, ['class' => 'form-control', 'id' => 'status']) }} 
+        $this->validate($request, [
+        'concept' => 'required|unique:course,concept|max:15',
+        'description' => 'required|max:50',
+        'amount' => 'required|numeric|max:50',
+        'date' => 'required|date|after:tomorrow',
+        ]); 
+        $input = $request->all();
+        Course::create($input);*/
     }
 
     /**
