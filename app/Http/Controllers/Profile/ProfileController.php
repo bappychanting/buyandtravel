@@ -49,8 +49,12 @@ class ProfileController extends Controller
 
     public function verificationMail()
     {
-        // $user = Auth::user();
-        // Mail::to($user->email)->send(new VerifyMail($user));
+        /*$user = Auth::user();
+        $verifyUser = VerifyUser::create([
+            'user' => $user->id,
+            'token' => str_random(40)
+        ]);
+        Mail::to($user->email)->send(new VerifyMail($user));*/
         return redirect()->back()->with('success', array('Mail has been sent'=>'Please open your mail and check your inbox for verification link'));
     }
 

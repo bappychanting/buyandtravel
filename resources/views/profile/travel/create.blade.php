@@ -38,6 +38,8 @@
 
                 {!! Form::select('size', $countries, null, array('class' =>'mdb-select colorful-select dropdown-primary', 'searchable'=>'Search here..')) !!}
 
+                <!-- {!! Form::select('animal', ['Cats' => ['leopard' => 'Leopard'], 'Dogs' => ['spaniel' => 'Spaniel']]) !!} -->
+
                 <select class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
                   <option value="" disabled selected>Country You are Traveling to</option>
                   @foreach($countries as $id => $country)
