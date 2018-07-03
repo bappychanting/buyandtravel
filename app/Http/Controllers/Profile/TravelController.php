@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 use Countries;
+use App\Travel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -40,15 +41,18 @@ class TravelController extends Controller
     public function store(Request $request)
     {
         //
-
         $this->validate($request, [
             'country' => 'required',
             'city' => 'required|max:50',
             'destination' => 'required|max:500',
             'arrival_date' => 'required',
             'leave_date' => 'required',
-            'tags' => 'required',
         ]);
+
+        $input = $request->all();
+        Travel::create($input);
+
+        return redirect()->route('travel.index');
 
         /*protected $fillable = ['concept','description','amount','status','date'];
         {{ Form::select('status', ['0' => 'Paid', '1' => 'Unpaid'], null, ['class' => 'form-control', 'id' => 'status']) }} 

@@ -34,7 +34,7 @@ class RegisterController extends Controller
     protected function redirectTo()
     {
             // Add a mail has been sent text under title
-        Session::flash('success', array('Successfully regsitered!'=>'A mail has been sent to your address. Please check the mail and varify your account.'));
+        Session::flash('success', array('Successfully regsitered!'=>'Thanks for registering to our website.', 'Check verification mail!'=>'A mail has been sent to your address. Please check the mail and varify your account.'));
         return route('user.userinfo');
     }
 
