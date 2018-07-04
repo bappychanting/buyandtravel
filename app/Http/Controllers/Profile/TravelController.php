@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Profile;
 use Countries;
-use Carbon\Carbon;
 use App\Travel;
 use App\Http\Requests\TravelRequest;
 use Illuminate\Support\Facades\Auth;
@@ -47,10 +46,6 @@ class TravelController extends Controller
      */
     public function store(TravelRequest $request)
     {
-        $request->merge([
-            'arrival_date' => Carbon::parse($request->arrival_date)->format('Y-m-d'), 
-            'leave_date' => Carbon::parse($request->leave_date)->format('Y-m-d')
-        ]);
         $input = $request->all();
         Travel::create($input);
         return redirect()->route('travel.index');
