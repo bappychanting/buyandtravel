@@ -30,7 +30,7 @@
           <!-- Content Column -->
                     <!-- Content Column -->
           <div class="col-lg-10 mb-4">
-            <h2>Add Travel History</h2>
+            <h2>Add Travel Schedule</h2>
             <p class="font-weight-bold">Please Input Following Details</p>
 
               {!! Form::open(['method' => 'post', 'route' => ['travel.store']]) !!}

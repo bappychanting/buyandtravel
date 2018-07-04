@@ -19,8 +19,8 @@ class CreateTravelScheduleTable extends Migration
             $table->foreign('country')->references('id')->on('countries');
             $table->string('city');
             $table->string('destination')->nullable();
-            $table->string('arrival_date');
-            $table->string('leave_date');
+            $table->date('arrival_date');
+            $table->date('leave_date');
             $table->string('tags')->nullable();
             $table->integer('views')->default(0);
             $table->string('additional_details', 5000)->nullable();

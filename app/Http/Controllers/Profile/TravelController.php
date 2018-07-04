@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Profile;
 use Countries;
+use Carbon\Carbon;
 use App\Travel;
-use Illuminate\Http\Request;
+use App\Http\Requests\TravelRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -14,6 +15,12 @@ class TravelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -38,32 +45,15 @@ class TravelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TravelRequest $request)
     {
-        //
-        $this->validate($request, [
-            'country' => 'required',
-            'city' => 'required|max:50',
-            'destination' => 'required|max:500',
-            'arrival_date' => 'required',
-            'leave_date' => 'required',
+        $request->merge([
+            'arrival_date' => Carbon::parse($request->arrival_date)->format('Y-m-d'), 
+            'leave_date' => Carbon::parse($request->leave_date)->format('Y-m-d')
         ]);
-
         $input = $request->all();
         Travel::create($input);
-
         return redirect()->route('travel.index');
-
-        /*protected $fillable = ['concept','description','amount','status','date'];
-        {{ Form::select('status', ['0' => 'Paid', '1' => 'Unpaid'], null, ['class' => 'form-control', 'id' => 'status']) }} 
-        $this->validate($request, [
-        'concept' => 'required|unique:course,concept|max:15',
-        'description' => 'required|max:50',
-        'amount' => 'required|numeric|max:50',
-        'date' => 'required|date|after:tomorrow',
-        ]); 
-        $input = $request->all();
-        Course::create($input);*/
     }
 
     /**
