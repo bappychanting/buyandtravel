@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 use App\Travel;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TravelRequest extends FormRequest
@@ -27,7 +28,11 @@ class TravelRequest extends FormRequest
         /*$input->merge([
             'arrival_date' => Carbon::parse($input->arrival_date)->format('Y-m-d'), 
             'leave_date' => Carbon::parse($input->leave_date)->format('Y-m-d')
-        ]);*/
+        ]);
+        
+        $input['arrival_date'] = Carbon::parse($input['arrival_date'])->format('Y-m-d');
+        $input['leave_date'] = Carbon::parse($input['leave_date'])->format('Y-m-d');
+        */
     // }
 
     /**
@@ -36,13 +41,16 @@ class TravelRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        
-            // Select the last travel date of the user from database using elequent and compare it with arrival date
-        // where('date', '<=', $date)
-        // 'date_to'    => 'required|date_format:"d/m/Y"|after:' . $dateFromForm,
+    {    
 
         $date = Carbon::now()->format('l d F Y');
+        $user = Auth::user();
+        $travelData = Travel::where('user', $user->id)->orderby('leave_date', 'desc')->limit(1)->get();
+        foreach($travelData as $data){
+            if($data->leave_date > Carbon::now()){
+                $date = Carbon::parse($data->leave_date)->format('l d F Y');
+            } 
+        }
 
         return [
             'country' => 'required',
