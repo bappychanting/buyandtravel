@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 use Countries;
 use App\Travel;
+use Carbon\Carbon;
 use App\Http\Requests\TravelRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,8 @@ class TravelController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('profile.travel.index', compact('user'));
+        $travelData = Travel::where('user', $user->id)->orderby('leave_date', 'desc')->get();
+        return view('profile.travel.index', compact('user', 'travelData'));
     }
 
     /**
@@ -47,6 +49,8 @@ class TravelController extends Controller
     public function store(TravelRequest $request)
     {
         $input = $request->all();
+        $input['arrival_date'] = Carbon::parse($input['arrival_date'])->format('Y-m-d');
+        $input['leave_date'] = Carbon::parse($input['leave_date'])->format('Y-m-d');
         Travel::create($input);
         return redirect()->route('travel.index');
     }

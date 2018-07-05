@@ -32,7 +32,7 @@
             <h2>All Travel History</h2>
             <p>Here is your travel schdule and history</p>
           <a class="btn btn-md btn-primary mb-4" href="{{ route('travel.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
-          <!-- Material input email -->
+
                 <!-- Material input email -->
                 <div class="md-form">
                     <input type="email" class="form-control">
@@ -42,13 +42,15 @@
                     <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
                 </div>
 
+            
+          @foreach($travelData as $travel)
+
             <!--Grid row-->
-            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> New Santos, Mexico</h5>
+            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country }}</h5>
             <h6>
-              <i class="fa fa-time"></i> <span class="font-weight-bold">From</span> 26/08/2018 <span class="font-weight-bold">To</span> 26/08/2018
+              <i class="fa fa-time"></i> <span class="font-weight-bold">From</span> {{ date('l d F Y', strtotime($travel->arrival_date)) }} <span class="font-weight-bold">To</span> {{ date('l d F Y', strtotime($travel->leave_date)) }}
             </h6>
-            <p class="mt-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                  Cras purus odio, vestibulum in vulputate at.....</p>
+            <p class="mt-2">{!! str_limit($travel->additional_details, 50) !!}...</p>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="user_travel_schedule_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
                 <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
@@ -57,50 +59,7 @@
 
             <hr class="mb-4">
 
-            <!--Grid row-->
-            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> New Santos, Mexico</h5>
-            <h6>
-              <i class="fa fa-time"></i> <span class="font-weight-bold">From</span> 26/08/2018 <span class="font-weight-bold">To</span> 26/08/2018
-            </h6>
-            <p class="mt-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                  Cras purus odio, vestibulum in vulputate at.....</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="user_travel_schedule_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
-                <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
-            </div>
-            <!--Grid row-->
-
-            <hr class="mb-4">
-
-            <!--Grid row-->
-            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> New Santos, Mexico</h5>
-            <h6>
-              <i class="fa fa-time"></i> <span class="font-weight-bold">From</span> 26/08/2018 <span class="font-weight-bold">To</span> 26/08/2018
-            </h6>
-            <p class="mt-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                  Cras purus odio, vestibulum in vulputate at.....</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="user_travel_schedule_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
-                <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
-            </div>
-            <!--Grid row-->
-
-            <hr class="mb-4">
-
-            <!--Grid row-->
-            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> New Santos, Mexico</h5>
-            <h6>
-              <i class="fa fa-time"></i> <span class="font-weight-bold">From</span> 26/08/2018 <span class="font-weight-bold">To</span> 26/08/2018
-            </h6>
-            <p class="mt-2"> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                  Cras purus odio, vestibulum in vulputate at.....</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="user_travel_schedule_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
-                <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
-            </div>
-            <!--Grid row-->
-
-            <hr class="mb-4">
+          @endforeach      
 
             <!--Pagination-->
             <nav aria-label="pagination example">
