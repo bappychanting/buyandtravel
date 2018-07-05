@@ -41,16 +41,25 @@ class TravelRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {    
-
+    {   
         $date = Carbon::now()->format('l d F Y');
+        $input = $this->all();
         $user = Auth::user();
-        $travelData = Travel::where('user', $user->id)->orderby('leave_date', 'desc')->limit(1)->get();
-        foreach($travelData as $data){
-            if($data->leave_date > Carbon::now()){
-                $date = Carbon::parse($data->leave_date)->format('l d F Y');
-            } 
+        $travelData = Travel::where('user', $user->id)->whereDate('leave_date', '>=', Carbon::now())->get();
+        if($travelData){
+            foreach($travelData as $data){
+                if($data->arrival_date < $input['leave_date']){
+                    $date = Carbon::parse($data->leave_date)->format('l d F Y');
+                    break; 
+                } 
+            }
         }
+        /*foreach($travelData as $data){
+            if($data->leave_date > Carbon::now() && $data->arrival_date < $input['leave_date']){
+                $date = Carbon::parse($data->leave_date)->format('l d F Y');
+                break; 
+            } 
+        }*/
 
         return [
             'country' => 'required',
