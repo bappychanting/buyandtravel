@@ -47,12 +47,9 @@
             <!--Grid row-->
             <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country->name }}</h5>
             <p>
-              <i class="fa fa-time"></i>From <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span>, To <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
+              <i class="fa fa-calendar-check-o"></i> <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span> &#8594; <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
             </p>
-            <h6 class="font-weight-bold">Visiting Zone: {{ $travel->destination }}</h6>
-            <p class="mt-2">
-              {!! str_limit($travel->additional_details, 150) !!}
-            </p>
+            <h6><i class="fa fa-map-marker"></i> <span class="green-text">{{ $travel->destination }}</span></h6>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="user_travel_schedule_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
                 <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
