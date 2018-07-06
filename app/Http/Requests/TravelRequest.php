@@ -49,4 +49,11 @@ class TravelRequest extends FormRequest
             'leave_date' => 'required|date|after_or_equal:arrival_date',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'country_id.required' => "Please select a country.",
+        ];
+    }
 }

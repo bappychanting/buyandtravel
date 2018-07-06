@@ -47,8 +47,8 @@
                   @endforeach
                 </select>
 
-                @if ($errors->has('country'))
-                    <p class="red-text">{{ $errors->first('country') }}</p>
+                @if ($errors->has('country_id'))
+                    <p class="red-text">{{ $errors->first('country_id') }}</p>
                 @endif
 
                 <div class="row">
@@ -66,7 +66,7 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
-                      {!! Form::label('destination', 'Destination') !!}
+                      {!! Form::label('destination', 'Visiting Zone') !!}
                       {!! Form::text('destination', null, array('class' =>'form-control')) !!}
                     </div>
 

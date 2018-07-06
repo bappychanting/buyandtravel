@@ -15,7 +15,7 @@ class CreateReportTravelerTable extends Migration
     {
         Schema::create('report_traveler', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('report_details', 5000);
+            $table->text('report_details');
             $table->integer('traveler_id')->unsigned();
             $table->foreign('traveler_id')->references('id')->on('travel_schedule');
             $table->integer('reporting_user_id')->unsigned();

@@ -23,7 +23,7 @@ class CreateTravelScheduleTable extends Migration
             $table->date('leave_date');
             $table->string('tags')->nullable();
             $table->integer('views')->default(0);
-            $table->string('additional_details', 5000)->nullable();
+            $table->mediumText('additional_details')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

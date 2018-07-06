@@ -11,6 +11,6 @@ class Country extends Model
         // A Country has many Travel Schedules
     public function travel()
     {
-        return $this->belongsTo(Travel::class);
+        return $this->hasMany(Travel::class);
     }
 }

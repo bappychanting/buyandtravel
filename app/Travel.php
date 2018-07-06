@@ -21,6 +21,6 @@ class Travel extends Model
 		// Each Travel Schedule has a country
 	public function country()
 	{
-		return $this->hasOne(Country::class);
+		return $this->belongsTo(Country::class);
 	}
 }

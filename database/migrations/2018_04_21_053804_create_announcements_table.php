@@ -17,7 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->increments('id');
             $table->string('announcement_title');
             $table->string('announcement_image')->nullable();
-            $table->string('announcement_details', 1000);
+            $table->text('announcement_details');
             $table->string('valid_till');
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();

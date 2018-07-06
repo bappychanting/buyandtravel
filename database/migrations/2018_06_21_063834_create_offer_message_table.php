@@ -15,7 +15,7 @@ class CreateOfferMessageTable extends Migration
     {
         Schema::create('offer_message', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('message_body', 5000);
+            $table->text('message_body');
             $table->integer('offer_id')->unsigned();
             $table->foreign('offer_id')->references('id')->on('offers');
             $table->integer('sender_id')->unsigned();

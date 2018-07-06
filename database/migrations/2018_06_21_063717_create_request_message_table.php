@@ -15,7 +15,7 @@ class CreateRequestMessageTable extends Migration
     {
         Schema::create('request_message', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('message_body', 5000);
+            $table->text('message_body');
             $table->integer('request_id')->unsigned();
             $table->foreign('request_id')->references('id')->on('request_traveler');
             $table->integer('sender_id')->unsigned();

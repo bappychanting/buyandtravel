@@ -16,7 +16,7 @@ class CreateReviewUserTable extends Migration
         Schema::create('review_user', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('rating')->default(1);
-            $table->string('review_details', 5000)->nullable();
+            $table->text('review_details')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('reviewing_user_id')->unsigned();

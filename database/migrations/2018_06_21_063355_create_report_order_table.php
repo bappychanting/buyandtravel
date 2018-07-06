@@ -15,7 +15,7 @@ class CreateReportOrderTable extends Migration
     {
         Schema::create('report_order', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('report_details', 5000);
+            $table->text('report_details');
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('reporting_user_id')->unsigned();

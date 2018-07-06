@@ -19,7 +19,7 @@ class CreateRequestTravelerTable extends Migration
             $table->integer('quantity');
             $table->string('expected_price')->nullable();
             $table->string('referenceLink')->nullable();
-            $table->string('additinoal_details', 5000)->nullable();
+            $table->text('additinoal_details')->nullable();
             $table->integer('traveler_id')->unsigned();
             $table->foreign('traveler_id')->references('id')->on('travel_schedule');
             $table->integer('user_id')->unsigned();

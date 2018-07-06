@@ -43,52 +43,30 @@
                 </div>
 
             
-          @foreach($travelData as $travel)
-
+          @foreach($travelHistory as $travel)
             <!--Grid row-->
-            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country->country }}</h5>
-            <h6>
-              <i class="fa fa-time"></i> <span class="font-weight-bold">From</span> {{ date('l d F Y', strtotime($travel->arrival_date)) }} <span class="font-weight-bold">To</span> {{ date('l d F Y', strtotime($travel->leave_date)) }}
-            </h6>
-            <p class="mt-2">{!! str_limit($travel->additional_details, 50) !!}...</p>
+            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country->name }}</h5>
+            <p>
+              <i class="fa fa-time"></i>From <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span>, To <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
+            </p>
+            <h6 class="font-weight-bold">Visiting Zone: {{ $travel->destination }}</h6>
+            <p class="mt-2">
+              {!! str_limit($travel->additional_details, 150) !!}
+            </p>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="user_travel_schedule_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
                 <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
             </div>
             <!--Grid row-->
-
             <hr class="mb-4">
-
           @endforeach      
 
             <!--Pagination-->
             <nav aria-label="pagination example">
-                <ul class="pagination pg-blue">
-
-                    <!--Arrow left-->
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                  </ul>
-              </nav> 
+              <ul class="pagination pg-blue">
+                {!! $travelHistory->links() !!}
+              </ul>
+            </nav> 
            
           </div>
         </div>
