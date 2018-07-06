@@ -9,7 +9,7 @@ class Travel extends Model
     protected $table = "travel_schedule";
 
     protected $fillable = [
-        'country', 'city', 'destination', 'arrival_date', 'leave_date', 'tags', 'views', 'additional_details', 'user',
+        'country', 'city', 'destination', 'arrival_date', 'leave_date', 'tags', 'views', 'additional_details', 'user_id',
     ];
 
     	// Each Travel Schedule has a user
@@ -21,6 +21,6 @@ class Travel extends Model
 		// Each Travel Schedule has a country
 	public function country()
 	{
-		return $this->belongsTo(Country::class);
+		return $this->hasOne(Country::class);
 	}
 }

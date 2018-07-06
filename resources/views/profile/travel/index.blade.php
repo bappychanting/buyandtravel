@@ -46,7 +46,7 @@
           @foreach($travelData as $travel)
 
             <!--Grid row-->
-            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country }}</h5>
+            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country->country }}</h5>
             <h6>
               <i class="fa fa-time"></i> <span class="font-weight-bold">From</span> {{ date('l d F Y', strtotime($travel->arrival_date)) }} <span class="font-weight-bold">To</span> {{ date('l d F Y', strtotime($travel->leave_date)) }}
             </h6>

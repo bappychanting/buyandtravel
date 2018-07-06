@@ -16,15 +16,15 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->string('product_name');
-            $table->integer('product_type')->unsigned();
-            $table->foreign('product_type')->references('id')->on('product_types');
+            $table->integer('product_type_id')->unsigned();
+            $table->foreign('product_type_id')->references('id')->on('product_types');
             $table->string('delivery_location');
             $table->string('expected_price')->nullable();
             $table->string('referenceLink')->nullable();
             $table->string('additinoal_details', 5000)->nullable();
             $table->integer('views')->default(0);
-            $table->integer('user')->unsigned();
-            $table->foreign('user')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();
         });

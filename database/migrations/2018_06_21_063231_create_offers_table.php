@@ -22,10 +22,10 @@ class CreateOffersTable extends Migration
             $table->tinyInteger('accepted')->default(0);
             $table->tinyInteger('delivered')->default(0);
             $table->tinyInteger('received')->default(0);
-            $table->integer('order')->unsigned();
-            $table->foreign('order')->references('id')->on('orders');
-            $table->integer('offering_user')->unsigned();
-            $table->foreign('offering_user')->references('id')->on('users');
+            $table->integer('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->integer('offering_user_id')->unsigned();
+            $table->foreign('offering_user_id')->references('id')->on('users');
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();
         });

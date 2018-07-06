@@ -15,8 +15,8 @@ class CreateTravelScheduleTable extends Migration
     {
         Schema::create('travel_schedule', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('country')->unsigned();
-            $table->foreign('country')->references('id')->on('countries');
+            $table->integer('country_id')->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->string('city');
             $table->string('destination')->nullable();
             $table->date('arrival_date');
@@ -24,8 +24,8 @@ class CreateTravelScheduleTable extends Migration
             $table->string('tags')->nullable();
             $table->integer('views')->default(0);
             $table->string('additional_details', 5000)->nullable();
-            $table->integer('user')->unsigned();
-            $table->foreign('user')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();
         });

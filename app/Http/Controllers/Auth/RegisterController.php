@@ -90,7 +90,7 @@ class RegisterController extends Controller
         ]);
  
         $verifyUser = VerifyUser::create([
-            'user' => $user->id,
+            'user_id' => $user->id,
             'token' => str_random(40)
         ]);
  

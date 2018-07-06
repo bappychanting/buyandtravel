@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || Travel History || ")
+@section('title', $user->name." || Add Travel Schedule || ")
 
 @section('content')
 
@@ -38,7 +38,7 @@
                 
                 {{-- Form::select('size', $countries, null, array('class' =>'mdb-select colorful-select dropdown-primary', 'searchable'=>'Search here..')) --}}
 
-                {!! Form::hidden('user', $user->id) !!}
+                {!! Form::hidden('user_id', $user->id) !!}
 
                 <select name="country" class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
                   <option value="" disabled selected>Country You are Traveling to</option>
@@ -51,45 +51,55 @@
                     <p class="red-text">{{ $errors->first('country') }}</p>
                 @endif
 
-                <!-- Material input text -->
-                <div class="md-form">
-                  {!! Form::label('city', 'City') !!}
-                  {!! Form::text('city', null, array('class' =>'form-control')) !!}
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <!-- Material input text -->
+                    <div class="md-form">
+                      {!! Form::label('city', 'City') !!}
+                      {!! Form::text('city', null, array('class' =>'form-control')) !!}
+                    </div>
+
+                    @if ($errors->has('city'))
+                        <p class="red-text">{{ $errors->first('city') }}</p>
+                    @endif
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <!-- Material input text -->
+                    <div class="md-form">
+                      {!! Form::label('destination', 'Destination') !!}
+                      {!! Form::text('destination', null, array('class' =>'form-control')) !!}
+                    </div>
+
+                    @if ($errors->has('destination'))
+                        <p class="red-text">{{ $errors->first('destination') }}</p>
+                    @endif
+                  </div>
                 </div>
 
-                @if ($errors->has('city'))
-                    <p class="red-text">{{ $errors->first('city') }}</p>
-                @endif
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <!-- Material input text -->
+                    <div class="md-form">
+                      {!! Form::label('arrival_date', 'Travel Start Date') !!}
+                      {!! Form::text('arrival_date', null, array('class' =>'form-control datepicker')) !!}
+                    </div>
 
-                <!-- Material input text -->
-                <div class="md-form">
-                  {!! Form::label('destination', 'Destination') !!}
-                  {!! Form::text('destination', null, array('class' =>'form-control')) !!}
+                    @if ($errors->has('arrival_date'))
+                        <p class="red-text">{{ $errors->first('arrival_date') }}</p>
+                    @endif
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <!-- Material input text -->
+                    <div class="md-form">
+                      {!! Form::label('leave_date', 'Travel End Date') !!}
+                      {!! Form::text('leave_date', null, array('class' =>'form-control datepicker')) !!}
+                    </div>
+
+                    @if ($errors->has('leave_date'))
+                        <p class="red-text">{{ $errors->first('leave_date') }}</p>
+                    @endif
+                  </div>
                 </div>
-
-                @if ($errors->has('destination'))
-                    <p class="red-text">{{ $errors->first('destination') }}</p>
-                @endif
-
-                <!-- Material input text -->
-                <div class="md-form">
-                  {!! Form::label('arrival_date', 'Travel Start Date') !!}
-                  {!! Form::text('arrival_date', null, array('class' =>'form-control datepicker')) !!}
-                </div>
-
-                @if ($errors->has('arrival_date'))
-                    <p class="red-text">{{ $errors->first('arrival_date') }}</p>
-                @endif
-
-                <!-- Material input text -->
-                <div class="md-form">
-                  {!! Form::label('leave_date', 'Travel End Date') !!}
-                  {!! Form::text('leave_date', null, array('class' =>'form-control datepicker')) !!}
-                </div>
-
-                @if ($errors->has('leave_date'))
-                    <p class="red-text">{{ $errors->first('leave_date') }}</p>
-                @endif
 
                 <!-- Material input text -->
                 <p class="font-weight-bold my-3">Add Tags</p>

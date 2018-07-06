@@ -16,10 +16,10 @@ class CreateReportOrderTable extends Migration
         Schema::create('report_order', function (Blueprint $table) {
             $table->increments('id');
             $table->string('report_details', 5000);
-            $table->integer('order')->unsigned();
-            $table->foreign('order')->references('id')->on('orders');
-            $table->integer('reporting_user')->unsigned();
-            $table->foreign('reporting_user')->references('id')->on('users');
+            $table->integer('order_id')->unsigned();
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->integer('reporting_user_id')->unsigned();
+            $table->foreign('reporting_user_id')->references('id')->on('users');
             $table->timestamps();
             $table->integer('delete_date')->unsigned()->nullable();
         });

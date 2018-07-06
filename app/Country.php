@@ -9,8 +9,8 @@ class Country extends Model
     protected $table = "countries";
 
         // A Country has many Travel Schedules
-    public function travels()
+    public function travel()
     {
-        return $this->hasMany(Travel::class);
+        return $this->belongsTo(Travel::class);
     }
 }
