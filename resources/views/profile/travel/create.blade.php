@@ -40,7 +40,7 @@
 
                 {!! Form::hidden('user_id', $user->id) !!}
 
-                <select name="country" class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
+                <select name="country_id" class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
                   <option value="" disabled selected>Country You are Traveling to</option>
                   @foreach($countries as $id => $country)
                     <option value="{{ $id }}">{{ $country }}</option>

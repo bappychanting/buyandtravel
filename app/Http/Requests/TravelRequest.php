@@ -34,7 +34,7 @@ class TravelRequest extends FormRequest
     {    
         $date = Carbon::now()->format('l d F Y');
         $user = Auth::user();
-        $travelData = Travel::where('user', $user->id)->orderby('leave_date', 'desc')->limit(1)->get();
+        $travelData = Travel::where('user_id', $user->id)->orderby('leave_date', 'desc')->limit(1)->get();
         foreach($travelData as $data){
             if($data->leave_date > Carbon::now()){
                 $date = Carbon::parse($data->leave_date)->format('l d F Y');
@@ -42,7 +42,7 @@ class TravelRequest extends FormRequest
         }
 
         return [
-            'country' => 'required',
+            'country_id' => 'required',
             'city' => 'required|max:50',
             'destination' => 'required|max:500',
             'arrival_date' => 'required|date|after:'.$date.'|before:'.Carbon::now()->addMonths(1)->format('l d F Y'),

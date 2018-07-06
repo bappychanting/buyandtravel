@@ -9,7 +9,7 @@ class Travel extends Model
     protected $table = "travel_schedule";
 
     protected $fillable = [
-        'country', 'city', 'destination', 'arrival_date', 'leave_date', 'tags', 'views', 'additional_details', 'user_id',
+        'country_id', 'city', 'destination', 'arrival_date', 'leave_date', 'tags', 'views', 'additional_details', 'user_id',
     ];
 
     	// Each Travel Schedule has a user
