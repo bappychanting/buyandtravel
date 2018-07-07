@@ -9,7 +9,7 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Travel History
+        User Content
       </h1>
 
       <div class="bc-icons">
@@ -29,19 +29,25 @@
           <!-- Content Column -->
                     <!-- Content Column -->
           <div class="col-lg-10 mb-4">
-            <h2>All Travel History</h2>
-            <p>Here is your travel schdule and history</p>
-          <a class="btn btn-md btn-primary mb-4" href="{{ route('travel.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
+            <h2>{{ empty($search) ? 'All' : 'Search' }} Travel History</h2>
+            <p>Here is your {{ empty($search) ? '' : 'searched' }} travel schdule and history</p>
 
+            @if(empty($search))
+            <a class="btn btn-md btn-primary mb-4" href="{{ route('travel.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
+            @else
+            <a class="btn btn-sm btn-primary mb-4" href="{{ route('travel.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
+            @endif
+
+            {!! Form::open(['url' => '/profile/travel', 'method'=>'get']) !!}
                 <!-- Material input email -->
                 <div class="md-form">
-                    <input type="email" class="form-control">
-                    <label for="materialFormRegisterEmailEx">Search Travel History</label>
+                    {!! Form::text('search', null, ['class'=>'form-control', 'id'=>'search']) !!}
+                    {!! Form::label('search', 'Search Travel History') !!}
                 </div>
                 <div class="text-center mt-4">
-                    <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
+                  {!! Form::button('<i class="fa fa-search"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
                 </div>
-
+            {!! Form::close() !!}
             
           @foreach($travelHistory as $travel)
             <!--Grid row-->
@@ -49,7 +55,7 @@
             <p>
               <i class="fa fa-calendar-check-o"></i> <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span> &#8594; <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
             </p>
-            <h6><i class="fa fa-map-marker"></i> <span class="green-text">{{ $travel->destination }}</span></h6>
+            <h6><i class="fa fa-map-marker"></i> <span class="green-text font-weight-bold">{{ $travel->destination }}</span></h6>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="user_travel_schedule_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
                 <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>

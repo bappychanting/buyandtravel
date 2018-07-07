@@ -30,8 +30,12 @@ class TravelController extends Controller
     public function index()
     {
         $user = $this->user->find(Auth::user()->id);
-        $travelHistory = $user->travels()->orderBy('arrival_date', 'desc')->paginate(10);
-        return view('profile.travel.index', compact('user', 'travelHistory'));
+        $search = \Request::get('search');
+        $travelHistory = $user->travels()->search($search)->orderBy('arrival_date', 'desc')->paginate(10);
+       /* $search = 'Ba';
+        $travelHistory = $user->travels()->search($search);
+        dd($travelHistory->toSql(), $travelHistory->getBindings());*/
+        return view('profile.travel.index', compact('user', 'travelHistory', 'search'));
     }
 
     /**

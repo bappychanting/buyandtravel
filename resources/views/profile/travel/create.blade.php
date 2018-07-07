@@ -9,7 +9,7 @@
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">
-        Travel History
+        User Content
       </h1>
 
       <div class="bc-icons">
