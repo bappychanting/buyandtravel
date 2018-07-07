@@ -75,7 +75,6 @@ class TravelController extends Controller
         if($travel == null){
             return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist'));
         }
-        // print_r($travelDetails); die();
         return view('profile.travel.show', compact('user', 'travel'));
     }
 
@@ -87,7 +86,13 @@ class TravelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = Auth::user();
+        $countries = Countries::getListForSelect();
+        $travel = $this->travel->find($id);
+        if($travel == null){
+            return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist'));
+        }
+        return view('profile.travel.edit', compact('user', 'travel', 'countries'));
     }
 
     /**

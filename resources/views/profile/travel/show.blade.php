@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || Travel History || ")
+@section('title', $user->name." || View Travel Schdule Details || ")
 
 @section('content')
 
