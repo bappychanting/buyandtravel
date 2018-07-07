@@ -20,7 +20,7 @@ class CreateAnnouncementsTable extends Migration
             $table->text('announcement_details');
             $table->string('valid_till');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace App;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Travel extends Model
 {
@@ -12,18 +13,20 @@ class Travel extends Model
         'country_id', 'city', 'destination', 'arrival_date', 'leave_date', 'tags', 'views', 'additional_details', 'user_id',
     ];
 
+    use SoftDeletes;
+
     public function scopeSearch($query, $search='')
     {
         if (empty($search)) {
-            return $query->whereNull("delete_date");
+            return $query->whereNull("deleted_at");
         } else {
-    		return $query->WhereRaw("destination LIKE ? ", '%' . $search . '%')
-                    ->orWhereRaw("city LIKE ? ", '%' . $search . '%')
-                    ->orWhereRaw("tags LIKE ? ", '%' . $search . '%')
+    		return $query->where('destination', 'LIKE', '%' . $search . '%')
+                    ->orWhere('city', 'LIKE', '%' . $search . '%')
+                    ->orWhere('tags', 'LIKE', '%' . $search . '%')
                     ->orWhereHas('country', function ($query) use($search){
-					    $query->WhereRaw("name LIKE ? ", '%'.$search.'%');
+					    $query->where('name', 'LIKE', '%' . $search . '%');
 					})
-                    ->whereNull("delete_date");
+                    ->whereNull("deleted_at");
         }
     }
 

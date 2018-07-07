@@ -17,7 +17,7 @@ class CreateProductTypesTable extends Migration
             $table->increments('id');
             $table->string('product_type');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

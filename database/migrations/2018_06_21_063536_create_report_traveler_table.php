@@ -21,7 +21,7 @@ class CreateReportTravelerTable extends Migration
             $table->integer('reporting_user_id')->unsigned();
             $table->foreign('reporting_user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

@@ -27,7 +27,7 @@ class CreateOffersTable extends Migration
             $table->integer('offering_user_id')->unsigned();
             $table->foreign('offering_user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

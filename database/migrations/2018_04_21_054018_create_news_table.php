@@ -19,7 +19,7 @@ class CreateNewsTable extends Migration
             $table->string('news_image')->nullable();
             $table->mediumText('news_details');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

@@ -65,10 +65,11 @@
                 </p>
               </div>
               <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="{{ route('travel.show', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
-                    <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
-                </div>
+                {!! Form::open(['route' => ['travel.destroy', $travel->id], 'method'=>'delete']) !!}
+                  {!! Form::hidden('id', $travel->id) !!}
+                  <a href="{{ route('travel.show', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
+                  {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+                {!! Form::close() !!}
               </div>
             </div>
             <!--Grid row-->

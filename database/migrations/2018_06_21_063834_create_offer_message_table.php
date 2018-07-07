@@ -22,7 +22,7 @@ class CreateOfferMessageTable extends Migration
             $table->foreign('sender_id')->references('id')->on('users');
             $table->integer('seen')->unsigned()->nullable();
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

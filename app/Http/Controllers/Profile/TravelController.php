@@ -58,8 +58,8 @@ class TravelController extends Controller
         $input = $request->all();
         $input['arrival_date'] = Carbon::parse($input['arrival_date'])->format('Y-m-d');
         $input['leave_date'] = Carbon::parse($input['leave_date'])->format('Y-m-d');
-        Travel::create($input);
-        return redirect()->route('travel.index')->with('success', array('Success'=>'Travel Schedule has been added'));
+        $this->travel->create($input);
+        return redirect()->route('travel.index')->with('success', array('Success'=>'Travel Schedule has been added!'));
     }
 
     /**
@@ -73,7 +73,7 @@ class TravelController extends Controller
         $user = Auth::user();
         $travel = $this->travel->find($id);
         if($travel == null){
-            return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist'));
+            return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist!'));
         }
         return view('profile.travel.show', compact('user', 'travel'));
     }
@@ -90,7 +90,7 @@ class TravelController extends Controller
         $countries = Countries::getListForSelect();
         $travel = $this->travel->find($id);
         if($travel == null){
-            return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist'));
+            return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist!'));
         }
         return view('profile.travel.edit', compact('user', 'travel', 'countries'));
     }
@@ -104,7 +104,12 @@ class TravelController extends Controller
      */
     public function update(TravelRequest $request, $id)
     {
-        //
+        $input = $request->all();
+        $input['arrival_date'] = Carbon::parse($input['arrival_date'])->format('Y-m-d');
+        $input['leave_date'] = Carbon::parse($input['leave_date'])->format('Y-m-d');
+        $travel = $this->travel->findOrFail($id);
+        $travel->update($input);
+        return redirect()->route('travel.show', $id)->with('success', array('Success'=>'Travel Schedule has been updated!'));
     }
 
     /**
@@ -115,6 +120,8 @@ class TravelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $travel = $this->travel->findOrFail($id);
+        $travel->delete();
+        return redirect()->route('travel.index')->with('success', array('Success'=>'Travel Schedule has been deleted!'));
     }
 }

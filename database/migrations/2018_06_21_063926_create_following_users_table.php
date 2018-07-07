@@ -21,7 +21,7 @@ class CreateFollowingUsersTable extends Migration
             $table->foreign('followed_user_id')->references('id')->on('users');
             $table->string('token');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

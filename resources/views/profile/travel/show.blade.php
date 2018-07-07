@@ -39,10 +39,11 @@
             <p class="my-4">
               <i class="fa fa-clock-o"></i> <span class="font-weight-bold blue-text">{{$travel->created_at->format('l d F Y, h:i A')}}</span>
             </p>
-            <div class="btn-group mb-4" role="group" aria-label="Basic example">
+            {!! Form::open(['route' => ['travel.destroy', $travel->id], 'method'=>'delete']) !!}
+                {!! Form::hidden('id', $travel->id) !!}
                 <a href="{{ route('travel.edit', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Schedule</a>
-                <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
-            </div>
+                {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+            {!! Form::close() !!}
             {!! $travel->additional_details !!}
             <p class="my-4">
               @if( !empty($travel->tags) )

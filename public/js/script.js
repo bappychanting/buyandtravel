@@ -201,6 +201,22 @@ function showNotification(title, text, redirect, colorName, placementFrom, place
     });
 }
 
+$('.form_delete_sweet_alert').on('click',function(e){
+    e.preventDefault();
+    var form = $(this).parents('form');
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted you can not recover this data!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    }, function(isConfirm){
+        if (isConfirm) form.submit();
+    });
+});
+
 
 
 
