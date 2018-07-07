@@ -71,7 +71,7 @@ $(document).ready(function(){
     } 
     if ($(".error_messages").length) {
         $( ".error_messages" ).each(function() {
-          notificationLoop(time, $(this), "#", "error", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
+          notificationLoop(time, $(this), "#", "danger", "top", "right", 20, 120, 'animated fadeInDown', 'animated fadeOutUp');
           time++;
         });
     } 

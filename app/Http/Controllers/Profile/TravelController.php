@@ -31,10 +31,7 @@ class TravelController extends Controller
     {
         $user = $this->user->find(Auth::user()->id);
         $search = \Request::get('search');
-        $travelHistory = $user->travels()->search($search)->orderBy('arrival_date', 'desc')->paginate(10);
-       /* $search = 'Ba';
-        $travelHistory = $user->travels()->search($search);
-        dd($travelHistory->toSql(), $travelHistory->getBindings());*/
+        $travelHistory = $user->travels()->search($search)->orderBy('arrival_date', 'desc')->paginate(20);
         return view('profile.travel.index', compact('user', 'travelHistory', 'search'));
     }
 
@@ -73,7 +70,12 @@ class TravelController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+        $travelDetails = $this->travel->find($id);
+        if($travelDetails == null){
+            return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist'));
+        }
+        return view('profile.travel.show', compact('user', 'travelDetails'));
     }
 
     /**
