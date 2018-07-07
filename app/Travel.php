@@ -19,6 +19,7 @@ class Travel extends Model
         } else {
     		return $query->WhereRaw("destination LIKE ? ", '%' . $search . '%')
                     ->orWhereRaw("city LIKE ? ", '%' . $search . '%')
+                    ->orWhereRaw("tags LIKE ? ", '%' . $search . '%')
                     ->orWhereHas('country', function ($query) use($search){
 					    $query->WhereRaw("name LIKE ? ", '%'.$search.'%');
 					})

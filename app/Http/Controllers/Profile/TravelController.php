@@ -59,7 +59,7 @@ class TravelController extends Controller
         $input['arrival_date'] = Carbon::parse($input['arrival_date'])->format('Y-m-d');
         $input['leave_date'] = Carbon::parse($input['leave_date'])->format('Y-m-d');
         Travel::create($input);
-        return redirect()->route('travel.index');
+        return redirect()->route('travel.index')->with('success', array('Success'=>'Travel Schedule has been added'));
     }
 
     /**
@@ -71,11 +71,12 @@ class TravelController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $travelDetails = $this->travel->find($id);
-        if($travelDetails == null){
+        $travel = $this->travel->find($id);
+        if($travel == null){
             return redirect()->back()->with('error', array('Empty Result'=>'Your requested travel Schedule does not exist'));
         }
-        return view('profile.travel.show', compact('user', 'travelDetails'));
+        // print_r($travelDetails); die();
+        return view('profile.travel.show', compact('user', 'travel'));
     }
 
     /**
