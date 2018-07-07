@@ -33,11 +33,14 @@
           <div class="col-lg-10 mb-4">
             <h2>Edit Travel Schedule</h2>
             <p>Please input following data. Make sure your input dates don't intersect with another already scheduled journey.</p>
+            <p>Last Updated: <span class="font-weight-bold">{{$travel->updated_at->format('l d F Y, h:i A')}}</span></p>
 
               {!! Form::open(['method' => 'put', 'route' => ['travel.update', $travel->id]]) !!}
               <div class="demo-masked-input">
                 
-                {!! Form::select('size', $countries, $travel->country->id, array('class' =>'mdb-select colorful-select dropdown-primary', 'searchable'=>'Search here..')) !!}
+                {!! Form::hidden('id', $travel->id) !!}
+
+                {!! Form::select('country_id', $countries, $travel->country->id, array('class' =>'mdb-select colorful-select dropdown-primary', 'searchable'=>'Search here..')) !!}
 
                 @if ($errors->has('country_id'))
                     <p class="red-text">{{ $errors->first('country_id') }}</p>
@@ -113,7 +116,7 @@
                 @endif
 
                 <div class="text-center my-4">
-                    {!! Form::submit('Add Travel Schedule', array('class' =>'btn btn-primary')) !!}
+                    {!! Form::submit('Update Travel Schedule', array('class' =>'btn btn-primary')) !!}
                 </div>
 
                 {!! Form::close() !!}
