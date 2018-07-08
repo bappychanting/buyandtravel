@@ -57,7 +57,7 @@
                       <div class="col-lg-4 mb-4">
                         <div class="z-depth-1-half" id="aniimated-thumbnials">
                             <a href="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450?text=No+Profile+Picture+Found' }}" data-sub-html="{{ $user->name }} Profile Picture"> 
-                              <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450?text=No+Profile+Picture+Found' }}" class="img-fluid rounded" alt="First sample image">
+                              <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450?text=No+Profile+Picture+Found' }}" class="img-fluid rounded" alt="{{ $user->name }} Profile Picture">
                             </a>
                         </div>
                         @if ($errors->has('image'))

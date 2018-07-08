@@ -28,19 +28,19 @@
   </head>
   <!-- #ENDS# Header -->
 
-  <body>
+  <body class="blue-gradient">
   	<div class="text-center">
 	  	<h3 class="my-4">
-	  		<a href="{{ route('buyandtravel') }}">
+	  		<a href="{{ route('buyandtravel') }}" class="white-text">
 	        	<i class="fa fa-shopping-bag  fa-sm pr-2" aria-hidden="true"></i>Buy &#38; Travel
 	    	</a>
 		</h3>
-	    <h1 class="red-text my-4">
+	    <p class="cyan-text display-1 my-4">
 	    	<i class="fa fa-frown-o  fa-sm pr-2"></i>oops..
-	    </h1>
-  		<h2 class="dark-grey-text my-4">
+	    </p>
+  		<p class="white-text display-4 my-4">
   			The page you are looking for is not found!</span>
-  		</h2>
+  		</p>
   	</div>
 
     <!-- Javascript -->

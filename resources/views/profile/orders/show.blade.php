@@ -42,6 +42,45 @@
                     {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
                 {!! Form::close() !!}
 
+                  <!-- Portfolio Section -->
+                    <div class="item my-4" id="aniimated-thumbnials">
+                      <ul id="content-slider" class="content-slider">
+                          <li>
+                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 1"> 
+                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 1">
+                              </a>
+                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
+                          </li>
+                          <li>
+                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 2"> 
+                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 2">
+                              </a>
+                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
+                          </li>
+                          <li>
+                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 3"> 
+                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 3">
+                              </a>
+                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
+                          </li>
+                          <li>
+                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 4"> 
+                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 4">
+                              </a>
+                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
+                          </li>
+                          <li>
+                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 5"> 
+                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 5">
+                              </a>
+                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
+                          </li>
+                      </ul>
+                      <button type="button" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add another image
+                      </button>
+                  </div>
+
                 {!! $order->additional_details !!}
 
                 <h5 class="my-4"><i class="fa fa-money fa-sm pr-2"></i>{{ $order->expected_price }}/=</h5>
@@ -59,6 +98,47 @@
 
     </div>
     <!-- Contents -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Order Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <div class="text-center">
+                    <img src="http://placehold.it/200" class="img-fluid z-depth-1" alt="Responsive image">
+
+                    <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
+                  </div>
+
+                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['user.updateImage', $user->id], 'enctype' => 'multipart/form-data']) !!}
+
+                      <div class="file-field">
+                          <div class="btn btn-primary btn-sm float-left">
+                              <span>Select</span>
+                              {!! Form::file("image", ['class'=>'input_image']) !!}
+                          </div>
+                          <div class="file-path-wrapper">
+                              {!! Form::text('', null, ['class'=>'file-path validate', 'placeholder'=>'Choose your file']) !!}
+                          </div>
+                      </div>
+                      <div class="text-center mt-4">
+                          {{ Form::button('Upload Image <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-cyan mt-1 btn-md'] ) }}
+                      </div>
+
+                    {!! Form::close() !!}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
