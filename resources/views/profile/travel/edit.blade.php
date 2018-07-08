@@ -50,8 +50,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('city', $travel->city, array('class' =>'form-control', 'id'=>'city')) !!}
                       {!! Form::label('city', 'City') !!}
-                      {!! Form::text('city', $travel->city, array('class' =>'form-control')) !!}
                     </div>
 
                     @if ($errors->has('city'))
@@ -61,8 +61,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('destination', $travel->destination, array('class' =>'form-control', 'id'=>'destination')) !!}
                       {!! Form::label('destination', 'Visiting Zone') !!}
-                      {!! Form::text('destination', $travel->destination, array('class' =>'form-control')) !!}
                     </div>
 
                     @if ($errors->has('destination'))
@@ -75,8 +75,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('arrival_date', date('l d F Y', strtotime($travel->arrival_date)), array('class' =>'form-control datepicker', 'id'=>'arrival_date')) !!}
                       {!! Form::label('arrival_date', 'Travel Start Date') !!}
-                      {!! Form::text('arrival_date', date('l d F Y', strtotime($travel->arrival_date)), array('class' =>'form-control datepicker')) !!}
                     </div>
 
                     @if ($errors->has('arrival_date'))
@@ -86,8 +86,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('leave_date', date('l d F Y', strtotime($travel->leave_date)), array('class' =>'form-control datepicker', 'id'=>'leave_date')) !!}
                       {!! Form::label('leave_date', 'Travel End Date') !!}
-                      {!! Form::text('leave_date', date('l d F Y', strtotime($travel->leave_date)), array('class' =>'form-control datepicker')) !!}
                     </div>
 
                     @if ($errors->has('leave_date'))

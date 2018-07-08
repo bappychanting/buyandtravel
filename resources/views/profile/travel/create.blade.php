@@ -55,8 +55,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('city', null, array('class' =>'form-control', 'id'=>'city')) !!}
                       {!! Form::label('city', 'City') !!}
-                      {!! Form::text('city', null, array('class' =>'form-control')) !!}
                     </div>
 
                     @if ($errors->has('city'))
@@ -66,8 +66,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('destination', null, array('class' =>'form-control', 'id'=>'destination')) !!}
                       {!! Form::label('destination', 'Visiting Zone') !!}
-                      {!! Form::text('destination', null, array('class' =>'form-control')) !!}
                     </div>
 
                     @if ($errors->has('destination'))
@@ -80,8 +80,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('arrival_date', null, array('class' =>'form-control datepicker', 'id'=>'arrival_date')) !!}
                       {!! Form::label('arrival_date', 'Travel Start Date') !!}
-                      {!! Form::text('arrival_date', null, array('class' =>'form-control datepicker')) !!}
                     </div>
 
                     @if ($errors->has('arrival_date'))
@@ -91,8 +91,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
+                      {!! Form::text('leave_date', null, array('class' =>'form-control datepicker', 'id'=>'leave_date')) !!}
                       {!! Form::label('leave_date', 'Travel End Date') !!}
-                      {!! Form::text('leave_date', null, array('class' =>'form-control datepicker')) !!}
                     </div>
 
                     @if ($errors->has('leave_date'))
@@ -111,14 +111,15 @@
                 @endif
 
                 <p class="font-weight-bold my-3">Add Travel Details</p>
-                <!-- Material Editor -->
-                <div class="md-form">
-                    {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
-                </div>
 
                 @if ($errors->has('additional_details'))
                     <p class="red-text">{{ $errors->first('additional_details') }}</p>
                 @endif
+                
+                <!-- Material Editor -->
+                <div class="md-form">
+                    {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
+                </div>
 
                 <div class="text-center my-4">
                     {!! Form::submit('Add Travel Schedule', array('class' =>'btn btn-primary')) !!}

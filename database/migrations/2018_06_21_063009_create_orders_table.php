@@ -20,7 +20,8 @@ class CreateOrdersTable extends Migration
             $table->foreign('product_type_id')->references('id')->on('product_types');
             $table->string('delivery_location');
             $table->string('expected_price')->nullable();
-            $table->string('referenceLink')->nullable();
+            $table->string('reference_link')->nullable();
+            $table->string('tags')->nullable();
             $table->mediumText('additinoal_details')->nullable();
             $table->integer('views')->default(0);
             $table->integer('user_id')->unsigned();

@@ -61,10 +61,12 @@ class TravelRequest extends FormRequest
 
         return [
             'country_id' => 'required',
-            'city' => 'required|max:50',
-            'destination' => 'required|max:500',
+            'city' => 'required|max:50|min:2',
+            'destination' => 'required|max:500|min:2',
             'arrival_date' => 'required|date'.(!empty($previous_leave_date) ? '|after:'.$previous_leave_date : '|after:'.$date).(!empty($next_arrival_date) ? '|before:'.$next_arrival_date : '|before:'.Carbon::now()->addMonths(1)->format('l d F Y')),
             'leave_date' => 'required|date|after_or_equal:arrival_date'.(!empty($next_arrival_date) ? '|before:'.$next_arrival_date : ""),
+            'tags' => 'max:255',
+            'additional_details' => 'max:50000',
         ];
     }
 
