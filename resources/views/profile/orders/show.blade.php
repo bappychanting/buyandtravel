@@ -83,7 +83,8 @@
                       @endif
 
                       {{ count($order->images) }}
-                  </div>
+                    </div>
+                  <!-- #End# Portfolio Section -->
 
                 {!! $order->additional_details !!}
 
@@ -119,6 +120,7 @@
                     <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
                   </div>
                     {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['order.image.add'], 'enctype' => 'multipart/form-data']) !!}
+                      {!! Form::hidden('id', $user->id) !!}
                       <div class="file-field">
                           <div class="btn btn-primary btn-sm float-left">
                               <span>Select</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 use App\Order;
+use App\OrderImages;
 use App\ProductType;
 use App\User;
 use App\Http\Requests\OrderRequest;
@@ -17,10 +18,11 @@ class OrderController extends Controller
      */
 
     protected $order;
+    protected $order_image;
     protected $category;
     protected $user;
 
-    public function __construct(Order $order, ProductType $category, User $user)
+    public function __construct(Order $order, OrderImages $user, ProductType $category, User $user)
     {
         $this->middleware('auth');
         $this->order = $order;
@@ -82,16 +84,22 @@ class OrderController extends Controller
 
     public function addImage(OrderRequest $request)
     {
-        /*
-        $user = $this->user->findorfail($id);
         $this->validate(request(),[
             'image' => 'required|max:500'
-        ]);  
+        ]);
+
+        /*$package = $this->packages;
+        $package->content = json_encode(['title' => $request->title ]);
+        $package->description = $request->description;
+        $package->release_date = $request->release_date;
+        $package->price = $request->price;
+        $package->save(); */
+
         $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 450);
         $user->avatar = $image;
         $user->save();
-        session()->put('image', 'Avatar Successfully updated!');
-        return redirect(route('user.userinfo'));*/
+        session()->put('image', 'Avatar successfully updated!');
+        return redirect(route('user.userinfo'));
     }
 
     /**

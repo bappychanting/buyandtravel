@@ -134,7 +134,7 @@ class ProfileController extends Controller
         $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 450);
         $user->avatar = $image;
         $user->save();
-        session()->put('image', 'Avatar Successfully updated!');
+        session()->put('image', 'Avatar successfully updated!');
         return redirect(route('user.userinfo'));
     }
 
