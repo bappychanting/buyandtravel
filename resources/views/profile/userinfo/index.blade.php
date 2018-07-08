@@ -134,11 +134,11 @@
     <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
             <!--Content-->
-            <div class="modal-content avatar_modal">
+            <div class="modal-content image_modal">
 
                 <!--Header-->
                 <div class="modal-header">
-                    <img src="http://via.placeholder.com/450x450" alt="avatar" class="rounded-circle img-responsive preview_input">
+                    <img src="http://via.placeholder.com/200" alt="avatar" class="rounded-circle img-responsive preview_input">
                 </div>
                 <!--Body-->
                 <div class="modal-body text-center mb-1">

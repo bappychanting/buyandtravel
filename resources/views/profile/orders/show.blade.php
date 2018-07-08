@@ -113,7 +113,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body image_modal">
                   <div class="text-center">
                     <img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
                     <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
