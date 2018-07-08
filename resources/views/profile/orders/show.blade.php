@@ -38,51 +38,29 @@
                 </p>
                 {!! Form::open(['route' => ['orders.destroy', $order->id], 'method'=>'delete']) !!}
                     <a href="{{ $order->reference_link }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Reference Link</a>
-                    <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Order</a>
-                    {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+                    <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Order</a>
+                    {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
                 {!! Form::close() !!}
 
                   <!-- Portfolio Section -->
                     <div class="item my-4" id="aniimated-thumbnials">
                       <ul id="content-slider" class="content-slider">
+                        @foreach($order->images as $image)
                           <li>
-                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 1"> 
-                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 1">
+                              <a href="{{ asset($image->src) }}" data-sub-html="{{ $order->product_name.$loop->iteration }}"> 
+                                <img class="img-fluid" src="{{ asset($image->src) }}" alt="{{ $image->alt.$loop->iteration }}">
                               </a>
-                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
+                              {!! Form::open(['route' => ['order.image.delete', $image->id], 'method'=>'delete']) !!}
+                                {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+                              {!! Form::close() !!}
                           </li>
-                          <li>
-                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 2"> 
-                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 2">
-                              </a>
-                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
-                          </li>
-                          <li>
-                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 3"> 
-                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 3">
-                              </a>
-                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
-                          </li>
-                          <li>
-                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 4"> 
-                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 4">
-                              </a>
-                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
-                          </li>
-                          <li>
-                              <a href="http://placehold.it/500x300" data-sub-html="{{ $order->product_name }} 5"> 
-                                <img class="img-fluid" src="http://placehold.it/500x300" alt="{{ $order->product_name }} 5">
-                              </a>
-                              <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
-                          </li>
+                        @endforeach  
                       </ul>
                       @if(count($order->images) < 5)
                         <button type="button" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#updateimage">
-                          <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add another image
+                          <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add image
                         </button>
                       @endif
-
-                      {{ count($order->images) }}
                     </div>
                   <!-- #End# Portfolio Section -->
 
@@ -119,8 +97,8 @@
                     <img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
                     <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
                   </div>
-                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['order.image.add'], 'enctype' => 'multipart/form-data']) !!}
-                      {!! Form::hidden('id', $user->id) !!}
+                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'post', 'route' => ['order.image.add'], 'enctype' => 'multipart/form-data']) !!}
+                      {!! Form::hidden('id', $order->id) !!}
                       <div class="file-field">
                           <div class="btn btn-primary btn-sm float-left">
                               <span>Select</span>

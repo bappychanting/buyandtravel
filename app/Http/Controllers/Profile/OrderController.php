@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Profile;
+use Session;
 use App\Order;
-use App\OrderImages;
+use App\OrderImage;
 use App\ProductType;
 use App\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -22,10 +24,11 @@ class OrderController extends Controller
     protected $category;
     protected $user;
 
-    public function __construct(Order $order, OrderImages $user, ProductType $category, User $user)
+    public function __construct(Order $order, OrderImage $order_image, ProductType $category, User $user)
     {
         $this->middleware('auth');
         $this->order = $order;
+        $this->order_image = $order_image;
         $this->category = $category;
         $this->user = $user;
     }
@@ -82,24 +85,18 @@ class OrderController extends Controller
         return view('profile.orders.show', compact('user', 'order'));
     }
 
-    public function addImage(OrderRequest $request)
+    public function addImage(Request $request)
     {
         $this->validate(request(),[
             'image' => 'required|max:500'
         ]);
-
-        /*$package = $this->packages;
-        $package->content = json_encode(['title' => $request->title ]);
-        $package->description = $request->description;
-        $package->release_date = $request->release_date;
-        $package->price = $request->price;
-        $package->save(); */
-
-        $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 450);
-        $user->avatar = $image;
-        $user->save();
-        session()->put('image', 'Avatar successfully updated!');
-        return redirect(route('user.userinfo'));
+        $order_image = $this->order_image;
+        $image = $this->uploadImage($request->file('image'), 'all_images/order_images/', 350, 300);
+        $order_image->src = $image;
+        $order_image->alt = "Order Image ".md5(uniqid(rand(), true));
+        $order_image->order_id = $request->id;
+        $order_image->save();
+        Session::flash('success', array('Image has been added!'=>''));
     }
 
     /**
@@ -132,6 +129,13 @@ class OrderController extends Controller
         $order = $this->order->findOrFail($id);
         $order->update($input);
         return redirect()->route('orders.show', $id)->with('success', array('Success'=>'Order has been updated!'));
+    }
+
+    public function deleteImage($id)
+    {
+        $order_image = $this->order_image->findOrFail($id);
+        $order_image->delete();
+        return redirect()->back()->with('success', array('Success'=>'Order image has been deleted!'));
     }
 
     /**

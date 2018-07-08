@@ -59,7 +59,7 @@
 
                     <!--Grid column-->
                     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 mb-4">
-                      <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid rounded" alt="First sample image" width="100" length="100">
+                      <img src="{{ file_exists(array_get($order->images()->first(), 'src')) ? asset(array_get($order->images()->first(), 'src')) : 'http://via.placeholder.com/450?text=Product+Image' }}" class="img-fluid rounded" alt="{{ array_get($order->images()->first(), 'alt') }}" width="80" length="100">
                     </div>
                     <!--Grid column-->
 
