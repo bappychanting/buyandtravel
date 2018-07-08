@@ -26,129 +26,73 @@
           <!-- Sidebar Column -->
           @include('profile.sidebar')
 
-          <!-- Content Column -->
-                    <!-- Content Column -->
-          <div class="col-lg-10 mb-4">
-            <h2>List of Orders</h2>
-            <p>Following are the list of orders you have added.</p>
-          <a class="btn btn-md btn-primary mb-4" href="{{ route('orders.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Order</a>
-          <!-- Material input email -->
-                <div class="md-form">
-                    <input type="email" class="form-control">
-                    <label for="materialFormRegisterEmailEx">Search Orders</label>
+            <!-- Content Column -->
+            <div class="col-lg-10 mb-4">
+                <h2>{{ empty($search) ? 'List of ' : 'Search' }} Orders</h2>
+                <p>Following are the list of orders {{ empty($search) ? 'you have added' : 'based on your search' }}.</p>
+                @if(empty($search))
+                    <a class="btn btn-md btn-primary mb-4" href="{{ route('orders.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Order</a>
+                @else
+                    <a class="btn btn-sm btn-primary" href="{{ route('orders.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
+                @endif
+          
+            {!! Form::open(['url' => '/profile/orders', 'method'=>'get']) !!}
+              <div class="row mb-5">
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                  <!-- Material input email -->
+                  <div class="md-form">
+                      {!! Form::text('search', null, ['class'=>'form-control', 'id'=>'search']) !!}
+                      {!! Form::label('search', 'Search Orders') !!}
+                  </div>
                 </div>
-                <div class="text-center mt-4  mb-4">
-                    <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                  <div class="text-center mt-4">
+                    {!! Form::button('<i class="fa fa-search"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+                  </div>
                 </div>
-             <!--Grid row-->
-            <div class="row">
+              </div>
+            {!! Form::close() !!}
 
-                <!--Grid column-->
-                <div class="col-lg-2 mb-4">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid rounded" alt="First sample image" width="100" length="100">
-                </div>
-                <!--Grid column-->
+            @foreach($orders as $order)
+                <!--Grid row-->
+                <div class="row">
 
-                <!--Grid column-->
-                <div class="col-lg-8 mb-4">
-                    <h5 class="mb-3 font-weight-bold dark-grey-text">
-                        <strong>This is title of the Order</strong>
-                        <small>Added in 19-04-18</small>
-                    </h5>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="user_order_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
-                        <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2" aria-hidden="true"></i>Delete Order</a>
+                    <!--Grid column-->
+                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12 mb-4">
+                      <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid rounded" alt="First sample image" width="100" length="100">
                     </div>
-                </div>
-                <!--Grid column-->
+                    <!--Grid column-->
 
-            </div>
-            <!--Grid row-->
-
-            <hr class="mb-5">
-
-            <!--Grid row-->
-            <div class="row">
-
-                <!--Grid column-->
-                <div class="col-lg-2 mb-4">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid rounded" alt="First sample image" width="100" length="100">
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-8 mb-4">
-                    <h5 class="mb-3 font-weight-bold dark-grey-text">
-                        <strong>This is title of the Order</strong>
-                        <small>Added in 19-04-18</small>
-                    </h5>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="user_order_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
-                        <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2" aria-hidden="true"></i>Delete Order</a>
+                    <!--Grid column-->
+                    <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
+                        <h5 class="mb-3 font-weight-bold">
+                            <strong>{{ $order->product_name }}</strong>
+                            <small class="dark-grey-text">{{ $order->product_type->product_type }}</small>
+                        </h5>
+                        <p><i class="fa fa-clock-o"></i> <span class="font-weight-bold blue-text">{{$order->created_at->format('l d F Y')}}</span></p>
                     </div>
-                </div>
-                <!--Grid column-->
+                    <!--Grid column-->
 
-            </div>
-            <!--Grid row-->
-
-            <hr class="mb-5">
-
-            <!--Grid row-->
-            <div class="row">
-
-                <!--Grid column-->
-                <div class="col-lg-2 mb-4">
-                  <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid rounded" alt="First sample image" width="100" length="100">
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-8 mb-4">
-                    <h5 class="mb-3 font-weight-bold dark-grey-text">
-                        <strong>This is title of the Order</strong>
-                        <small>Added in 19-04-18</small>
-                    </h5>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="user_order_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
-                        <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2" aria-hidden="true"></i>Delete Order</a>
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a href="user_order_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
+                            <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2" aria-hidden="true"></i>Delete Order</a>
+                        </div>
                     </div>
+                    <!--Grid column-->
+
                 </div>
-                <!--Grid column-->
-
-            </div>
-            <!--Grid row-->
-
-            <hr class="mb-5">
+                <!--Grid row-->
+                <hr class="mb-5">
+            @endforeach
 
             <!--Pagination-->
             <nav aria-label="pagination example">
                 <ul class="pagination pg-blue">
-
-                    <!--Arrow left-->
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                  </ul>
-              </nav>
+                    {{ $orders->appends(Request::only('search'))->links() }}
+                </ul>
+            </nav>
            
           </div>
         </div>

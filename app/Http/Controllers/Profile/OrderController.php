@@ -30,8 +30,10 @@ class OrderController extends Controller
 
     public function index()
     {
-        $user = Auth::user();
-        return view('profile.orders.index', compact('user'));
+        $user = $this->user->find(Auth::user()->id);
+        $search = \Request::get('search');
+        $orders = $user->orders()->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        return view('profile.orders.index', compact('user', 'orders', 'search'));
     }
 
     /**

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || Orders || ")
+@section('title', $user->name." || Add Order || ")
 
 @section('content')
 

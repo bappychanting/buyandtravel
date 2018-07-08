@@ -32,6 +32,12 @@ class User extends Authenticatable
         return $this->hasOne('App\VerifyUser');
     }
 
+        // A User has many Orders
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
         // A User has many Travel Schedules
     public function travels()
     {
