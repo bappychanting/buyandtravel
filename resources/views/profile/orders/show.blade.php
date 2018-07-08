@@ -76,9 +76,13 @@
                               <button class="btn btn-blue btn-sm"><i class="fa fa-trash"" aria-hidden="true"></i></button>
                           </li>
                       </ul>
-                      <button type="button" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#exampleModal">
-                        <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add another image
-                      </button>
+                      @if(count($order->images) < 5)
+                        <button type="button" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#updateimage">
+                          <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add another image
+                        </button>
+                      @endif
+
+                      {{ count($order->images) }}
                   </div>
 
                 {!! $order->additional_details !!}
@@ -100,7 +104,7 @@
     <!-- Contents -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -111,13 +115,10 @@
                 </div>
                 <div class="modal-body">
                   <div class="text-center">
-                    <img src="http://placehold.it/200" class="img-fluid z-depth-1" alt="Responsive image">
-
+                    <img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
                     <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
                   </div>
-
-                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['user.updateImage', $user->id], 'enctype' => 'multipart/form-data']) !!}
-
+                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['order.image.add'], 'enctype' => 'multipart/form-data']) !!}
                       <div class="file-field">
                           <div class="btn btn-primary btn-sm float-left">
                               <span>Select</span>
@@ -130,7 +131,6 @@
                       <div class="text-center mt-4">
                           {{ Form::button('Upload Image <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-cyan mt-1 btn-md'] ) }}
                       </div>
-
                     {!! Form::close() !!}
                 </div>
                 <div class="modal-footer">

@@ -1,10 +1,6 @@
-function footerAlign() {
-  $('footer').css('display', 'block');
-  $('footer').css('height', 'auto');
-  var footerHeight = $('footer').outerHeight();
-  $('body').css('padding-bottom', footerHeight);
-  $('footer').css('height', footerHeight);
-}
+$( window ).resize(function() {
+  footerAlign();
+});
 
 $(document).ready(function(){
 
@@ -80,6 +76,12 @@ $(document).ready(function(){
         readURL(this, $(this).index());
     });
 
+    $('#updateimage').on('hidden.bs.modal', function (e) {
+      $('input[name=image]').empty().val('');
+      $('.file-path').empty().val('');
+      $('.preview_input').attr('src', 'http://placehold.it/200');
+    })
+
     (function() {
       $('.upload_image').ajaxForm({
         beforeSend: function() {
@@ -96,11 +98,31 @@ $(document).ready(function(){
       }); 
     })();
 
+    $('.form_delete_sweet_alert').on('click',function(e){
+        e.preventDefault();
+        var form = $(this).parents('form');
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted you can not recover this data!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        }, function(isConfirm){
+            if (isConfirm) form.submit();
+        });
+    });
+
 });
 
-$( window ).resize(function() {
-  footerAlign();
-});
+function footerAlign() {
+  $('footer').css('display', 'block');
+  $('footer').css('height', 'auto');
+  var footerHeight = $('footer').outerHeight();
+  $('body').css('padding-bottom', footerHeight);
+  $('footer').css('height', footerHeight);
+}
 
 function readURL(input, i) {
     i = i-1;
@@ -200,22 +222,6 @@ function showNotification(title, text, redirect, colorName, placementFrom, place
                 '</div>'
     });
 }
-
-$('.form_delete_sweet_alert').on('click',function(e){
-    e.preventDefault();
-    var form = $(this).parents('form');
-    swal({
-        title: "Are you sure?",
-        text: "Once deleted you can not recover this data!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        closeOnConfirm: false
-    }, function(isConfirm){
-        if (isConfirm) form.submit();
-    });
-});
 
 
 

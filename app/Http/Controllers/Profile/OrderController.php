@@ -80,6 +80,20 @@ class OrderController extends Controller
         return view('profile.orders.show', compact('user', 'order'));
     }
 
+    public function addImage(OrderRequest $request)
+    {
+        /*
+        $user = $this->user->findorfail($id);
+        $this->validate(request(),[
+            'image' => 'required|max:500'
+        ]);  
+        $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 450);
+        $user->avatar = $image;
+        $user->save();
+        session()->put('image', 'Avatar Successfully updated!');
+        return redirect(route('user.userinfo'));*/
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

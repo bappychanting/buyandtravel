@@ -41,4 +41,10 @@ class Order extends Model
 	{
 		return $this->belongsTo(ProductType::class);
 	}
+
+        // A Order has many images
+    public function images()
+    {
+        return $this->hasMany(OrderImages::class);
+    }
 }

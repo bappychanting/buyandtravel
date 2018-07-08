@@ -39,7 +39,7 @@
 	    	<i class="fa fa-frown-o  fa-sm pr-2"></i>oops..
 	    </p>
   		<p class="white-text display-4 my-4">
-  			The page you are looking for is not found!</span>
+  			The page you are looking for can not be found!</span>
   		</p>
   	</div>
 
