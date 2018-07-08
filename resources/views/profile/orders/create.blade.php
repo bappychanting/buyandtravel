@@ -33,43 +33,65 @@
             <h2>Add Order</h2>
             <p class="font-weight-bold">Please Input Following Details</p>
               
-              {!! Form::open(['method' => 'post', 'route' => ['travel.create']]) !!}
+              {!! Form::open(['method' => 'post', 'route' => ['orders.store']]) !!}
 
               <div class="demo-masked-input">
+
+                {!! Form::hidden('user_id', $user->id) !!}
 
                 <!-- Material input text -->
                 <div class="md-form">
                   {!! Form::text('product_name', null, array('class' =>'form-control', 'id'=>'product_name')) !!}
                   {!! Form::label('product_name', 'Product Title') !!}
                 </div>
-                <!-- Material input text -->
 
                 <!-- Material input text -->
                 <div class="md-form"> 
-                  <select name="country_id" class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
+                  <select name="product_type_id" class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
                     <option value="" disabled selected>Select Product Category</option>
-                    <option>Hot Dog, Fries and a Soda</option>
-                    <option>Burger, Shake and a Smile</option>
-                    <option>Sugar, Spice and all things nice</option>
+                    @foreach($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->product_type }}</option>
+                    @endforeach
                   </select> 
                 </div>
 
-                <!-- Material input text -->
-                <div class="md-form">
-                  {!! Form::text('expected_price', null, array('class' =>'form-control', 'id'=>'expected_price')) !!}
-                  {!! Form::label('expected_price', 'Expected Product Price') !!}
-                </div>
+                @if ($errors->has('product_type_id'))
+                    <p class="red-text">{{ $errors->first('product_type_id') }}</p>
+                @endif
 
-                <!-- Material input text -->
-                <div class="md-form">
-                  {!! Form::text('reference_link', null, array('class' =>'form-control', 'id'=>'reference_link')) !!}
-                  {!! Form::label('reference_link', 'Reference Link') !!}
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <!-- Material input text -->
+                    <div class="md-form">
+                      {!! Form::text('expected_price', null, array('class' =>'form-control', 'id'=>'expected_price')) !!}
+                      {!! Form::label('expected_price', 'Expected Product Price') !!}
+                    </div>
+
+                    @if ($errors->has('expected_price'))
+                        <p class="red-text">{{ $errors->first('expected_price') }}</p>
+                    @endif
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                    <!-- Material input text -->
+                    <div class="md-form">
+                      {!! Form::text('reference_link', null, array('class' =>'form-control', 'id'=>'reference_link')) !!}
+                      {!! Form::label('reference_link', 'Reference Link') !!}
+                    </div>
+
+                    @if ($errors->has('reference_link'))
+                        <p class="red-text">{{ $errors->first('reference_link') }}</p>
+                    @endif
+                  </div>
                 </div>
 
                 <div class="md-form">
                   {!! Form::text('delivery_location', null, array('class' =>'form-control', 'id'=>'delivery_location')) !!}
                   {!! Form::label('delivery_location', 'Product Delivery Location') !!}
                 </div>
+
+                @if ($errors->has('delivery_location'))
+                    <p class="red-text">{{ $errors->first('delivery_location') }}</p>
+                @endif
 
                 <!-- Material input text -->
                 <p class="font-weight-bold my-3">Add Tags</p>
@@ -81,13 +103,18 @@
                 @endif
 
                 <p class="font-weight-bold my-3">Add Details to Order</p>
+
+                @if ($errors->has('additional_details'))
+                    <p class="red-text">{{ $errors->first('additional_details') }}</p>
+                @endif
+
                 <!-- Material Editor -->
                 <div class="md-form">
                     {!! Form::textarea('additional_details', null, array('class'=>'editor')) !!}
                 </div>
 
                 <div class="text-center my-4">
-                    <a class="btn btn-primary" href="user_order_details.php">Submit</a>
+                  {!! Form::submit('Add Order', array('class' =>'btn btn-primary')) !!}
                 </div>
               </div>
 

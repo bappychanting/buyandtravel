@@ -32,7 +32,7 @@
                     <!-- Content Column -->
           <div class="col-lg-10 mb-4">
             <h2>Edit Travel Schedule</h2>
-            <p>Please input following data. Make sure your input dates don't intersect with another already scheduled journey.</p>
+            <p class="font-weight-bold">Please input following data. Make sure your input dates don't intersect with another already scheduled journey.</p>
             <p>Last Updated: <span class="font-weight-bold">{{$travel->updated_at->format('l d F Y, h:i A')}}</span></p>
 
               {!! Form::open(['method' => 'put', 'route' => ['travel.update', $travel->id]]) !!}

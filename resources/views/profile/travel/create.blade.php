@@ -31,12 +31,10 @@
                     <!-- Content Column -->
           <div class="col-lg-10 mb-4">
             <h2>Add Travel Schedule</h2>
-            <p>Please input following data. Make sure your input dates don't intersect with another already scheduled journey.</p>
+            <p class="font-weight-bold">Please input following data. Make sure your input dates don't intersect with another already scheduled journey.</p>
 
               {!! Form::open(['method' => 'post', 'route' => ['travel.store']]) !!}
               <div class="demo-masked-input">
-                
-                {{-- Form::select('size', $countries, null, array('class' =>'mdb-select colorful-select dropdown-primary', 'searchable'=>'Search here..')) --}}
 
                 {!! Form::hidden('user_id', $user->id) !!}
 

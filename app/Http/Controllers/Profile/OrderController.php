@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Profile;
-
-use Illuminate\Http\Request;
+use App\Order;
+use App\ProductType;
+use App\User;
+use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -13,6 +15,19 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $order;
+    protected $category;
+    protected $user;
+
+    public function __construct(Order $order, ProductType $category, User $user)
+    {
+        $this->middleware('auth');
+        $this->order = $order;
+        $this->category = $category;
+        $this->user = $user;
+    }
+
     public function index()
     {
         $user = Auth::user();
@@ -27,7 +42,8 @@ class OrderController extends Controller
     public function create()
     {
         $user = Auth::user();
-        return view('profile.orders.create', compact('user'));
+        $categories = $this->category->all();
+        return view('profile.orders.create', compact('user', 'categories'));
     }
 
     /**
@@ -36,9 +52,11 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        //
+        $input = $request->all();
+        $this->order->create($input);
+        return redirect()->route('orders.index')->with('success', array('Success'=>'Order has been added!'));
     }
 
     /**

@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->string('expected_price')->nullable();
             $table->string('reference_link')->nullable();
             $table->string('tags')->nullable();
-            $table->mediumText('additinoal_details')->nullable();
+            $table->mediumText('additional_details')->nullable();
             $table->integer('views')->default(0);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
