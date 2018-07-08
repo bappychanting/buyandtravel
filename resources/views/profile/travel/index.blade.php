@@ -58,10 +58,10 @@
             <!--Grid row-->
             <div class="row">
               <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
-                <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country->name }}</h5>
-                <h6><i class="fa fa-map-marker"></i> <span class="green-text font-weight-bold">{{ $travel->destination }}</span></h6>
+                <h5 class="font-weight-bold"><i class="fa fa-plane fa-sm pr-2"></i>{{ $travel->city }}, {{ $travel->country->name }}</h5>
+                <h6><i class="fa fa-map-marker fa-sm pr-2"></i><span class="dark-grey-text font-weight-bold">{{ $travel->destination }}</span></h6>
                 <p>
-                  <i class="fa fa-calendar-check-o"></i> <span class="red-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span> &#8594; <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
+                  <i class="fa fa-calendar-check-o fa-sm pr-2"></i><span class="blue-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span> &#8594; <span class="blue-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
                 </p>
               </div>
               <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">

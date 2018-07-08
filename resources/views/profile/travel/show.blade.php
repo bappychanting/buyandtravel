@@ -30,17 +30,16 @@
           <!-- Content Column -->
           <div class="col-lg-10">
             <h2>View Travel Schedule Details</h2>
-            <h5 class="font-weight-bold"><i class="fa fa-plane"></i> {{ $travel->city }}, {{ $travel->country->name }}</h5>
-            <h6><i class="fa fa-map-marker"></i> <span class="green-text font-weight-bold">{{ $travel->destination }}</span></h6>
+            <h5 class="font-weight-bold"><i class="fa fa-plane fa-sm pr-2"></i>{{ $travel->city }}, {{ $travel->country->name }}</h5>
+            <h6><i class="fa fa-map-marker fa-sm pr-2"></i> <span class="dark-grey-text font-weight-bold">{{ $travel->destination }}</span></h6>
             <p>
-              <i class="fa fa-calendar-check-o"></i> <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span> &#8594; <span class="deep-orange-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
+              <i class="fa fa-calendar-check-o fa-sm pr-2"></i><span class="blue-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span> &#8594; <span class="blue-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
             </p>
             <hr class="mb-4">
-            <p class="my-4">
-              <i class="fa fa-clock-o"></i> <span class="font-weight-bold blue-text">{{$travel->created_at->format('l d F Y, h:i A')}}</span>
+            <p class="mt-4">
+              <i class="fa fa-clock-o fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{$travel->created_at->format('l d F Y, h:i A')}}</span>
             </p>
             {!! Form::open(['route' => ['travel.destroy', $travel->id], 'method'=>'delete']) !!}
-                {!! Form::hidden('id', $travel->id) !!}
                 <a href="{{ route('travel.edit', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Schedule</a>
                 {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
             {!! Form::close() !!}

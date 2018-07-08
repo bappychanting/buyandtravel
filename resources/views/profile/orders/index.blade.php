@@ -69,7 +69,7 @@
                             <strong>{{ $order->product_name }}</strong>
                             <small class="dark-grey-text">{{ $order->product_type->product_type }}</small>
                         </h5>
-                        <p><i class="fa fa-clock-o"></i> <span class="font-weight-bold blue-text">{{$order->created_at->format('l d F Y')}}</span></p>
+                        <p><i class="fa fa-clock-o  fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{$order->created_at->format('l d F Y')}}</span></p>
                     </div>
                     <!--Grid column-->
 

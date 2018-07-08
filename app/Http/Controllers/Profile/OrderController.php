@@ -69,11 +69,14 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $user = Auth::user();
+        /*
         $order = $this->order->find($id);
         if($order == null){
             return redirect()->back()->with('error', array('Empty Result'=>'Your requested order does not exist!'));
         }
+        */
+        $order = $this->order->findOrFail($id);
+        $user = Auth::user();
         return view('profile.orders.show', compact('user', 'order'));
     }
 
@@ -85,7 +88,13 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $order = $this->order->findOrFail($id);
+        $user = Auth::user();
+        $getCategories = $this->category->all();
+        foreach ($getCategories as $category) {
+            $categories[$category->id] = $category->product_type;
+        }
+        return view('profile.orders.edit', compact('user', 'order', 'categories'));
     }
 
     /**
@@ -95,9 +104,12 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OrderRequest $request, $id)
     {
-        //
+        $input = $request->all();
+        $order = $this->order->findOrFail($id);
+        $order->update($input);
+        return redirect()->route('orders.show', $id)->with('success', array('Success'=>'Order has been updated!'));
     }
 
     /**
@@ -108,8 +120,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        /*$order = $this->order->findOrFail($id);
+        $order = $this->order->findOrFail($id);
         $order->delete();
-        return redirect()->route('orders.index')->with('success', array('Success'=>'Order has been deleted!'));*/
+        return redirect()->route('orders.index')->with('success', array('Success'=>'Order has been deleted!'));
     }
 }

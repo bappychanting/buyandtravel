@@ -68,20 +68,14 @@
                         </a>
                       </div>
                       <div class="col-lg-8 mb-4">
-
-                        <div class="btn-group mt-4" role="group" aria-label="Basic example">
-                            @if($user->verified)
-                              <a href="#" class="btn btn-blue btn-sm">
-                                <i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>
-                                Profile verified
-                              </a>
-                            @else
-                              <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#verifyAccount">
-                                <i class="fa fa-warning fa-sm pr-2" aria-hidden="true"></i>
-                                Profile not yet verified
-                              </a>
-                            @endif
-                        </div>
+                        @if($user->verified)
+                            <h5><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i> Verification</h5>
+                        @else
+                          <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#verifyAccount">
+                            <i class="fa fa-warning fa-sm pr-2" aria-hidden="true"></i>
+                            Profile not yet verified
+                          </a>
+                        @endif
                       </div> 
                       <div class="col-lg-6 mb-4">                            
                           <h4>User Information</h4><hr>
