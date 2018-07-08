@@ -69,7 +69,12 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+        $order = $this->order->find($id);
+        if($order == null){
+            return redirect()->back()->with('error', array('Empty Result'=>'Your requested order does not exist!'));
+        }
+        return view('profile.orders.show', compact('user', 'order'));
     }
 
     /**
@@ -103,6 +108,8 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /*$order = $this->order->findOrFail($id);
+        $order->delete();
+        return redirect()->route('orders.index')->with('success', array('Success'=>'Order has been deleted!'));*/
     }
 }

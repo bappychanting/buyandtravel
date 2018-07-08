@@ -41,7 +41,7 @@
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                   <!-- Material input email -->
                   <div class="md-form">
-                      {!! Form::text('search', null, ['class'=>'form-control', 'id'=>'search']) !!}
+                      {!! Form::text('search', $search, ['class'=>'form-control', 'id'=>'search']) !!}
                       {!! Form::label('search', 'Search Orders') !!}
                   </div>
                 </div>
@@ -75,10 +75,10 @@
 
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="user_order_details.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
-                            <a href="#" class="btn btn-blue btn-sm delete_sweet_alert"><i class="fa fa-trash fa-sm pr-2" aria-hidden="true"></i>Delete Order</a>
-                        </div>
+                        {!! Form::open(['route' => ['orders.destroy', $order->id], 'method'=>'delete']) !!}
+                            <a href="{{ route('orders.show', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
+                          {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+                        {!! Form::close() !!}
                     </div>
                     <!--Grid column-->
 

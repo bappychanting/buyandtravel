@@ -54,8 +54,8 @@
                 <!--Panel 1-->
                 <div class="tab-pane fade in show active" id="userinfo" role="tabpanel">
                     <div class="row">
-                      <div class="col-lg-6 mb-4">
-                        <div class="view overlay z-depth-1-half" id="aniimated-thumbnials">
+                      <div class="col-lg-4 mb-4">
+                        <div class="z-depth-1-half" id="aniimated-thumbnials">
                             <a href="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450?text=No+Profile+Picture+Found' }}" data-sub-html="{{ $user->name }} Profile Picture"> 
                               <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450?text=No+Profile+Picture+Found' }}" class="img-fluid rounded" alt="First sample image">
                             </a>
@@ -63,7 +63,26 @@
                         @if ($errors->has('image'))
                             <p class="red-text mt-4">{{ $errors->first('image') }}</p>
                         @endif
+                        <a href="#" class="btn btn-blue btn-sm mt-4" data-toggle="modal" data-target="#updateimage">
+                          <i class="fa fa-cloud-upload fa-sm pr-2" aria-hidden="true"></i>Upload New Profile Picture
+                        </a>
                       </div>
+                      <div class="col-lg-8 mb-4">
+
+                        <div class="btn-group mt-4" role="group" aria-label="Basic example">
+                            @if($user->verified)
+                              <a href="#" class="btn btn-blue btn-sm">
+                                <i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>
+                                Profile verified
+                              </a>
+                            @else
+                              <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#verifyAccount">
+                                <i class="fa fa-warning fa-sm pr-2" aria-hidden="true"></i>
+                                Profile not yet verified
+                              </a>
+                            @endif
+                        </div>
+                      </div> 
                       <div class="col-lg-6 mb-4">                            
                           <h4>User Information</h4><hr>
 
@@ -91,40 +110,24 @@
                                 <span class="red-text">{{ 'Not updated yet' }}</span> 
                               @endif  
                             </p>
+                      </div>
+                      <div class="col-lg-6 mb-4">
+                        <h4>Contact Information</h4><hr>
+                          <p>
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            {{ $user->email }}
+                          </p>
 
-                        <div class="btn-group mt-4" role="group" aria-label="Basic example">
-                            <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#updateimage">
-                              <i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Update Profile Picture
-                            </a>
-                            @if($user->verified)
-                              <a href="#" class="btn btn-blue btn-sm">
-                                <i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>
-                                Profile verified
-                              </a>
-                            @else
-                              <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#verifyAccount">
-                                <i class="fa fa-warning fa-sm pr-2" aria-hidden="true"></i>
-                                Profile not yet verified
-                              </a>
-                            @endif
-                        </div>
+                          <p>
+                            <i class="fa fa-phone prefix grey-text"></i>
+                            {{ str_replace('-', '', $user->contact) }}
+                          </p>
+                          <p>
+                            <i class="fa fa-address-card prefix grey-text"></i>
+                            {!! empty($user->address) ? '<span class="red-text">Not updated yet</span>' : $user->address !!}
+                          </p>
                       </div>
                     </div>
-                    
-                    <h4>Contact Information</h4><hr>
-                      <p>
-                        <i class="fa fa-envelope prefix grey-text"></i>
-                        {{ $user->email }}
-                      </p>
-
-                      <p>
-                        <i class="fa fa-phone prefix grey-text"></i>
-                        {{ str_replace('-', '', $user->contact) }}
-                      </p>
-                      <p>
-                        <i class="fa fa-address-card prefix grey-text"></i>
-                        {!! empty($user->address) ? '<span class="red-text">Not updated yet</span>' : $user->address !!}
-                      </p>
                 </div>
                 <!--/.Panel 1-->
             </div>
@@ -147,6 +150,7 @@
                 <div class="modal-body text-center mb-1">
 
                     <h5 class="mt-1 mb-2">Update Profile Picture</h5>
+                    <p class="dark-grey-text">Maximum Allowed Size: 500KB</p>
 
                     {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['user.updateImage', $user->id], 'enctype' => 'multipart/form-data']) !!}
 
