@@ -16,6 +16,10 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
 
 Auth::routes();
 
+Route::group(['prefix' => 'orders'], function(){
+	Route::get('/', 'OrderController@index')->name('front.orders.index');
+});
+
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
