@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
 
         	//Seed the countries
 		$this->call('CountriesSeeder');
-		$this->command->info('Seeded the countries!'); 
+		$this->command->info('Seeded the countries!');
+
+        $this->call('ProductTypesSeeder');
+        $this->command->info('Seeded the product types!'); 
     }
 }

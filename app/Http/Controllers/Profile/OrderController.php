@@ -27,6 +27,7 @@ class OrderController extends Controller
     public function __construct(Order $order, OrderImage $order_image, ProductType $category, User $user)
     {
         $this->middleware('auth');
+        $this->middleware('order.owner', ['only' => ['show', 'edit']]);
         $this->order = $order;
         $this->order_image = $order_image;
         $this->category = $category;
