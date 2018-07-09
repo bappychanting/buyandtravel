@@ -23,6 +23,7 @@ class TravelController extends Controller
     public function __construct(Travel $travel, User $user)
     {
         $this->middleware('auth');
+        $this->middleware('travel.owner', ['only' => ['show', 'edit']]);
         $this->travel = $travel;
         $this->user = $user;
     }
