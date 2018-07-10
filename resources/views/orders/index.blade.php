@@ -31,7 +31,7 @@
             <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
-                <div class="col-lg-5 col-xl-4 mb-4">
+                <div class="col-xl-3 col-lg-4 col-md-3 col-sm-2 col-6 mb-4">
                     <!--Featured image-->
                     <div class="z-depth-1-half">
                         <img src="{{ file_exists(array_get($order->images()->first(), 'src')) ? asset(array_get($order->images()->first(), 'src')) : 'http://via.placeholder.com/450?text=Product+Image' }}" class="img-fluid rounded" alt="{{ array_get($order->images()->first(), 'alt') }}">
@@ -40,13 +40,18 @@
                 <!--Grid column-->
 
                 <!--Grid column-->
-                <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+                <div class="col-xl-4 col-lg-8 col-md-4 col-sm-6 col-6 mb-4">
                     <h5 class="mb-3 font-weight-bold dark-grey-text">
                         <strong>{{ $order->product_name }}</strong>
                     </h5>
-                    <p>Added by
-                    <a class="font-weight-bold dark-grey-text" href="view_user.php">{{ $order->user->name }}</a>, {{$order->created_at->format('l d F Y')}}</p>
-                    <p><i class="fa fa-truck fa-sm pr-2"></i>{{$order->delivery_location}}</p>
+                    <p>Added by <a class="font-weight-bold dark-grey-text" href="view_user.php">{{ $order->user->name }}</a></p>
+                    <p class="font-weight-bold light-blue-text"><i class="fa fa-clock-o  fa-sm pr-2"></i>{{$order->created_at->format('l d F Y')}}</p>
+                    <p><i class="fa fa-map-marker fa-sm pr-2"></i>{{$order->delivery_location}}</p>
+                </div>
+                <!--Grid column-->
+
+                 <!--Grid column-->
+                <div class="col-xl-5 col-lg-12 col-md-5 col-sm-4 col-12 mb-4">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="view_order.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
                         <a href="add_offer.php" class="btn btn-blue btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Offer</a>
@@ -73,7 +78,7 @@
         </div>
 
         <!-- Left Menu Column -->
-        @include('orders.leftmenu', [$search])
+        @include('orders.leftmenu', [$search, $categories, $from, $to, $category])
 
       </div>
       <!-- /.row -->

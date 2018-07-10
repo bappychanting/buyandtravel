@@ -10,12 +10,18 @@
     </div>
     <div class="card-body">
       {!! Form::open(['url' => '/orders', 'method'=>'get']) !!}
-        <div class="md-form">
-          {!! Form::text('search', $search, ['class'=>'form-control', 'id'=>'search']) !!}
-          {!! Form::label('search', 'Search Orders') !!}
-        </div>
-        <div class="text-center mt-4">
-          {!! Form::button('<i class="fa fa-search"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="md-form">
+              {!! Form::text('search', $search, ['class'=>'form-control', 'id'=>'search']) !!}
+              {!! Form::label('search', 'Search Orders') !!}
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="text-center mt-4">
+              {!! Form::button('<i class="fa fa-search"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+            </div>
+          </div>
         </div>
       {!! Form::close() !!}
     </div>
@@ -29,17 +35,17 @@
     </div>
     <div class="card-body">
       <div class="md-form">
-          <i class="fa fa-plane prefix grey-text"></i>
+          <i class="fa fa-sort-desc prefix grey-text"></i>
           <input type="email" class="form-control datepicker">
           <label for="materialFormRegisterEmailEx">From</label>
       </div>
       <div class="md-form">
-          <i class="fa fa-truck prefix grey-text"></i>
+          <i class="fa fa-sort-asc prefix grey-text"></i>
           <input type="email" class="form-control datepicker">
           <label for="materialFormRegisterEmailEx">To</label>
       </div>
       <div class="text-center mt-4">
-        <button class="btn btn-primary" type="submit">Sort</button>
+        <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-sort"></i></button>
       </div>
     </div>
   </div>
@@ -51,35 +57,17 @@
       <h5 class="card-header-title">Categories</h5>
     </div>
     <div class="card-body">
-      <div class="row">
-        <div class="col-lg-6">
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#">Web Design</a>
-            </li>
-            <li>
-              <a href="#">HTML</a>
-            </li>
-            <li>
-              <a href="#">Freebies</a>
-            </li>
-          </ul>
+      <ul class="list-unstyled mb-0">
+        <div class="row">
+          @foreach($categories as $category)
+            <div class="col-lg-6">
+              <li>
+                <a href="#">{{ $category->product_type }}</a>
+              </li>
+            </div>
+          @endforeach
         </div>
-        <div class="col-lg-6">
-          <ul class="list-unstyled mb-0">
-            <li>
-              <a href="#">JavaScript</a>
-            </li>
-            <li>
-              <a href="#">CSS</a>
-            </li>
-            <li>
-              <a href="#">Tutorials</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </ul>
     </div>
-  </div>
   <!-- Categories -->
 </div> 
