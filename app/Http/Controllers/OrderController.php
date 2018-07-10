@@ -24,6 +24,6 @@ class OrderController extends Controller
     {
         $search = \Request::get('search');
         $orders = $this->order->search($search)->orderBy('created_at', 'desc')->paginate(30);
-        return view('orders.index', compact('orders'));
+        return view('orders.index', compact('orders', 'search'));
     }
 }

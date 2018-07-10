@@ -73,7 +73,7 @@
         </div>
 
         <!-- Left Menu Column -->
-        @include('orders.leftmenu')
+        @include('orders.leftmenu', [$search])
 
       </div>
       <!-- /.row -->

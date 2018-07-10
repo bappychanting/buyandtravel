@@ -9,13 +9,15 @@
       <p class="card-header-subtitle mb-0">product, delivery location etc</p>
     </div>
     <div class="card-body">
-      <div class="md-form">
-          <input type="email" class="form-control">
-          <label for="materialFormRegisterEmailEx">Search Orders</label>
-      </div>
-      <div class="text-center mt-4">
-          <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
-      </div>
+      {!! Form::open(['url' => '/orders', 'method'=>'get']) !!}
+        <div class="md-form">
+          {!! Form::text('search', $search, ['class'=>'form-control', 'id'=>'search']) !!}
+          {!! Form::label('search', 'Search Orders') !!}
+        </div>
+        <div class="text-center mt-4">
+          {!! Form::button('<i class="fa fa-search"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+        </div>
+      {!! Form::close() !!}
     </div>
   </div>
   <!-- Search -->
