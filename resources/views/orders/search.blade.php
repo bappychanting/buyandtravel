@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', "Orders || ")
+@section('title', "Search Orders || ")
 
 @section('content')
 
@@ -16,15 +16,16 @@
           <ol class="breadcrumb blue-gradient">
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('buyandtravel') }}">Home</a></li>
               <li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Orders</li>
-              <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>All Orders</li>
+              <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.orders.index') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>All Orders</a></li>
+              <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Search Orders</li>
           </ol>
       </div>
 
       <!-- Content Row -->
       <div class="row">
-                <div class="col-lg-8">
+          <div class="col-lg-8">
             <!--Section: Blog v.3-->
-        <section class="py-4">
+            <section class="py-4">
 
          @foreach($orders as $order)
 
@@ -68,17 +69,17 @@
             
             <!--Pagination-->
             <nav aria-label="pagination example">
-                <ul class="pagination pg-blue">
-                    {{ $orders->links() }}
-                  </ul>
-              </nav> 
+              <ul class="pagination pg-blue">                    
+                  {{ $orders->appends(Request::only('search'))->links() }}
+                </ul>
+            </nav> 
 
-        </section>
+          </section>
         <!--Section: Blog v.3-->
         </div>
 
         <!-- Left Menu Column -->
-        @include('orders.rightmenu', [$keyword='', $categories, $from='', $to='', $product_type=''])
+        @include('rightmenu.leftmenu', [$keyword, $categories, $from, $to, $category])
 
       </div>
       <!-- /.row -->

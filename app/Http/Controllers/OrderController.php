@@ -22,12 +22,21 @@ class OrderController extends Controller
 
     public function index()
     {
-        $search = \Request::get('search');
-        $from = \Request::get('from');
-        $to = \Request::get('to');
-        $category = \Request::get('category');
-        $orders = $this->order->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        $orders = $this->order->orderBy('created_at', 'desc')->paginate(30);
         $categories = ProductType::all();
-        return view('orders.index', compact('orders', 'categories', 'search', 'from', 'to', 'category'));
+        return view('orders.index', compact('orders', 'categories'));
+    }
+
+    public function search(Request $request)
+    {
+        $this->validate($request, [
+            'keyword' => 'required|string',
+            'from' => 'required|string',
+            'to' => 'required|string',
+        ]);
+        $product_type = $request->product_type;
+        $orders = $this->order->search($request->keyword)->whereBetween('created_at', [date('Y-m-d', strtotime($request->from)), date('Y-m-d', strtotime($request->to))])->orderBy('created_at', 'desc')->paginate(1);	
+        $categories = ProductType::all();
+        return view('orders.index', compact('orders', 'categories', 'keyword', 'from', 'to', 'product_type'));
     }
 }

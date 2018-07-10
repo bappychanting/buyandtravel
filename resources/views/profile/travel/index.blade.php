@@ -78,7 +78,6 @@
             <!--Pagination-->
             <nav aria-label="pagination example">
               <ul class="pagination pg-blue">
-                {{-- $travelHistory->links() --}}
                 {{ $travelHistory->appends(Request::only('search'))->links() }}
               </ul>
             </nav> 
