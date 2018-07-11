@@ -80,7 +80,7 @@ footer {
 .list-group a:hover {
     color: #2196f3;
     background-color: #e3f2fd;
-    border-color: #e3f2fd;
+    border-color: #bbdefb;
 }
 
 .list-group-item.active {

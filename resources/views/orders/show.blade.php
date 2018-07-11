@@ -51,9 +51,9 @@
               </div>
               <div class="col-lg-6 mb-3 mt-3">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><b>Price Expected:</b> {{ $order->expected_price }}/=</li>
-                  <li class="list-group-item"><b>User Contact:</b> {{ str_replace('-', '', $order->user->contact) }}</li>
-                  <li class="list-group-item"><b>Handover Location:</b> {{ $order->delivery_location }}</li>
+                  <li class="list-group-item"><strong>Price Expected:</strong> {{ $order->expected_price }}/=</li>
+                  <li class="list-group-item"><strong>User Contact:</strong> {{ str_replace('-', '', $order->user->contact) }}</li>
+                  <li class="list-group-item"><strong>Handover Location:</strong> {{ $order->delivery_location }}</li>
                 </ul>
               </div>
           </div>
