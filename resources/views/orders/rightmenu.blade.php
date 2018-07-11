@@ -65,7 +65,7 @@
         @foreach($categories as $category)
             <div class="col-lg-6">
               <li>
-                <a href="{{ route('front.orders.index') }}?keyword={{ $category->product_type }}">{{ $category->product_type }}</a>
+                <a href="{{ Request::url() }}?keyword={{ $category->product_type }}">{{ $category->product_type }}</a>
               </li>
             </div>
         @endforeach

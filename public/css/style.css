@@ -73,6 +73,16 @@ footer {
   margin-bottom: 30px;
 }
 
+.list-group-item-action {
+    color: #1976d2;
+}
+
+.list-group a:hover {
+    color: #2196f3;
+    background-color: #e3f2fd;
+    border-color: #e3f2fd;
+}
+
 .list-group-item.active {
     background-color: #1e88e5;
     border-color: #1e88e5;

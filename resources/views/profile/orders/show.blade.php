@@ -47,8 +47,8 @@
                       <ul id="content-slider" class="content-slider">
                         @foreach($order->images as $image)
                           <li>
-                              <a href="{{ asset($image->src) }}" data-sub-html="{{ $order->product_name.$loop->iteration }}"> 
-                                <img class="img-fluid" src="{{ asset($image->src) }}" alt="{{ $image->alt.$loop->iteration }}">
+                              <a href="{{ asset($image->src) }}" data-sub-html="{{ $order->product_name.' '.$loop->iteration }}"> 
+                                <img class="img-fluid" src="{{ asset($image->src) }}" alt="{{ $image->alt.' '.$loop->iteration }}">
                               </a>
                               {!! Form::open(['route' => ['order.image.delete', $image->id], 'method'=>'delete']) !!}
                                 {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}

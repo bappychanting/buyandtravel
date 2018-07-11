@@ -75,12 +75,6 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        /*
-        $order = $this->order->find($id);
-        if($order == null){
-            return redirect()->back()->with('error', array('Empty Result'=>'Your requested order does not exist!'));
-        }
-        */
         $order = $this->order->findOrFail($id);
         $user = Auth::user();
         return view('profile.orders.show', compact('user', 'order'));

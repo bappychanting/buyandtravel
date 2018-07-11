@@ -16,14 +16,20 @@
           <ol class="breadcrumb blue-gradient">
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('buyandtravel') }}">Home</a></li>
               <li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Orders</li>
+            @if(!empty($keyword) || !empty($from) || !empty($to))
+              <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.orders.index') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>All Orders</a></li>
+              <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Search Order</li>
+            @else
               <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>All Orders</li>
+            @endif
           </ol>
       </div>
 
       <!-- Content Row -->
       <div class="row">
-                <div class="col-lg-8">
-            <!--Section: Blog v.3-->
+
+        <div class="col-lg-8">
+          <!-- Orders -->
         <section class="py-4">
 
          @foreach($orders as $order)
@@ -53,7 +59,7 @@
                  <!--Grid column-->
                 <div class="col-xl-5 col-lg-12 col-md-5 col-sm-4 col-12 mb-4">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a href="view_order.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
+                        <a href="{{ route('front.orders.show', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
                         <a href="add_offer.php" class="btn btn-blue btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Offer</a>
                     </div>
                 </div>
@@ -65,21 +71,20 @@
             <hr class="mb-5">
         @endforeach
 
-            
             <!--Pagination-->
             <nav aria-label="pagination example">
                 <ul class="pagination pg-blue">
                     {{-- $orders->links() --}}                 
-                  {{ $orders->appends(Request::only('keyword'))->links() }}
+                  {{ $orders->appends(request()->input())->links() }}
                 </ul>
               </nav> 
 
-        </section>
-        <!--Section: Blog v.3-->
+          </section>
+          <!-- #ENDS# Orders -->
         </div>
 
         <!-- Left Menu Column -->
-        @include('orders.rightmenu', [$keyword, $categories, $from, $to, $product_type=''])
+        @include('orders.rightmenu', [$keyword, $categories, $from, $to])
 
       </div>
       <!-- /.row -->
