@@ -18,7 +18,6 @@ Auth::routes();
 
 Route::group(['prefix' => 'orders'], function(){
 	Route::get('/', 'OrderController@index')->name('front.orders.index');
-	Route::post('/search', 'OrderController@search')->name('front.orders.search');
 });
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {

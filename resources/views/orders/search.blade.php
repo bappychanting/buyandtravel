@@ -70,7 +70,7 @@
             <!--Pagination-->
             <nav aria-label="pagination example">
               <ul class="pagination pg-blue">                    
-                  {{ $orders->appends(Request::only('search'))->links() }}
+                  {{ $orders->appends(request()->input())->links() }}
                 </ul>
             </nav> 
 

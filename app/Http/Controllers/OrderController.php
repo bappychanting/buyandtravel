@@ -20,23 +20,17 @@ class OrderController extends Controller
         $this->order = $order;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $orders = $this->order->orderBy('created_at', 'desc')->paginate(30);
+        $keyword = $request->keyword;
+        $from = $request->from;
+        $to = $request->to;
+        $paginate = 1;
+        $orders = $this->order->search($keyword)->orderBy('created_at', 'desc')->paginate($paginate);
+        if(isset($from) && isset($to)){
+        	$orders = $this->order->search($request->keyword)->whereBetween('created_at', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))])->orderBy('created_at', 'desc')->paginate($paginate);
+        }
         $categories = ProductType::all();
-        return view('orders.index', compact('orders', 'categories'));
-    }
-
-    public function search(Request $request)
-    {
-        $this->validate($request, [
-            'keyword' => 'required|string',
-            'from' => 'required|string',
-            'to' => 'required|string',
-        ]);
-        $product_type = $request->product_type;
-        $orders = $this->order->search($request->keyword)->whereBetween('created_at', [date('Y-m-d', strtotime($request->from)), date('Y-m-d', strtotime($request->to))])->orderBy('created_at', 'desc')->paginate(1);	
-        $categories = ProductType::all();
-        return view('orders.index', compact('orders', 'categories', 'keyword', 'from', 'to', 'product_type'));
+        return view('orders.index', compact('orders', 'categories', 'keyword', 'from', 'to'));
     }
 }

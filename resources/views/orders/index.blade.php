@@ -69,8 +69,9 @@
             <!--Pagination-->
             <nav aria-label="pagination example">
                 <ul class="pagination pg-blue">
-                    {{ $orders->links() }}
-                  </ul>
+                    {{-- $orders->links() --}}                 
+                  {{ $orders->appends(Request::only('keyword'))->links() }}
+                </ul>
               </nav> 
 
         </section>
@@ -78,7 +79,7 @@
         </div>
 
         <!-- Left Menu Column -->
-        @include('orders.rightmenu', [$keyword='', $categories, $from='', $to='', $product_type=''])
+        @include('orders.rightmenu', [$keyword, $categories, $from, $to, $product_type=''])
 
       </div>
       <!-- /.row -->
