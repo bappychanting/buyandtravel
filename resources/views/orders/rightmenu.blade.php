@@ -36,6 +36,7 @@
     <div class="card-body">
       {!! Form::open(['url' => route('front.orders.index'), 'method'=>'get']) !!}
         {!! Form::hidden('keyword', $keyword) !!}
+        {!! Form::hidden('product_type', $product_type) !!}
         <div class="md-form">
           <i class="fa fa-sort-desc prefix grey-text"></i>
           {!! Form::text('from', $from, ['class'=>'form-control datepicker', 'id'=>'from']) !!}
@@ -65,7 +66,8 @@
         @foreach($categories as $category)
             <div class="col-lg-6">
               <li>
-                <a href="{{ Request::url() }}?keyword={{ $category->product_type }}">{{ $category->product_type }}</a>
+                <a href="/orders?keyword={{ $keyword }}&product_type={{ $category->product_type }}">{{ $category->product_type }}</a>
+                <hr>
               </li>
             </div>
         @endforeach

@@ -23,14 +23,15 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->keyword;
+        $product_type = $request->product_type;
         $from = $request->from;
         $to = $request->to;
-        $orders = $this->order->search($keyword)->orderBy('created_at', 'desc')->paginate(30);
+        $orders = $this->order->search($keyword)->search($product_type)->orderBy('created_at', 'desc')->paginate(30);
         if(isset($from) && isset($to)){
-        	$orders = $this->order->search($request->keyword)->whereBetween('created_at', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))])->orderBy('created_at', 'desc')->paginate(30);
+        	$orders = $this->order->search($keyword)->search($product_type)->whereBetween('created_at', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))])->orderBy('created_at', 'desc')->paginate(30);
         }
         $categories = ProductType::all();
-        return view('orders.index', compact('orders', 'categories', 'keyword', 'from', 'to'));
+        return view('orders.index', compact('orders', 'categories', 'keyword', 'product_type', 'from', 'to'));
     }
 
     public function show($id)

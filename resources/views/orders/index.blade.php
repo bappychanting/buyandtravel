@@ -84,7 +84,7 @@
         </div>
 
         <!-- Left Menu Column -->
-        @include('orders.rightmenu', [$keyword, $categories, $from, $to])
+        @include('orders.rightmenu', [$categories, $keyword, $product_type, $from, $to])
 
       </div>
       <!-- /.row -->

@@ -55,12 +55,12 @@
                   <li class="list-group-item"><strong>User Contact:</strong> {{ str_replace('-', '', $order->user->contact) }}</li>
                   <li class="list-group-item"><strong>Handover Location:</strong> {{ $order->delivery_location }}</li>
                 </ul>
+                <a class="btn btn-md btn-primary btn-block mb-4" href="add_offer.php"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
+                <div class="btn-group my-3" role="group" aria-label="Basic example">
+                  <a href="view_order.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
+                  <a href="report_order.php" class="btn btn-blue btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
+                </div>
               </div>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="add_offer.php" class="btn btn-blue btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Offer</a>
-                <a href="view_order.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
-                <a href="report_order.php" class="btn btn-blue btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
           </div>
           <p class="mb-3 mt-3">{!! $order->additional_details !!}</p>
           <div class="btn-group mb-4" role="group" aria-label="Basic example">
@@ -72,7 +72,7 @@
         <!-- #END# Show Order -->
 
         <!-- Left Menu Column -->
-        @include('orders.rightmenu', [$keyword='', $categories, $from='', $to=''])
+        @include('orders.rightmenu', [$categories, $keyword='', $product_type='', $from='', $to=''])
 
       </div>
       <!-- /.row -->
