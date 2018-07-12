@@ -16,7 +16,7 @@
           <ol class="breadcrumb blue-gradient">
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('buyandtravel') }}">Home</a></li>
               <li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Orders</li>
-            @if(!empty($keyword) || !empty($from) || !empty($to))
+            @if(!empty($keyword) || !empty($product_type) || !empty($from) || !empty($to))
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.orders.index') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>All Orders</a></li>
               <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Search Order</li>
             @else

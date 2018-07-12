@@ -16,7 +16,7 @@
           <ol class="breadcrumb blue-gradient">
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('buyandtravel') }}">Home</a></li>
               <li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Travelers</li>
-            @if(!empty($keyword) || !empty($from) || !empty($to))
+            @if(!empty($keyword) || !empty($country) || !empty($from) || !empty($to))
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.travel.index') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>All Travelers</a></li>
               <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Search Travelers</li>
             @else
@@ -53,7 +53,6 @@
                   </p>
                 </div>
               </div>
-              <p class="mt-2">{{ str_limit(strip_tags($travel->additional_details), 150) }}</p>
               <div class="btn-group" role="group" aria-label="Basic example">
                   <a href="{{ route('front.travel.show', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
                   <a href="add_request.php" class="btn btn-blue btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Request</a>

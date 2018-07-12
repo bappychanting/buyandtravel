@@ -21,7 +21,7 @@ class TravelerController extends Controller
         $from = $request->from;
         $to = $request->to;
         if(isset($from) && isset($to)){
-        	$travelers = $this->travel->search($keyword)->search($country)->whereBetween('created_at', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))])->orderBy('created_at', 'desc')->paginate(30);
+        	$travelers = $this->travel->search($keyword)->search($country)->whereBetween('arrival_date', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))])->orderBy('created_at', 'desc')->orWhereBetween('leave_date', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))])->orderBy('created_at', 'desc')->paginate(30);
         }else{
             $travelers = $this->travel->search($keyword)->search($country)->orderBy('created_at', 'desc')->paginate(30);
         }
@@ -31,8 +31,8 @@ class TravelerController extends Controller
 
     public function show($id)
     {
-        $travelers = $this->travel->findOrFail($id);
+        $traveler = $this->travel->findOrFail($id);
         $countries = Countries::getListForSelect();
-        return view('travel.show', compact('travelers', 'countries'));
+        return view('travel.show', compact('traveler', 'countries'));
     }
 }

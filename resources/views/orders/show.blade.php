@@ -29,7 +29,7 @@
           <h3 class="mb-3 font-weight-bold dark-grey-text">
               <strong>{{ $order->product_name }}</strong>
           </h3>
-          <h5 class="mb-3"><a data-toggle="modal" data-target="#modalLoginForm"><i class="fa fa-user fa-sm pr-2"></i>{{ $order->user->name }}</a></h5>
+          <h5 class="mb-3"><a data-toggle="modal" data-target="#userPopup"><i class="fa fa-user fa-sm pr-2"></i>{{ $order->user->name }}</a></h5>
           <h6><i class="fa fa-tags fa-sm pr-2"></i><span class="dark-grey-text">{{ $order->product_type->product_type }}</span></h6>
           <hr class="mb-4">
           <p class="mt-4">
@@ -57,7 +57,7 @@
                 </ul>
                 <a class="btn btn-md btn-primary btn-block mb-4" href="add_offer.php"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
                 <div class="btn-group my-3" role="group" aria-label="Basic example">
-                  <a href="view_order.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
+                  <a href="{{ $order->reference_link }}" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
                   <a href="report_order.php" class="btn btn-blue btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
                 </div>
               </div>
@@ -81,7 +81,7 @@
     <!-- Contents -->
 
     <!-- View Profile -->
-    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="userPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
@@ -93,7 +93,7 @@
                 <div class="modal-body mx-3">
                   <div class="row">
                     <div class="col-lg-6 mb-3">
-                      <img class="img-fluid rounded" src="{{ file_exists($order->user->avatar) ? asset($order->user->avatar) : 'http://via.placeholder.com/450?text=No+Profile+Picture+Found' }}" alt="User Avatar">
+                      <img class="img-fluid rounded" src="{{ file_exists($order->user->avatar) ? asset($order->user->avatar) : 'http://via.placeholder.com/450?text=No+Profile+Picture+Found' }}" alt="{{ $order->user->name }} Avatar">
                     </div>
                     <div class="col-lg-6 mb-3">
                       <p>
