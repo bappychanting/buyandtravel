@@ -43,7 +43,13 @@
                 <a href="{{ route('travel.edit', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Schedule</a>
                 {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
             {!! Form::close() !!}
-            {!! $travel->additional_details !!}
+
+            <button class="btn btn-primary btn-md my-4" id="showDetailsButton" type="button" data-toggle="collapse" data-target="#showDetails" aria-expanded="false" aria-controls="showDetails">
+              <i class="fa fa-folder-open fa-sm pr-2"></i>Click Here to Show Details
+            </button>
+            <div class="collapse" id="showDetails">
+                {!! $travel->additional_details !!}
+            </div>
             <p class="my-4">
               @if( !empty($travel->tags) )
                 @php $tags = explode(',', $travel->tags); @endphp

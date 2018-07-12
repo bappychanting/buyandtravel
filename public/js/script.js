@@ -76,6 +76,14 @@ $(document).ready(function(){
         readURL(this, $(this).index());
     });
 
+    $('#showDetails').on('show.bs.collapse', function () {
+      $('#showDetailsButton').empty().append("<i class='fa fa-folder fa-sm pr-2'></i>Click Here to Close Details");
+    })
+
+    $('#showDetails').on('hidden.bs.collapse', function () {
+      $('#showDetailsButton').empty().append("<i class='fa fa-folder-open fa-sm pr-2'></i>Click Here to Show Details");
+    })
+
     $('#updateimage').on('hidden.bs.modal', function (e) {
       $('input[name=image]').empty().val('');
       $('.file-path').empty().val('');
@@ -133,6 +141,17 @@ function readURL(input, i) {
         }
         reader.readAsDataURL(input.files[0]);
     }
+}
+
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
 }
 
 $(function () {

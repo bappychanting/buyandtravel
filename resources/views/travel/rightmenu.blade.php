@@ -1,15 +1,15 @@
 <div class="col-lg-4">
 
-  <a class="btn btn-md btn-primary btn-block mb-4" href="{{ route('orders.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Order</a>
+  <a class="btn btn-md btn-primary btn-block mb-4" href="{{ route('orders.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
 
   <!-- Search by keyword -->
   <div class="card card-cascade mb-4">
     <div class="view gradient-card-header blue-gradient">
       <h5 class="card-header-title">Search</h5>
-      <p class="card-header-subtitle mb-0">Delivery Location, Product Name Etc.</p>
+      <p class="card-header-subtitle mb-0">Name, Destination Etc.</p>
     </div>
     <div class="card-body">
-      {!! Form::open(['url' => route('front.orders.index'), 'method'=>'get']) !!}
+      {!! Form::open(['url' => route('front.travel.index'), 'method'=>'get']) !!}
         <div class="row">
           <div class="col-xl-8 col-lg-8 col-md-9 col-sm-12 col-12">
             <div class="md-form">
@@ -34,9 +34,9 @@
       <h5 class="card-header-title">Sort by Date</h5>
     </div>
     <div class="card-body">
-      {!! Form::open(['url' => route('front.orders.index'), 'method'=>'get']) !!}
+      {!! Form::open(['url' => route('front.travel.index'), 'method'=>'get']) !!}
         {!! Form::hidden('keyword', $keyword) !!}
-        {!! Form::hidden('product_type', $product_type) !!}
+        {!! Form::hidden('country', $country) !!}
         <div class="md-form">
           <i class="fa fa-sort-desc prefix grey-text"></i>
           {!! Form::text('from', $from, ['class'=>'form-control datepicker', 'id'=>'from']) !!}
@@ -58,21 +58,21 @@
   <!-- Sort by Category -->
   <div class="card card-cascade mb-4">
     <div class="view gradient-card-header blue-gradient">
-      <h5 class="card-header-title">Sort by Category</h5>
+      <h5 class="card-header-title">Sort by Country</h5>
     </div>
     <div class="card-body">
-        <ul class="list-unstyled mb-0">
-          <div class="row">
-        @foreach($categories as $category)
-            <div class="col-lg-6">
-              <li>
-                <a href="/orders?keyword={{ $keyword }}&product_type={{ $category->product_type }}">{{ $category->product_type }}</a>
-                <hr>
-              </li>
-            </div>
-        @endforeach
+      {!! Form::open(['url' => route('front.travel.index'), 'method'=>'get']) !!}
+        {!! Form::hidden('keyword', $keyword) !!}
+          <select name="country" class="mdb-select colorful-select dropdown-primary" searchable="Search here..">
+            <option value="" disabled selected>Select Country</option>
+            @foreach($countries as $id => $country)
+              <option value="{{ $country }}">{{ $country }}</option>
+            @endforeach
+          </select>
+          <div class="text-center mt-4">
+            {!! Form::button('<i class="fa fa-sort"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
           </div>
-        </ul>
+      {!! Form::close() !!}
       </div>
     </div>
   <!-- Sort by Category -->

@@ -24,7 +24,7 @@
       <!-- Content Row -->
       <div class="row">
         <!-- Show Order -->
-        <div class="col-lg-8">
+        <div class="col-lg-8" id="printableArea">
 
           <h3 class="mb-3 font-weight-bold dark-grey-text">
               <strong>{{ $order->product_name }}</strong>
@@ -64,7 +64,7 @@
           </div>
           <p class="mb-3 mt-3">{!! $order->additional_details !!}</p>
           <div class="btn-group mb-4" role="group" aria-label="Basic example">
-                <a href="add_offer.php" class="btn btn-blue btn-sm"><i class="fa fa-print fa-sm pr-2" aria-hidden="true"></i>Print</a>
+                <button onclick="printDiv('printableArea')" class="btn btn-blue btn-sm"><i class="fa fa-print fa-sm pr-2" aria-hidden="true"></i>Print</button>
                 <a href="view_order.php" class="btn btn-blue btn-sm"><i class="fa fa-file-pdf-o fa-sm pr-2"" aria-hidden="true"></i>Save as PDF</a>
           </div>
 

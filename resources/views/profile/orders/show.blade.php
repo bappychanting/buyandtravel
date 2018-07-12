@@ -64,7 +64,12 @@
                     </div>
                   <!-- #End# Portfolio Section -->
 
-                {!! $order->additional_details !!}
+                <button class="btn btn-primary btn-md mb-4" id="showDetailsButton" type="button" data-toggle="collapse" data-target="#showDetails" aria-expanded="false" aria-controls="showDetails">
+                  <i class="fa fa-folder-open fa-sm pr-2"></i>Click Here to Show Details
+                </button>
+                <div class="collapse" id="showDetails">
+                  {!! $order->additional_details !!}
+                </div>
 
                 <h5 class="my-4"><i class="fa fa-money fa-sm pr-2"></i>{{ $order->expected_price }}/=</h5>
                 <h6 class="my-4"><i class="fa fa-map-marker fa-sm pr-2"></i>{{ $order->delivery_location }}</h6>

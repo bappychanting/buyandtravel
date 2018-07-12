@@ -13,8 +13,8 @@
             <li class="nav-item {{Route::is('front.orders*')? 'active':''}}">
                 <a class="nav-link" href="{{ route('front.orders.index') }}">Orders</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="travelers.php">Travelers</a>
+            <li class="nav-item {{Route::is('front.travel*')? 'active':''}}">
+                <a class="nav-link" href="{{ route('front.travel.index') }}">Travelers</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">News</a>

@@ -21,6 +21,11 @@ Route::group(['prefix' => 'orders'], function(){
 	Route::get('/{id}', 'OrderController@show')->name('front.orders.show');
 });
 
+Route::group(['prefix' => 'travel'], function(){
+	Route::get('/', 'TravelerController@index')->name('front.travel.index');
+	Route::get('/{id}', 'TravelerController@show')->name('front.travel.show');
+});
+
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
