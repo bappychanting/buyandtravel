@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use PDF;
 use App\Order;
 use App\ProductType;
 use Illuminate\Http\Request;
@@ -46,5 +47,12 @@ class OrderController extends Controller
         $order = $this->order->findOrFail($id);
         $categories = ProductType::all();
         return view('orders.show', compact('order', 'categories'));
+    }
+
+    public function downloadPDF($id)
+    {
+        $order = $this->order->findOrFail($id);
+        $pdf = PDF::loadView('pdf.order', compact('order'));
+        return $pdf->download($order->product_name.'_'.$order->user->name.'_'.date('d F Y', strtotime($order->created_at)).'.pdf');
     }
 }
