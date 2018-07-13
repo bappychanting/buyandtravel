@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use PDF;
 use App\Order;
+use App\Offer;
 use App\ProductType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,9 @@ class OrderController extends Controller
 
     protected $order;
 
-    public function __construct(Order $order)
+    public function __construct(Order $order, Offer $offer)
     {
-        $this->middleware('auth')->only('addOffer', 'storeOffer');
+        $this->middleware('auth')->only('addOffer');
         $this->middleware('order.not.owner')->only('addOffer');
         $this->order = $order;
     }
@@ -66,12 +67,9 @@ class OrderController extends Controller
     public function addOffer($id)
     {
         $order = $this->order->findOrFail($id);
+        $user = Auth::user();
         $categories = ProductType::all();
-        return view('orders.offer', compact('order', 'categories'));
+        return view('orders.offer', compact('order', 'user', 'categories'));
     }
-
-    public function storeOffer(Request $request)
-    {
-        return "okay";
-    }
+    
 }

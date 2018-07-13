@@ -30,13 +30,13 @@ class Order extends Model
         }
     }
 
-    	// Each Travel Schedule has a user
+    	// Each Travel Schedule belongs to a user
 	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}
 
-		// Each Travel Schedule has a country
+		// Each Travel Schedule belongs to a country
 	public function product_type()
 	{
 		return $this->belongsTo(ProductType::class);
@@ -46,5 +46,11 @@ class Order extends Model
     public function images()
     {
         return $this->hasMany(OrderImage::class);
+    }
+
+        // A Order has many offers
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 }

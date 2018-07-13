@@ -21,7 +21,7 @@ class CreateRequestTravelerTable extends Migration
             $table->string('referenceLink')->nullable();
             $table->text('additinoal_details')->nullable();
             $table->integer('traveler_id')->unsigned();
-            $table->foreign('traveler_id')->references('id')->on('travel_schedule');
+            $table->foreign('traveler_id')->references('id')->on('travel_schedules');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -17,7 +17,7 @@ class CreateReportTravelerTable extends Migration
             $table->increments('id');
             $table->text('report_details');
             $table->integer('traveler_id')->unsigned();
-            $table->foreign('traveler_id')->references('id')->on('travel_schedule');
+            $table->foreign('traveler_id')->references('id')->on('travel_schedules');
             $table->integer('reporting_user_id')->unsigned();
             $table->foreign('reporting_user_id')->references('id')->on('users');
             $table->timestamps();

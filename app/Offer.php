@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Offer extends Model
 {
@@ -13,4 +14,16 @@ class Offer extends Model
     ];
 
     use SoftDeletes;
+
+    	// Each Ofer belongs to a user
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
+
+		// Each Offer belongs to an order
+	public function order()
+	{
+		return $this->belongsTo(Order::class);
+	}
 }

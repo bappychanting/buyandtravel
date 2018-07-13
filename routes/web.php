@@ -21,7 +21,6 @@ Route::group(['prefix' => 'orders'], function(){
 	Route::get('/{id}', 'OrderController@show')->name('front.orders.show');
 	Route::get('/downloadPDF/{id}', 'OrderController@downloadPDF')->name('front.orders.pdf');
 	Route::get('/{id}/addOffer', 'OrderController@addOffer')->name('front.orders.addOffer');
-	Route::get('/{id}/saveOffer', 'OrderController@storeOffer')->name('front.orders.saveOffer');
 });
 
 Route::group(['prefix' => 'travel'], function(){
@@ -39,6 +38,8 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::resource('orders', 'OrderController');
 	Route::post('/orders/image/add', 'OrderController@addImage')->name('order.image.add');
 	Route::delete('/orders/image/delete/{id}', 'OrderController@deleteImage')->name('order.image.delete');
+
+	Route::resource('offers', 'OrderController');
 	
 	Route::resource('travel', 'TravelController');
 

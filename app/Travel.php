@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Travel extends Model
 {
 
-    protected $table = "travel_schedule";
+    protected $table = "travel_schedules";
 
     protected $fillable = [
         'country_id', 'city', 'destination', 'arrival_date', 'leave_date', 'tags', 'views', 'additional_details', 'user_id',
@@ -30,13 +30,13 @@ class Travel extends Model
         }
     }
 
-    	// Each Travel Schedule has a user
+    	// Each Travel Schedule belongs to a user
 	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}
 
-		// Each Travel Schedule has a country
+		// Each Travel Schedule belongs to a country
 	public function country()
 	{
 		return $this->belongsTo(Country::class);

@@ -10,7 +10,7 @@ class OrderImage extends Model
 
     protected $fillable = ['src', 'alt', 'order_id'];
 
-    	// Each Order image has a order
+    	// Each Order image belongs to a order
 	public function order()
 	{
 		return $this->belongsTo(Order::class);
