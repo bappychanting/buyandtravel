@@ -20,6 +20,8 @@ Route::group(['prefix' => 'orders'], function(){
 	Route::get('/', 'OrderController@index')->name('front.orders.index');
 	Route::get('/{id}', 'OrderController@show')->name('front.orders.show');
 	Route::get('/downloadPDF/{id}', 'OrderController@downloadPDF')->name('front.orders.pdf');
+	Route::get('/{id}/addOffer', 'OrderController@addOffer')->name('front.orders.addOffer');
+	Route::get('/{id}/saveOffer', 'OrderController@storeOffer')->name('front.orders.saveOffer');
 });
 
 Route::group(['prefix' => 'travel'], function(){

@@ -19,6 +19,7 @@ class OrderController extends Controller
 
     public function __construct(Order $order)
     {
+        $this->middleware('auth')->only('addOffer', 'storeOffer');
         $this->order = $order;
     }
 
@@ -59,5 +60,17 @@ class OrderController extends Controller
         $order = $this->order->findOrFail($id);
         $pdf = PDF::loadView('pdf.order', compact('order'));
         return $pdf->download($order->product_name.'_'.$order->user->name.'_'.date('d F Y', strtotime($order->created_at)).'.pdf');
+    }
+
+    public function addOffer($id)
+    {
+        $order = $this->order->findOrFail($id);
+        $categories = ProductType::all();
+        return view('orders.offer', compact('order', 'categories'));
+    }
+
+    public function storeOffer(Request $request)
+    {
+        return "okay";
     }
 }

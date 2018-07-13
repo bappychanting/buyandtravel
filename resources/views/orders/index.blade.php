@@ -60,7 +60,7 @@
                 <div class="col-xl-5 col-lg-12 col-md-5 col-sm-4 col-12 mb-4">
                     <div class="btn-group" role="group" aria-label="Basic example">
                         <a href="{{ route('front.orders.show', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
-                        <a href="add_offer.php" class="btn btn-blue btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Offer</a>
+                        <a href="{{ route('front.orders.addOffer', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Offer</a>
                     </div>
                 </div>
                 <!--Grid column-->
