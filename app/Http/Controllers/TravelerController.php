@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use PDF;
 use Countries;
 use App\Travel;
 use Illuminate\Http\Request;
@@ -34,5 +35,12 @@ class TravelerController extends Controller
         $traveler = $this->travel->findOrFail($id);
         $countries = Countries::getListForSelect();
         return view('travel.show', compact('traveler', 'countries'));
+    }
+
+    public function downloadPDF($id)
+    {
+        $traveler = $this->travel->findOrFail($id);
+        $pdf = PDF::loadView('pdf.travel', compact('traveler'));
+        return $pdf->download($traveler->user->name.'_'.$traveler->city.'_'.$traveler->country->name.'_'.date('F Y', strtotime($traveler->arrival_date)).'.pdf');
     }
 }
