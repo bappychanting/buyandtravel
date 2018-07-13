@@ -20,6 +20,10 @@ section:after {
     display: table;
     clear: both;
 }
+a:link {
+    color: #1e88e5;
+    text-decoration: none;
+}
 </style>
 </head>
 <body>

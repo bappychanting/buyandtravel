@@ -36,8 +36,9 @@
               <i class="fa fa-calendar-check-o fa-sm pr-2"></i><span class="blue-text">{{ date('l d F Y', strtotime($travel->arrival_date)) }}</span> &#8594; <span class="blue-text">{{ date('l d F Y', strtotime($travel->leave_date)) }}</span>
             </p>
             <hr class="mb-4">
-            <p class="mt-4">
-              <i class="fa fa-clock-o fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{$travel->created_at->format('l d F Y, h:i A')}}</span>
+            <p>
+              <i class="fa fa-clock-o fa-sm pr-2"></i>
+              <span class="font-weight-bold light-blue-text">{{$travel->created_at->format('l d F Y, h:i A')}}</span>
             </p>
             {!! Form::open(['route' => ['travel.destroy', $travel->id], 'method'=>'delete']) !!}
                 <a href="{{ route('travel.edit', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Schedule</a>
@@ -56,7 +57,7 @@
                 @foreach($tags as $tag) <div class="chip blue lighten-1 white-text">{{ $tag }}</div> @endforeach
               @endif
             </p>
-            <p class="font-weight-bold"><i class="fa fa-eye fa-sm pr-2"></i>{{ $travel->views }}</p>
+            <p class="grey-text">Views: {{ $travel->views }}</p>
             <!-- Requests -->
             <h4>Requests</h4><hr>
              <div class="table-responsive">
