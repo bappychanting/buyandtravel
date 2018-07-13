@@ -28,9 +28,11 @@
 
           <div class="row my-3">
             <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6 col-6">
-              <div class="z-depth-1-half">
-                    <img src="{{ file_exists($traveler->user->avatar) ? asset($traveler->user->avatar) : 'http://via.placeholder.com/450?text=Product+Image' }}" class="img-fluid rounded" alt="{{ $traveler->user->name }}">
-                </div>
+              <div class="z-depth-1-half" id="aniimated-thumbnials">
+                <a href="{{file_exists($traveler->user->avatar) ? asset($traveler->user->avatar) : 'http://via.placeholder.com/450?text=Product+Image' }}" data-sub-html="{{ $traveler->user->name }}">  
+                  <img src="{{ file_exists($traveler->user->avatar) ? asset($traveler->user->avatar) : 'http://via.placeholder.com/450?text=Product+Image' }}" class="img-fluid rounded" alt="{{ $traveler->user->name }}">
+                </a>
+              </div>
             </div>
             <div class="col-xl-10 col-lg-10 col-md-9 col-sm-6 col-6">
               <h5 class="mt-0 font-weight-bold dark-grey-text"><a data-toggle="modal" data-target="#userPopup">{{ $traveler->user->name }}</a></h5>
