@@ -5,6 +5,7 @@ use PDF;
 use App\Order;
 use App\ProductType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -45,6 +46,10 @@ class OrderController extends Controller
         }
         */
         $order = $this->order->findOrFail($id);
+        if(Auth::user() && Auth::user()->id <> $order->user->id){
+            $order->views = $order->views + 1;
+            $order->save();
+        }
         $categories = ProductType::all();
         return view('orders.show', compact('order', 'categories'));
     }

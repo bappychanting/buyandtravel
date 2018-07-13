@@ -56,6 +56,7 @@
                 @foreach($tags as $tag) <div class="chip blue lighten-1 white-text">{{ $tag }}</div> @endforeach
               @endif
             </p>
+            <p class="font-weight-bold"><i class="fa fa-eye fa-sm pr-2"></i>{{ $travel->views }}</p>
             <!-- Requests -->
             <h4>Requests</h4><hr>
              <div class="table-responsive">

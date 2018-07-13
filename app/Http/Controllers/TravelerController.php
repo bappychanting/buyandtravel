@@ -5,6 +5,7 @@ use PDF;
 use Countries;
 use App\Travel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TravelerController extends Controller
 {
@@ -33,6 +34,10 @@ class TravelerController extends Controller
     public function show($id)
     {
         $traveler = $this->travel->findOrFail($id);
+        if(Auth::user() && Auth::user()->id <> $traveler->user->id){
+            $traveler->views = $traveler->views + 1;
+            $traveler->save();
+        }
         $countries = Countries::getListForSelect();
         return view('travel.show', compact('traveler', 'countries'));
     }
