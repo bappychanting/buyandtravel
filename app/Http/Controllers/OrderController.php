@@ -20,6 +20,7 @@ class OrderController extends Controller
     public function __construct(Order $order)
     {
         $this->middleware('auth')->only('addOffer', 'storeOffer');
+        $this->middleware('order.not.owner')->only('addOffer');
         $this->order = $order;
     }
 

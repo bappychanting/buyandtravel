@@ -60,6 +60,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'order.owner' => \App\Http\Middleware\MustbeOwnerofOrder::class,
+        'order.not.owner' => \App\Http\Middleware\MustnotbeOwnerofOrder::class,
         'travel.owner' => \App\Http\Middleware\MustbeOwnerofTravelSchedule::class,
     ];
 }

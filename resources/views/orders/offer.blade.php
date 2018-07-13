@@ -29,7 +29,7 @@
           <!--Grid row-->
             <div class="row">
                 <!--Grid column-->
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-4 col-12 my-3">
+                <div class="col-xl-3 col-lg-3 col-md-2 col-sm-4 col-12 my-3">
                     <!--Featured image-->
                     <div class="z-depth-1-half">
                         <img src="{{ file_exists(array_get($order->images()->first(), 'src')) ? asset(array_get($order->images()->first(), 'src')) : 'http://via.placeholder.com/450?text=Product+Image' }}" class="img-fluid rounded" alt="{{ array_get($order->images()->first(), 'alt') }}">
@@ -38,7 +38,7 @@
                 <!--Grid column-->
 
                 <!--Grid column-->
-                <div class="col-xl-4 col-lg-8 col-md-8 col-sm-8 col-12 my-3">
+                <div class="col-xl-4 col-lg-9 col-md-10 col-sm-8 col-12 my-3">
                     <h3 class="font-weight-bold">{{ $order->product_name }}</h3>
                     <h5><i class="fa fa-user fa-sm pr-2"></i>{{ $order->user->name }}</h5>
                     <h6 class="dark-grey-text"><i class="fa fa-map-marker fa-sm pr-2"></i>{{$order->delivery_location}}</h6>
