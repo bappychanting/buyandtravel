@@ -52,44 +52,44 @@
                 </div>
               </div>
             {!! Form::close() !!}
-
-            <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Quantity</th>
-                            <th>Asking Price</th>
-                            <th>Delivery Location</th>
-                            <th>Delivery Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            @foreach($offers as $offer)
-                        <tr>
-                            <td>{{ $offer->order->product_name }}</td>
-                            <td>{{ $offer->product_quantity }}</td>
-                            <td>{{ $offer->asking_price }}/=</td>
-                            <th>{{ $offer->order->delivery_location }}</th>
-                            <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Actions
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="{{ route('orders.create') }}"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Open Offer</a>
-                                        <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Edit</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-            @endforeach   
-                    </tbody>
+            <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Product Name</th>
+                          <th>Quantity</th>
+                          <th>Asking Price</th>
+                          <th>Delivery Location</th>
+                          <th>Delivery Date</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+          @foreach($offers as $offer)
+                      <tr>
+                          <td>{{ $offer->order->product_name }}</td>
+                          <td>{{ $offer->product_quantity }}</td>
+                          <td>{{ $offer->asking_price }}/=</td>
+                          <th>{{ $offer->order->delivery_location }}</th>
+                          <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
+                          <td>
+                              <div class="btn-group" role="group">
+                                  <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Actions
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                      <a class="dropdown-item" href="{{ route('orders.create') }}"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Open Offer</a>
+                                      <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
+                                      <a class="dropdown-item" href="#"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Edit</a>
+                                      <a class="dropdown-item" href="#"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+          @endforeach   
+                  </tbody>
                 </table>
-                
+            </div>  
 
             <!--Pagination-->
             <nav aria-label="pagination example">
