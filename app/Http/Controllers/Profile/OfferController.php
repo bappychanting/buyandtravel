@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Profile;
 use Carbon\Carbon;
 use App\Offer;
+use App\User;
 use App\Http\Requests\OfferRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,17 +16,23 @@ class OfferController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    protected $offer;
+    protected $offers;
+    protected $user;
 
-    public function __construct(Offer $offer)
+    public function __construct(Offer $offers, User $user)
     {
         $this->middleware('auth');
-        $this->offer = $offer;
+        $this->offers = $offers;
+        $this->user = $user;
     }
 
     public function index()
     {
-        //
+        $user = $this->user->find(Auth::user()->id);
+        $search = \Request::get('search');
+        $offers = $user->offers()->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        // print_r($offers); die();
+        return view('profile.offers.index', compact('user', 'offers', 'search'));
     }
 
     /**
@@ -49,7 +56,7 @@ class OfferController extends Controller
         $input = $request->all();
         $input['delivery_date'] = Carbon::parse($input['delivery_date'])->format('Y-m-d');
         $this->offer->create($input);
-        return "saved";
+        return redirect(route('offers.index'));
     }
 
     /**

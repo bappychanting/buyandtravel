@@ -43,4 +43,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Travel::class);
     }
+
+        // A User has many Offers
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }
