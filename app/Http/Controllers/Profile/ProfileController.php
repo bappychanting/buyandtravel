@@ -125,7 +125,7 @@ class ProfileController extends Controller
     {        
         $user = $this->user->findorfail($id);
         $this->validate(request(),[
-            'image' => 'required|max:500'
+            'image' => 'required|image|dimensions:min_width=100,min_height=200|max:500'
         ]);  
         $image = $this->uploadImage($request->file('image'), 'all_images/avatars/', 450, 450);
         $user->avatar = $image;

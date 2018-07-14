@@ -39,7 +39,7 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::post('/orders/image/add', 'OrderController@addImage')->name('order.image.add');
 	Route::delete('/orders/image/delete/{id}', 'OrderController@deleteImage')->name('order.image.delete');
 
-	Route::resource('offers', 'OrderController');
+	Route::resource('offers', 'OfferController');
 	
 	Route::resource('travel', 'TravelController');
 

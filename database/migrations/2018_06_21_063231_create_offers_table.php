@@ -17,8 +17,8 @@ class CreateOffersTable extends Migration
             $table->increments('id');
             $table->tinyInteger('product_quantity')->nullable()->default(1);
             $table->string('asking_price')->nullable();
-            $table->integer('delivery_date')->unsigned()->nullable();
-            $table->text('additinoal_details')->nullable();
+            $table->date('delivery_date');
+            $table->text('additional_details')->nullable();
             $table->tinyInteger('accepted')->default(0);
             $table->tinyInteger('delivered')->default(0);
             $table->tinyInteger('received')->default(0);

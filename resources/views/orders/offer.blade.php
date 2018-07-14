@@ -108,8 +108,8 @@
                       {!! Form::label('delivery_date', 'Delivery Date') !!}
                     </div>
 
-                    @if ($errors->has('reference_link'))
-                        <p class="red-text">{{ $errors->first('reference_link') }}</p>
+                    @if ($errors->has('delivery_date'))
+                        <p class="red-text">{{ $errors->first('delivery_date') }}</p>
                     @endif
                   </div>
                 </div>

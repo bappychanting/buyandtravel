@@ -83,7 +83,7 @@ class OrderController extends Controller
     public function addImage(Request $request)
     {
         $this->validate(request(),[
-            'image' => 'required|max:500'
+            'image' => 'required|image|dimensions:min_width=100,min_height=200|max:500'
         ]);
         $order_image = $this->order_image;
         $image = $this->uploadImage($request->file('image'), 'all_images/order_images/', 350, 300);

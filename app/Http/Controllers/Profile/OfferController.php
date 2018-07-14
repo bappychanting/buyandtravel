@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Profile;
-
+use Carbon\Carbon;
 use App\Offer;
-use Illuminate\Http\Request;
+use App\Http\Requests\OfferRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +17,7 @@ class OfferController extends Controller
 
     protected $offer;
 
-    public function __construct(Order $order, Offer $offer)
+    public function __construct(Offer $offer)
     {
         $this->middleware('auth');
         $this->offer = $offer;
@@ -35,7 +35,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        //
+        return redirect(route('front.orders.index'));
     }
 
     /**
@@ -44,7 +44,7 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
         $input = $request->all();
         $input['delivery_date'] = Carbon::parse($input['delivery_date'])->format('Y-m-d');
@@ -81,7 +81,7 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OfferRequest $request, $id)
     {
         //
     }
