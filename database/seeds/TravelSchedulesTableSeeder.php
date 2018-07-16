@@ -13,7 +13,7 @@ class TravelSchedulesTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $users = DB::table("users")->pluck("id");
-        $countries = DB::table("countries")->pluck("id");
+        $countries = DB::table("countries")->pluck("id")->toArray();
 
         if(count($users) > 0){
             foreach ($users as $user) {
