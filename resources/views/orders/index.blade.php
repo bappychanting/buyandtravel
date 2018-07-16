@@ -52,7 +52,7 @@
                     </h5>
                     <p>Added by <a class="font-weight-bold dark-grey-text" href="view_user.php">{{ $order->user->name }}</a></p>
                     <p class="font-weight-bold light-blue-text"><i class="fa fa-clock-o  fa-sm pr-2"></i>{{$order->created_at->format('l d F Y')}}</p>
-                    <p><i class="fa fa-map-marker fa-sm pr-2"></i>{{$order->delivery_location}}</p>
+                    <p><i class="fa fa-map-signs fa-sm pr-2"></i>{{$order->delivery_location}}</p>
                 </div>
                 <!--Grid column-->
 

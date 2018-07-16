@@ -56,12 +56,12 @@
               <table class="table">
                   <thead>
                       <tr>
-                          <th>Product Name</th>
-                          <th>Quantity</th>
-                          <th>Asking Price</th>
-                          <th>Delivery Location</th>
-                          <th>Delivery Date</th>
-                          <th>Action</th>
+                          <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
+                          <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
+                          <th><i class="fa fa-dollar fa-sm pr-2"></i>Asking Price</th>
+                          <th><i class="fa fa-map-signs fa-sm pr-2"></i></i>Delivery Location</th>
+                          <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date</th>
+                          <th><i class="fa fa-external-link fa-sm pr-2"></i>Action</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -78,10 +78,10 @@
                                       Actions
                                   </button>
                                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                      <a class="dropdown-item" href="{{ route('orders.create') }}"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Open Offer</a>
-                                      <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Order</a>
-                                      <a class="dropdown-item" href="#"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Edit</a>
-                                      <a class="dropdown-item" href="#"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>
+                                      <a class="dropdown-item" href="{{ route('orders.create') }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
+                                      <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Order</a>
+                                      <a class="dropdown-item" href="#"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Edit</a>
+                                      <a class="dropdown-item" href="#"><i class="fa fa-trash fa-sm pr-2" aria-hidden="true"></i>Delete</a>
                                   </div>
                               </div>
                           </td>
