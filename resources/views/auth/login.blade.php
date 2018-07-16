@@ -75,7 +75,7 @@
                       <div class="col-xl-9 col-md-8 col-sm-6 col-xs-6 col-6">
                           <a href="{{ route('register') }}">Sign Up</a>
                       </div>
-                      <div class="col-xl-3 col-md-4 col-sm-6 col-xs-6 col-6">
+                      <div class="col-xl-3 col-md-4 col-sm-6 col-xs-6 col-6 text-right">
                           <a href="{{ route('password.request') }}">Forgot Password?</a>
                       </div>
                     </div>
