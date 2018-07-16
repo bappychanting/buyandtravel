@@ -11,13 +11,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
 
-        	//Seed the countries
+        	// Seed the countries
 		$this->call('CountriesSeeder');
 		$this->command->info('Seeded the countries!');
 
-        $this->call('ProductTypesSeeder');
-        $this->command->info('Seeded the product types!'); 
+            // Seed the product types
+        $this->call(ProductTypesSeeder::class);
+        $this->command->info('Seeded the product types!');
+
+            // Seed the users
+        $this->call(UsersTableSeeder::class);
+        $this->command->info('Seeded the users!');
+
+            // Seed the Oders
+        $this->call(OrdersTableSeeder::class);
+        $this->command->info('Seeded the orders!');
+
+            // Seed the travel schedules
+        $this->call('TravelSchedulesTableSeeder');
+        $this->command->info('Seeded the travel schedules!');
     }
 }

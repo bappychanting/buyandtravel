@@ -16,13 +16,13 @@ class OfferController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    protected $offers;
+    protected $offer;
     protected $user;
 
-    public function __construct(Offer $offers, User $user)
+    public function __construct(Offer $offer, User $user)
     {
         $this->middleware('auth');
-        $this->offers = $offers;
+        $this->offer = $offer;
         $this->user = $user;
     }
 

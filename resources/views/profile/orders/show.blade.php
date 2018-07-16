@@ -72,7 +72,7 @@
                 </div>
 
                 <h5 class="my-4"><i class="fa fa-money fa-sm pr-2"></i>{{ $order->expected_price }}/=</h5>
-                <h6 class="my-4"><i class="fa fa-map-marker fa-sm pr-2"></i>{{ $order->delivery_location }}</h6>
+                <h6 class="my-4"><i class="fa fa-map-signs fa-sm pr-2"></i>{{ $order->delivery_location }}</h6>
                 <p class="my-4">
                   @if( !empty($order->tags) )
                     @php $tags = explode(',', $order->tags); @endphp

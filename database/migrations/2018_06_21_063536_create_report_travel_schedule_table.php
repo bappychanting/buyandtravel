@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReportTravelerTable extends Migration
+class CreateReportTravelScheduleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateReportTravelerTable extends Migration
      */
     public function up()
     {
-        Schema::create('report_traveler', function (Blueprint $table) {
+        Schema::create('report_travel_schedule', function (Blueprint $table) {
             $table->increments('id');
             $table->text('report_details');
-            $table->integer('traveler_id')->unsigned();
-            $table->foreign('traveler_id')->references('id')->on('travel_schedules');
-            $table->integer('reporting_user_id')->unsigned();
-            $table->foreign('reporting_user_id')->references('id')->on('users');
+            $table->integer('travel_schedule_id')->unsigned();
+            $table->foreign('travel_schedule_id')->references('id')->on('travel_schedules');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ class CreateReportTravelerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('report_traveler');
+        Schema::dropIfExists('report_travel_schedule');
     }
 }

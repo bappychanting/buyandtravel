@@ -17,7 +17,7 @@ class CreateRequestMessageTable extends Migration
             $table->increments('id');
             $table->text('message_body');
             $table->integer('request_id')->unsigned();
-            $table->foreign('request_id')->references('id')->on('request_traveler');
+            $table->foreign('request_id')->references('id')->on('requests');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('seen')->unsigned()->nullable();

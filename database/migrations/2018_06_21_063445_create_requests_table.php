@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequestTravelerTable extends Migration
+class CreateRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateRequestTravelerTable extends Migration
      */
     public function up()
     {
-        Schema::create('request_traveler', function (Blueprint $table) {
+        Schema::create('requests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('product_name');
             $table->integer('quantity');
             $table->string('expected_price')->nullable();
             $table->string('referenceLink')->nullable();
             $table->text('additinoal_details')->nullable();
-            $table->integer('traveler_id')->unsigned();
-            $table->foreign('traveler_id')->references('id')->on('travel_schedules');
+            $table->integer('travel_schedule_id')->unsigned();
+            $table->foreign('travel_schedule_id')->references('id')->on('travel_schedules');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
@@ -36,6 +36,6 @@ class CreateRequestTravelerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('request_traveler');
+        Schema::dropIfExists('requests');
     }
 }

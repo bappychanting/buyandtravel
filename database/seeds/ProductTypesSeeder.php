@@ -11,17 +11,7 @@ class ProductTypesSeeder extends Seeder
      */
     public function run()
     {
-        $product_types = [];
-
-        for($i=1; $i<20; $i++){
-        	$len = 10;
-        	$word = array_merge(range('a', 'z'), range('A', 'Z'));
-		    shuffle($word);
-        	$product_types[] = [
-        		'product_type' => substr(implode($word), 0, $len)
-        	];
-        }
-
-        DB::table('product_types')->insert($product_types);
+        // App\ProductType::truncate(); // delete all previous rows
+        factory(App\ProductType::class, 20)->create(); // Create 10 rows
     }
 }
