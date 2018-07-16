@@ -71,7 +71,14 @@
                       <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="fa fa-google-plus blue-text"></i></button>
                     </div>
 
-                    <a href="{{ route('password.request') }}"><p class="text-right">Forgot Password?</p></a>
+                    <div class="row mt-3">
+                      <div class="col-xl-9 col-md-8 col-sm-6 col-xs-6 col-6">
+                          <a href="{{ route('register') }}">Sign Up</a>
+                      </div>
+                      <div class="col-xl-3 col-md-4 col-sm-6 col-xs-6 col-6">
+                          <a href="{{ route('password.request') }}">Forgot Password?</a>
+                      </div>
+                    </div>
                 {!! Form::close() !!}
             </div>
           </div>
