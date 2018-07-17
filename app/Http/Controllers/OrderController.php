@@ -22,6 +22,7 @@ class OrderController extends Controller
     {
         $this->middleware('auth')->only('addOffer');
         $this->middleware('order.not.owner')->only('addOffer');
+        $this->middleware('offer.added')->only('addOffer');
         $this->order = $order;
     }
 

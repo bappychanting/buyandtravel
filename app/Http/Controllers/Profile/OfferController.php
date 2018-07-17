@@ -31,7 +31,6 @@ class OfferController extends Controller
         $user = $this->user->find(Auth::user()->id);
         $search = \Request::get('search');
         $offers = $user->offers()->search($search)->orderBy('created_at', 'desc')->paginate(30);
-        // print_r($offers); die();
         return view('profile.offers.index', compact('user', 'offers', 'search'));
     }
 
@@ -42,7 +41,7 @@ class OfferController extends Controller
      */
     public function create()
     {
-        return redirect(route('front.orders.index'));
+        return redirect(route('front.orders.index'))->with('info', array('To Add Offer'=>'Please select one of the following orders to add offer!'));
     }
 
     /**
@@ -67,7 +66,9 @@ class OfferController extends Controller
      */
     public function show($id)
     {
-        //
+        $offer = $this->offer->findOrFail($id);
+        $user = Auth::user();
+        return view('profile.offers.show', compact('user', 'offer'));
     }
 
     /**
@@ -78,7 +79,9 @@ class OfferController extends Controller
      */
     public function edit($id)
     {
-        //
+        $offer = $this->offer->findOrFail($id);
+        $user = Auth::user();
+        return view('profile.offers.edit', compact('user', 'offer'));
     }
 
     /**
@@ -90,7 +93,11 @@ class OfferController extends Controller
      */
     public function update(OfferRequest $request, $id)
     {
-        //
+        $input = $request->all();
+        $input['delivery_date'] = Carbon::parse($input['delivery_date'])->format('Y-m-d');
+        $offer = $this->offer->findOrFail($id);
+        $offer->update($input);
+        return redirect()->route('offers.show', $id)->with('success', array('Success'=>'Offer has been updated!'));
     }
 
     /**
@@ -101,6 +108,8 @@ class OfferController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $offer = $this->offer->findOrFail($id);
+        $offer->delete();
+        return redirect()->route('offers.index')->with('success', array('Success'=>'Offer has been deleted!'));
     }
 }

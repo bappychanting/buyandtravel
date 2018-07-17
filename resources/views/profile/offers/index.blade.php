@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || Orders || ")
+@section('title', $user->name." || Offers || ")
 
 @section('content')
 
@@ -31,9 +31,9 @@
                 <h2>{{ empty($search) ? 'List of ' : 'Search' }} Offers</h2>
                 <p>Following are the list of offers {{ empty($search) ? 'you have added' : 'based on your search' }}.</p>
                 @if(empty($search))
-                    <a class="btn btn-md btn-primary mb-4" href="{{ route('front.orders.index') }}"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i> View Orders</a>
+                    <a class="btn btn-md btn-primary mb-4" href="{{ route('offers.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
                 @else
-                    <a class="btn btn-sm btn-primary" href="{{ route('orders.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
+                    <a class="btn btn-sm btn-primary" href="{{ route('offers.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
                 @endif
           
             {!! Form::open(['url' => '/profile/offers', 'method'=>'get']) !!}
@@ -52,51 +52,78 @@
                 </div>
               </div>
             {!! Form::close() !!}
-            <div class="table-responsive">
-              <table class="table">
-                  <thead>
-                      <tr>
-                          <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
-                          <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
-                          <th><i class="fa fa-dollar fa-sm pr-2"></i>Asking Price</th>
-                          <th><i class="fa fa-map-signs fa-sm pr-2"></i></i>Delivery Location</th>
-                          <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date</th>
-                          <th><i class="fa fa-external-link fa-sm pr-2"></i>Action</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-          @foreach($offers as $offer)
-                      <tr>
-                          <td>{{ $offer->order->product_name }}</td>
-                          <td>{{ $offer->product_quantity }}</td>
-                          <td>{{ $offer->asking_price }}/=</td>
-                          <th>{{ $offer->order->delivery_location }}</th>
-                          <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
-                          <td>
-                              <div class="btn-group" role="group">
-                                  <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Actions
-                                  </button>
-                                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                      <a class="dropdown-item" href="{{ route('orders.create') }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
-                                      <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Order</a>
-                                      <a class="dropdown-item" href="#"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Edit</a>
-                                      <a class="dropdown-item" href="#"><i class="fa fa-trash fa-sm pr-2" aria-hidden="true"></i>Delete</a>
-                                  </div>
-                              </div>
-                          </td>
-                      </tr>
-          @endforeach   
-                  </tbody>
-                </table>
-            </div>  
-
-            <!--Pagination-->
-            <nav aria-label="pagination example">
-                <ul class="pagination pg-blue">
-                    {{ $offers->appends(Request::only('search'))->links() }}
+            <!-- Nav tabs -->
+            <div class="tabs-wrapper"> 
+                <ul class="nav classic-tabs tabs-blue" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link waves-light active" data-toggle="tab" href="#allOffers" role="tab">All Added Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" href="{{ route('user.edituser') }}">Approved Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" href="{{ route('user.editcontact') }}">Delivered Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-light" href="{{ route('user.editpassword') }}">Rejected Offers</a>
+                    </li>
                 </ul>
-            </nav>
+            </div>
+
+            <!-- Tab panels -->
+            <div class="tab-content card">
+              <!--Panel 1-->
+              <div class="tab-pane fade in show active" id="allOffers" role="tabpanel">
+                <div class="table-responsive">
+                  <table class="table table-fixed">
+                      <thead>
+                          <tr>
+                              <th>#</th>
+                              <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
+                              <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
+                              <th><i class="fa fa-dollar fa-sm pr-2"></i>Asking Price</th>
+                              <th><i class="fa fa-map-signs fa-sm pr-2"></i></i>Delivery Location</th>
+                              <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date</th>
+                              <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+              @foreach($offers as $offer)
+                          <tr>
+                              <th scope="row">{{ $loop->iteration }}</th>
+                              <td>{{ $offer->order->product_name }}</td>
+                              <td>{{ $offer->product_quantity }}</td>
+                              <td>{{ $offer->asking_price }}/=</td>
+                              <th>{{ $offer->order->delivery_location }}</th>
+                              <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
+                              <td>
+                                  <div class="btn-group" role="group">
+                                      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Actions
+                                      </button>
+                                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Offer</a>
+                                        <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order</a>
+                                        {!! Form::open(['route' => ['offers.destroy', $offer->id], 'method'=>'delete']) !!}
+                                        {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'dropdown-item form_delete_sweet_alert', 'type'=>'submit')) !!}
+                                        {!! Form::close() !!}
+                                      </div>
+                                  </div>
+                              </td>
+                          </tr>
+              @endforeach   
+                      </tbody>
+                    </table>
+                </div>
+
+                <!--Pagination-->
+                <nav aria-label="pagination example">
+                    <ul class="pagination pg-blue">
+                        {{ $offers->appends(Request::only('search'))->links() }}
+                    </ul>
+                </nav> 
+              </div>
+            </div> 
            
           </div>
         </div>

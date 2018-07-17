@@ -61,6 +61,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'order.owner' => \App\Http\Middleware\MustbeOwnerofOrder::class,
         'order.not.owner' => \App\Http\Middleware\MustnotbeOwnerofOrder::class,
+        'offer.added' => \App\Http\Middleware\OfferAdded::class,
         'travel.owner' => \App\Http\Middleware\MustbeOwnerofTravelSchedule::class,
     ];
 }
