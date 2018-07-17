@@ -52,6 +52,18 @@
                 </div>
               </div>
             {!! Form::close() !!}
+
+            <ul>
+              <li><a href="https://mdbootstrap.com/content/bootstrap-table-search/" target="_blank">Add bootstrap table pagination</a></li>
+              <li>Add offer middleware</li>
+              <li>A offer can be edited until approved, once approved it connot be edited anoymore</li> 
+              <li>once rejected a user can edit his offer and submit again until the orderer has approved another offer</li><li>An orderer can only approv one offer, once approved rest will disappear and approved one will stay</li>
+              <li>Once an offer has been approved the order will not show up in the orders list</li>
+              <li>If the orderer rejects approved offer, approved offer will disppear and rest of the offers will show up again</li>
+              <li>If the orderer rejects approved offer his order will show up in the orders list again</li>
+              <li>Once delivered an offer will disapper along with its order</li>
+            </ul>
+
             <!-- Nav tabs -->
             <div class="tabs-wrapper"> 
                 <ul class="nav classic-tabs tabs-blue" role="tablist">
@@ -60,9 +72,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-light" href="{{ route('user.edituser') }}">Approved Offers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('user.editcontact') }}">Delivered Offers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-light" href="{{ route('user.editpassword') }}">Rejected Offers</a>
