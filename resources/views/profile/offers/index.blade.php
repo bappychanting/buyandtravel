@@ -54,8 +54,6 @@
             {!! Form::close() !!}
 
             <ul>
-              <li><a href="https://mdbootstrap.com/content/bootstrap-table-search/" target="_blank">Add bootstrap table pagination</a></li>
-              <li>Add offer middleware</li>
               <li>A offer can be edited until approved, once approved it connot be edited anoymore</li> 
               <li>once rejected a user can edit his offer and submit again until the orderer has approved another offer</li><li>An orderer can only approv one offer, once approved rest will disappear and approved one will stay</li>
               <li>Once an offer has been approved the order will not show up in the orders list</li>
@@ -89,10 +87,9 @@
                           <tr>
                               <th>#</th>
                               <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
-                              <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
-                              <th><i class="fa fa-dollar fa-sm pr-2"></i>Asking Price</th>
-                              <th><i class="fa fa-map-signs fa-sm pr-2"></i></i>Delivery Location</th>
-                              <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date</th>
+                              <th><i class="fa fa-user fa-sm pr-2"></i>User</th>
+                              <th><i class="fa fa-certificate fa-sm pr-2"></i>Offer Status</th>
+                              <th><i class="fa fa-clock-o fa-sm pr-2"></i>Create Date</th>
                               <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                           </tr>
                       </thead>
@@ -101,10 +98,9 @@
                           <tr>
                               <th scope="row">{{ $loop->iteration }}</th>
                               <td>{{ $offer->order->product_name }}</td>
-                              <td>{{ $offer->product_quantity }}</td>
-                              <td>{{ $offer->asking_price }}/=</td>
-                              <th>{{ $offer->order->delivery_location }}</th>
-                              <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
+                              <td>{{ $offer->order->user->name }}</td>
+                              <td>Not Approved!</td>
+                              <td>{{ $offer->created_at->format('l d F Y, h:i A') }}</td>
                               <td>
                                   <div class="btn-group" role="group">
                                       <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
