@@ -22,6 +22,7 @@ class OfferController extends Controller
     public function __construct(Offer $offer, User $user)
     {
         $this->middleware('auth');
+        $this->middleware('offer.owner')->only('show', 'edit');
         $this->offer = $offer;
         $this->user = $user;
     }

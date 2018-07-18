@@ -26,6 +26,9 @@ class Order extends Model
                     ->orWhereHas('product_type', function ($query) use($search){
 					    $query->where('product_type', 'LIKE', '%' . $search . '%');
 					})
+                    ->orWhereHas('user', function ($query) use($search){
+                        $query->where('name', 'LIKE', '%' . $search . '%');
+                    })
                     ->whereNull("deleted_at");
         }
     }

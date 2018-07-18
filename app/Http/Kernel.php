@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'order.owner' => \App\Http\Middleware\MustbeOwnerofOrder::class,
         'order.not.owner' => \App\Http\Middleware\MustnotbeOwnerofOrder::class,
         'offer.added' => \App\Http\Middleware\OfferAdded::class,
+        'offer.owner' => \App\Http\Middleware\MustBeOwnerOfOffer::class,
         'travel.owner' => \App\Http\Middleware\MustbeOwnerofTravelSchedule::class,
     ];
 }

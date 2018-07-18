@@ -6,7 +6,7 @@ use Closure;
 use App\Offer;
 use Illuminate\Support\Facades\Auth;
 
-class OfferAdded
+class MustBeOwnerOfOffer
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,12 @@ class OfferAdded
      */
     public function handle($request, Closure $next)
     {
-        $order_id = $request->route('id');
-        $offer = Offer::where('order_id', $order_id)->Where('user_id', Auth::user()->id)->first();
+        $id = $request->route('offer');
 
-        if($offer) return redirect(route('offers.show', $offer->id)); 
+        $offer = Offer::where('user_id', Auth::user()->id)->where('id', $id)->first();
 
-        return $next($request); 
+        if($offer) return $next($request); 
+
+        return redirect()->back(); 
     }
 }

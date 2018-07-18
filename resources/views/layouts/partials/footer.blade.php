@@ -6,7 +6,7 @@
 
 	            <!--First column-->
 	            <div class="col-md-6">
-	                <h5><i class="fa fa-shopping-bag" aria-hidden="true"></i> Buy &#38; Travel</h5>
+	                <h5><i class="fa fa-shopping-bag fa-sm pr-2" aria-hidden="true"></i>Buy &#38; Travel</h5>
 	                <p>Enabling you to trade products from overseas for the first time in bangladesh.</p>
 	            </div>
 	            <!--/.First column-->
@@ -36,10 +36,10 @@
 	                <h5 class="text-uppercase">Contact</h5>
 	                <ul class="list-unstyled">
 	                    <li>
-	                        <a href="#!"><i class="fa fa-phone" aria-hidden="true"></i> 01712423414</a>
+	                        <a href="#!"><i class="fa fa-phone fa-sm pr-2" aria-hidden="true"></i>01712423414</a>
 	                    </li>
 	                    <li>
-	                        <a href="#!"><i class="fa fa-envelope" aria-hidden="true"></i> bappychanting@outlook.com</a>
+	                        <a href="#!"><i class="fa fa-envelope fa-sm pr-2" aria-hidden="true"></i>bappychanting@outlook.com</a>
 	                    </li>
 	                </ul>
 	                <ul class="list-inline">

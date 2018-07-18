@@ -10,9 +10,6 @@ $(document).ready(function(){
   footerAlign();
   setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
 
-  $('#dtBasicExample').DataTable();
-  $('.dataTables_length').addClass('bs-select');
-
   $('.delete_sweet_alert').on('click', function () {
      swal({   
       title: "Are you sure?",   
@@ -127,6 +124,23 @@ $(document).ready(function(){
             if (isConfirm) form.submit();
         });
     });
+
+      // Jquery Datatable
+    $('#dataTable').DataTable();
+    $('#dataTable_wrapper').find('label').each(function () {
+      $(this).parent().append($(this).children());
+    });
+    $('#dataTable_wrapper .dataTables_filter').find('input').each(function () {
+      $('input').attr("placeholder", "Search");
+      $('input').removeClass('form-control-sm');
+    });
+    $('#dataTable_wrapper .dataTables_length').addClass('d-flex flex-row');
+    $('#dataTable_wrapper .dataTables_filter').addClass('md-form');
+    $('#dataTable_wrapper select').removeClass('custom-select custom-select-sm form-control form-control-sm');
+    $('#dataTable_wrapper select').addClass('mdb-select');
+    $('#dataTable_wrapper .mdb-select').material_select();
+    $('#dataTable_wrapper .dataTables_filter').find('label').remove();
+      // #ENDS# Jquery Datatable
 
 });
 

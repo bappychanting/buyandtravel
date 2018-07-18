@@ -46,6 +46,9 @@
     <!-- Image Slider Css -->
     {{ Html::style('plugins/light-slider/css/lightslider.css') }}
 
+    <!-- Jqurey Datatable Css -->
+    {{ Html::style('plugins/datatables/datatables.min.css') }}
+
     <!-- Material Design Bootstrap -->
     {{ Html::style('css/mdb.min.css') }}
 
@@ -116,6 +119,9 @@
 
     <!-- TinyMCE -->
  	{{Html::script('plugins/tinymce/tinymce.min.js')}}
+
+    <!-- Jqurey Datatable Js -->
+    {{Html::script('plugins/datatables/datatables.min.js') }}
 
     <!-- MDB core JavaScript -->
  	{{Html::script('js/mdb.min.js')}}
