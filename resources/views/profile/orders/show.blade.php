@@ -40,7 +40,7 @@
                   <a href="{{ $order->reference_link }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Reference Link</a>
                   <a href="#offers" class="btn btn-blue btn-sm"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Offers</a>
                   <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Order</a>
-                  {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+                  {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your order will disapper!', 'confirmButtonText'=>'Yes, delete order!', 'type'=>'submit')) !!}
               {!! Form::close() !!}
 
                 <!-- Portfolio Section -->
@@ -52,7 +52,7 @@
                             <img class="img-fluid" src="{{ asset($image->src) }}" alt="{{ $image->alt.' '.$loop->iteration }}">
                           </a>
                           {!! Form::open(['route' => ['order.image.delete', $image->id], 'method'=>'delete']) !!}
-                            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+                            {!! Form::button('<i class="fa fa-trash"" aria-hidden="true"></i>', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'This image can not be recovered!', 'confirmButtonText'=>'Yes, delete image!', 'type'=>'submit')) !!}
                           {!! Form::close() !!}
                       </li>
                     @endforeach  
@@ -125,10 +125,10 @@
                                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
                                     {!! Form::open(['route' => ['offers.accept', $offer->id], 'method'=>'put']) !!}
-                                      {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'type'=>'submit')) !!}
+                                      {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
                                     {!! Form::close() !!}
                                     {!! Form::open(['route' => ['offers.reject', $offer->id], 'method'=>'put']) !!}
-                                    {!! Form::button('<i class="fa fa-close fa-sm pr-2" aria-hidden="true"></i>Reject Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'You will not see this offer anymore if you reject it!', 'confirmButtonText'=>'Yes, reject it!', 'type'=>'submit')) !!}
+                                    {!! Form::button('<i class="fa fa-close fa-sm pr-2" aria-hidden="true"></i>Reject Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'This offer will disapper! However it may reappear if you have not accepted any offer once the offerer updates it!', 'confirmButtonText'=>'Yes, reject it!', 'type'=>'submit')) !!}
                                     {!! Form::close() !!}
                                   </div>
                               </div>

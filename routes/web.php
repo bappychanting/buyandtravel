@@ -38,12 +38,12 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::resource('orders', 'OrderController');
 	Route::post('/orders/image/add', 'OrderController@addImage')->name('order.image.add');
 	Route::delete('/orders/image/delete/{id}', 'OrderController@deleteImage')->name('order.image.delete');
+	Route::put('/orders/offers/{id}/accept', 'OfferController@approve')->name('offers.accept');
+	Route::put('/orders/offers/{id}/reject', 'OfferController@reject')->name('offers.reject');
+	Route::put('/orders/offers/{id}/recieve', 'OfferController@recieve')->name('offers.recieve');
 
 	Route::resource('offers', 'OfferController');
-	Route::put('/offers/{id}/accept', 'OfferController@approve')->name('offers.accept');
-	Route::put('/offers/{id}/reject', 'OfferController@reject')->name('offers.reject');
 	Route::put('/offers/{id}/deliver', 'OfferController@deliver')->name('offers.deliver');
-	Route::put('/offers/{id}/recieve', 'OfferController@recieve')->name('offers.recieve');
 	
 	Route::resource('travel', 'TravelController');
 

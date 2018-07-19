@@ -16,16 +16,16 @@
 
   <body {!! Request::is('/')? 'class="index"':'' !!}>
     
-	@include('layouts.partials.loader')
-	@include('layouts.partials.navigation')
-    
+  	@include('layouts.partials.loader')
+  	@include('layouts.partials.navigation')
+      
     <!-- Content -->
     @yield('content')
     <!-- #ENDS# Content -->
 
-	@include('layouts.partials.alerts')
+  	@include('layouts.partials.alerts')
     @include('layouts.partials.scrolltotop')
-	@include('layouts.partials.footer')
+  	@include('layouts.partials.footer')
     @include('layouts.partials.scripts')
 
   </body>

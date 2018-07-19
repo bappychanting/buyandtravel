@@ -32,7 +32,9 @@ class TravelSchedulesTableSeeder extends Seeder
 	                        "tags"  => "travel, schedule, generated, for, testing, via, factory",
 	                        "views"  => mt_rand(0,9999),
 	                        "additional_details"  => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
-	                        "user_id"  => $user
+	                        "user_id"  => $user,
+                            "created_at"  => strftime("%Y-%m-%d %H:%M:%S"),
+                            "updated_at"  => strftime("%Y-%m-%d %H:%M:%S")
 	                    ]
 	                ];
 

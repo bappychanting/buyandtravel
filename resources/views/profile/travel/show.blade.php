@@ -42,7 +42,7 @@
             </p>
             {!! Form::open(['route' => ['travel.destroy', $travel->id], 'method'=>'delete']) !!}
                 <a href="{{ route('travel.edit', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Schedule</a>
-                {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
+                {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your travel schedule will disapper from history!', 'confirmButtonText'=>'Yes, delete travel schedule!', 'type'=>'submit')) !!}
             {!! Form::close() !!}
 
             <button class="btn btn-primary btn-md my-4" id="showDetailsButton" type="button" data-toggle="collapse" data-target="#showDetails" aria-expanded="false" aria-controls="showDetails">

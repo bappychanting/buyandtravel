@@ -72,8 +72,14 @@ class OfferController extends Controller
         return view('profile.offers.show', compact('user', 'offer'));
     }
 
-    public function approve(OfferRequest $request)
+    public function approve($id)
     {
+        $offer = $this->offer->findOrFail($id);
+        if(Auth::user() && Auth::user()->id == $offer->order->user->id){
+            $offer->accepted = 1;
+            $offer->save();
+        }
+        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Accepted'=>'Offer has been accepted! Rest of the offers will disappear, to make them reappear reject this offer!'));
     }
 
     public function reject(OfferRequest $request)
