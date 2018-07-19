@@ -20,6 +20,7 @@ class CreateOffersTable extends Migration
             $table->date('delivery_date');
             $table->text('additional_details')->nullable();
             $table->tinyInteger('accepted')->default(0);
+            $table->tinyInteger('rejected')->default(0);
             $table->tinyInteger('delivered')->default(0);
             $table->tinyInteger('received')->default(0);
             $table->integer('order_id')->unsigned();

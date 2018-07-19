@@ -117,8 +117,27 @@ $(document).ready(function(){
             text: "Once deleted you can not recover this data!",
             type: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
+            confirmButtonColor: "#2196f3",
             confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        }, function(isConfirm){
+            if (isConfirm) form.submit();
+        });
+    });
+
+    $('.form_warning_sweet_alert').on('click',function(e){
+        e.preventDefault();
+        var form = $(this).parents('form');
+        var title = $(this).attr('title');
+        var text = $(this).attr('text');
+        var confirmButtonText = $(this).attr('confirmButtonText');
+        swal({
+            title: title,
+            text: text,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#2196f3",
+            confirmButtonText: confirmButtonText,
             closeOnConfirm: false
         }, function(isConfirm){
             if (isConfirm) form.submit();

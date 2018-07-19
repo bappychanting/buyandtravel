@@ -72,6 +72,14 @@ class OfferController extends Controller
         return view('profile.offers.show', compact('user', 'offer'));
     }
 
+    public function approve(OfferRequest $request)
+    {
+    }
+
+    public function reject(OfferRequest $request)
+    {
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,6 +91,14 @@ class OfferController extends Controller
         $offer = $this->offer->findOrFail($id);
         $user = Auth::user();
         return view('profile.offers.edit', compact('user', 'offer'));
+    }
+
+    public function deliver(OfferRequest $request)
+    {
+    }
+
+    public function recieve(OfferRequest $request)
+    {
     }
 
     /**

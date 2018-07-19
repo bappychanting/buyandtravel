@@ -38,6 +38,7 @@
               </p>
               {!! Form::open(['route' => ['orders.destroy', $order->id], 'method'=>'delete']) !!}
                   <a href="{{ $order->reference_link }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Reference Link</a>
+                  <a href="#offers" class="btn btn-blue btn-sm"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Offers</a>
                   <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Order</a>
                   {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-blue btn-sm form_delete_sweet_alert', 'type'=>'submit')) !!}
               {!! Form::close() !!}
@@ -80,7 +81,7 @@
                   @endif
                 </p>
                 <p class="grey-text">Views: {{ $order->views }}</p>
-                <h4>Offers</h4><hr>
+                <h4 id="offers">Offers</h4><hr>
                 <div class="table-responsive my-5">
                   <table class="table table-striped table-fixed" id="dataTable">
                     <thead>
@@ -123,9 +124,11 @@
                                   </button>
                                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
-                                    <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Approve Offer</a>
-                                    {!! Form::open(['route' => ['offers.destroy', $offer->id], 'method'=>'delete']) !!}
-                                    {!! Form::button('<i class="fa fa-close fa-sm pr-2"" aria-hidden="true"></i>Reject Offer', array('class' => 'dropdown-item form_delete_sweet_alert', 'type'=>'submit')) !!}
+                                    {!! Form::open(['route' => ['offers.accept', $offer->id], 'method'=>'put']) !!}
+                                      {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'type'=>'submit')) !!}
+                                    {!! Form::close() !!}
+                                    {!! Form::open(['route' => ['offers.reject', $offer->id], 'method'=>'put']) !!}
+                                    {!! Form::button('<i class="fa fa-close fa-sm pr-2" aria-hidden="true"></i>Reject Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'You will not see this offer anymore if you reject it!', 'confirmButtonText'=>'Yes, reject it!', 'type'=>'submit')) !!}
                                     {!! Form::close() !!}
                                   </div>
                               </div>
