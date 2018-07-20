@@ -118,7 +118,7 @@
                           <td>{{ $offer->asking_price }}/=</td>
                           <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
                           <td>
-                              <div class="btn-group" role="group">
+                              <div class="dropdown" role="group">
                                   <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       Actions
                                   </button>

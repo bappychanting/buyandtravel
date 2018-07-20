@@ -102,7 +102,7 @@
                               <td>Not Approved!</td>
                               <td>{{ $offer->created_at->format('l d F Y, h:i A') }}</td>
                               <td>
-                                  <div class="btn-group" role="group">
+                                  <div class="dropdown" role="group">
                                       <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Actions
                                       </button>

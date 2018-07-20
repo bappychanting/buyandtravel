@@ -23,10 +23,10 @@
             @guest          
               <li class="nav-item {{ Route::is('login') || Route::is('register') ? 'active':'' }} dropdown">
               <a class="nav-link dropdown-toggle" id="navbarAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-user"></i> Account </a>
+                            <i class="fa fa-user fa-sm pr-2"></i>Account</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarAccount">
-                  <a class="dropdown-item" href="{{ route('register') }}"><i class="fa fa-user-plus"></i> Sign Up</a>
-                  <a class="dropdown-item" href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Sign in</a>
+                  <a class="dropdown-item" href="{{ route('register') }}"><i class="fa fa-user-plus fa-sm pr-2"></i>Sign Up</a>
+                  <a class="dropdown-item" href="{{ route('login') }}"><i class="fa fa-sign-in fa-sm pr-2"></i>Sign in</a>
                 </div>
               </li>
             @else
@@ -65,10 +65,10 @@
                         <img src="{{ file_exists(Auth::user()->avatar) ? asset(Auth::user()->avatar) : 'http://via.placeholder.com/100?text=No+Profile+Picture+Found' }}" class="img-fluid rounded-circle z-depth-0">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-purple" aria-labelledby="navbarDropdownMenuLink-5">
-                        <a class="dropdown-item" href="{{ route('profile.summery') }}"><i class="fa fa-user"></i> Your Content</a>
+                        <a class="dropdown-item" href="{{ route('profile.summery') }}"><i class="fa fa-user fa-sm pr-2"></i> Your Content</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Log out</a>
+                                         document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-sm pr-2"></i> Log out</a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
