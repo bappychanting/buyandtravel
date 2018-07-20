@@ -34,7 +34,7 @@ a:link {
 
 <section>
   <nav>
-	<img src="{{ public_path($traveler->user->avatar) }}" alt="{{ $traveler->user->name }}" width= "200" height= "200">
+	<img src="{{ file_exists($traveler->user->avatar) ? public_path($traveler->user->avatar) : 'http://via.placeholder.com/450?text=Traveler+Avatar' }}" alt="{{ $traveler->user->name }}" width= "200" height= "200">
   </nav>
   
   <article>
@@ -50,7 +50,7 @@ a:link {
 
 
 {!! $traveler->additional_details !!} 
-
+<br>
 <p><a href="{{ route('front.travel.show', $traveler->id) }}">View Online</a></p>
 
 

@@ -26,6 +26,9 @@ class Travel extends Model
                     ->orWhereHas('country', function ($query) use($search){
 					    $query->where('name', 'LIKE', '%' . $search . '%');
 					})
+                    ->orWhereHas('user', function ($query) use($search){
+                        $query->where('name', 'LIKE', '%' . $search . '%');
+                    })
                     ->whereNull("deleted_at");
         }
     }

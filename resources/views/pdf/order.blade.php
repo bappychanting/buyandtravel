@@ -34,7 +34,7 @@ a:link {
 
 <section>
   <nav>
-	<img src="{{ public_path(array_get($order->images()->first(), 'src')) }}" alt="{{ $order->product_name }}" width= "200" height= "200">
+	<img src="{{ file_exists(array_get($order->images()->first(), 'src')) ? public_path(array_get($order->images()->first(), 'src')) : 'http://via.placeholder.com/450?text=Product+Image' }}" alt="{{ $order->product_name }}" width= "200" height= "200">
   </nav>
   
   <article>
@@ -50,7 +50,7 @@ a:link {
 
 
 {!! $order->additional_details !!} 
-
+<br>
 <p><a href="{{ route('front.orders.show', $order->id) }}">View Online</a></p>
 
 
