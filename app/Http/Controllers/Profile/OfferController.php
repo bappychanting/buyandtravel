@@ -37,8 +37,6 @@ class OfferController extends Controller
 
     public function accepted()
     {
-        return "gay";
-
         $user = $this->user->find(Auth::user()->id);
         $search = \Request::get('search');
         $offers = $user->offers()->where('accepted', '=', 1)->search($search)->orderBy('created_at', 'desc')->paginate(30);

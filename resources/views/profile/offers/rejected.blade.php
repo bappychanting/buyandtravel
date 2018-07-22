@@ -36,7 +36,7 @@
                     <a class="btn btn-sm btn-primary" href="{{ route('offers.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
                 @endif
           
-            {!! Form::open(['url' => '/profile/offers', 'method'=>'get']) !!}
+            {!! Form::open(['url' => '/profile/offers/rejected', 'method'=>'get']) !!}
               <div class="row mb-5">
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                   <!-- Material input email -->

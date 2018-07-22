@@ -36,7 +36,7 @@
                     <a class="btn btn-sm btn-primary" href="{{ route('offers.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
                 @endif
           
-            {!! Form::open(['url' => '/profile/offers', 'method'=>'get']) !!}
+            {!! Form::open(['url' => '/profile/offers/accepted', 'method'=>'get']) !!}
               <div class="row mb-5">
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
                   <!-- Material input email -->
@@ -69,10 +69,10 @@
                         <a class="nav-link waves-light" href="{{ route('offers.index') }}">All Added Offers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" data-toggle="tab" href="#accpetedOffers" role="tab">Approved Offers</a>
+                        <a class="nav-link waves-light active" data-toggle="tab" href="#accpetedOffers" role="tab">Approved Offers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light active" href="{{ route('offers.rejected') }}">Rejected Offers</a>
+                        <a class="nav-link waves-light" href="{{ route('offers.rejected') }}">Rejected Offers</a>
                     </li>
                 </ul>
             </div>
