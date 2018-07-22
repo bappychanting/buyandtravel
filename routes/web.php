@@ -42,9 +42,9 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::put('/orders/offers/{id}/reject', 'OfferController@reject')->name('offers.reject');
 	Route::put('/orders/offers/{id}/recieve', 'OfferController@recieve')->name('offers.recieve');
 
-	Route::resource('offers', 'OfferController');
 	Route::get('/offers/accepted', 'OfferController@accepted')->name('offers.accepted');
 	Route::get('/offers/rejected', 'OfferController@rejected')->name('offers.rejected');
+	Route::resource('offers', 'OfferController');
 	Route::put('/offers/{id}/deliver', 'OfferController@deliver')->name('offers.deliver');
 	
 	Route::resource('travel', 'TravelController');
