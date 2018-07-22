@@ -66,13 +66,13 @@
             <div class="tabs-wrapper"> 
                 <ul class="nav classic-tabs tabs-blue" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link waves-light active" data-toggle="tab" href="#allOffers" role="tab">All Added Offers</a>
+                        <a class="nav-link waves-light" href="{{ route('offers.index') }}">All Added Offers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-light" href="{{ route('offers.accepted') }}">Approved Offers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('offers.rejected') }}">Rejected Offers</a>
+                        <a class="nav-link waves-light active" data-toggle="tab" href="#rejecetedOffers" role="tab">Rejected Offers</a>
                     </li>
                 </ul>
             </div>
@@ -80,7 +80,7 @@
             <!-- Tab panels -->
             <div class="tab-content card">
               <!--Panel 1-->
-              <div class="tab-pane fade in show active" id="allOffers" role="tabpanel">
+              <div class="tab-pane fade in show active" id="rejecetedOffers" role="tabpanel">
                 <div class="table-responsive">
                   <table class="table table-fixed">
                       <thead>
@@ -88,7 +88,6 @@
                               <th>#</th>
                               <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
                               <th><i class="fa fa-user fa-sm pr-2"></i>User</th>
-                              <th><i class="fa fa-certificate fa-sm pr-2"></i>Status</th>
                               <th><i class="fa fa-clock-o fa-sm pr-2"></i>Create Date</th>
                               <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                           </tr>
@@ -99,7 +98,6 @@
                               <th scope="row">{{ $loop->iteration }}</th>
                               <td>{{ $offer->order->product_name }}</td>
                               <td>{{ $offer->order->user->name }}</td>
-                              <td>Not Approved!</td>
                               <td>{{ $offer->created_at->format('l d F Y, h:i A') }}</td>
                               <td>
                                   <div class="dropdown" role="group">

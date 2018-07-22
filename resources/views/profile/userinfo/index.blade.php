@@ -81,12 +81,12 @@
                           <h4>User Information</h4><hr>
 
                           <p>
-                            <i class="fa fa-user prefix grey-text"></i>
+                            <i class="fa fa-user prefix grey-text fa-sm pr-2"></i>
                             {{ $user->username }}
                           </p>
                     
                           <p>
-                              <i class="fa fa-birthday-cake grey-text"></i>
+                              <i class="fa fa-birthday-cake grey-text fa-sm pr-2"></i>
                               @if(empty($user->dob))
                                 <span class="red-text">{{ 'Not updated yet' }}</span> 
                               @else
@@ -95,7 +95,7 @@
                             </p>
 
                             <p>
-                              <i class="fa fa-venus-mars prefix grey-text"></i>
+                              <i class="fa fa-venus-mars prefix grey-text fa-sm pr-2"></i>
                               @if($user->gender == 1)
                                 {{ 'Male' }}
                               @elseif($user->gender == 2)
@@ -108,16 +108,16 @@
                       <div class="col-lg-6 mb-4">
                         <h4>Contact Information</h4><hr>
                           <p>
-                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <i class="fa fa-envelope prefix grey-text fa-sm pr-2"></i>
                             {{ $user->email }}
                           </p>
 
                           <p>
-                            <i class="fa fa-phone prefix grey-text"></i>
+                            <i class="fa fa-phone prefix grey-text fa-sm pr-2"></i>
                             {{ str_replace('-', '', $user->contact) }}
                           </p>
                           <p>
-                            <i class="fa fa-address-card prefix grey-text"></i>
+                            <i class="fa fa-address-card prefix grey-text fa-sm pr-2"></i>
                             {!! empty($user->address) ? '<span class="red-text">Not updated yet</span>' : $user->address !!}
                           </p>
                       </div>

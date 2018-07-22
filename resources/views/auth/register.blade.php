@@ -69,51 +69,6 @@
                         <p class="red-text">{{ $errors->first('contact') }}</p>
                     @endif
 
-
-                    <!-- Material input date of Gender -->
-                    <!-- <div class="md-form my-5">
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <i class="fa fa-venus-mars prefix grey-text"></i>
-                            </div>
-                            <div class="col-lg-10 form-inline">
-                                <div class="form-check">
-                                    {!! Form::radio('gender', '1', true, array('class' =>'form-check-input', 'id'=>'male')) !!}
-                                    {!! Form::label('male', 'Male') !!}
-                                </div>
-                                <div class="form-check">
-                                    {!! Form::radio('gender', '2', false, array('class' =>'form-check-input', 'id'=>'female')) !!}
-                                    {!! Form::label('female', 'Female') !!}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    @if ($errors->has('gender'))
-                        <p class="red-text">{{ $errors->first('gender') }}</p>
-                    @endif -->
-
-                    <!-- Material input date of birth -->
-                    <!-- <div class="md-form">
-                        <i class="fa fa-birthday-cake prefix grey-text"></i>
-                        {!! Form::text('dob', old('dob'), array('class' =>'form-control date', 'placeholder'=>'Your Date of Birth (dd/mm/yyyy)')) !!}
-                    </div>
-
-                    @if ($errors->has('dob'))
-                        <p class="red-text">{{ $errors->first('dob') }}</p>
-                    @endif -->
-
-                    <!-- Material input address -->
-                    <!-- <div class="md-form">
-                        <i class="fa fa-address-card-o prefix grey-text"></i>
-                        {!! Form::textarea('address', old('address'), array('class'=>'md-textarea form-control no-resize auto-growth', 'rows'=>'1', 'id'=>'address')) !!}
-                        {!! Form::label('address', 'Your Address') !!}
-                    </div>
-
-                    @if ($errors->has('address'))
-                        <p class="red-text">{{ $errors->first('address') }}</p>
-                    @endif -->
-
                     <!-- Material input password -->
                     <div class="md-form">
                         <i class="fa fa-lock prefix grey-text"></i>

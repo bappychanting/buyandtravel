@@ -35,6 +35,24 @@ class OfferController extends Controller
         return view('profile.offers.index', compact('user', 'offers', 'search'));
     }
 
+    public function accepted()
+    {
+        return "gay";
+
+        $user = $this->user->find(Auth::user()->id);
+        $search = \Request::get('search');
+        $offers = $user->offers()->where('accepted', '=', 1)->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        return view('profile.offers.approved', compact('user', 'offers', 'search'));
+    }
+
+    public function rejected()
+    {
+        $user = $this->user->find(Auth::user()->id);
+        $search = \Request::get('search');
+        $offers = $user->offers()->where('rejected', '=', 1)->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        return view('profile.offers.rejected', compact('user', 'offers', 'search'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +74,7 @@ class OfferController extends Controller
         $input = $request->all();
         $input['delivery_date'] = Carbon::parse($input['delivery_date'])->format('Y-m-d');
         $this->offer->create($input);
-        return redirect(route('offers.index'));
+        return redirect(route('offers.index'))->with('success', array('Offer Added'=>'Offer has been added and delivered to the ordering user!'));
     }
 
     /**
@@ -82,8 +100,15 @@ class OfferController extends Controller
         return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Accepted'=>'Offer has been accepted! Rest of the offers will disappear, to make them reappear reject this offer!'));
     }
 
-    public function reject(OfferRequest $request)
+    public function reject($id)
     {
+        $offer = $this->offer->findOrFail($id);
+        if(Auth::user() && Auth::user()->id == $offer->order->user->id){
+            $offer->accepted = 0;
+            $offer->rejected = 1;
+            $offer->save();
+        }
+        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Rejected'=>'Offer has been rejected! It may show up again if the offerer updates the offer!'));
     }
 
     /**

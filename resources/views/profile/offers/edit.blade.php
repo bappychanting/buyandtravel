@@ -71,6 +71,8 @@
 
                 {!! Form::hidden('offer_id', $offer->id) !!}
 
+                {!! Form::hidden('rejected', '0') !!}
+
                 <div class="row" data-trigger="spinner">
                   <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12">  
                     <div class="md-form">
