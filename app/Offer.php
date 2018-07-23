@@ -21,7 +21,8 @@ class Offer extends Model
             return $query->whereNull("deleted_at");
         } else {
     		return $query->WhereHas('order', function ($query) use($search){
-					    $query->where('product_name', 'LIKE', '%' . $search . '%')
+					       $query->where('product_name', 'LIKE', '%' . $search . '%'
+                        )
 	                    ->orWhere('delivery_location', 'LIKE', '%' . $search . '%')
 	                    ->orWhere('tags', 'LIKE', '%' . $search . '%')
 	                    ->orWhereHas('user', function ($query) use($search){
