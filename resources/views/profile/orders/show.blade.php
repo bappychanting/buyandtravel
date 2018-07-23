@@ -89,7 +89,7 @@
                           <tr>
                             <th>#</th>
                             <th>
-                              <i class="fa fa-shopping-bag fa-sm pr-2"></i>Added By
+                              <i class="fa fa-user fa-sm pr-2"></i>Added By
                               <i class="fa fa-sort float-right" aria-hidden="true"></i>
                             </th>
                             <th>
@@ -105,19 +105,25 @@
                               <i class="fa fa-sort float-right" aria-hidden="true"></i>
                             </th>
                             <th>
+                              <i class="fa fa-clock-o fa-sm pr-2"></i>Add Date
+                              <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                            </th>
+                            <th>
                               <i class="fa fa-gears fa-sm pr-2"></i>Actions
                               <i class="fa fa-sort float-right" aria-hidden="true"></i>
                             </th>
                           </tr>
                       </thead>
                       <tbody>
-                          @foreach($order->offers as $offer)
+                        @foreach($order->offers as $offer)
+                          @if($offer->delivery_date > date('Y-m-d'))
                           <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $offer->user->name }}</td>
                             <td>{{ $offer->product_quantity }}</td>
                             <td>{{ $offer->asking_price }}/=</td>
                             <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
+                            <td>{{ $offer->created_at->format('l d F Y, h:i A') }}</td>
                             <td>
                                 <div class="dropdown" role="group">
                                     <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -134,7 +140,8 @@
                                 </div>
                             </td>
                           </tr>
-                          @endforeach   
+                          @endif
+                        @endforeach   
                       </tbody>
                       <tfoot>
                         <tr>
@@ -143,6 +150,7 @@
                           <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
                           <th><i class="fa fa-dollar fa-sm pr-2"></i>Asking Price</th>
                           <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date</th>
+                          <th><i class="fa fa-clock-o fa-sm pr-2"></i>Add Date</th>
                           <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                         </tr>
                       </tfoot>
@@ -154,12 +162,18 @@
                   <i class="fa fa-clock-o fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{$order->accepted->created_at->format('l d F Y, h:i A')}}</span>
                 </p>
                 <div class="row">
-                  <div class="col-xl-3 col-lg-4 col-sm-4">
-                    {!! Form::open(['route' => ['order.offer.recieve', $order->accepted->id], 'method'=>'put']) !!}
-                      {!! Form::button('<i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Product Received', array('class' => 'btn btn-blue btn-sm', 'type'=>'submit')) !!}
-                    {!! Form::close() !!}
+                  <div class="col-xl-4 col-lg-5 col-sm-6">
+                    @if(empty($order->accepted->recieved))
+                      {!! Form::open(['route' => ['order.offer.recieve', $order->accepted->id], 'method'=>'put']) !!}
+                        {!! Form::button('<i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Product Received', array('class' => 'btn btn-blue btn-sm', 'type'=>'submit')) !!}
+                      {!! Form::close() !!}
+                    @else
+                      <button class="btn btn-green btn-sm disabled">
+                        <i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Product Received {{ date('l d F Y', strtotime($order->accepted->recieved)) }}
+                      </button>
+                    @endif
                   </div>
-                  <div class="col-xl-9 col-lg-8 col-sm-8">
+                  <div class="col-xl-8 col-lg-7 col-sm-6">
                     {!! Form::open(['route' => ['order.offer.remove', $order->accepted->id], 'method'=>'delete']) !!}
                       {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Remove Accepted Offer', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'The removed data can not be recovered! Once removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, delete order!', 'type'=>'submit')) !!}
                     {!! Form::close() !!}
