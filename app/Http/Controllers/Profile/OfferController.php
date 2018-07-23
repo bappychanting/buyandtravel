@@ -31,7 +31,7 @@ class OfferController extends Controller
     {
         $user = $this->user->find(Auth::user()->id);
         $search = \Request::get('search');
-        $offers = $user->offers()->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        $offers = $user->offers()->whereDoesntHave('accepted')->search($search)->orderBy('created_at', 'desc')->paginate(30);
         return view('profile.offers.index', compact('user', 'offers', 'search'));
     }
 
@@ -39,16 +39,8 @@ class OfferController extends Controller
     {
         $user = $this->user->find(Auth::user()->id);
         $search = \Request::get('search');
-        $offers = $user->offers()->where('accepted', '=', 1)->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        $offers = $user->offers()->whereHas('accepted')->search($search)->orderBy('created_at', 'desc')->paginate(30);
         return view('profile.offers.approved', compact('user', 'offers', 'search'));
-    }
-
-    public function rejected()
-    {
-        $user = $this->user->find(Auth::user()->id);
-        $search = \Request::get('search');
-        $offers = $user->offers()->where('rejected', '=', 1)->search($search)->orderBy('created_at', 'desc')->paginate(30);
-        return view('profile.offers.rejected', compact('user', 'offers', 'search'));
     }
 
     /**
@@ -88,27 +80,6 @@ class OfferController extends Controller
         return view('profile.offers.show', compact('user', 'offer'));
     }
 
-    public function approve($id)
-    {
-        $offer = $this->offer->findOrFail($id);
-        if(Auth::user() && Auth::user()->id == $offer->order->user->id){
-            $offer->accepted = 1;
-            $offer->save();
-        }
-        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Accepted'=>'Offer has been accepted! Rest of the offers will disappear, to make them reappear reject this offer!'));
-    }
-
-    public function reject($id)
-    {
-        $offer = $this->offer->findOrFail($id);
-        if(Auth::user() && Auth::user()->id == $offer->order->user->id){
-            $offer->accepted = 0;
-            $offer->rejected = 1;
-            $offer->save();
-        }
-        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Rejected'=>'Offer has been rejected! It may show up again if the offerer updates the offer!'));
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -119,15 +90,10 @@ class OfferController extends Controller
     {
         $offer = $this->offer->findOrFail($id);
         $user = Auth::user();
-        return view('profile.offers.edit', compact('user', 'offer'));
-    }
-
-    public function deliver(OfferRequest $request)
-    {
-    }
-
-    public function recieve(OfferRequest $request)
-    {
+        if(count($offer->accepted) == 0){
+            return view('profile.offers.edit', compact('user', 'offer'));
+        }
+        return redirect()->back()->with('warning', array('This offer can not be edited'=>'Once an offer has been accepted it cannot be edited anymore!'));
     }
 
     /**

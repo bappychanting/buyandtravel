@@ -53,26 +53,14 @@
               </div>
             {!! Form::close() !!}
 
-            <ul>
-              <li>A offer can be edited until approved, once approved it connot be edited anoymore</li> 
-              <li>once rejected a user can edit his offer and submit again until the orderer has approved another offer</li><li>An orderer can only approv one offer, once approved rest will disappear and approved one will stay</li>
-              <li>Once an offer has been approved the order will not show up in the orders list</li>
-              <li>If the orderer rejects approved offer, approved offer will disppear and rest of the offers will show up again</li>
-              <li>If the orderer rejects approved offer his order will show up in the orders list again</li>
-              <li>Once delivered an offer will disapper along with its order</li>
-            </ul>
-
             <!-- Nav tabs -->
             <div class="tabs-wrapper"> 
                 <ul class="nav classic-tabs tabs-blue" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link waves-light active" data-toggle="tab" href="#allOffers" role="tab">All Added Offers</a>
+                        <a class="nav-link waves-light active" data-toggle="tab" href="#allOffers" role="tab">Added Offers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-light" href="{{ route('offers.accepted') }}">Approved Offers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('offers.rejected') }}">Rejected Offers</a>
                     </li>
                 </ul>
             </div>
@@ -88,7 +76,6 @@
                               <th>#</th>
                               <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
                               <th><i class="fa fa-user fa-sm pr-2"></i>User</th>
-                              <th><i class="fa fa-certificate fa-sm pr-2"></i>Status</th>
                               <th><i class="fa fa-clock-o fa-sm pr-2"></i>Create Date</th>
                               <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                           </tr>
@@ -99,7 +86,6 @@
                               <th scope="row">{{ $loop->iteration }}</th>
                               <td>{{ $offer->order->product_name }}</td>
                               <td>{{ $offer->order->user->name }}</td>
-                              <td>Not Approved!</td>
                               <td>{{ $offer->created_at->format('l d F Y, h:i A') }}</td>
                               <td>
                                   <div class="dropdown" role="group">

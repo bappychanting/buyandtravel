@@ -3,7 +3,7 @@ use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB as DB;
 
-class MahadiSeeder extends Seeder
+class MyUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,9 @@ class MahadiSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        	// Write your user id here
+        $user_id = 22;
+
         $count = 1; 
         $arrivalDate = $count;
     	$productTypeIds = App\ProductType::all()->pluck('id')->toArray();
@@ -29,8 +32,8 @@ class MahadiSeeder extends Seeder
 	                "tags"  => "travel, schedule, generated, for, testing, via, factory",
 	                "views"  => mt_rand(0,9999),
 	                "additional_details"  => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
-	                "created_at"    => strftime("%Y-%m-%d %H:%M:%S"),
-	                "user_id"  => 21
+	                "user_id"  => $user_id,
+	                "created_at"    => strftime("%Y-%m-%d %H:%M:%S")
 	            ]
 	        ];
 
@@ -46,7 +49,7 @@ class MahadiSeeder extends Seeder
 			        'tags' => "order, generated, for, testing, via, factory",
 			        'additional_details' => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
 			        'views' => mt_rand(0,9999),
-	                "user_id"  => 21,
+	                "user_id"  => $user_id,
 	                "created_at"    => strftime("%Y-%m-%d %H:%M:%S"),
 	            ]
 	        ];

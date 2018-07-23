@@ -124,12 +124,11 @@
                                   </button>
                                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
-                                    {!! Form::open(['route' => ['offers.accept', $offer->id], 'method'=>'put']) !!}
+                                    {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
+                                    {!! Form::hidden('offer_id', $offer->id) !!}
+                                    {!! Form::hidden('order_id', $order->id) !!}
                                       {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
-                                    {!! Form::close() !!}
-                                    {!! Form::open(['route' => ['offers.reject', $offer->id], 'method'=>'put']) !!}
-                                    {!! Form::button('<i class="fa fa-close fa-sm pr-2" aria-hidden="true"></i>Reject Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'This offer will disapper! However it may reappear if you have not accepted any offer once the offerer updates it!', 'confirmButtonText'=>'Yes, reject it!', 'type'=>'submit')) !!}
-                                    {!! Form::close() !!}
+                                    {!! Form::close() !!} 
                                   </div>
                               </div>
                           </td>

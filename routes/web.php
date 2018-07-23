@@ -38,14 +38,12 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::resource('orders', 'OrderController');
 	Route::post('/orders/image/add', 'OrderController@addImage')->name('order.image.add');
 	Route::delete('/orders/image/delete/{id}', 'OrderController@deleteImage')->name('order.image.delete');
-	Route::put('/orders/offers/{id}/accept', 'OfferController@approve')->name('offers.accept');
-	Route::put('/orders/offers/{id}/reject', 'OfferController@reject')->name('offers.reject');
-	Route::put('/orders/offers/{id}/recieve', 'OfferController@recieve')->name('offers.recieve');
+	Route::post('/orders/offer/accept', 'OrderController@approveOffer')->name('order.offer.accept');
+	Route::put('/orders/offer/{id}/recieve', 'OrderController@recieveOffer')->name('order.offer.recieve');
+	Route::delete('/orders/offer/{id}/remove', 'OrderController@removeAcceptedOffer')->name('order.offer.remove');
 
 	Route::get('/offers/accepted', 'OfferController@accepted')->name('offers.accepted');
-	Route::get('/offers/rejected', 'OfferController@rejected')->name('offers.rejected');
 	Route::resource('offers', 'OfferController');
-	Route::put('/offers/{id}/deliver', 'OfferController@deliver')->name('offers.deliver');
 	
 	Route::resource('travel', 'TravelController');
 

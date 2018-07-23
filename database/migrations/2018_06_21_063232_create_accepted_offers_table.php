@@ -15,11 +15,11 @@ class CreateAcceptedOffersTable extends Migration
     {
         Schema::create('accepted_offers', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('recieved')->nullable();
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('offer_id')->unsigned();
             $table->foreign('offer_id')->references('id')->on('offers');
-            $table->date('recieve_date');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -19,7 +19,6 @@ class CreateOffersTable extends Migration
             $table->string('asking_price')->nullable();
             $table->date('delivery_date');
             $table->text('additional_details')->nullable();
-            $table->tinyInteger('delivered')->default(0);
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->integer('user_id')->unsigned();

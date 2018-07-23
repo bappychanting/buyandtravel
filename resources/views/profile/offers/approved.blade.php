@@ -53,26 +53,14 @@
               </div>
             {!! Form::close() !!}
 
-            <ul>
-              <li>A offer can be edited until approved, once approved it connot be edited anoymore</li> 
-              <li>once rejected a user can edit his offer and submit again until the orderer has approved another offer</li><li>An orderer can only approv one offer, once approved rest will disappear and approved one will stay</li>
-              <li>Once an offer has been approved the order will not show up in the orders list</li>
-              <li>If the orderer rejects approved offer, approved offer will disppear and rest of the offers will show up again</li>
-              <li>If the orderer rejects approved offer his order will show up in the orders list again</li>
-              <li>Once delivered an offer will disapper along with its order</li>
-            </ul>
-
             <!-- Nav tabs -->
             <div class="tabs-wrapper"> 
                 <ul class="nav classic-tabs tabs-blue" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('offers.index') }}">All Added Offers</a>
+                        <a class="nav-link waves-light" href="{{ route('offers.index') }}">Added Offers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-light active" data-toggle="tab" href="#accpetedOffers" role="tab">Approved Offers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('offers.rejected') }}">Rejected Offers</a>
                     </li>
                 </ul>
             </div>
@@ -107,9 +95,6 @@
                                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Offer</a>
                                         <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order</a>
-                                        {!! Form::open(['route' => ['offers.destroy', $offer->id], 'method'=>'delete']) !!}
-                                        {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your offer will disappear!', 'confirmButtonText'=>'Yes, delete offer!', 'type'=>'submit')) !!}
-                                        {!! Form::close() !!}
                                       </div>
                                   </div>
                               </td>

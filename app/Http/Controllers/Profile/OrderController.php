@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profile;
 use Session;
 use App\Order;
 use App\OrderImage;
+use App\AcceptedOffer;
 use App\ProductType;
 use App\User;
 use Illuminate\Http\Request;
@@ -21,15 +22,17 @@ class OrderController extends Controller
 
     protected $order;
     protected $order_image;
+    protected $accepted_offer;
     protected $category;
     protected $user;
 
-    public function __construct(Order $order, OrderImage $order_image, ProductType $category, User $user)
+    public function __construct(Order $order, OrderImage $order_image, AcceptedOffer $accepted_offer, ProductType $category, User $user)
     {
         $this->middleware('auth');
         $this->middleware('order.owner', ['only' => ['show', 'edit']]);
         $this->order = $order;
         $this->order_image = $order_image;
+        $this->accepted_offer = $accepted_offer;
         $this->category = $category;
         $this->user = $user;
     }
@@ -92,6 +95,34 @@ class OrderController extends Controller
         $order_image->order_id = $request->id;
         $order_image->save();
         Session::flash('success', array('Image has been added!'=>''));
+    }
+
+    public function approveOffer(Request $request)
+    {
+        $input = $request->all();
+        $this->accepted_offer->create($input);
+        return redirect()->back()->with('success', array('Offer Accepted'=>'Offer has been accepted! The order will disappear from the front list! Rest of the offers will also disappear, remove this offer to make them reappear!'));
+    }
+
+    public function recieveOffer($id)
+    {
+        /*$offer = $this->offer->findOrFail($id);
+        if(Auth::user() && Auth::user()->id == $offer->order->user->id){
+            $offer->accepted = 0;
+            $offer->rejected = 1;
+            $offer->save();
+        }
+        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Rejected'=>'Offer has been rejected! It may show up again if the offerer updates the offer!'));*/
+    }
+
+    public function removeAcceptedOffer($id)
+    {
+        /*$accepted_offer = $this->accepted_offer->findOrFail($id);
+        if(Auth::user() && Auth::user()->id == $offer->order->user->id){
+            $offer->accepted = 1;
+            $offer->save();
+        }
+        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Accepted'=>'Offer has been accepted! Rest of the offers will disappear, to make them reappear reject this offer!'));*/
     }
 
     /**

@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->command->info('Seeded the travel schedules!');
 
             // Seed my own data
-        /*$this->call('MahadiSeeder');
-        $this->command->info('Seeded you data!');*/
+        /*$this->call('MyUserSeeder');
+        $this->command->info('Seeded your user data!');*/
     }
 }

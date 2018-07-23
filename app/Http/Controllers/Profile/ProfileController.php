@@ -154,7 +154,7 @@ class ProfileController extends Controller
         if(Hash::check($request->old_password, Auth::User()->password)){ 
             $user->password = Hash::make($request->password);
             $user->save();
-            Session::flash('success', array('Password Successfully updated!'));
+            Session::flash('success', array('Password Successfully updated!'=>''));
             return redirect(route('user.userinfo'));
         }
         else{

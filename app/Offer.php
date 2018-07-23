@@ -44,4 +44,10 @@ class Offer extends Model
 	{
 		return $this->belongsTo(Order::class);
 	}
+       
+        // A offer can be accepted once
+    public function accepted()
+    {
+        return $this->hasOne(AcceptedOffer::class);
+    }
 }

@@ -56,4 +56,11 @@ class Order extends Model
     {
         return $this->hasMany(Offer::class);
     }
+
+        // A Order may have one accepted offer
+    public function accepted()
+    {
+        return $this->hasOne(AcceptedOffer::class);
+    }
+
 }
