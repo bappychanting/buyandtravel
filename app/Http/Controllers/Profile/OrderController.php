@@ -106,13 +106,10 @@ class OrderController extends Controller
 
     public function recieveOffer($id)
     {
-        /*$offer = $this->offer->findOrFail($id);
-        if(Auth::user() && Auth::user()->id == $offer->order->user->id){
-            $offer->accepted = 0;
-            $offer->rejected = 1;
-            $offer->save();
-        }
-        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Offer Rejected'=>'Offer has been rejected! It may show up again if the offerer updates the offer!'));*/
+        $accepted_offer = $this->accepted_offer->findOrFail($id);
+        $accepted_offer->recieved = 1;
+        $accepted_offer->save();
+        return redirect()->route('orders.show', $offer->order_id)->with('success', array('Product Recieved!'=>'The product recieve date has been updated to current date!'));
     }
 
     public function removeAcceptedOffer($id)

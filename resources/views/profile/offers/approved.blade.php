@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || Offers || ")
+@section('title', $user->name." || Approved Offers || ")
 
 @section('content')
 
@@ -76,7 +76,7 @@
                               <th>#</th>
                               <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
                               <th><i class="fa fa-user fa-sm pr-2"></i>User</th>
-                              <th><i class="fa fa-clock-o fa-sm pr-2"></i>Create Date</th>
+                              <th><i class="fa fa-truck fa-sm pr-2"></i>Delivery Status</th>
                               <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                           </tr>
                       </thead>
@@ -86,17 +86,9 @@
                               <th scope="row">{{ $loop->iteration }}</th>
                               <td>{{ $offer->order->product_name }}</td>
                               <td>{{ $offer->order->user->name }}</td>
-                              <td>{{ $offer->created_at->format('l d F Y, h:i A') }}</td>
+                              <td>{{ empty($offer->recieved) ? 'Not delivered yet!' : $offer->recieved->format('l d F Y, h:i A') }}</td>
                               <td>
-                                  <div class="dropdown" role="group">
-                                      <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                          Actions
-                                      </button>
-                                      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Offer</a>
-                                        <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order</a>
-                                      </div>
-                                  </div>
+                                <a class="btn btn-blue btn-sm" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Offer</a>
                               </td>
                           </tr>
               @endforeach   

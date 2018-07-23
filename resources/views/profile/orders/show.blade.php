@@ -81,72 +81,113 @@
                   @endif
                 </p>
                 <p class="grey-text">Views: {{ $order->views }}</p>
-                <h4 id="offers">Offers</h4><hr>
-                <div class="table-responsive my-5">
-                  <table class="table table-striped table-fixed" id="dataTable">
-                    <thead>
+                @if(empty($order->accepted))
+                  <h4 id="offers">Offers</h4><hr>
+                  <div class="table-responsive my-5">
+                    <table class="table table-striped table-fixed" id="dataTable">
+                      <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>
+                              <i class="fa fa-shopping-bag fa-sm pr-2"></i>Added By
+                              <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                            </th>
+                            <th>
+                              <i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity
+                              <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                            </th>
+                            <th>
+                              <i class="fa fa-dollar fa-sm pr-2"></i>Asking Price
+                              <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                            </th>
+                            <th>
+                              <i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date
+                              <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                            </th>
+                            <th>
+                              <i class="fa fa-gears fa-sm pr-2"></i>Actions
+                              <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                            </th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @foreach($order->offers as $offer)
+                          <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $offer->user->name }}</td>
+                            <td>{{ $offer->product_quantity }}</td>
+                            <td>{{ $offer->asking_price }}/=</td>
+                            <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
+                            <td>
+                                <div class="dropdown" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Actions
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                      <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
+                                      {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
+                                      {!! Form::hidden('offer_id', $offer->id) !!}
+                                      {!! Form::hidden('order_id', $order->id) !!}
+                                        {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
+                                      {!! Form::close() !!} 
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                          @endforeach   
+                      </tbody>
+                      <tfoot>
                         <tr>
                           <th>#</th>
-                          <th>
-                            <i class="fa fa-shopping-bag fa-sm pr-2"></i>Added By
-                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                          </th>
-                          <th>
-                            <i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity
-                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                          </th>
-                          <th>
-                            <i class="fa fa-dollar fa-sm pr-2"></i>Asking Price
-                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                          </th>
-                          <th>
-                            <i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date
-                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                          </th>
-                          <th>
-                            <i class="fa fa-gears fa-sm pr-2"></i>Actions
-                            <i class="fa fa-sort float-right" aria-hidden="true"></i>
-                          </th>
+                          <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Added By</th>
+                          <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
+                          <th><i class="fa fa-dollar fa-sm pr-2"></i>Asking Price</th>
+                          <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date</th>
+                          <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($order->offers as $offer)
-                        <tr>
-                          <th scope="row">{{ $loop->iteration }}</th>
-                          <td>{{ $offer->user->name }}</td>
-                          <td>{{ $offer->product_quantity }}</td>
-                          <td>{{ $offer->asking_price }}/=</td>
-                          <td>{{ date('l d F Y', strtotime($offer->delivery_date)) }}</td>
-                          <td>
-                              <div class="dropdown" role="group">
-                                  <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Actions
-                                  </button>
-                                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
-                                    {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
-                                    {!! Form::hidden('offer_id', $offer->id) !!}
-                                    {!! Form::hidden('order_id', $order->id) !!}
-                                      {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
-                                    {!! Form::close() !!} 
-                                  </div>
-                              </div>
-                          </td>
-                        </tr>
-                        @endforeach   
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>#</th>
-                        <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Added By</th>
-                        <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
-                        <th><i class="fa fa-dollar fa-sm pr-2"></i>Asking Price</th>
-                        <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Delivery Date</th>
-                        <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
-                      </tr>
-                    </tfoot>
-                </table>
-              </div>
+                      </tfoot>
+                  </table>
+                </div>
+              @else
+                <h4 id="offers">Accpeted Offer</h4><hr>
+                <p class="mt-4">
+                  <i class="fa fa-clock-o fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{$order->accepted->created_at->format('l d F Y, h:i A')}}</span>
+                </p>
+                <div class="row">
+                  <div class="col-xl-3 col-lg-4 col-sm-4">
+                    {!! Form::open(['route' => ['order.offer.recieve', $order->accepted->id], 'method'=>'put']) !!}
+                      {!! Form::button('<i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Product Received', array('class' => 'btn btn-blue btn-sm', 'type'=>'submit')) !!}
+                    {!! Form::close() !!}
+                  </div>
+                  <div class="col-xl-9 col-lg-8 col-sm-8">
+                    {!! Form::open(['route' => ['order.offer.remove', $order->accepted->id], 'method'=>'delete']) !!}
+                      {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Remove Accepted Offer', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'The removed data can not be recovered! Once removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, delete order!', 'type'=>'submit')) !!}
+                    {!! Form::close() !!}
+                  </div>
+                </div>
+                <ul class="list-group list-group-flush my-4">
+                  <li class="list-group-item">
+                    <i class="fa fa-user fa-sm pr-2"></i>
+                    <strong>Added By:</strong> 
+                    {{ $order->accepted->offer->user->name }}
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fa fa-cart-plus fa-sm pr-2"></i>
+                    <strong>Quantity:</strong> 
+                    {{ str_replace('-', '', $order->accepted->offer->product_quantity) }}
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fa fa-dollar fa-sm pr-2"></i>
+                    <strong>Asking Price:</strong> 
+                    {{ $order->accepted->offer->asking_price }}/=
+                  </li>
+                  <li class="list-group-item">
+                    <i class="fa fa-calendar-check-o fa-sm pr-2"></i>
+                    <strong>Delivery Date:</strong> 
+                    {{ date('l d F Y', strtotime($order->accepted->offer->delivery_date)) }}
+                  </li>
+                </ul>
+              @endif
             <!-- #END# Content Column -->
         </div>
         <!-- /.row -->

@@ -89,8 +89,8 @@ class OfferController extends Controller
     public function edit($id)
     {
         $offer = $this->offer->findOrFail($id);
-        $user = Auth::user();
-        if(count($offer->accepted) == 0){
+        if(empty($offer->accepted)){
+            $user = Auth::user();
             return view('profile.offers.edit', compact('user', 'offer'));
         }
         return redirect()->back()->with('warning', array('This offer can not be edited'=>'Once an offer has been accepted it cannot be edited anymore!'));

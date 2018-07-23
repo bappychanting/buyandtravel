@@ -18,4 +18,10 @@ class AcceptedOffer extends Model
 	{
 		return $this->belongsTo(Offer::class);
 	}
+
+		// Each accepted offer belongs to a order
+	public function order()
+	{
+		return $this->belongsTo(Order::class);
+	}
 }
