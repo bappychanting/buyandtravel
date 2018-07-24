@@ -129,7 +129,7 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                      <a class="dropdown-item" href="{{ route('messages.offer.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Details</a>
+                                      <a class="dropdown-item" href="{{ route('messages.offer.show', $offer->id) }}"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
                                       {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
                                       {!! Form::hidden('offer_id', $offer->id) !!}
                                       {!! Form::hidden('order_id', $order->id) !!}
@@ -161,7 +161,7 @@
                 </p>
                 <div class="row">
                   <div class="col-xl-5 col-lg-4 col-sm-4">
-                    <a class="btn btn-blue btn-sm" href="{{ route('messages.offer.show', $order->accepted->offer_id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Details</a>
+                    <a class="btn btn-blue btn-sm" href="{{ route('messages.offer.show', $order->accepted->offer_id) }}"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
                   </div>
                   <div class="col-xl-5 col-lg-5 col-sm-5">
                     @if(empty($order->accepted->recieved))

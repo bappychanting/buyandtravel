@@ -19,10 +19,15 @@ class MessageController extends Controller
         $this->offer = $offer;
     }
 
+    public function index()
+    {
+        $user = Auth::user();
+        return view('profile.messages.index', compact('user'));
+    }
+
     public function offerMessages()
     {
-        $offer = $this->offer->findOrFail($id);
-        return view('profile.messages.offermessages');
+        return view('profile.messages.index', compact('user'));
     }
 
     public function showofferMessage($id)
@@ -30,5 +35,11 @@ class MessageController extends Controller
         $offer = $this->offer->findOrFail($id);
         $user = Auth::user();
         return view('profile.messages.offer', compact('user','offer'));
+    }
+
+    public function requestMessages()
+    {
+        $user = Auth::user();
+        return view('profile.messages.index', compact('user'));
     }
 }
