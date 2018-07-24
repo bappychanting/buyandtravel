@@ -33,7 +33,7 @@
                 @if(empty($search))
                     <a class="btn btn-md btn-primary mb-4" href="{{ route('offers.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
                 @else
-                    <a class="btn btn-sm btn-primary" href="{{ route('offers.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
+                    <a class="btn btn-sm btn-primary" href="{{ route('offers.accepted') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
                 @endif
           
             {!! Form::open(['url' => '/profile/offers/accepted', 'method'=>'get']) !!}
@@ -86,7 +86,7 @@
                               <th scope="row">{{ $loop->iteration }}</th>
                               <td>{{ $offer->order->product_name }}</td>
                               <td>{{ $offer->order->user->name }}</td>
-                              <td>{{ empty($offer->recieved) ? 'Not delivered yet!' : $offer->recieved->format('l d F Y, h:i A') }}</td>
+                              <td>{{ empty($offer->accepted->recieved) ? 'Not delivered yet!' : 'Delivered at '.date('l d F Y', strtotime($offer->accepted->recieved)) }}</td>
                               <td>
                                 <a class="btn btn-blue btn-sm" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Offer</a>
                               </td>

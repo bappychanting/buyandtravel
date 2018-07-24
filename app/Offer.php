@@ -18,7 +18,7 @@ class Offer extends Model
     public function scopeSearch($query, $search='')
     {
         if (empty($search)) {
-            return $query->whereNull("deleted_at");
+            return $query->WhereHas('order')->whereNull("deleted_at");
         } else {
     		return $query->WhereHas('order', function ($query) use($search){
 					       $query->where('product_name', 'LIKE', '%' . $search . '%'
@@ -49,5 +49,11 @@ class Offer extends Model
     public function accepted()
     {
         return $this->hasOne(AcceptedOffer::class);
+    }
+
+        // A offer can have many messages
+    public function messages()
+    {
+        return $this->hasMany(OfferMessage::class);
     }
 }

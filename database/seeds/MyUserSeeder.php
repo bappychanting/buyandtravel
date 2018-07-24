@@ -33,7 +33,8 @@ class MyUserSeeder extends Seeder
 	                "views"  => mt_rand(0,9999),
 	                "additional_details"  => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
 	                "user_id"  => $user_id,
-	                "created_at"    => strftime("%Y-%m-%d %H:%M:%S")
+	                "created_at"    => strftime("%Y-%m-%d %H:%M:%S"),
+	                "updated_at"    => strftime("%Y-%m-%d %H:%M:%S")
 	            ]
 	        ];
 
@@ -51,6 +52,7 @@ class MyUserSeeder extends Seeder
 			        'views' => mt_rand(0,9999),
 	                "user_id"  => $user_id,
 	                "created_at"    => strftime("%Y-%m-%d %H:%M:%S"),
+	                "updated_at"    => strftime("%Y-%m-%d %H:%M:%S")
 	            ]
 	        ];
 

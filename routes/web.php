@@ -42,6 +42,8 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::put('/orders/offer/{id}/recieve', 'OrderController@recieveOffer')->name('order.offer.recieve');
 	Route::delete('/orders/offer/{id}/remove', 'OrderController@removeAcceptedOffer')->name('order.offer.remove');
 
+	Route::get('/messages/offer/{id}', 'MessageController@offerMessages')->name('messages.offer');
+
 	Route::get('/offers/accepted', 'OfferController@accepted')->name('offers.accepted');
 	Route::resource('offers', 'OfferController');
 	

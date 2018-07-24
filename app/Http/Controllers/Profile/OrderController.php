@@ -128,12 +128,15 @@ class OrderController extends Controller
     public function edit($id)
     {
         $order = $this->order->findOrFail($id);
-        $user = Auth::user();
-        $getCategories = $this->category->all();
-        foreach ($getCategories as $category) {
-            $categories[$category->id] = $category->product_type;
+        if(empty($order->accepted)){
+            $user = Auth::user();
+            $getCategories = $this->category->all();
+            foreach ($getCategories as $category) {
+                $categories[$category->id] = $category->product_type;
+            }
+            return view('profile.orders.edit', compact('user', 'order', 'categories'));
         }
-        return view('profile.orders.edit', compact('user', 'order', 'categories'));
+        return redirect()->back()->with('warning', array('This order can not be updated'=>'Once an offer has been accepted it the order cannot be updated anymore! Remove the approved offer to update it.'));
     }
 
     /**
@@ -167,7 +170,10 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $order = $this->order->findOrFail($id);
-        $order->delete();
-        return redirect()->route('orders.index')->with('success', array('Success'=>'Order has been deleted!'));
+        if(empty($order->accepted)){
+            $order->delete();
+            return redirect()->route('orders.index')->with('success', array('Success'=>'Order has been deleted!'));
+        }
+        return redirect()->back()->with('warning', array('This order can not be deleted'=>'Once an offer has been accepted it the order cannot be deleted anymore! Remove the approved offer to delete it.'));
     }
 }

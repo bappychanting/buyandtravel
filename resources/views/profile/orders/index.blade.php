@@ -67,7 +67,12 @@
                     <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12">
                         <h5 class="mb-3 font-weight-bold">
                             <strong>{{ $order->product_name }}</strong>
-                            <small class="dark-grey-text">{{ $order->product_type->product_type }}</small>
+                            <small class="dark-grey-text">
+                              {{ $order->product_type->product_type }}
+                              @if(!empty($order->accepted->recieved))
+                                <span class="badge badge-success">Product Received</span>
+                              @endif
+                            </small>
                         </h5>
                         <p><i class="fa fa-clock-o fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{ $order->created_at->format('l d F Y') }}</span></p>
                     </div>

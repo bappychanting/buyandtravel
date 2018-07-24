@@ -59,7 +59,7 @@
                   </ul>
                   @if(count($order->images) < 5)
                     <button type="button" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#updateimage">
-                      <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add image
+                      <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add  a new image
                     </button>
                   @endif
                 </div>
@@ -116,7 +116,6 @@
                       </thead>
                       <tbody>
                         @foreach($order->offers as $offer)
-                          @if($offer->delivery_date > date('Y-m-d'))
                           <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $offer->user->name }}</td>
@@ -130,17 +129,16 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                      <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer</a>
+                                      <a class="dropdown-item" href="{{ route('messages.offer', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Details</a>
                                       {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
                                       {!! Form::hidden('offer_id', $offer->id) !!}
                                       {!! Form::hidden('order_id', $order->id) !!}
-                                        {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
+                                        {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
                                       {!! Form::close() !!} 
                                     </div>
                                 </div>
                             </td>
                           </tr>
-                          @endif
                         @endforeach   
                       </tbody>
                       <tfoot>
@@ -162,20 +160,23 @@
                   <i class="fa fa-clock-o fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{$order->accepted->created_at->format('l d F Y, h:i A')}}</span>
                 </p>
                 <div class="row">
-                  <div class="col-xl-4 col-lg-5 col-sm-6">
+                  <div class="col-xl-5 col-lg-4 col-sm-4">
+                    <a class="btn btn-blue btn-sm" href="{{ route('messages.offer', $order->accepted->offer_id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Details</a>
+                  </div>
+                  <div class="col-xl-5 col-lg-5 col-sm-5">
                     @if(empty($order->accepted->recieved))
                       {!! Form::open(['route' => ['order.offer.recieve', $order->accepted->id], 'method'=>'put']) !!}
-                        {!! Form::button('<i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Product Received', array('class' => 'btn btn-blue btn-sm', 'type'=>'submit')) !!}
+                        {!! Form::button('<i class="fa fa-question-circle fa-sm pr-2"" aria-hidden="true"></i>Set reciept status', array('class' => 'btn btn-blue btn-sm', 'type'=>'submit')) !!}
                       {!! Form::close() !!}
                     @else
                       <button class="btn btn-green btn-sm disabled">
-                        <i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Product Received {{ date('l d F Y', strtotime($order->accepted->recieved)) }}
+                        <i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Received {{ date('l d F Y', strtotime($order->accepted->recieved)) }}
                       </button>
                     @endif
                   </div>
-                  <div class="col-xl-8 col-lg-7 col-sm-6">
+                  <div class="col-xl-2 col-lg-3 col-sm-3">
                     {!! Form::open(['route' => ['order.offer.remove', $order->accepted->id], 'method'=>'delete']) !!}
-                      {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Remove Accepted Offer', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'The removed data can not be recovered! Once removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, delete order!', 'type'=>'submit')) !!}
+                      {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Remove', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Once accepted offer is removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, remove accepted offer!', 'type'=>'submit')) !!}
                     {!! Form::close() !!}
                   </div>
                 </div>

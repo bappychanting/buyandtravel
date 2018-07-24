@@ -96,7 +96,7 @@
                                         <a class="dropdown-item" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Offer</a>
                                         <a class="dropdown-item" href="{{ route('front.orders.show', $offer->order->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order</a>
                                         {!! Form::open(['route' => ['offers.destroy', $offer->id], 'method'=>'delete']) !!}
-                                        {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your offer will disappear!', 'confirmButtonText'=>'Yes, delete offer!', 'type'=>'submit')) !!}
+                                          {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your offer will disappear!', 'confirmButtonText'=>'Yes, delete offer!', 'type'=>'submit')) !!}
                                         {!! Form::close() !!}
                                       </div>
                                   </div>
@@ -109,9 +109,9 @@
 
                 <!--Pagination-->
                 <nav aria-label="pagination example">
-                    <ul class="pagination pg-blue">
-                        {{ $offers->appends(Request::only('search'))->links() }}
-                    </ul>
+                  <ul class="pagination pg-blue">
+                    {{ $offers->appends(Request::only('search'))->links() }}
+                  </ul>
                 </nav> 
               </div>
             </div> 
