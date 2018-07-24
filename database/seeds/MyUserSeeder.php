@@ -13,7 +13,7 @@ class MyUserSeeder extends Seeder
     public function run(Faker $faker)
     {
         	// Write your user id here
-        $user_id = 22;
+        $user_id = 21;
 
         $count = 1; 
         $arrivalDate = $count;

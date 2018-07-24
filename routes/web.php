@@ -31,6 +31,8 @@ Route::group(['prefix' => 'travel'], function(){
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
+	Route::get('/messages/offer', 'MessageController@offerMessages')->name('messages.offer');
+
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
 	Route::get('/user/verify/{token}', 'ProfileController@verifyUser')->name('user.verify');
 	Route::get('/user/verificationlink', 'ProfileController@verificationMail')->name('user.verification');
@@ -42,7 +44,7 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::put('/orders/offer/{id}/recieve', 'OrderController@recieveOffer')->name('order.offer.recieve');
 	Route::delete('/orders/offer/{id}/remove', 'OrderController@removeAcceptedOffer')->name('order.offer.remove');
 
-	Route::get('/messages/offer/{id}', 'MessageController@offerMessages')->name('messages.offer');
+	Route::get('/messages/offer/{id}', 'MessageController@showofferMessage')->name('messages.offer.show');
 
 	Route::get('/offers/accepted', 'OfferController@accepted')->name('offers.accepted');
 	Route::resource('offers', 'OfferController');
