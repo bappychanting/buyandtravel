@@ -129,7 +129,8 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                      <a class="dropdown-item" href="{{ route('messages.offer.show', $offer->id) }}"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
+                                      <button class="dropdown-item" data-toggle="modal" data-target="#viewDetails"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Details</button>
+                                      <a class="dropdown-item" href="{{ route('messages.offer.show', $offer->id) }}" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
                                       {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
                                       {!! Form::hidden('offer_id', $offer->id) !!}
                                       {!! Form::hidden('order_id', $order->id) !!}
@@ -161,7 +162,7 @@
                 </p>
                 <div class="row">
                   <div class="col-xl-5 col-lg-4 col-sm-4">
-                    <a class="btn btn-blue btn-sm" href="{{ route('messages.offer.show', $order->accepted->offer_id) }}"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
+                    <a class="btn btn-blue btn-sm" href="{{ route('messages.offer.show', $order->accepted->offer_id) }}" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
                   </div>
                   <div class="col-xl-5 col-lg-5 col-sm-5">
                     @if(empty($order->accepted->recieved))
@@ -202,6 +203,7 @@
                     {{ date('l d F Y', strtotime($order->accepted->offer->delivery_date)) }}
                   </li>
                 </ul>
+                {!! $order->accepted->offer->additional_details !!}
               @endif
             <!-- #END# Content Column -->
         </div>
@@ -210,7 +212,7 @@
     </div>
     <!-- Contents -->
 
-    <!-- Modal -->
+    <!-- Image Modal -->
     <div class="modal fade" id="updateimage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -247,6 +249,29 @@
             </div>
         </div>
     </div>
+    <!-- Image Modal -->
+
+    <!-- Offer Details Modal -->
+    <div class="modal fade" id="viewDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="viewDetailsTitle">View Offer</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-blue btn-sm">Accept Offer</button>
+            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Offer Details Modal -->
 
 @endsection
 

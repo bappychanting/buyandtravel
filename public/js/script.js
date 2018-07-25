@@ -109,6 +109,10 @@ $(document).ready(function(){
       }); 
     })();
 
+    $('#viewDetails').on('show.bs.modal', function (e) {
+      alert('shown');
+    })
+
     $('.form_warning_sweet_alert').on('click',function(e){
         e.preventDefault();
         var form = $(this).parents('form');
