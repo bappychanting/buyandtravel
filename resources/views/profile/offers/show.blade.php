@@ -52,15 +52,9 @@
                     <!--Grid column-->
 
                     <!--Grid column-->
-                    <div class="col-xl-4 col-lg-9 col-md-10 col-sm-8 col-12 my-3">
-                        <h3 class="font-weight-bold">{{ $offer->order->product_name }}</h3>
-                        <h5><i class="fa fa-user fa-sm pr-2"></i>{{ $offer->order->user->name }}</h5>
-                        <h6 class="dark-grey-text"><i class="fa fa-map-marker fa-sm pr-2"></i>{{$offer->order->delivery_location}}</h6>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 my-3">
+                    <div class="col-xl-9 col-lg-9 col-md-10 col-sm-8 col-12 my-3">
+                      <h5 class="font-weight-bold">{{ $offer->order->product_name }}</h5>
+                      <h6 class="my-3 font-weight-bold"><i class="fa fa-user fa-sm pr-2"></i>{{ $offer->order->user->name }}</h6>
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Price Expected:</strong> {{ $offer->order->expected_price }}/=</li>
                         <li class="list-group-item"><strong>User Contact:</strong> {{ str_replace('-', '', $offer->order->user->contact) }}</li>

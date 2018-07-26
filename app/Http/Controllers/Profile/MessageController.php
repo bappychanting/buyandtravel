@@ -27,7 +27,9 @@ class MessageController extends Controller
 
     public function offerMessages()
     {
-        return view('profile.messages.index', compact('user'));
+        $offer = $this->offer->findOrFail($id);
+        $user = Auth::user();
+        return view('profile.messages.index', compact('user', 'offer'));
     }
 
     public function showofferMessage($id)
