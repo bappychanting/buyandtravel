@@ -109,8 +109,29 @@ $(document).ready(function(){
       }); 
     })();
 
-    $('#viewDetails').on('show.bs.modal', function (e) {
-      alert('shown');
+    $('.view_offer_details_button').click(function() {
+      var offer = $(this).data('offer');
+      var order = $(this).data('order');
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+        }
+      });
+      $.ajax({
+        url: "offer/details",
+        type: 'POST',
+        data: {
+          'offer_id': offer,
+          'order_id': order
+        },
+        dataType: 'JSON',
+        success:function(response){
+          $("#modal_offer_details").empty().append('<ul class="list-group list-group-flush mb-3"><li class="list-group-item"><i class="fa fa-user fa-sm pr-2"></i><strong>Added By: </strong>' +response['user']+'</li><li class="list-group-item"><i class="fa fa-cart-plus fa-sm pr-2"></i><strong>Quantity: </strong>'+response['quantity']+'</li><li class="list-group-item"><i class="fa fa-dollar fa-sm pr-2"></i><strong>Asking Price: </strong>'+response['price']+'/=</li><li class="list-group-item"><i class="fa fa-calendar-check-o fa-sm pr-2"></i><strong>Delivery Date: </strong>'+response['date']+'</li></ul>'+response['details']);
+        },
+        error: function(response){
+          $("#modal_offer_details").empty().append('<p class="font-weight-bold text-center">Sorry, no data returned from server...</p>');
+        }
+      });
     })
 
     $('.form_warning_sweet_alert').on('click',function(e){

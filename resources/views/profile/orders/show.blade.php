@@ -129,7 +129,9 @@
                                         Actions
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                      <button class="dropdown-item" data-toggle="modal" data-target="#viewDetails"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Details</button>
+                                      <button class="dropdown-item view_offer_details_button" data-offer="{{ $offer->id }}" data-order="{{ $order->id }}" data-toggle="modal" data-target="#viewOfferDetails">
+                                        <i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Details
+                                      </button>
                                       <a class="dropdown-item" href="{{ route('messages.offer.show', $offer->id) }}" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
                                       {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
                                       {!! Form::hidden('offer_id', $offer->id) !!}
@@ -190,7 +192,7 @@
                   <li class="list-group-item">
                     <i class="fa fa-cart-plus fa-sm pr-2"></i>
                     <strong>Quantity:</strong> 
-                    {{ str_replace('-', '', $order->accepted->offer->product_quantity) }}
+                    {{ $order->accepted->offer->product_quantity }}
                   </li>
                   <li class="list-group-item">
                     <i class="fa fa-dollar fa-sm pr-2"></i>
@@ -252,20 +254,19 @@
     <!-- Image Modal -->
 
     <!-- Offer Details Modal -->
-    <div class="modal fade" id="viewDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="viewOfferDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title w-100" id="viewDetailsTitle">View Offer</h4>
+            <h4 class="modal-title w-100" id="viewDetailsTitle">View Offer Details</h4>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            ...
+            <div id="modal_offer_details"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-blue btn-sm">Accept Offer</button>
             <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
           </div>
         </div>

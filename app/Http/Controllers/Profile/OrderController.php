@@ -95,6 +95,17 @@ class OrderController extends Controller
         $order_image->order_id = $request->id;
         $order_image->save();
         Session::flash('success', array('Image has been added!'=>''));
+    }  
+
+    public function offerDetails(Request $request)
+    {
+        $order = $this->order->findOrFail($request->order_id);
+        foreach($order->offers as $offer){
+            if($offer->id == $request->offer_id){
+                $offer_details = array('id'=> $offer->id, 'user'=>$offer->user->name, 'quantity'=>$offer->product_quantity, 'price'=>$offer->asking_price, 'date'=>date('l d F Y', strtotime($offer->delivery_date)), 'details'=>$offer->additional_details);
+                return json_encode($offer_details);
+            }
+        }
     }
 
     public function approveOffer(Request $request)

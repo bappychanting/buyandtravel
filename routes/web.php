@@ -43,11 +43,13 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::resource('orders', 'OrderController');
 	Route::post('/orders/image/add', 'OrderController@addImage')->name('order.image.add');
 	Route::delete('/orders/image/delete/{id}', 'OrderController@deleteImage')->name('order.image.delete');
+	Route::post('/orders/offer/details', 'OrderController@offerDetails');
 	Route::post('/orders/offer/accept', 'OrderController@approveOffer')->name('order.offer.accept');
 	Route::put('/orders/offer/{id}/recieve', 'OrderController@recieveOffer')->name('order.offer.recieve');
 	Route::delete('/orders/offer/{id}/remove', 'OrderController@removeAcceptedOffer')->name('order.offer.remove');
 
 	Route::get('/offers/accepted', 'OfferController@accepted')->name('offers.accepted');
+	Route::post('/offers/accepted', 'OfferController@accepted');
 	Route::resource('offers', 'OfferController');
 	
 	Route::resource('travel', 'TravelController');
