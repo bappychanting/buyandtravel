@@ -32,7 +32,7 @@
                 
                 <h5 class="my-3 font-weight-bold">Overview</h5>
                 <!--Grid row-->
-                <div class="row mb-5">
+                <div class="row mb-3">
                     <!--Grid column-->
                     <div class="col-xl-6 col-lg-6">
                       <ul class="list-group list-group-flush">
@@ -85,6 +85,28 @@
                 </div>
                 <!--Grid row-->
 
+                @if($user->id == $offer->user->id)
+                  <a class="btn btn-blue btn-sm" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer Details</a>
+                @else
+                    @if(empty($offer->accepted))
+                      {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
+                        {!! Form::hidden('offer_id', $offer->id) !!}
+                        {!! Form::hidden('order_id', $offer->order->id) !!}
+                        <a class="btn btn-blue btn-sm" href="{{ route('orders.show', $offer->order->id) }}" target="_blank">
+                          <i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order
+                        </a>
+                        {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'btn btn-success btn-sm form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
+                      {!! Form::close() !!} 
+                    @else
+                      {!! Form::open(['route' => ['order.offer.remove', $offer->accepted->id], 'method'=>'delete']) !!}
+                        <a class="btn btn-blue btn-sm" href="{{ route('orders.show', $offer->order->id) }}" target="_blank">
+                          <i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order
+                        </a>
+                        {!! Form::button('<i class="fa fa-close fa-sm pr-2"" aria-hidden="true"></i>Reject Accpeted Offer', array('class' => 'btn btn-warning btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Once accepted offer is removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, remove accepted offer!', 'type'=>'submit')) !!}
+                      {!! Form::close() !!}
+                    @endif
+                @endif
+
                 <h4 class="my-3 font-weight-bold">Messages</h4>
 
                 <!-- Pagination -->
@@ -116,6 +138,14 @@
                 </nav> 
                 <!-- End Pagination -->
                 <div class="row">
+                  <!-- <span class="border border-primary"></span>
+                  <span class="border border-secondary"></span>
+                  <span class="border border-success"></span>
+                  <span class="border border-danger"></span>
+                  <span class="border border-warning"></span>
+                  <span class="border border-info"></span>
+                  <span class="border border-light"></span>
+                  <span class="border border-dark"></span> -->
                   <div class="col-lg-1 mb-5">
                     <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
                   </div>

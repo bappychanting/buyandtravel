@@ -54,7 +54,7 @@
             <div class="col-md-12">
               <div class="btn-group mt-3" role="group" aria-label="Basic example">
                 <a href="travel_history.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Travel History</a>
-                <a href="report_traveler.php" class="btn btn-blue btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
+                <a href="report_traveler.php" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
               </div>
             </div>
           </div>

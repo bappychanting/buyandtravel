@@ -58,7 +58,7 @@
                 <a class="btn btn-md btn-primary btn-block mb-4" href="{{ route('front.orders.addOffer', $order->id) }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
                 <div class="btn-group my-3" role="group" aria-label="Basic example">
                   <a href="{{ $order->reference_link }}" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
-                  <a href="report_order.php" class="btn btn-blue btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
+                  <a href="report_order.php" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
                 </div>
               </div>
           </div>
