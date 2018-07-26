@@ -267,7 +267,12 @@
             <div id="modal_offer_details"></div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
+              {!! Form::hidden('offer_id', '', ['id'=>'modal_offer_id']) !!}
+              {!! Form::hidden('order_id', '', ['id'=>'modal_order_id']) !!}
+              {!! Form::button('Accept Offer', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'id'=>'modal_accept_offer_btn', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit', 'disabled'=>'true')) !!}
+              <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            {!! Form::close() !!}
           </div>
         </div>
       </div>
