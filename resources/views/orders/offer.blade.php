@@ -114,6 +114,15 @@
                   </div>
                 </div>
 
+                <div class="md-form">
+                  {!! Form::text('offer_message_subject', null, array('class' =>'form-control', 'id'=>'offer_message_subject')) !!}
+                  {!! Form::label('offer_message_subject', 'Subject For Offer Conversation') !!}
+                </div>
+
+                @if ($errors->has('offer_message_subject'))
+                    <p class="red-text">{{ $errors->first('offer_message_subject') }}</p>
+                @endif
+
                 <p class="font-weight-bold my-3">Add Offer Details</p>
 
                 @if ($errors->has('additional_details'))

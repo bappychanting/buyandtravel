@@ -1,47 +1,85 @@
 <?php
 
 namespace App\Http\Controllers\Profile;
-use App\OfferMessage;
-use App\Offer;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    protected $offer;
-    protected $message;
-
-    public function __construct(OfferMessage $message, Offer $offer)
-    {
-        $this->middleware('auth');
-        $this->message = $message;
-        $this->offer = $offer;
-    }
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $user = Auth::user();
-        //return view('profile.messages.index', compact('user'));
+        //
     }
 
-    public function offerMessages()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        $offer = $this->offer->findOrFail($id);
-        $user = Auth::user();
-        //return view('profile.messages.index', compact('user', 'offer'));
+        //
     }
 
-    public function showofferMessage($id)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $offer = $this->offer->findOrFail($id);
-        $user = Auth::user();
-        //return view('profile.messages.offer', compact('user','offer'));
+        //
     }
 
-    public function requestMessages()
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $user = Auth::user();
-        //return view('profile.messages.index', compact('user'));
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

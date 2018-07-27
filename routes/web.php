@@ -31,10 +31,7 @@ Route::group(['prefix' => 'travel'], function(){
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
-	Route::get('/messages', 'MessageController@index')->name('messages.all');
-	Route::get('/messages/offers', 'MessageController@offerMessages')->name('messages.offer');
-	Route::get('/messages/offer/{id}', 'MessageController@showofferMessage')->name('messages.offer.show');
-	Route::get('/messages/requests', 'MessageController@requestMessages')->name('messages.request');
+	Route::resource('messages', 'MessageController');
 
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
 	Route::get('/user/verify/{token}', 'ProfileController@verifyUser')->name('user.verify');

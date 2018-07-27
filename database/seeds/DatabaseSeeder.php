@@ -24,7 +24,19 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->command->info('Seeded the users!');
 
-            // Seed the Oders
+            // Seed the message subjects
+        $this->call(MessageSubjectsTableSeeder::class);
+        $this->command->info('Seeded the message subjects!');
+
+            // Seed the messages
+        $this->call(MessagesTableSeeder::class);
+        $this->command->info('Seeded the messages!');
+
+            // Seed the message participants
+        $this->call(MessageParticipantsTableSeeder::class);
+        $this->command->info('Seeded the message participants!');
+
+            // Seed the Orders
         $this->call(OrdersTableSeeder::class);
         $this->command->info('Seeded the orders!');
 

@@ -52,3 +52,10 @@ $factory->define(App\Order::class, function (Faker $faker) {
         'user_id' => $faker->randomElement($userIds),
     ];
 });
+
+$factory->define(App\MessageSubject::class, function (Faker $faker) {
+
+    return [
+        'subject' => $faker->catchPhrase($maxNbChars = 5)
+    ];
+});
