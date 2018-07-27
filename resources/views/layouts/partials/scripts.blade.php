@@ -54,7 +54,6 @@
 
     <!-- Custom JavaScript -->
  	{{Html::script('js/script.js')}}
- 	{{Html::script('js/image-gallery.js')}}
- 	{{Html::script('js/image-slider.js')}}
+ 	{{Html::script('js/image-slider-gallery.js')}}
  	{{Html::script('js/basic-form-elements.js')}}
  	{{Html::script('js/advanced-form-elements.js')}}

@@ -35,7 +35,7 @@
                 {!! Form::open(['route' => ['offers.destroy', $offer->id], 'method'=>'delete']) !!}
                     <a href="{{ route('front.orders.show', $offer->order->id) }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Open Order</a>
                     <a href="{{ route('messages.offer.show', $offer->id) }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-comments fa-sm pr-2"" aria-hidden="true"></i>Offer Conversation</a>
-                    <a href="{{ route('offers.edit', $offer->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Offer</a>
+                    <a href="{{ route('offers.edit', $offer->id) }}" class="btn btn-indigo btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Offer</a>
                     {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-warning btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your offer will disappear!', 'confirmButtonText'=>'Yes, delete offer!', 'type'=>'submit')) !!}
                 {!! Form::close() !!}
                 

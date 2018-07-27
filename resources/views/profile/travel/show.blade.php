@@ -41,7 +41,7 @@
               <span class="font-weight-bold light-blue-text">{{$travel->created_at->format('l d F Y, h:i A')}}</span>
             </p>
             {!! Form::open(['route' => ['travel.destroy', $travel->id], 'method'=>'delete']) !!}
-                <a href="{{ route('travel.edit', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Schedule</a>
+                <a href="{{ route('travel.edit', $travel->id) }}" class="btn btn-indigo btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i>Update Schedule</a>
                 {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete</a>', array('class' => 'btn btn-warning btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your travel schedule will disapper from history!', 'confirmButtonText'=>'Yes, delete travel schedule!', 'type'=>'submit')) !!}
             {!! Form::close() !!}
 

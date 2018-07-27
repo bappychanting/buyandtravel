@@ -55,7 +55,7 @@
                   <li class="list-group-item"><strong>User Contact:</strong> {{ str_replace('-', '', $order->user->contact) }}</li>
                   <li class="list-group-item"><strong>Handover Location:</strong> {{ $order->delivery_location }}</li>
                 </ul>
-                <a class="btn btn-md btn-primary btn-block mb-4" href="{{ route('front.orders.addOffer', $order->id) }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
+                <a class="btn btn-md btn-cyan btn-block mb-4" href="{{ route('front.orders.addOffer', $order->id) }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
                 <div class="btn-group my-3" role="group" aria-label="Basic example">
                   <a href="{{ $order->reference_link }}" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
                   <a href="report_order.php" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
@@ -64,8 +64,8 @@
           </div>
           <p class="mb-3 mt-3">{!! $order->additional_details !!}</p>
           <div class="btn-group mb-4" role="group" aria-label="Basic example">
-                <button onclick="printDiv('printableArea')" class="btn btn-blue btn-sm"><i class="fa fa-print fa-sm pr-2" aria-hidden="true"></i>Print</button>
-                <a href="{{ route('front.orders.pdf', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-file-pdf-o fa-sm pr-2"" aria-hidden="true"></i>Save as PDF</a>
+                <a href="{{ route('front.orders.pdf', $order->id) }}" class="btn btn-light-green btn-sm"><i class="fa fa-file-pdf-o fa-sm pr-2"" aria-hidden="true"></i>Save as PDF</a>
+                <button onclick="printDiv('printableArea')" class="btn btn-dark-green btn-sm"><i class="fa fa-print fa-sm pr-2" aria-hidden="true"></i>Print</button>
           </div>
 
         </div>        

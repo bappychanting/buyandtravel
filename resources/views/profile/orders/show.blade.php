@@ -39,7 +39,7 @@
               {!! Form::open(['route' => ['orders.destroy', $order->id], 'method'=>'delete']) !!}
                   <a href="{{ $order->reference_link }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Reference Link</a>
                   <a href="#offers" class="btn btn-blue btn-sm"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Offers</a>
-                  <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Order</a>
+                  <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-indigo btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Order</a>
                   {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-warning btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your order will disapper!', 'confirmButtonText'=>'Yes, delete order!', 'type'=>'submit')) !!}
               {!! Form::close() !!}
 
@@ -58,8 +58,8 @@
                     @endforeach  
                   </ul>
                   @if(count($order->images) < 5)
-                    <button type="button" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#updateimage">
-                      <i class="fa fa-cloud-upload fa-sm pr-2"" aria-hidden="true"></i>Add  a new image
+                    <button type="button" class="btn btn-cyan btn-sm" data-toggle="modal" data-target="#updateimage">
+                      <i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i>Add  a new image
                     </button>
                   @endif
                 </div>

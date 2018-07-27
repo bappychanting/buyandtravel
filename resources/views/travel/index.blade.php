@@ -55,7 +55,7 @@
               </div>
               <div class="btn-group" role="group" aria-label="Basic example">
                   <a href="{{ route('front.travel.show', $travel->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View More</a>
-                  <a href="add_request.php" class="btn btn-blue btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Request</a>
+                  <a href="add_request.php" class="btn btn-cyan btn-sm"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i>Add Request</a>
               </div>
               <!--Grid row-->
 

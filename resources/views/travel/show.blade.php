@@ -49,7 +49,7 @@
           </div>
           <div class="row my-3">
             <div class="col-md-12">
-              <a class="btn btn-primary btn-md" href="add_request.php"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Request</a>
+              <a class="btn btn-cyan btn-md" href="add_request.php"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Request</a>
             </div>
             <div class="col-md-12">
               <div class="btn-group mt-3" role="group" aria-label="Basic example">
@@ -64,8 +64,8 @@
           <p><strong>User Contact:</strong> {{ str_replace('-', '', $traveler->user->contact) }}</p>
           <p><strong>User Email:</strong> <a href="{{ $traveler->user->email }}">{{ $traveler->user->email }}</a></p>
           <div class="btn-group mb-4" role="group" aria-label="Basic example">
-                <button onclick="printDiv('printableArea')" class="btn btn-blue btn-sm"><i class="fa fa-print fa-sm pr-2" aria-hidden="true"></i>Print</button>
-                <a href="{{ route('front.travel.pdf', $traveler->id) }}" class="btn btn-blue btn-sm"><i class="fa fa-file-pdf-o fa-sm pr-2"" aria-hidden="true"></i>Save as PDF</a>
+                <a href="{{ route('front.travel.pdf', $traveler->id) }}" class="btn btn-light-green btn-sm"><i class="fa fa-file-pdf-o fa-sm pr-2"" aria-hidden="true"></i>Save as PDF</a>
+                <button onclick="printDiv('printableArea')" class="btn btn-dark-green btn-sm"><i class="fa fa-print fa-sm pr-2" aria-hidden="true"></i>Print</button>
           </div>
 
         </div>        
