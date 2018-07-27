@@ -165,7 +165,7 @@ $(document).ready(function(){
           text: text,
           type: "warning",
           showCancelButton: true,
-          confirmButtonColor: "#2196f3",
+          confirmButtonColor: "#f80",
           confirmButtonText: confirmButtonText,
           closeOnConfirm: false
       }, function(isConfirm){
