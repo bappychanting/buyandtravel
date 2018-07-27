@@ -49,4 +49,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Offer::class);
     }
+
+        // A User perticipated in many messages
+    public function messages()
+    {
+        return $this->hasMany(MessageParticipant::class);
+    }
 }

@@ -50,10 +50,4 @@ class Offer extends Model
     {
         return $this->hasOne(AcceptedOffer::class);
     }
-
-        // A offer can have many messages
-    public function messages()
-    {
-        return $this->hasMany(OfferMessage::class);
-    }
 }

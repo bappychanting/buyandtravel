@@ -38,7 +38,7 @@
               </p>
               {!! Form::open(['route' => ['orders.destroy', $order->id], 'method'=>'delete']) !!}
                   <a href="{{ $order->reference_link }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Reference Link</a>
-                  <a href="#offers" class="btn btn-blue btn-sm"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Offers</a>
+                  <a href="#offers" class="btn btn-primary btn-sm"><i class="fa fa-eye fa-sm pr-2"" aria-hidden="true"></i>View Offers</a>
                   <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-indigo btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Order</a>
                   {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-unique btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your order will disapper!', 'confirmButtonText'=>'Yes, delete order!', 'type'=>'submit')) !!}
               {!! Form::close() !!}
@@ -179,7 +179,7 @@
                   </div>
                   <div class="col-xl-2 col-lg-3 col-sm-3">
                     {!! Form::open(['route' => ['order.offer.remove', $order->accepted->id], 'method'=>'delete']) !!}
-                      {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Remove', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Once accepted offer is removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, remove accepted offer!', 'type'=>'submit')) !!}
+                      {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Remove', array('class' => 'btn btn-unique btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Once accepted offer is removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, remove accepted offer!', 'type'=>'submit')) !!}
                     {!! Form::close() !!}
                   </div>
                 </div>
@@ -270,7 +270,7 @@
             {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
               {!! Form::hidden('offer_id', '', ['id'=>'modal_offer_id']) !!}
               {!! Form::hidden('order_id', '', ['id'=>'modal_order_id']) !!}
-              {!! Form::button('Accept Offer', array('class' => 'btn btn-blue btn-sm form_warning_sweet_alert', 'id'=>'modal_accept_offer_btn', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit', 'disabled'=>'true')) !!}
+              {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'btn btn-indigo btn-sm form_warning_sweet_alert', 'id'=>'modal_accept_offer_btn', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit', 'disabled'=>'true')) !!}
               <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
             {!! Form::close() !!}
           </div>

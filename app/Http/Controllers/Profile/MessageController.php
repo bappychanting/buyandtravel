@@ -22,26 +22,26 @@ class MessageController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('profile.messages.index', compact('user'));
+        //return view('profile.messages.index', compact('user'));
     }
 
     public function offerMessages()
     {
         $offer = $this->offer->findOrFail($id);
         $user = Auth::user();
-        return view('profile.messages.index', compact('user', 'offer'));
+        //return view('profile.messages.index', compact('user', 'offer'));
     }
 
     public function showofferMessage($id)
     {
         $offer = $this->offer->findOrFail($id);
         $user = Auth::user();
-        return view('profile.messages.offer', compact('user','offer'));
+        //return view('profile.messages.offer', compact('user','offer'));
     }
 
     public function requestMessages()
     {
         $user = Auth::user();
-        return view('profile.messages.index', compact('user'));
+        //return view('profile.messages.index', compact('user'));
     }
 }
