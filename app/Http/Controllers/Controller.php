@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Storage;
+use App\MessageSubject;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -24,5 +25,13 @@ class Controller extends BaseController
         $image_resize->stream(); 
         Storage::disk('local')->put('public/'.$path.$filename, $image_resize, 'public');
         return 'storage/'.$path.$filename;
+    }
+
+    protected function createMessage($subject='New Offer Message'){
+        $newMessage = new MessageSubject();
+        $newMessage->subject = $subject;
+        $newMessage->save();
+        $message = $newMessage->orderBy('created_at', 'desc')->first();
+        return $message->id;
     }
 }

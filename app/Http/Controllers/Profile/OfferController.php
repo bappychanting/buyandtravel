@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Profile;
 use Carbon\Carbon;
-use App\MessageSubject;
 use App\Offer;
 use App\User;
 use App\Http\Requests\OfferRequest;
@@ -19,15 +18,13 @@ class OfferController extends Controller
 
     protected $offer;
     protected $user;
-    protected $message;
 
-    public function __construct(Offer $offer, User $user, MessageSubject $message)
+    public function __construct(Offer $offer, User $user)
     {
         $this->middleware('auth');
         $this->middleware('offer.owner')->only('show', 'edit');
         $this->offer = $offer;
         $this->user = $user;
-        $this->message = $message;
     }
 
     public function index()
@@ -56,14 +53,6 @@ class OfferController extends Controller
         return redirect(route('front.orders.index'))->with('info', array('To Add Offer'=>'Please select one of the following orders to add offer!'));
     }
 
-    private function createOfferMessage($subject='New Offer Message'){
-        $newMessage = $this->message;
-        $newMessage->subject = $subject;
-        $newMessage->save();
-        $message = $this->message->orderBy('created_at', 'desc')->first();
-        return $message->id;
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -74,7 +63,7 @@ class OfferController extends Controller
     {
         $input = $request->all();
         $input['delivery_date'] = Carbon::parse($input['delivery_date'])->format('Y-m-d');
-        $input['message_subject_id'] = $this->createOfferMessage($input['offer_message_subject']);
+        $input['message_subject_id'] = $this->createMessage($input['offer_message_subject']);
         $this->offer->create($input);
         return redirect(route('offers.index'))->with('success', array('Offer Added'=>'Offer has been added and delivered to the ordering user!'));
     }
