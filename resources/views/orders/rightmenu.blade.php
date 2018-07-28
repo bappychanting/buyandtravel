@@ -1,6 +1,6 @@
 <div class="col-lg-4">
 
-  <a class="btn btn-md btn-cyan btn-block mb-4" href="{{ route('orders.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Order</a>
+  <a class="btn btn-md blue-gradient btn-block mb-4" href="{{ route('orders.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Order</a>
 
   <!-- Search by keyword -->
   <div class="card card-cascade mb-4">

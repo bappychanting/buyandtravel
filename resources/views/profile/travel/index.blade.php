@@ -32,7 +32,7 @@
             <p>Here is your {{ empty($search) ? '' : 'searched' }} travel schdule and history</p>
 
             @if(empty($search))
-            <a class="btn btn-md btn-cyan" href="{{ route('travel.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
+            <a class="btn btn-md blue-gradient" href="{{ route('travel.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
             @else
             <a class="btn btn-sm btn-blue" href="{{ route('travel.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
             @endif

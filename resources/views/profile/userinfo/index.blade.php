@@ -63,18 +63,18 @@
                         @if ($errors->has('image'))
                             <p class="red-text mt-4">{{ $errors->first('image') }}</p>
                         @endif
-                        <a href="#" class="btn btn-blue btn-sm mt-4" data-toggle="modal" data-target="#updateimage">
+                        <button class="btn blue-gradient btn-sm mt-4" data-toggle="modal" data-target="#updateimage">
                           <i class="fa fa-cloud-upload fa-sm pr-2" aria-hidden="true"></i>Upload New Profile Picture
-                        </a>
+                        </button>
                       </div>
                       <div class="col-lg-8 mb-4">
                         @if($user->verified)
                             <h5><i class="fa fa-certificate fa-sm pr-2" aria-hidden="true"></i> Verification</h5>
                         @else
-                          <a href="#" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#verifyAccount">
+                          <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#verifyAccount">
                             <i class="fa fa-warning fa-sm pr-2" aria-hidden="true"></i>
                             Profile not yet verified
-                          </a>
+                          </button>
                         @endif
                       </div> 
                       <div class="col-lg-6 mb-4">                            
@@ -158,7 +158,7 @@
                           </div>
                       </div>
                       <div class="text-center mt-4">
-                          {{ Form::button('Upload Image <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-cyan mt-1 btn-md'] ) }}
+                          {{ Form::button('Upload Image <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn primary-color-dark mt-1 btn-md'] ) }}
                       </div>
 
                     {!! Form::close() !!}

@@ -1,6 +1,6 @@
 <div class="col-lg-4">
 
-  <a class="btn btn-md btn-cyan btn-block mb-4" href="{{ route('travel.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
+  <a class="btn btn-md blue-gradient btn-block mb-4" href="{{ route('travel.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Travel Schedule</a>
 
   <!-- Search by keyword -->
   <div class="card card-cascade mb-4">

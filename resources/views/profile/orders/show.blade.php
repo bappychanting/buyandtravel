@@ -58,7 +58,7 @@
                     @endforeach  
                   </ul>
                   @if(count($order->images) < 5)
-                    <button type="button" class="btn btn-cyan btn-sm" data-toggle="modal" data-target="#updateimage">
+                    <button type="button" class="btn blue-gradient btn-sm" data-toggle="modal" data-target="#updateimage">
                       <i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i>Add  a new image
                     </button>
                   @endif
@@ -241,7 +241,7 @@
                           </div>
                       </div>
                       <div class="text-center mt-4">
-                          {{ Form::button('Upload Image <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn btn-cyan mt-1 btn-md'] ) }}
+                          {{ Form::button('Upload Image <i class="fa fa-upload ml-1"></i>', ['type' => 'submit', 'class' => 'btn primary-color-dark mt-1 btn-md'] ) }}
                       </div>
                     {!! Form::close() !!}
                 </div>
