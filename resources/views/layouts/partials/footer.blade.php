@@ -42,12 +42,14 @@
 	                        <a href="#!"><i class="fa fa-envelope fa-sm pr-2" aria-hidden="true"></i>bappychanting@outlook.com</a>
 	                    </li>
 	                </ul>
-	                <ul class="list-inline">
-	                  <li class="list-inline-item"><i class="fa fa-facebook" aria-hidden="true"></i></li>
-	                  <li class="list-inline-item"><i class="fa fa-youtube-play" aria-hidden="true"></i></li>
-	                  <li class="list-inline-item"><i class="fa fa-twitter" aria-hidden="true"></i></li>
-	                  <li class="list-inline-item"><i class="fa fa-google-plus" aria-hidden="true"></i></li>
-	                </ul>
+	                <!--Facebook-->
+					<a class="fb-ic mr-3"><i class="fa fa-lg fa-facebook"> </i></a>
+					<!--Twitter-->
+					<a class="tw-ic mr-3"><i class="fa fa-lg fa-twitter"> </i></a>
+					<!--Google +-->
+					<a class="gplus-ic mr-3"><i class="fa fa-lg fa-google-plus"> </i></a>
+					<!--Youtube-->
+					<a class="yt-ic mr-3"><i class="fa fa-lg fa-youtube"> </i></a>
 	            </div>
 	            <!--/.Second column-->
 	        </div>

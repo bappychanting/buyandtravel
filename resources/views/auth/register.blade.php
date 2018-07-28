@@ -104,11 +104,11 @@
 
                     <div class="row my-3 d-flex justify-content-center">
                         <!--Facebook-->
-                        <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-facebook blue-text text-center"></i></button>
+                        <a type="button" class="btn-floating btn-fb"><i class="fa fa-facebook"></i></a>
                         <!--Twitter-->
-                        <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a"><i class="fa fa-twitter blue-text"></i></button>
+                        <a type="button" class="btn-floating btn-tw"><i class="fa fa-twitter"></i></a>
                         <!--Google +-->
-                        <button type="button" class="btn btn-white btn-rounded z-depth-1a"><i class="fa fa-google-plus blue-text"></i></button>
+                        <a type="button" class="btn-floating btn-gplus"><i class="fa fa-google-plus"></i></a>
                     </div>
                   </div>
                 {!! Form::close() !!}
