@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Storage;
 use App\MessageSubject;
+use App\MessageParticipant;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -27,11 +28,19 @@ class Controller extends BaseController
         return 'storage/'.$path.$filename;
     }
 
-    protected function createMessage($subject='New Offer Message'){
+    protected function createMessage($subject='New Message', $participants=array()){
         $newMessage = new MessageSubject();
         $newMessage->subject = $subject;
         $newMessage->save();
         $message = $newMessage->orderBy('created_at', 'desc')->first();
+        if(count($participants)>1){
+            foreach($participants as $participant){
+                $messageParticipants = new MessageParticipant();
+                $messageParticipants->message_subject_id = $message->id;
+                $messageParticipants->user_id = $participant;
+                $messageParticipants->save();
+            }
+        }
         return $message->id;
     }
 }

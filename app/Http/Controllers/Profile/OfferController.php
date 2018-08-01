@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     protected $offer;
     protected $user;
@@ -26,6 +21,11 @@ class OfferController extends Controller
         $this->offer = $offer;
         $this->user = $user;
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function index()
     {
@@ -63,7 +63,7 @@ class OfferController extends Controller
     {
         $input = $request->all();
         $input['delivery_date'] = Carbon::parse($input['delivery_date'])->format('Y-m-d');
-        $input['message_subject_id'] = $this->createMessage($input['offer_message_subject']);
+        $input['message_subject_id'] = $this->createMessage($input['offer_message_subject'], array($input['user_id'], $input['orderer_id']));
         $this->offer->create($input);
         return redirect(route('offers.index'))->with('success', array('Offer Added'=>'Offer has been added and delivered to the ordering user!'));
     }

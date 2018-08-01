@@ -18,4 +18,10 @@ class MessageSubject extends Model
     {
         return $this->hasMany(Message::class);
     }
+
+        // A MessageSubject has many participants
+    public function participants()
+    {
+        return $this->hasMany(MessageParticipant::class);
+    }
 }

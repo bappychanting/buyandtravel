@@ -132,7 +132,7 @@
                                       <button class="dropdown-item view_offer_details_button" data-offer="{{ $offer->id }}" data-order="{{ $order->id }}" data-toggle="modal" data-target="#viewOfferDetails">
                                         <i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Details
                                       </button>
-                                      <a class="dropdown-item" href="#" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
+                                      <a class="dropdown-item" href="{{ route('messages.show', $offer->message_subject_id) }}" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Offer Conversation</a>
                                       {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
                                       {!! Form::hidden('offer_id', $offer->id) !!}
                                       {!! Form::hidden('order_id', $order->id) !!}

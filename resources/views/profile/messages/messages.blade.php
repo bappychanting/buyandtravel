@@ -16,7 +16,7 @@
 			<ol class="breadcrumb blue-gradient">
 				<li class="breadcrumb-item"><a class="white-text" href="{{ route('buyandtravel') }}">Home</a></li>
 				<li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>User Content</li>
-				<li class="breadcrumb-item"><a class="white-text" href="{{ route('messages.all') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Messages</a></li>
+				<li class="breadcrumb-item"><a class="white-text" href="{{ route('messages.index') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Messages</a></li>
 				<li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Offer Conversation</li>
 			</ol>
 		</div>
@@ -28,84 +28,7 @@
 
             <!-- Content Column -->
             <div class="col-lg-10 mb-4">
-                <h2>Offer Conversation</h2>
-                
-                <h5 class="my-3 font-weight-bold">Overview</h5>
-                <!--Grid row-->
-                <div class="row mb-3">
-                    <!--Grid column-->
-                    <div class="col-xl-6 col-lg-6">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                          <i class="fa fa-user fa-sm pr-2"></i>
-                          <strong>Order Added By:</strong> {{ $offer->order->user->name }}
-                        </li>
-                        <li class="list-group-item">
-                          <i class="fa fa-shopping-cart fa-sm pr-2"></i>
-                          <strong>Product Name:</strong> {{ $offer->order->product_name }}
-                        </li>
-                        <li class="list-group-item">
-                          <i class="fa fa-dollar fa-sm pr-2"></i>
-                          <strong>Price Expected:</strong> {{ $offer->order->expected_price }}/=
-                        </li>
-                        <li class="list-group-item">
-                          <i class="fa fa-map-marker fa-sm pr-2"></i>
-                          <strong>Handover Location:</strong> {{ $offer->order->delivery_location }}
-                        </li>
-                      </ul>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-xl-6 col-lg-6">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                          <i class="fa fa-user fa-sm pr-2"></i>
-                          <strong>Offer Added By:</strong> 
-                          {{ $offer->user->name }}
-                        </li>
-                        <li class="list-group-item">
-                          <i class="fa fa-cart-plus fa-sm pr-2"></i>
-                          <strong>Quantity:</strong> 
-                          {{ str_replace('-', '', $offer->product_quantity) }}
-                        </li>
-                        <li class="list-group-item">
-                          <i class="fa fa-dollar fa-sm pr-2"></i>
-                          <strong>Asking Price:</strong> 
-                          {{ $offer->asking_price }}/=
-                        </li>
-                        <li class="list-group-item">
-                          <i class="fa fa-calendar-check-o fa-sm pr-2"></i>
-                          <strong>Delivery Date:</strong> 
-                          {{ date('l d F Y', strtotime($offer->delivery_date)) }}
-                        </li>
-                      </ul>
-                    </div>
-                    <!--Grid column-->
-                </div>
-                <!--Grid row-->
-
-                @if($user->id == $offer->user->id)
-                  <a class="btn btn-blue btn-sm" href="{{ route('offers.show', $offer->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Offer Details</a>
-                @else
-                    @if(empty($offer->accepted))
-                      {!! Form::open(['route' => ['order.offer.accept'], 'method'=>'post']) !!}
-                        {!! Form::hidden('offer_id', $offer->id) !!}
-                        {!! Form::hidden('order_id', $offer->order->id) !!}
-                        <a class="btn btn-blue btn-sm" href="{{ route('orders.show', $offer->order->id) }}" target="_blank">
-                          <i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order
-                        </a>
-                        {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Offer', array('class' => 'btn btn-success btn-sm form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit')) !!}
-                      {!! Form::close() !!} 
-                    @else
-                      {!! Form::open(['route' => ['order.offer.remove', $offer->accepted->id], 'method'=>'delete']) !!}
-                        <a class="btn btn-blue btn-sm" href="{{ route('orders.show', $offer->order->id) }}" target="_blank">
-                          <i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Order
-                        </a>
-                        {!! Form::button('<i class="fa fa-close fa-sm pr-2"" aria-hidden="true"></i>Reject Accpeted Offer', array('class' => 'btn btn-warning btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Once accepted offer is removed other offers will resurface and the order will reappear in the front page list!', 'confirmButtonText'=>'Yes, remove accepted offer!', 'type'=>'submit')) !!}
-                      {!! Form::close() !!}
-                    @endif
-                @endif
+                <h2>Offer Conversation</h2>         
 
                 <h4 class="my-3 font-weight-bold">Messages</h4>
 

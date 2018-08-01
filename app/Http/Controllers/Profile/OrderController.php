@@ -14,12 +14,6 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
     protected $order;
     protected $order_image;
     protected $accepted_offer;
@@ -37,6 +31,11 @@ class OrderController extends Controller
         $this->user = $user;
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $user = $this->user->find(Auth::user()->id);

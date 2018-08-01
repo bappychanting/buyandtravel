@@ -11,11 +11,6 @@ use App\Http\Controllers\Controller;
 
 class TravelController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     protected $travel;
     protected $user;
@@ -27,6 +22,12 @@ class TravelController extends Controller
         $this->travel = $travel;
         $this->user = $user;
     }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function index()
     {

@@ -67,6 +67,7 @@
               <div class="demo-masked-input">
 
                 {!! Form::hidden('user_id', $user->id) !!}
+                {!! Form::hidden('orderer_id', $order->user->id) !!}
                 {!! Form::hidden('order_id', $order->id) !!}
 
                 <div class="row" data-trigger="spinner">
