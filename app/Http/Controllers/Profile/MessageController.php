@@ -39,8 +39,7 @@ class MessageController extends Controller
     {
         $user = $this->user->find(Auth::user()->id);
         $search = \Request::get('search');
-        // $messages = $user->messages()->search($search)->orderBy('created_at', 'desc')->paginate(30);
-        return "okay";
+        return "to be developed";
     }
 
     /**
@@ -50,7 +49,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return back();
+        return "to be developed";
     }
 
     /**
@@ -73,7 +72,8 @@ class MessageController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        return view('profile.messages.messages', compact('user'));;
+        $conversation = $this->messageSubject->findOrFail($id);
+        return view('profile.messages.messages', compact('user', 'conversation'));;
     }
 
     /**
