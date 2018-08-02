@@ -64,36 +64,40 @@
 
                 <!-- Message -->
                 <div class="row">
-                    <div class="col-lg-1 mb-5">
-                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
-                    </div>
-                    <div class="col-lg-11 mb-5">
-                      <div class="card border border-info">
-                        <div class="card-body">
-                          Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                        </div>
-                        <div class="btn-group btn-group-sm my-3 mx-3" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-indigo btn-sm"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-unique btn-sm"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i></button>
-                        </div>
+                  <div class="col-lg-1 mb-5">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
+                  </div>
+                  <div class="col-lg-11 mb-5">
+                    <div class="card border border-info">
+                      <div class="card-body">
+                        <h6 class="font-weight-bold">Kamran</h6>
+                        <small class="grey-text">19th January, Sunday, 2.00 AM</small>
+                        <hr>
+                        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+                      </div>
+                      <div class="btn-group justify-content-end mb-3 mx-3" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-indigo btn-sm btn-rounded"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-unique btn-sm btn-rounded"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i></button>
                       </div>
                     </div>
                   </div>
+                </div>
                 <!-- Message -->
 
                 <!-- Message -->
                 <div class="row">
-                    <div class="col-lg-1 mb-5">
-                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
-                    </div>
-                    <div class="col-lg-11 mb-5">
-                      <div class="card border border-light">
-                        <div class="card-body">
-                          Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                        </div>
+                  <div class="col-lg-1 mb-5">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
+                  </div>
+                  <div class="col-lg-11 mb-5">
+                    <div class="card border border-light">
+                      <div class="card-body">
+                        <p class="">Kamran</p>
+                        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
                       </div>
                     </div>
                   </div>
+                </div>
                 <!-- Message -->
 
                 {!! Form::open(['method' => 'post', 'route' => ['orders.store']]) !!}
