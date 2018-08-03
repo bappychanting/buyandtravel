@@ -32,45 +32,14 @@
 
                 <h4 class="my-3 font-weight-bold">{{ $conversation->subject }}</h4><hr>
 
-                <small class="grey-text">
+                <small class="grey-text mr-3">
                   In this conversation
                 </small>
+                @foreach($conversation->participants as $participant)
                 <div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
+                  <img src="{{ file_exists($participant->user->avatar) ? asset($participant->user->avatar) : 'http://via.placeholder.com/450' }}" alt="{{ $participant->user->name }}"> {{ $participant->user->name }}
                 </div>
-                <div class="chip chip-md">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
-                </div>
-                <div class="chip chip-lg">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
-                </div>
-                <div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-                </div>
-                <div class="chip chip-md">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
-                </div>
-                <div class="chip chip-lg">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
-                </div>
-<div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-                </div>
-                <div class="chip chip-md">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
-                </div>
-                <div class="chip chip-lg">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
-                </div>
-<div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-                </div>
-                <div class="chip chip-md">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
-                </div>
-                <div class="chip chip-lg">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
-                </div>
+                @endforeach
 
                 <!-- Pagination -->
                 <nav aria-label="Page navigation example">
@@ -160,7 +129,9 @@
 
                 {!! Form::close() !!}
 
-                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
+                <div class="text-center my-5">
+                  <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
+                </div>
            
             </div>
         </div>
