@@ -32,6 +32,46 @@
 
                 <h4 class="my-3 font-weight-bold">{{ $conversation->subject }}</h4><hr>
 
+                <small class="grey-text">
+                  In this conversation
+                </small>
+                <div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
+                </div>
+                <div class="chip chip-md">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
+                </div>
+                <div class="chip chip-lg">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
+                </div>
+                <div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+                </div>
+                <div class="chip chip-md">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
+                </div>
+                <div class="chip chip-lg">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
+                </div>
+<div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+                </div>
+                <div class="chip chip-md">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
+                </div>
+                <div class="chip chip-lg">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
+                </div>
+<div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+                </div>
+                <div class="chip chip-md">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-10.jpg" alt="Contact Person"> Anna Smith
+                </div>
+                <div class="chip chip-lg">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="Contact Person"> Lara Lim
+                </div>
+
                 <!-- Pagination -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pg-blue justify-content-end">
@@ -76,8 +116,8 @@
                         Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
                       </div>
                       <div class="btn-group justify-content-end mb-3 mx-3" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-indigo btn-sm btn-rounded"><i class="fa fa-edit fa-sm pr-2"" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-unique btn-sm btn-rounded"><i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-indigo btn-sm btn-rounded"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-unique btn-sm btn-rounded"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </div>
                     </div>
                   </div>
@@ -119,6 +159,8 @@
                   </div>
 
                 {!! Form::close() !!}
+
+                <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
            
             </div>
         </div>
