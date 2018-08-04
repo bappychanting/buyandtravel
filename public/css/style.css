@@ -88,6 +88,11 @@ footer {
     border-color: #1e88e5;
 }
 
+.jquery_dropdown_result {
+    position: absolute;
+    z-index: 1050;
+}
+
 
 div.mce-fullscreen {
     z-index: 1050;

@@ -48,7 +48,15 @@
                           {!! Form::text('add_participants', null, ['class'=>'form-control', 'id'=>'add']) !!}
                           {!! Form::label('add', 'Add more participants') !!}
                       </div>
-                      <div id="participants_list"></div>
+                      <div id="participants_list">
+                        <!-- <ul class="list-group jquery_dropdown_result">
+                          <a href="#" class="list-group-item">Cras justo odio</a>
+                          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                          <a href="#" class="list-group-item">Morbi leo risus</a>
+                          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                          <a href="#" class="list-group-item">Vestibulum at eros</a>
+                        </ul> -->
+                      </div>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                       <div class="text-center mt-4">
