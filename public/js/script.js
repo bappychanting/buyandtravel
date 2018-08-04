@@ -139,6 +139,11 @@ $(document).ready(function(){
         'order_id': order
       },
       dataType: 'JSON',
+      beforeSend: function(){
+          $("#modal_offer_details").empty();
+          $("<center><i class='fa fa-spinner fa-spin my-5'></i></center>").show().appendTo("#modal_offer_details");
+          $("#modal_accept_offer_btn").prop("disabled",true);
+      },
       success:function(response){
         $('#modal_offer_id').val(offer);
         $('#modal_order_id').val(order);

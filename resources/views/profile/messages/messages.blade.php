@@ -119,7 +119,7 @@
                         <button type="button" class="btn btn-unique btn-sm btn-rounded"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </div>
                     </div>
-                    <small class="pull-right mt-3">&#10004; Viewed by me john, f.cennady</small>
+                    <small class="pull-right mt-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
                   </div>
                 </div>
                 <!-- Message -->
@@ -165,6 +165,40 @@
 
     </div>
     <!-- Contents -->
+
+    <!-- Viewers Modal -->
+    <div class="modal fade" id="viewers_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="viewDetailsTitle">Message viewed by...</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="message_viewers">
+              <div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+              </div>
+              <div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+              </div>
+              <div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+              </div>
+              <div class="chip">
+                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Viewers Modal -->
 
 @endsection
 
