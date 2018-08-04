@@ -40,6 +40,28 @@
                   <img src="{{ file_exists($participant->user->avatar) ? asset($participant->user->avatar) : 'http://via.placeholder.com/450' }}" alt="{{ $participant->user->name }}"> {{ $participant->user->name }}
                 </div>
                 @endforeach
+                {!! Form::open(['url' => '/profile/offers', 'method'=>'get']) !!}
+                  <div class="row mb-5">
+                    <div class="col-lg-4 col-md-4 col-sm-10 col-xs-12">
+                      <!-- Material input email -->
+                      <div class="md-form">
+                          {!! Form::text('add_participants', null, ['class'=>'form-control', 'id'=>'add']) !!}
+                          {!! Form::label('add', 'Add more participants') !!}
+                      </div>
+                      <div id="participants_list"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                      <div class="text-center mt-4">
+                        {!! Form::button('<i class="fa fa-plus"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div class="pull-right mt-4">
+                          <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
+                        </div>
+                    </div>
+                  </div>
+                {!! Form::close() !!}
 
                 <!-- Pagination -->
                 <nav aria-label="Page navigation example">
@@ -127,12 +149,7 @@
                     {!! Form::submit('Add', array('class' =>'btn btn-primary')) !!}
                   </div>
 
-                {!! Form::close() !!}
-
-                <div class="text-center my-5">
-                  <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
-                </div>
-           
+                {!! Form::close() !!}           
             </div>
         </div>
         <!-- /.row -->
