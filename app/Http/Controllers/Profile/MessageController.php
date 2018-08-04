@@ -60,7 +60,12 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(),[
+            'message' => 'required|max:5000'
+        ]);
+        $input = $request->all();
+        $this->message->create($input);
+        return redirect()->route('messages.show', $request->message_subject_id)->with('success', array('Success'=>'Message has been added!'));
     }
 
     /**
@@ -73,7 +78,8 @@ class MessageController extends Controller
     {
         $user = Auth::user();
         $conversation = $this->messageSubject->findOrFail($id);
-        return view('profile.messages.messages', compact('user', 'conversation'));;
+        $messages = $conversation->messages()->paginate(30);
+        return view('profile.messages.messages', compact('user', 'conversation', 'messages'));
     }
 
     /**
@@ -107,6 +113,8 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $message = $this->message->findOrFail($id);
+        $message->delete();
+        return redirect()->route('messages.show', $id)->with('success', array('Success'=>'Message has been deleted!'));
     }
 }

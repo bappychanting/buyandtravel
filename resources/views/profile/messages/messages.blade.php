@@ -74,84 +74,54 @@
                 <!-- Pagination -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination pg-blue justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                              <span class="sr-only">Next</span>
-                            </a>
-                        </li>
+                      <ul class="pagination pg-blue">
+                          {{ $messages->links() }}                 
+                      </ul>
                     </ul>
                 </nav>
                 <!-- End Pagination -->
-                @foreach($conversation->messages as $message)
-                  {{-- "Messages go here" --}}
+                @foreach($messages as $message)
+                  <!-- Message -->
+                  <div class="row">
+                    <div class="col-lg-1 mb-5">
+                      <img src="{{ file_exists($message->user->avatar) ? asset($message->user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
+                    </div>
+                    <div class="col-lg-11 mb-5">
+                      <div class="card border {{ $message->user->id == $user->id ? 'border-light'  : 'border-info' }}">
+                        <div class="card-body">
+                          <h6 class="font-weight-bold">{{ $message->user->name }}</h6>
+                          <small class="grey-text">{{ $message->created_at->format('l d F Y, h:i A') }}</small>
+                          <hr>
+                          {!! $message->message !!}
+                        </div>
+                        @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
+                          {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
+                            <div class="btn-group mb-3 mx-3" role="group" aria-label="Basic example">
+                              <button type="button" class="btn btn-indigo btn-sm btn-rounded" message-id="{{ $message->id }}"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+                              {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-unique btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your message will disappear!', 'confirmButtonText'=>'Yes, delete message!', 'type'=>'submit')) !!}
+                            </div>
+                          {!! Form::close() !!} 
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Message -->
                 @endforeach
+                <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
 
-                <!-- Message -->
-                <div class="row">
-                  <div class="col-lg-1 mb-5">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
-                  </div>
-                  <div class="col-lg-11 mb-5">
-                    <div class="card border border-info">
-                      <div class="card-body">
-                        <h6 class="font-weight-bold">Kamran</h6>
-                        <small class="grey-text">19th January, Sunday, 2.00 AM</small>
-                        <hr>
-                        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                      </div>
-                      <div class="btn-group justify-content-end mb-3 mx-3" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-indigo btn-sm btn-rounded"><i class="fa fa-edit"" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-unique btn-sm btn-rounded"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                      </div>
-                    </div>
-                    <small class="pull-right mt-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
-                  </div>
-                </div>
-                <!-- Message -->
-
-                <!-- Message -->
-                <div class="row">
-                  <div class="col-lg-1 mb-5">
-                    <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
-                  </div>
-                  <div class="col-lg-11 mb-5">
-                    <div class="card border border-light">
-                      <div class="card-body">
-                        <p class="">Kamran</p>
-                        Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Message -->
-
-                {!! Form::open(['method' => 'post', 'route' => ['orders.store']]) !!}
+                {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
 
                   {!! Form::hidden('user_id', $user->id) !!}
+                  {!! Form::hidden('message_subject_id', $conversation->id) !!}
 
                   <p class="font-weight-bold my-3">Add Message</p>
-                  @if ($errors->has('message_body'))
-                    <p class="red-text">{{ $errors->first('message_body') }}</p>
+                  @if ($errors->has('message'))
+                    <p class="red-text">{{ $errors->first('message') }}</p>
                   @endif
 
                   <!-- Material Editor -->
                   <div class="md-form">
-                    {!! Form::textarea('message_body', null, array('class'=>'editor')) !!}
+                    {!! Form::textarea('message', null, array('class'=>'editor')) !!}
                   </div>
 
                   <div class="text-center my-4">

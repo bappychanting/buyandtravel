@@ -73,11 +73,11 @@
 
             <!--Pagination-->
             <nav aria-label="pagination example">
-                <ul class="pagination pg-blue">
-                    {{-- $orders->links() --}}                 
-                  {{ $orders->appends(request()->input())->links() }}
-                </ul>
-              </nav> 
+              <ul class="pagination pg-blue">
+                  {{-- $orders->links() --}}                 
+                {{ $orders->appends(request()->input())->links() }}
+              </ul>
+            </nav> 
 
           </section>
           <!-- #ENDS# Orders -->
