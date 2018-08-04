@@ -119,6 +119,7 @@
                         <button type="button" class="btn btn-unique btn-sm btn-rounded"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       </div>
                     </div>
+                    <small class="pull-right mt-3">&#10004; Viewed by me john, f.cennady</small>
                   </div>
                 </div>
                 <!-- Message -->

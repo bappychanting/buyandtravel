@@ -43,10 +43,13 @@
 	                    </li>
 	                </ul>
 	                <!--Facebook-->
-	                <a class="badge badge-pill indigo mr-3"><i class="fa fa-facebook fa-2x" aria-hidden="true"></i></a>
-					<a class="badge badge-pill cyan mr-3"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
-					<a class="badge badge-pill red mr-3"><i class="fa fa-google-plus fa-2x" aria-hidden="true"></i></a>
-					<a class="badge badge-pill red mr-3"><i class="fa fa-youtube fa-2x" aria-hidden="true"></i></a>					
+	                <a type="button" class="btn-social btn-sm btn-fb mr-3"><i class="fa fa-facebook"></i></a>
+	                <!--Twitter-->
+					<a type="button" class="btn-social btn-sm btn-tw mr-3"><i class="fa fa-twitter"></i></a>
+					<!--Google +-->
+					<a type="button" class="btn-social btn-sm btn-gplus mr-3"><i class="fa fa-google-plus"></i></a>
+					<!--Youtube-->
+					<a type="button" class="btn-social btn-sm btn-yt mr-3"><i class="fa fa-youtube"></i></a>					
 	            </div>
 	            <!--/.Second column-->
 	        </div>
