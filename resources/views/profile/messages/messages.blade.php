@@ -84,7 +84,7 @@
                     </ul>
                 </nav>
                 <!-- End Pagination -->
-                @foreach($messages as $message)
+                @foreach($messages->reverse() as $message)
                   <!-- Message -->
                   <div class="row">
                     <div class="col-lg-1 mb-5">
@@ -112,9 +112,9 @@
                   <!-- Message -->
                 @endforeach
 
-                @if($messages->first()->user->id == $user->id)
+                @if($messages->onFirstPage() && $messages->first()->user->id == $user->id)
                   <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
-                @else
+                @elseif($messages->onFirstPage())
                   <div class="row mb-5">
                     <div class="col-lg-1">
                       <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
