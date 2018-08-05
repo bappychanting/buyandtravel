@@ -189,6 +189,7 @@
           <div class="modal-body">
             <div id="edit_message_area">
               {!! Form::open(['id' => 'edit_message_form', 'method' => 'put', 'route' => ['messages.update', null]]) !!}
+                <div id="edit_message_alert"></div>
                 <div class="md-form">
                   {!! Form::textarea('message', null, array('class'=>'editor', 'id'=>'edit_message_textarea')) !!}
                 </div>

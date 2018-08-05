@@ -103,7 +103,10 @@ class MessageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $message = $this->message->findOrFail($id);
+        $message->update($input);
+        return redirect()->route('messages.show', $message->message_subject_id)->with('success', array('Success'=>'Message has been updated!'));
     }
 
     /**

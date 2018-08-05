@@ -181,13 +181,18 @@ $(document).ready(function(){
         tinymce.get('edit_message_textarea').setContent("<center><i class='fa fa-spinner fa-spin my-5'></i></center>");
       },
       success:function(response){
-        // if(tinymce.get('edit_message_textarea').initialized){
         tinymce.get('edit_message_textarea').setContent(response);
         if(tinyMCE.get('edit_message_textarea').getContent().length > 0){
           $("#update_message_button").prop("disabled",false);
         }
       }
     });
+  });
+  $("#edit_message_form").submit(function(event) {
+    if($.trim(tinyMCE.get('edit_message_textarea').getContent()) == ''){
+      $("#edit_message_alert").empty().append('<p class="red-text">Your message can not be empty!</p>');
+      event.preventDefault();
+    }
   });
 
     //  Sweet alert for warning
