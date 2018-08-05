@@ -153,7 +153,7 @@
 
     <!-- Viewers Modal -->
     <div class="modal fade" id="viewers_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title w-100" id="viewDetailsTitle">Message viewed by...</h4>
@@ -162,20 +162,28 @@
             </button>
           </div>
           <div class="modal-body">
-            <div id="message_viewers">
-              <div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-              </div>
-              <div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-              </div>
-              <div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-              </div>
-              <div class="chip">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-              </div>
-            </div>
+            <ul class="list-group">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <div class="chip">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+                    </div>
+                    <small class="grey-text pull-right">{{ date('l d F Y, h:i A') }}</small>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="chip">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+                    </div>
+                    <small class="grey-text pull-right">{{ date('l d F Y, h:i A') }}</small>
+                  </li>
+                  <li class="list-group-item">
+                    <div class="chip">
+                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
+                    </div>
+                    <small class="grey-text pull-right">{{ date('l d F Y, h:i A') }}</small>
+                  </li>
+                </ul>
+            </ul>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
