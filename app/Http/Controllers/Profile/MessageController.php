@@ -37,9 +37,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $user = $this->user->find(Auth::user()->id);
         $search = \Request::get('search');
-        return "to be developed";
+        $user = $this->user->find(Auth::user()->id);
+        $messages = $user->messages()->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        return view('profile.messages.index', compact('user', 'messages', 'search'));
     }
 
     /**
@@ -48,6 +49,11 @@ class MessageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
+    {
+        return "to be developed";
+    }
+
+    public function getUsersList()
     {
         return "to be developed";
     }

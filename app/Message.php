@@ -12,7 +12,7 @@ class Message extends Model
 
     	
     	// Each Message belongs to a subject
-	public function subject()
+	public function message_subject()
 	{
 		return $this->belongsTo(MessageSubject::class);
 	}

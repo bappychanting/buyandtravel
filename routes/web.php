@@ -31,6 +31,7 @@ Route::group(['prefix' => 'travel'], function(){
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
+	Route::post('/messages/usersList', 'MessageController@getUsersList');
 	Route::resource('messages', 'MessageController');
 
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
