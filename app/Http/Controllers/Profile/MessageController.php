@@ -90,7 +90,8 @@ class MessageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $message = $this->message->findOrFail($id);
+        return json_encode($message->message);
     }
 
     /**

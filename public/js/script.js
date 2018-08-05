@@ -16,13 +16,17 @@ $(document).ready(function(){
 
   time = 0;
 
+    // Align footer
+
+  footerAlign();
+
     // Set all html selects as material select
 
   $('.mdb-select').material_select();
 
-    // Align footer
+    // Set TinyMce
 
-  footerAlign();
+  setTinyMce() 
 
     // Set when the loading screen will stop
 
@@ -157,6 +161,35 @@ $(document).ready(function(){
     });
   });
 
+    //  Edit message  
+
+  $('.edit_message_button').click(function() {
+    var message_id = $(this).data('message-id');
+    var action = $('#edit_message_form').attr('action');
+    $("#editMessageTitle").empty().append('Edit Message #'+message_id);
+    $('#edit_message_form').attr('action', action+'/'+message_id);
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+      }
+    });
+    $.ajax({
+      url: message_id+"/edit",
+      type: 'GET',
+      dataType: 'JSON',
+      beforeSend: function(){
+        tinymce.get('edit_message_textarea').setContent("<center><i class='fa fa-spinner fa-spin my-5'></i></center>");
+      },
+      success:function(response){
+        // if(tinymce.get('edit_message_textarea').initialized){
+        tinymce.get('edit_message_textarea').setContent(response);
+        if(tinyMCE.get('edit_message_textarea').getContent().length > 0){
+          $("#update_message_button").prop("disabled",false);
+        }
+      }
+    });
+  });
+
     //  Sweet alert for warning
 
   $('.form_warning_sweet_alert').on('click',function(e){
@@ -240,7 +273,7 @@ function printDiv(divName) {
 
   // Function for tinymce editor
 
-$(function () {
+function setTinyMce() {
     tinymce.init({
       // selector: 'textarea',
       // height: 300,
@@ -261,7 +294,7 @@ $(function () {
         '//www.tinymce.com/css/codepen.min.css'
       ]
      });
-});
+}
 
   // Function for looping notificaitons
 

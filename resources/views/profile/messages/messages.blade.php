@@ -30,7 +30,11 @@
             <div class="col-lg-10 mb-4">
                 <h2>Conversation</h2>         
 
-                <h4 class="my-3 font-weight-bold">{{ $conversation->subject }}</h4><hr>
+                <h4 class="my-3 font-weight-bold">
+                  {{ $conversation->subject }}
+                  <a class="btn btn-sm btn-blue pull-right" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh Messages</a>
+                </h4>
+                <hr>
 
                 <small class="grey-text mr-3">
                   In this conversation
@@ -97,7 +101,7 @@
                         @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
                           {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
                             <div class="btn-group mb-3 mx-3" role="group" aria-label="Basic example">
-                              <button type="button" class="btn btn-indigo btn-sm btn-rounded" message-id="{{ $message->id }}"><i class="fa fa-edit"" aria-hidden="true"></i></button>
+                              <button type="button" class="btn btn-indigo btn-sm btn-rounded edit_message_button" data-toggle="modal" data-target="#edit_message_modal" data-message-id="{{ $message->id }}"><i class="fa fa-edit"" aria-hidden="true"></i></button>
                               {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i>', array('class' => 'btn btn-unique btn-sm btn-rounded form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your message will disappear!', 'confirmButtonText'=>'Yes, delete message!', 'type'=>'submit')) !!}
                             </div>
                           {!! Form::close() !!} 
@@ -162,6 +166,36 @@
               <div class="chip">
                   <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
               </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Viewers Modal -->
+
+    <!-- Edit Message Modal -->
+    <div class="modal fade" id="edit_message_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="editMessageTitle"></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="edit_message_area">
+              {!! Form::open(['id' => 'edit_message_form', 'method' => 'put', 'route' => ['messages.update', null]]) !!}
+                <div class="md-form">
+                  {!! Form::textarea('message', null, array('class'=>'editor', 'id'=>'edit_message_textarea')) !!}
+                </div>
+                <div class="text-center my-4">
+                {!! Form::submit('Update', array('class' =>'btn btn-primary', 'id'=>'update_message_button', 'disabled'=>'true')) !!}
+                </div>
+              {!! Form::close() !!}
             </div>
           </div>
           <div class="modal-footer">
