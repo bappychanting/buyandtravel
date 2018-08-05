@@ -32,7 +32,6 @@
 
                 <h4 class="my-3 font-weight-bold">
                   {{ $conversation->subject }}
-                  <a class="btn btn-sm btn-blue pull-right" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh Messages</a>
                 </h4>
                 <hr>
 
@@ -46,7 +45,7 @@
                 @endforeach
                 {!! Form::open(['url' => '/profile/offers', 'method'=>'get']) !!}
                   <div class="row mb-5">
-                    <div class="col-lg-4 col-md-4 col-sm-10 col-xs-12">
+                    <div class="col-lg-3 col-md-10 col-sm-10 col-xs-12">
                       <!-- Material input email -->
                       <div class="md-form">
                           {!! Form::text('add_participants', null, ['class'=>'form-control', 'id'=>'add']) !!}
@@ -62,14 +61,15 @@
                         </ul> -->
                       </div>
                     </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
                       <div class="text-center mt-4">
                         {!! Form::button('<i class="fa fa-plus"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
                       </div>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                         <div class="pull-right mt-4">
                           <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
+                          <a class="btn btn-blue btn-sm" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh Messages</a>
                         </div>
                     </div>
                   </div>
@@ -111,30 +111,38 @@
                   </div>
                   <!-- Message -->
                 @endforeach
-                <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
 
-                @if($messages->last()->user->id != $user->id)
-                  {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
-
-                    {!! Form::hidden('user_id', $user->id) !!}
-                    {!! Form::hidden('message_subject_id', $conversation->id) !!}
-
-                    <p class="font-weight-bold my-3">Add Message</p>
-                    @if ($errors->has('message'))
-                      <p class="red-text">{{ $errors->first('message') }}</p>
-                    @endif
-
-                    <!-- Material Editor -->
-                    <div class="md-form">
-                      {!! Form::textarea('message', null, array('class'=>'editor')) !!}
+                @if($messages->last()->user->id == $user->id)
+                  <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
+                @else
+                  <div class="row mb-5">
+                    <div class="col-lg-1">
+                      <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
                     </div>
+                    <div class="col-lg-11">
+                      {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
 
-                    <div class="text-center my-4">
-                      {!! Form::submit('Add', array('class' =>'btn btn-primary')) !!}
+                        {!! Form::hidden('user_id', $user->id) !!}
+                        {!! Form::hidden('message_subject_id', $conversation->id) !!}
+
+                        <p class="font-weight-bold my-3">Add Message</p>
+                        @if ($errors->has('message'))
+                          <p class="red-text">{{ $errors->first('message') }}</p>
+                        @endif
+
+                        <!-- Material Editor -->
+                        <div class="md-form">
+                          {!! Form::textarea('message', null, array('class'=>'editor')) !!}
+                        </div>
+
+                        <div class="text-center my-4">
+                          {!! Form::submit('Add', array('class' =>'btn btn-primary')) !!}
+                        </div>
+
+                      {!! Form::close() !!}  
                     </div>
-
-                  {!! Form::close() !!}  
-                @endif         
+                  </div>
+                @endif           
             </div>
         </div>
         <!-- /.row -->
