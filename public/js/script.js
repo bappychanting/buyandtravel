@@ -190,8 +190,8 @@ $(document).ready(function(){
     });
   });
   $("#edit_message_form").submit(function(event) {
-    if($.trim(tinyMCE.get('edit_message_textarea').getContent()) == ''){
-      $("#edit_message_alert").empty().append('<p class="red-text">Your message can not be empty!</p>');
+    if($.trim(tinyMCE.get('edit_message_textarea').getContent()) == '' || tinyMCE.get('edit_message_textarea').getContent().length > 50000){
+      $("#edit_message_alert").empty().append('<p class="red-text">Make sure your message is not empty and has less than 50,000 characters!</p>');
       event.preventDefault();
     }
   });

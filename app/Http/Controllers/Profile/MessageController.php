@@ -61,7 +61,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(),[
-            'message' => 'required|max:5000'
+            'message' => 'required|max:50000'
         ]);
         $input = $request->all();
         $this->message->create($input);
