@@ -78,7 +78,8 @@ class MessageController extends Controller
     {
         $user = Auth::user();
         $conversation = $this->messageSubject->findOrFail($id);
-        $messages = $conversation->messages()->paginate(30);
+        // $messages = $conversation->messages()->paginate(15);
+        $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
         return view('profile.messages.messages', compact('user', 'conversation', 'messages'));
     }
 
