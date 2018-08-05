@@ -112,7 +112,7 @@
                   <!-- Message -->
                 @endforeach
 
-                @if($messages->last()->user->id == $user->id)
+                @if($messages->first()->user->id == $user->id)
                   <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
                 @else
                   <div class="row mb-5">
@@ -120,6 +120,7 @@
                       <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
                     </div>
                     <div class="col-lg-11">
+
                       {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
 
                         {!! Form::hidden('user_id', $user->id) !!}
