@@ -87,7 +87,7 @@
                       <img src="{{ file_exists($message->user->avatar) ? asset($message->user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
                     </div>
                     <div class="col-lg-11 mb-5">
-                      <div class="card border {{ $message->user->id == $user->id ? 'border-light'  : 'border-info' }}">
+                      <div class="card border message_area {{ $message->user->id == $user->id ? 'border-light'  : 'border-info' }}">
                         <div class="card-body">
                           <h6 class="font-weight-bold">{{ $message->user->name }}</h6>
                           <small class="grey-text">{{ $message->created_at->format('l d F Y, h:i A') }}</small>
@@ -109,26 +109,28 @@
                 @endforeach
                 <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
 
-                {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
+                @if($messages->last()->user->id != $user->id)
+                  {!! Form::open(['method' => 'post', 'route' => ['messages.store']]) !!}
 
-                  {!! Form::hidden('user_id', $user->id) !!}
-                  {!! Form::hidden('message_subject_id', $conversation->id) !!}
+                    {!! Form::hidden('user_id', $user->id) !!}
+                    {!! Form::hidden('message_subject_id', $conversation->id) !!}
 
-                  <p class="font-weight-bold my-3">Add Message</p>
-                  @if ($errors->has('message'))
-                    <p class="red-text">{{ $errors->first('message') }}</p>
-                  @endif
+                    <p class="font-weight-bold my-3">Add Message</p>
+                    @if ($errors->has('message'))
+                      <p class="red-text">{{ $errors->first('message') }}</p>
+                    @endif
 
-                  <!-- Material Editor -->
-                  <div class="md-form">
-                    {!! Form::textarea('message', null, array('class'=>'editor')) !!}
-                  </div>
+                    <!-- Material Editor -->
+                    <div class="md-form">
+                      {!! Form::textarea('message', null, array('class'=>'editor')) !!}
+                    </div>
 
-                  <div class="text-center my-4">
-                    {!! Form::submit('Add', array('class' =>'btn btn-primary')) !!}
-                  </div>
+                    <div class="text-center my-4">
+                      {!! Form::submit('Add', array('class' =>'btn btn-primary')) !!}
+                    </div>
 
-                {!! Form::close() !!}           
+                  {!! Form::close() !!}  
+                @endif         
             </div>
         </div>
         <!-- /.row -->
