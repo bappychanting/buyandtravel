@@ -181,7 +181,8 @@ $(document).ready(function(){
         tinymce.get('edit_message_textarea').setContent("<center><i class='fa fa-spinner fa-spin my-5'></i></center>");
       },
       success:function(response){
-        tinymce.get('edit_message_textarea').setContent(response);
+        $("#message_last_updated").empty().append('Message Last Updated: '+response['last_updated']);
+        tinymce.get('edit_message_textarea').setContent(response['message']);
         if(tinyMCE.get('edit_message_textarea').getContent().length > 0){
           $("#update_message_button").prop("disabled",false);
         }

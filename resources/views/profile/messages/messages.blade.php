@@ -195,6 +195,7 @@
             </button>
           </div>
           <div class="modal-body">
+            <small class="grey-text" id="message_last_updated"></small>
             <div id="edit_message_area">
               {!! Form::open(['id' => 'edit_message_form', 'method' => 'put', 'route' => ['messages.update', null]]) !!}
                 <div id="edit_message_alert"></div>

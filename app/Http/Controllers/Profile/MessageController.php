@@ -91,7 +91,7 @@ class MessageController extends Controller
     public function edit($id)
     {
         $message = $this->message->findOrFail($id);
-        return json_encode($message->message);
+        return json_encode(array('message'=>$message->message, 'last_updated'=>date('l d F Y, h:i A', strtotime($message->updated_at))));
     }
 
     /**
