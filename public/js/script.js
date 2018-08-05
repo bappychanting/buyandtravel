@@ -163,9 +163,9 @@ $(document).ready(function(){
 
     //  Edit message  
 
+  var action = $('#edit_message_form').attr('action');
   $('.edit_message_button').click(function() {
     var message_id = $(this).data('message-id');
-    var action = $('#edit_message_form').attr('action');
     $("#editMessageTitle").empty().append('Edit Message #'+message_id);
     $('#edit_message_form').attr('action', action+'/'+message_id);
     $.ajaxSetup({
