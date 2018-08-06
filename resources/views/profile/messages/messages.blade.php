@@ -112,7 +112,7 @@
                   <!-- Message -->
                 @endforeach
 
-                @if($messages->onFirstPage() && $messages->first()->user->id == $user->id)
+                @if(count($messages) > 0 && $messages->onFirstPage() && $messages->first()->user->id == $user->id)
                   <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
                 @elseif($messages->onFirstPage())
                   <div class="row mb-5">

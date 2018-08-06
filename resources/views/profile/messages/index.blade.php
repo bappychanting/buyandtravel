@@ -35,45 +35,47 @@
                   <a class="btn btn-sm btn-blue" href="{{ route('messages.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
               @endif
               {!! Form::open(['url' => '/profile/messages', 'method'=>'get']) !!}
-              <div class="row mb-5">
-                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                  <!-- Material input email -->
-                  <div class="md-form">
-                      {!! Form::text('search', $search, ['class'=>'form-control', 'id'=>'search']) !!}
-                      {!! Form::label('search', 'Search Messages') !!}
+                <div class="row mb-5">
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                    <!-- Material input email -->
+                    <div class="md-form">
+                        {!! Form::text('search', $search, ['class'=>'form-control', 'id'=>'search']) !!}
+                        {!! Form::label('search', 'Search Messages') !!}
+                    </div>
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                    <div class="text-center mt-4">
+                      {!! Form::button('<i class="fa fa-search"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+                    </div>
                   </div>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                  <div class="text-center mt-4">
-                    {!! Form::button('<i class="fa fa-search"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+              {!! Form::close() !!}
+
+              @foreach($messages as $message)
+                <a href="{{ route('messages.show', $message->message_subject->id) }}" target="_blank">
+                  <div class="row mb-5">
+                    <div class="col-lg-1">
+                      <img src="{{ file_exists($message->message_subject->participants->first()->user->avatar) ? asset($message->message_subject->participants->first()->user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
+                    </div>
+                    <div class="col-lg-11">
+                      <div class="card">
+                        <div class="card-body {{ $message->message_subject->participants->first()->user->id == $user->id ? 'grey'  : 'blue' }} white-text">
+                          {{ $message->message_subject->subject }} 
+                        </div>
+                      </div> 
+                    </div>
                   </div>
-                </div>
-              </div>
-            {!! Form::close() !!}
-              <div class="row mb-5">
-                <div class="col-lg-1">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg" class="img-fluid rounded-circle z-depth-0">
-                </div>
-                <div class="col-lg-11">
-                  <div class="card">
-                    <div class="card-body blue white-text">
-                      Eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas? 
-                    </div>
-                  </div> 
-                </div>
-              </div>
-              <div class="row mb-5">
-                <div class="col-lg-1">
-                  <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" class="img-fluid rounded-circle z-depth-0">
-                </div>
-                <div class="col-lg-11">
-                  <div class="card">
-                    <div class="card-body grey white-text">
-                      Quis autem vel eum iure reprehenderit ...
-                    </div>
-                  </div> 
-                </div>
-              </div>
+                </a>
+              @endforeach
+
+              <!-- Pagination -->
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination pg-blue justify-content-end">
+                    <ul class="pagination pg-blue">
+                        {{ $messages->links() }}                 
+                    </ul>
+                  </ul>
+              </nav>
             </div> 
            
           </div>

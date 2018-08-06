@@ -20,10 +20,7 @@ class MessageParticipant extends Model
         } else {
     		return $query->WhereHas('message_subject', function ($query) use($search){
 					       $query->where('subject', 'LIKE', '%' . $search . '%'
-                        )
-	                    ->orWhereHas('user', function ($query) use($search){
-                        	$query->where('name', 'LIKE', '%' . $search . '%');
-                    	});
+                        );
 					})
 					->whereNull("deleted_at");
         }
