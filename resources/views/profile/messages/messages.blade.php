@@ -43,27 +43,25 @@
                   <img src="{{ file_exists($participant->user->avatar) ? asset($participant->user->avatar) : 'http://via.placeholder.com/450' }}" alt="{{ $participant->user->name }}"> {{ $participant->user->name }}
                 </div>
                 @endforeach
-                {!! Form::open(['url' => '/profile/offers', 'method'=>'get']) !!}
                   <div class="row mb-5">
                     <div class="col-lg-3 col-md-10 col-sm-10 col-xs-12">
                       <!-- Material input email -->
                       <div class="md-form">
-                          {!! Form::text('add_participants', null, ['class'=>'form-control', 'id'=>'add']) !!}
-                          {!! Form::label('add', 'Add more participants') !!}
+                          {!! Form::text('user', null, ['class'=>'form-control', 'id'=>'add_participant']) !!}
+                          {!! Form::label('add_participant', 'Add more participants') !!}
                       </div>
-                      <div id="participants_list">
-                        <!-- <ul class="list-group jquery_dropdown_result">
-                          <a href="#" class="list-group-item">Cras justo odio</a>
-                          <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                          <a href="#" class="list-group-item">Morbi leo risus</a>
-                          <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                          <a href="#" class="list-group-item">Vestibulum at eros</a>
-                        </ul> -->
-                      </div>
+                      <ul class="list-group jquery_dropdown_result" id="participants_list"></ul>
+                      <!-- 
+                        <a href="#" class="list-group-item">Cras justo odio</a>
+                        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                        <a href="#" class="list-group-item">Morbi leo risus</a>
+                        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                        <a href="#" class="list-group-item">Vestibulum at eros</a> 
+                      -->
                     </div>
                     <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
                       <div class="text-center mt-4">
-                        {!! Form::button('<i class="fa fa-plus"></i>', array('type' => 'submit', 'class' =>'btn btn-primary btn-sm')) !!}
+                        {!! Form::button('<i class="fa fa-plus"></i>', array('id'=>'add_participant_button', 'class' =>'btn btn-primary btn-sm')) !!}
                       </div>
                     </div>
                     <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
@@ -73,7 +71,6 @@
                         </div>
                     </div>
                   </div>
-                {!! Form::close() !!}
 
                 <!-- Pagination -->
                 <nav aria-label="Page navigation example">

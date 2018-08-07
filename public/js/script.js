@@ -196,6 +196,35 @@ $(document).ready(function(){
     }
   });
 
+    //  Get list of users
+
+  $('#add_participant').keyup(function() {
+    var pathname = window.location.pathname;
+    var user = $(this).val();
+    if (user.length >= 2 ) {
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+        }
+      });
+      $.ajax({
+        url: pathname+"/userslist",
+        type: 'POST',
+        data: {'user': user},
+        dataType: 'JSON',
+        success:function(response){
+          $("#participants_list").empty();
+          for( var i = 0; i<response.length; i++){
+            $("#participants_list").append("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>");
+          }
+        }
+      });
+    }
+    else{
+      $("#participants_list").empty();
+    }
+  });
+
     //  Sweet alert for warning
 
   $('.form_warning_sweet_alert').on('click',function(e){
