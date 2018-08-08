@@ -55,4 +55,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(MessageParticipant::class);
     }
+
+        // A User viewed many messages
+    public function viewed()
+    {
+        return $this->hasMany(MessageViewer::class);
+    }
 }

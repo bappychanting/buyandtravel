@@ -22,4 +22,10 @@ class Message extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+
+		// Each Message has multiple viewers
+	public function viewers()
+	{
+		return $this->hasMany(MessageViewer::class);
+	}
 }

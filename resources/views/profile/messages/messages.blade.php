@@ -101,7 +101,16 @@
                 @endforeach
 
                 @if(count($messages) > 0 && $messages->onFirstPage() && $messages->first()->user->id == $user->id)
-                  <small class="pull-right mb-3"><a data-toggle="modal" data-target="#viewers_modal">&#10004; Viewed by me john, f.cennady and 6 others</a></small>
+                  <small class="pull-right mb-3">
+                    <a data-toggle="modal" data-target="#viewers_modal">
+                      &#10004; Viewed by
+                      @foreach($messages->first()->viewers as $viewer)
+                        {{ $viewer->user->name }}
+                        @if($loop->iteration == 2) @php break; @endphp @endif
+                      @endforeach 
+                      and {{ count($messages->first()->viewers) - 2 }} others...
+                    </a>
+                  </small>
                 @elseif($messages->onFirstPage())
                   <div class="row mb-5">
                     <div class="col-lg-1">
@@ -141,7 +150,7 @@
 
     <!-- Viewers Modal -->
     <div class="modal fade" id="viewers_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title w-100" id="viewDetailsTitle">Message viewed by...</h4>
@@ -152,24 +161,15 @@
           <div class="modal-body">
             <ul class="list-group">
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
-                    <div class="chip">
-                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-                    </div>
-                    <small class="grey-text pull-right">{{ date('l d F Y, h:i A') }}</small>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="chip">
-                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-                    </div>
-                    <small class="grey-text pull-right">{{ date('l d F Y, h:i A') }}</small>
-                  </li>
-                  <li class="list-group-item">
-                    <div class="chip">
-                      <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="Contact Person"> John Doe
-                    </div>
-                    <small class="grey-text pull-right">{{ date('l d F Y, h:i A') }}</small>
-                  </li>
+                  @foreach($messages->first()->viewers as $viewer)
+                    <li class="list-group-item">
+                      <div class="chip">
+                        <img src="{{ file_exists($viewer->user->avatar) ? asset($viewer->user->avatar) : 'http://via.placeholder.com/450' }}" alt="{{ $viewer->user->name }}"> 
+                        {{ $viewer->user->name }}
+                      </div>
+                      <small class="grey-text pull-right">{{ $viewer->created_at->format('l d F Y, h:i A') }}</small>
+                    </li>
+                  @endforeach 
                 </ul>
             </ul>
           </div>

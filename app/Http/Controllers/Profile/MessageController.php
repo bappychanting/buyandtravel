@@ -95,6 +95,12 @@ class MessageController extends Controller
         $user = Auth::user();
         $conversation = $this->messageSubject->findOrFail($id);
         $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
+        if($messages->onFirstPage() && !$messages->first()->viewers->contains('user_id', Auth::user()->id)){
+            $view = $this->messageView;
+            $view->message_id = $messages->first()->id;
+            $view->user_id = Auth::user()->id;
+            $view->save();
+        } 
         return view('profile.messages.messages', compact('user', 'conversation', 'messages'));
     }
 
