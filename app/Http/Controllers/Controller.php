@@ -33,7 +33,7 @@ class Controller extends BaseController
         $newMessage->subject = $subject;
         $newMessage->save();
         $message = $newMessage->orderBy('created_at', 'desc')->first();
-        if(count($participants)>1){
+        if(count($participants)>0){
             foreach($participants as $participant){
                 $messageParticipants = new MessageParticipant();
                 $messageParticipants->message_subject_id = $message->id;

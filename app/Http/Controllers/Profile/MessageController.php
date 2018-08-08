@@ -59,13 +59,28 @@ class MessageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new message subject.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return "to be developed";
+        $user = $this->user->find(Auth::user()->id);
+        return view('profile.messages.create', compact('user'));
+    }
+
+    /**
+     * Show the form for store a new subject.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeSubject(Request $request)
+    {
+        $this->validate(request(),[
+            'subject' => 'required|max:500'
+        ]);
+        $message_id = $this->createMessage($request['subject'], array($request['user_id']));
+        return redirect(route('messages.show', $message_id))->with('success', array('Message Create'=>'Message has been created! Please add some participants!'));
     }
 
     /**
@@ -95,7 +110,7 @@ class MessageController extends Controller
         $user = Auth::user();
         $conversation = $this->messageSubject->findOrFail($id);
         $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
-        if($messages->onFirstPage() && !$messages->first()->viewers->contains('user_id', Auth::user()->id)){
+        if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('user_id', Auth::user()->id)){
             $view = $this->messageView;
             $view->message_id = $messages->first()->id;
             $view->user_id = Auth::user()->id;
@@ -176,7 +191,7 @@ class MessageController extends Controller
     {
         $messageParticipant = $this->messageParticipant;
         $messageParticipant->where('message_subject_id', '=', $id)->where('user_id', '=', Auth::user()->id)->delete();
-        return redirect()->route('messages.index')->with('warning', array('Warning'=> 'You have removed yourself from this coversation!'));
+        return redirect()->route('messages.index')->with('success', array('Success'=> 'You have removed yourself from this coversation!'));
     }
 
     /**

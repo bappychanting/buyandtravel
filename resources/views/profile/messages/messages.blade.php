@@ -71,10 +71,10 @@
                       </ul>
                     </ul>
                 </nav>
+                <div class="row">
                 <!-- End Pagination -->
                 @foreach($messages->reverse() as $message)
                   <!-- Message -->
-                  <div class="row">
                     <div class="col-lg-1 mb-5">
                       <img src="{{ file_exists($message->user->avatar) ? asset($message->user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
                     </div>
@@ -96,23 +96,24 @@
                         @endif
                       </div>
                     </div>
-                  </div>
                   <!-- Message -->
                 @endforeach
 
-                @if(count($messages) > 0 && $messages->onFirstPage() && $messages->first()->user->id == $user->id)
-                  <small class="pull-right mb-3">
-                    <a data-toggle="modal" data-target="#viewers_modal">
-                      &#10004; Viewed by
-                      @foreach($messages->first()->viewers as $viewer)
-                        {{ $viewer->user->name }}
-                        @if($loop->iteration == 2) @php break; @endphp @endif
-                      @endforeach 
-                      and {{ count($messages->first()->viewers) - 2 }} others...
-                    </a>
-                  </small>
-                @elseif($messages->onFirstPage())
-                  <div class="row mb-5">
+                @if($messages->onFirstPage() && $messages->isNotEmpty() && $messages->first()->viewers->isNotEmpty())
+                  <div class="col-lg-12">
+                    <small class="pull-right mb-3">
+                      <a data-toggle="modal" data-target="#viewers_modal">
+                        &#10004; Viewed by
+                        @foreach($messages->first()->viewers as $viewer)
+                          {{ $viewer->user->name }}, 
+                          @if($loop->iteration == 2) @php break; @endphp @endif
+                        @endforeach 
+                        {{ count($messages->first()->viewers) > 2 ? 'and '.(count($messages->first()->viewers) - 2).' others' : '' }}
+                      </a>
+                    </small>
+                  </div>
+                @endif  
+                @if($messages->isEmpty() || $messages->onFirstPage() && $messages->isNotEmpty() && $messages->first()->user->id != $user->id)
                     <div class="col-lg-1">
                       <img src="{{ file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
                     </div>
@@ -139,8 +140,8 @@
 
                       {!! Form::close() !!}  
                     </div>
-                  </div>
-                @endif           
+                @endif 
+              </div>          
             </div>
         </div>
         <!-- /.row -->
@@ -148,6 +149,7 @@
     </div>
     <!-- Contents -->
 
+    @if($messages->isNotEmpty())
     <!-- Viewers Modal -->
     <div class="modal fade" id="viewers_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
@@ -161,15 +163,15 @@
           <div class="modal-body">
             <ul class="list-group">
                 <ul class="list-group list-group-flush">
-                  @foreach($messages->first()->viewers as $viewer)
-                    <li class="list-group-item">
-                      <div class="chip">
-                        <img src="{{ file_exists($viewer->user->avatar) ? asset($viewer->user->avatar) : 'http://via.placeholder.com/450' }}" alt="{{ $viewer->user->name }}"> 
-                        {{ $viewer->user->name }}
-                      </div>
-                      <small class="grey-text pull-right">{{ $viewer->created_at->format('l d F Y, h:i A') }}</small>
-                    </li>
-                  @endforeach 
+                    @foreach($messages->first()->viewers as $viewer)
+                      <li class="list-group-item">
+                        <div class="chip">
+                          <img src="{{ file_exists($viewer->user->avatar) ? asset($viewer->user->avatar) : 'http://via.placeholder.com/450' }}" alt="{{ $viewer->user->name }}"> 
+                          {{ $viewer->user->name }}
+                        </div>
+                        <small class="grey-text pull-right">{{ $viewer->created_at->format('l d F Y, h:i A') }}</small>
+                      </li>
+                    @endforeach
                 </ul>
             </ul>
           </div>
@@ -180,6 +182,7 @@
       </div>
     </div>
     <!-- Viewers Modal -->
+    @endif 
 
     <!-- Edit Message Modal -->
     <div class="modal fade" id="edit_message_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

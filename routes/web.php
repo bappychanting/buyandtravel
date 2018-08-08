@@ -32,6 +32,7 @@ Route::group(['prefix' => 'travel'], function(){
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
 	Route::resource('messages', 'MessageController');
+	Route::post('/messages/storesubject', 'MessageController@storeSubject')->name('messages.store.subject');
 	Route::post('/messages/{id}/userslist', 'MessageController@getUsersList');
 	Route::get('/messages/{id}/addparticipant/{user}', 'MessageController@addParticipant');
 	Route::delete('/messages/{id}/removeparticipant', 'MessageController@removeParticipant')->name('message.remove');
