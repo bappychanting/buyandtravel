@@ -196,7 +196,7 @@ $(document).ready(function(){
     }
   });
 
-    //  Get list of users
+    //  Get list of users and add participant
 
   $('#add_participant').keyup(function() {
     var pathname = window.location.pathname;
@@ -213,10 +213,28 @@ $(document).ready(function(){
         data: {'user': user},
         dataType: 'JSON',
         success:function(response){
-          $("#participants_list").empty();
+          $(".jquery_dropdown_result").empty();
           for( var i = 0; i<response.length; i++){
-            $("#participants_list").append("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>");
+            $(".jquery_dropdown_result").append("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>");
           }
+          /*$(".jquery_dropdown_result").on('click', '.users', function() {
+              user_id = $(this).attr("href");
+              $.ajaxSetup({
+                headers: {
+                  'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                }
+              });
+              $.ajax({
+                url:  pathname+"/addparticipant",
+                type: 'POST',
+                data: {user_id:user_id},
+                dataType: 'JSON',
+                success:function(response){
+                  location.reload();  
+                }
+            });
+              event.preventDefault();
+          });*/
         }
       });
     }

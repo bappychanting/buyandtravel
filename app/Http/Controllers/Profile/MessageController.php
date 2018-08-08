@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Profile;
+use Session;
 use App\Message;
 use App\MessageSubject;
 use App\MessageParticipant;
@@ -53,14 +54,18 @@ class MessageController extends Controller
         return "to be developed";
     }
 
-    public function getUsersList(Request $request, $id)
-    {
+    private function getParticipants($id){
         $conversation = $this->messageSubject->findOrFail($id);
         $allParticipants = array();
         foreach($conversation->participants as $participants){ 
             array_push($allParticipants, $participants->user->id);
         }
-        return $this->user->whereNotIn('id', $allParticipants)
+        return $allParticipants;
+    }
+
+    public function getUsersList(Request $request, $id)
+    {
+        return $this->user->whereNotIn('id', $this->getParticipants($id))
                             ->where(function ($query) use ($request) {
                                 $query
                                     ->where('username', $request->user)
@@ -70,9 +75,17 @@ class MessageController extends Controller
                             ->take(30)->get()->toJson();
     }
 
-    public function addParticipant($id)
+    public function addParticipant($id, $user)
     {
-        return "to be developed";
+        if (in_array(Auth::user()->id, $this->getParticipants($id)) && !in_array($user, $this->getParticipants($id))){
+            $messageParticipant = $this->messageParticipant;
+            $messageParticipant->message_subject_id = $id;
+            $messageParticipant->user_id = $user;
+            $messageParticipant->save();
+            $user = $this->user->findOrFail($user);
+            return redirect()->back()->with('success', array('Success'=> $user->name.' has been added to this conversation!'));
+        }
+        return redirect()->back()->with('error', array('Error'=> 'There has been a problem while performing this action!'));
     }
 
     /**

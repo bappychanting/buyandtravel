@@ -43,32 +43,21 @@
                   <img src="{{ file_exists($participant->user->avatar) ? asset($participant->user->avatar) : 'http://via.placeholder.com/450' }}" alt="{{ $participant->user->name }}"> {{ $participant->user->name }}
                 </div>
                 @endforeach
-                  <div class="row mb-5">
-                    <div class="col-lg-3 col-md-10 col-sm-10 col-xs-12">
-                      <!-- Material input email -->
-                      <div class="md-form">
-                          {!! Form::text('user', null, ['class'=>'form-control', 'id'=>'add_participant']) !!}
-                          {!! Form::label('add_participant', 'Add more participants') !!}
-                      </div>
-                      <ul class="list-group jquery_dropdown_result" id="participants_list"></ul>
-                      <!-- 
-                        <a href="#" class="list-group-item">Cras justo odio</a>
-                        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                        <a href="#" class="list-group-item">Morbi leo risus</a>
-                        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                        <a href="#" class="list-group-item">Vestibulum at eros</a> 
-                      -->
+                <div class="row mb-5">
+                  <div class="col-lg-4 col-md-12 col-sm-10 col-xs-12">
+                    <!-- Material input email -->
+                    <div class="md-form">
+                        <i class="fa fa-plus prefix grey-text"></i>
+                        {!! Form::text('user', null, ['class'=>'form-control', 'id'=>'add_participant']) !!}
+                        {!! Form::label('add_participant', 'Add more participants') !!}
                     </div>
-                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-12">
-                      <div class="text-center mt-4">
-                        {!! Form::button('<i class="fa fa-plus"></i>', array('id'=>'add_participant_button', 'class' =>'btn btn-primary btn-sm')) !!}
+                    <ul class="list-group jquery_dropdown_result"></ul>
+                  </div>
+                  <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                      <div class="pull-right mt-4">
+                        <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
+                        <a class="btn btn-blue btn-sm" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh Messages</a>
                       </div>
-                    </div>
-                    <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                        <div class="pull-right mt-4">
-                          <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
-                          <a class="btn btn-blue btn-sm" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh Messages</a>
-                        </div>
                     </div>
                   </div>
 
