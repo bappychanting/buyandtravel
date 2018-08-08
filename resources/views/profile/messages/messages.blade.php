@@ -48,16 +48,18 @@
                     <!-- Material input email -->
                     <div class="md-form">
                         <i class="fa fa-plus prefix grey-text"></i>
-                        {!! Form::text('user', null, ['class'=>'form-control', 'id'=>'add_participant']) !!}
-                        {!! Form::label('add_participant', 'Add more participants') !!}
+                        <input type="text" class="form-control" id="add_participant">
+                        <label for="add_participant">Add more participants</label>
                     </div>
                     <ul class="list-group jquery_dropdown_result"></ul>
                   </div>
                   <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                     {!! Form::open(['route' => ['message.remove', $conversation->id], 'method'=>'delete']) !!}
                       <div class="pull-right mt-4">
-                        <a href="#" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Remove yourself from this conversation</a>
+                        {!! Form::button('<i class="fa fa-exclamation-triangle fa-sm pr-2"" aria-hidden="true"></i>Remove yourself from this conversation', array('class' => 'btn btn-warning btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'You can not view this conversation anymore!', 'confirmButtonText'=>'Yes, remove me!', 'type'=>'submit')) !!}
                         <a class="btn btn-blue btn-sm" href="{{ route('messages.show', $conversation->id) }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh Messages</a>
                       </div>
+                      {!! Form::close() !!}
                     </div>
                   </div>
 

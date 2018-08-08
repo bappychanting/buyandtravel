@@ -239,7 +239,7 @@ $(document).ready(function(){
       });
     }
     else{
-      $("#participants_list").empty();
+      $(".jquery_dropdown_result").empty();
     }
   });
 

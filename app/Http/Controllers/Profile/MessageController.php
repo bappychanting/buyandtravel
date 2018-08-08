@@ -32,6 +32,20 @@ class MessageController extends Controller
     }
 
     /**
+     * Get all participants
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function getParticipants($id){
+        $conversation = $this->messageSubject->findOrFail($id);
+        $allParticipants = array();
+        foreach($conversation->participants as $participants){ 
+            array_push($allParticipants, $participants->user->id);
+        }
+        return $allParticipants;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -52,40 +66,6 @@ class MessageController extends Controller
     public function create()
     {
         return "to be developed";
-    }
-
-    private function getParticipants($id){
-        $conversation = $this->messageSubject->findOrFail($id);
-        $allParticipants = array();
-        foreach($conversation->participants as $participants){ 
-            array_push($allParticipants, $participants->user->id);
-        }
-        return $allParticipants;
-    }
-
-    public function getUsersList(Request $request, $id)
-    {
-        return $this->user->whereNotIn('id', $this->getParticipants($id))
-                            ->where(function ($query) use ($request) {
-                                $query
-                                    ->where('username', $request->user)
-                                    ->orWhere('email', $request->user)
-                                    ->orWhere('name', 'LIKE', '%' . $request->user . '%');
-                            })
-                            ->take(30)->get()->toJson();
-    }
-
-    public function addParticipant($id, $user)
-    {
-        if (in_array(Auth::user()->id, $this->getParticipants($id)) && !in_array($user, $this->getParticipants($id))){
-            $messageParticipant = $this->messageParticipant;
-            $messageParticipant->message_subject_id = $id;
-            $messageParticipant->user_id = $user;
-            $messageParticipant->save();
-            $user = $this->user->findOrFail($user);
-            return redirect()->back()->with('success', array('Success'=> $user->name.' has been added to this conversation!'));
-        }
-        return redirect()->back()->with('error', array('Error'=> 'There has been a problem while performing this action!'));
     }
 
     /**
@@ -119,6 +99,41 @@ class MessageController extends Controller
     }
 
     /**
+     * Get all users that are not participants.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUsersList(Request $request, $id)
+    {
+        return $this->user->whereNotIn('id', $this->getParticipants($id))
+                            ->where(function ($query) use ($request) {
+                                $query
+                                    ->where('username', $request->user)
+                                    ->orWhere('email', $request->user)
+                                    ->orWhere('name', 'LIKE', '%' . $request->user . '%');
+                            })
+                            ->take(30)->get()->toJson();
+    }
+
+    /**
+     * Add a new participant to the conversation.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addParticipant($id, $user)
+    {
+        if (in_array(Auth::user()->id, $this->getParticipants($id)) && !in_array($user, $this->getParticipants($id))){
+            $messageParticipant = $this->messageParticipant;
+            $messageParticipant->message_subject_id = $id;
+            $messageParticipant->user_id = $user;
+            $messageParticipant->save();
+            $user = $this->user->findOrFail($user);
+            return redirect()->back()->with('success', array('Success'=> $user->name.' has been added to this conversation!'));
+        }
+        return redirect()->back()->with('error', array('Error'=> 'There has been a problem while performing this action!'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -143,6 +158,19 @@ class MessageController extends Controller
         $message = $this->message->findOrFail($id);
         $message->update($input);
         return redirect()->route('messages.show', $message->message_subject_id)->with('success', array('Success'=>'Message has been updated!'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function removeParticipant($id)
+    {
+        $messageParticipant = $this->messageParticipant;
+        $messageParticipant->where('message_subject_id', '=', $id)->where('user_id', '=', Auth::user()->id)->delete();
+        return redirect()->route('messages.index')->with('warning', array('Warning'=> 'You have removed yourself from this coversation!'));
     }
 
     /**
