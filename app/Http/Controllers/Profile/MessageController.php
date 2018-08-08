@@ -53,7 +53,24 @@ class MessageController extends Controller
         return "to be developed";
     }
 
-    public function getUsersList()
+    public function getUsersList(Request $request, $id)
+    {
+        $conversation = $this->messageSubject->findOrFail($id);
+        $allParticipants = array();
+        foreach($conversation->participants as $participants){ 
+            array_push($allParticipants, $participants->user->id);
+        }
+        return $this->user->whereNotIn('id', $allParticipants)
+                            ->where(function ($query) use ($request) {
+                                $query
+                                    ->where('username', $request->user)
+                                    ->orWhere('email', $request->user)
+                                    ->orWhere('name', 'LIKE', '%' . $request->user . '%');
+                            })
+                            ->take(30)->get()->toJson();
+    }
+
+    public function addParticipant($id)
     {
         return "to be developed";
     }

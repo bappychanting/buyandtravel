@@ -31,8 +31,9 @@ Route::group(['prefix' => 'travel'], function(){
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
-	Route::post('/messages/usersList', 'MessageController@getUsersList');
 	Route::resource('messages', 'MessageController');
+	Route::post('/messages/{id}/userslist', 'MessageController@getUsersList');
+	Route::get('/messages/{id}/addparticipant/{user}', 'MessageController@addParticipant');
 
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
 	Route::get('/user/verify/{token}', 'ProfileController@verifyUser')->name('user.verify');
