@@ -30,7 +30,7 @@
                 </div>
               </li>
             @else
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="messages_navigation_menu">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">1
                         <i class="fa fa-envelope"></i>
                     </a>

@@ -243,6 +243,12 @@ $(document).ready(function(){
     }
   });
 
+    // Dropdown for Notification
+
+  $('#messages_navigation_menu').on('show.bs.dropdown', function () {
+    alert("show message");
+  })
+
     //  Sweet alert for warning
 
   $('.form_warning_sweet_alert').on('click',function(e){
