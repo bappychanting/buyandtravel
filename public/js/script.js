@@ -215,7 +215,8 @@ $(document).ready(function(){
         success:function(response){
           $(".jquery_dropdown_result").empty();
           for( var i = 0; i<response.length; i++){
-            $(".jquery_dropdown_result").append("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>");
+            // $(".jquery_dropdown_result").append("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>");
+            $("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>").hide().appendTo('.jquery_dropdown_result').show('normal');
           }
           /*$(".jquery_dropdown_result").on('click', '.users', function() {
               user_id = $(this).attr("href");

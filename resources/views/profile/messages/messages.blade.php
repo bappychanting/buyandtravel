@@ -51,7 +51,7 @@
                         <input type="text" class="form-control" id="add_participant">
                         <label for="add_participant">Add more participants</label>
                     </div>
-                    <ul class="list-group jquery_dropdown_result"></ul>
+                    <div class="list-group jquery_dropdown_result"></div>
                   </div>
                   <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
                      {!! Form::open(['route' => ['message.remove', $conversation->id], 'method'=>'delete']) !!}
