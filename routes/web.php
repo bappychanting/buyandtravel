@@ -31,6 +31,8 @@ Route::group(['prefix' => 'travel'], function(){
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
+	Route::get('/newmessages', 'MessageController@newMessages');
+
 	Route::resource('messages', 'MessageController');
 	Route::post('/messages/storesubject', 'MessageController@storeSubject')->name('messages.store.subject');
 	Route::post('/messages/{id}/userslist', 'MessageController@getUsersList');

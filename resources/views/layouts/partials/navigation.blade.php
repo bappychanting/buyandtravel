@@ -31,7 +31,8 @@
               </li>
             @else
                 <li class="nav-item dropdown" id="messages_navigation_menu">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">1
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="new_messages_number">1</span>
                         <i class="fa fa-envelope"></i>
                     </a>
                     <!-- Messages Dropdown -->
@@ -73,8 +74,9 @@
                     <!-- Messages Dropdown -->
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">2
-                        <i class="fa fa-bell"></i>
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span id="new_notification_number">2</span>
+                      <i class="fa fa-bell"></i>
                     </a>
                     <!-- Notification Dropdown -->
                     <div class="dropdown-menu">

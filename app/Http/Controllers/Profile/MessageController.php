@@ -46,6 +46,38 @@ class MessageController extends Controller
     }
 
     /**
+     * Get new messages.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newMessages()
+    {
+        $user = $this->user->find(Auth::user()->id);
+        $allParticipated = $user->messages()->whereHas('message_subject', function ($query) {
+                        $query->with('messages')->latest()->limit(1);
+                    })->get();
+
+        foreach($allParticipated as $participated){
+            print_r($participated->message_subject->subject);
+        }
+
+        // return view('profile.messages.create', compact('user'));
+
+        echo count($allParticipated);
+    }
+
+    /**
+     * Get number of new messages.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newMessagesNumber()
+    {
+        $user = $this->user->find(Auth::user()->id);
+        return view('profile.messages.create', compact('user'));
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

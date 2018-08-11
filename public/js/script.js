@@ -318,6 +318,28 @@ function readURL(input, i) {
     }
 }
 
+  // Function for getting new messages number
+
+function numberOfNewMessages() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+    }
+  });
+  $.ajax({
+    url: pathname+"/userslist",
+    type: 'POST',
+    data: {'user': user},
+    dataType: 'JSON',
+    success:function(response){
+      $(".jquery_dropdown_result").empty();
+      for( var i = 0; i<response.length; i++){
+        $("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>").hide().appendTo('.jquery_dropdown_result').show('normal');
+      }
+    }
+  });
+}
+
   // Function for printing a webpage area
 
 function printDiv(divName) {
