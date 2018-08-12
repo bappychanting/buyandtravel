@@ -30,48 +30,18 @@
                 </div>
               </li>
             @else
-                <li class="nav-item dropdown" id="messages_navigation_menu">
+                <li class="nav-item dropdown" id="messages_navigation_menu" data-url="{{url('profile/newmessages')}}">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span id="new_messages_number">0</span>
                         <i class="fa fa-envelope"></i>
                     </a>
                     <!-- Messages Dropdown -->
-                    <div class="dropdown-menu">
-                      <ul class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
-                          </div>
-                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                          <small>Donec id elit non mi porta.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                          </div>
-                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                          <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                          <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                          </div>
-                          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                          <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
-                      </ul>
-
-                        <!-- <p class="text-center h6">Messages</p>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Message 1</a>
-                        <a class="dropdown-item" href="#">Message 2</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-center" href="user_messages.php">All Messages</a> -->
+                    <div class="dropdown-menu dropdown-menu-right dropdown-wide">
+                      <p class="text-center h6">Messages</p>
+                      <div class="dropdown-divider"></div>
+                      <div id="all_new_messages"></div>
+                      <a class="dropdown-item" href="{{ route('messages.index') }}">Click here to show all new messages</a>
                     </div>
-                    <!-- Messages Dropdown -->
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,7 +49,7 @@
                       <i class="fa fa-bell"></i>
                     </a>
                     <!-- Notification Dropdown -->
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu dropdown-menu-right dropdown-wide">
                         <p class="text-center h6">Notifications</p>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Notification 1</a>
@@ -109,4 +79,4 @@
       </div>
     </div>
   </nav>
-<!-- #ENDS# Navigation -->
+<!-- #ENDS# Navigation

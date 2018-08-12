@@ -219,7 +219,6 @@ $(document).ready(function(){
         success:function(response){
           $(".jquery_dropdown_result").empty();
           for( var i = 0; i<response.length; i++){
-            // $(".jquery_dropdown_result").append("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>");
             $("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>").hide().appendTo('.jquery_dropdown_result').show('normal');
           }
           /*$(".jquery_dropdown_result").on('click', '.users', function() {
@@ -248,10 +247,28 @@ $(document).ready(function(){
     }
   });
 
-    // Dropdown for messages
+    // Dropdown for new messages
 
   $('#messages_navigation_menu').on('show.bs.dropdown', function () {
-    // alert("show message");
+    $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+      }
+    });
+    $.ajax({
+      url: $("#messages_navigation_menu").data('url'),
+      type: 'GET',
+      dataType: 'JSON',
+      beforeSend: function(){
+        $("#all_new_messages").empty().append('<div class="text-center my-5"><i class="fa fa-spinner fa-spin"></i></div>');
+      },
+      success:function(response){
+        $("#all_new_messages").empty();
+        for(var i = 0; i<response.length; i++){
+          $("#all_new_messages").append('<div class="media mb-1"><a class="media-left waves-light" href="'+response[i]['user_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="Generic placeholder image"></a><a class="media-body" href="profile/messages/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
+        }
+      }
+    });
   })
 
     //  Sweet alert for warning
@@ -331,7 +348,7 @@ function numberOfNewMessages() {
     }
   });
   $.ajax({
-    url: "profile/newmessages",
+    url: $("#messages_navigation_menu").data('url'),
     type: 'GET',
     dataType: 'JSON',
     beforeSend: function(){

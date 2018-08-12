@@ -88,6 +88,12 @@ footer {
     border-color: #1e88e5;
 }
 
+.dropdown-wide {
+  min-width: 300px;
+  max-height: 50vh; 
+  overflow: auto; 
+}
+
 .jquery_dropdown_result {
     position: absolute;
     z-index: 1050;
