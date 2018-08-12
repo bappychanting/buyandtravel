@@ -36,7 +36,7 @@
                         <i class="fa fa-envelope"></i>
                     </a>
                     <!-- Messages Dropdown -->
-                    <div class="dropdown-menu dropdown-menu-right dropdown-wide">
+                    <div class="dropdown-menu dropdown-wide">
                       <p class="text-center h6">Messages</p>
                       <div class="dropdown-divider"></div>
                       <div id="all_new_messages"></div>

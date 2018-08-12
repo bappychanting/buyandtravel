@@ -6,6 +6,9 @@ $( window ).resize(function() {
 
   footerAlign();
 
+    // Align drop down right on windows resize
+  dropDownRight();
+
 });
 
 /*==================== end of windows resize functions  ====================*/
@@ -19,6 +22,9 @@ $(document).ready(function(){
     // Align footer
 
   footerAlign();
+
+    // Align drop down right on page load
+  dropDownRight();
 
     // Get number of new messages
 
@@ -247,6 +253,9 @@ $(document).ready(function(){
       success:function(response){
         $("#all_new_messages").empty();
         for(var i = 0; i<response.length; i++){
+
+            //********* Add link to profile after profile creation! *********//
+
           $("#all_new_messages").append('<div class="media mb-1"><a class="media-left waves-light" href="'+response[i]['user_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="Generic placeholder image"></a><a class="media-body" href="profile/messages/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
         }
       }
@@ -306,6 +315,18 @@ function footerAlign() {
   var footerHeight = $('footer').outerHeight();
   $('body').css('padding-bottom', footerHeight);
   $('footer').css('height', footerHeight);
+}
+
+
+  // Function for fixing dropdown menu right
+
+function dropDownRight(){
+  var width = $(window).width();
+  if (width > 786) {
+    $('.dropdown-wide').addClass('dropdown-menu-right');
+  } else if (width < 786) {
+    $('.dropdown-wide').removeClass('dropdown-menu-right');
+  }
 }
 
   // Function for showing image preview
