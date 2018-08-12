@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Profile;
 use Session;
+use DB;
 use App\Message;
 use App\MessageSubject;
 use App\MessageParticipant;
@@ -52,29 +53,23 @@ class MessageController extends Controller
      */
     public function newMessages()
     {
-        $user = $this->user->find(Auth::user()->id);
-        $allParticipated = $user->messages()->whereHas('message_subject', function ($query) {
-                        $query->with('messages')->latest()->limit(1);
-                    })->get();
-
-        foreach($allParticipated as $participated){
-            print_r($participated->message_subject->subject);
+        $unreadMessages = array();
+        $allMessageSubjects = DB::table('message_subjects')->whereIn('id', function($query){
+                                    $query->select('message_subject_id')->from('message_participants')->where('user_id','=', Auth::user()->id);
+                                })->get();
+        foreach($allMessageSubjects as $messageSubject){
+            $message = $this->message->where('message_subject_id','=', $messageSubject->id)->orderBy('id', 'DESC')->first();
+            if((isset($message) && count($message->viewers) == 0) || (isset($message) && count($message->viewers) > 0 && !in_array(Auth::user()->id, $message->viewers->pluck('user_id')->toArray()))){
+                $unreadMessages[] = array(
+                    'user'=>$message->user->name, 
+                    'message_subject'=>$message->message_subject->subject, 
+                    'message'=>$message->message_text, 
+                    'date'=>date('l d F Y, h:i A', strtotime($message->created_at))
+                );
+            }
         }
 
-        // return view('profile.messages.create', compact('user'));
-
-        echo count($allParticipated);
-    }
-
-    /**
-     * Get number of new messages.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function newMessagesNumber()
-    {
-        $user = $this->user->find(Auth::user()->id);
-        return view('profile.messages.create', compact('user'));
+        return json_encode($unreadMessages);
     }
 
     /**

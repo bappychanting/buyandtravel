@@ -21,7 +21,7 @@ class MessagesTableSeeder extends Seeder
 	                $data = [
 	                    [
 	                        "user_id"  => $user,
-	                        'message' => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
+	                        'message_text' => join("\n\n", $faker->paragraphs(mt_rand(3, 6))),
 	                        "message_subject_id"  => $messageSubject,
                             "created_at"  => strftime("%Y-%m-%d %H:%M:%S"),
                             "updated_at"  => strftime("%Y-%m-%d %H:%M:%S")

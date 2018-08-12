@@ -84,7 +84,7 @@
                           <h6 class="font-weight-bold">{{ $message->user->name }}</h6>
                           <small class="grey-text">{{ $message->created_at->format('l d F Y, h:i A') }}</small>
                           <hr>
-                          {!! $message->message !!}
+                          {!! $message->message_text !!}
                         </div>
                         @if($message->user->id == $user->id && (strtotime($message->created_at) + 3600) > time())
                           {!! Form::open(['method' => 'delete', 'route' => ['messages.destroy', $message->id]]) !!}
