@@ -182,7 +182,7 @@ $(document).ready(function(){
       },
       success:function(response){
         $("#message_last_updated").empty().append('Message Last Updated: '+response['last_updated']);
-        tinymce.get('edit_message_textarea').setContent(response['message']);
+        tinymce.get('edit_message_textarea').setContent(response['message_text']);
         if(tinyMCE.get('edit_message_textarea').getContent().length > 0){
           $("#update_message_button").prop("disabled",false);
         }

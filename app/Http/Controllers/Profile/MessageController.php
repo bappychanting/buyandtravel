@@ -119,7 +119,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(),[
-            'message' => 'required|max:50000'
+            'message_text' => 'required|max:50000'
         ]);
         $input = $request->all();
         $this->message->create($input);
@@ -190,7 +190,7 @@ class MessageController extends Controller
     public function edit($id)
     {
         $message = $this->message->findOrFail($id);
-        return json_encode(array('message'=>$message->message, 'last_updated'=>date('l d F Y, h:i A', strtotime($message->updated_at))));
+        return json_encode(array('message_text'=>$message->message_text, 'last_updated'=>date('l d F Y, h:i A', strtotime($message->updated_at))));
     }
 
     /**

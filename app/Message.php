@@ -8,7 +8,7 @@ class Message extends Model
 {
     protected $table = "messages";
 
-    protected $fillable = ['message', 'message_subject_id', 'user_id'];
+    protected $fillable = ['message_text', 'message_subject_id', 'user_id'];
 
     	
     	// Each Message belongs to a subject

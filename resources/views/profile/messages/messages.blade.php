@@ -125,13 +125,13 @@
                         {!! Form::hidden('message_subject_id', $conversation->id) !!}
 
                         <p class="font-weight-bold my-3">Add Message</p>
-                        @if ($errors->has('message'))
-                          <p class="red-text">{{ $errors->first('message') }}</p>
+                        @if ($errors->has('message_text'))
+                          <p class="red-text">{{ $errors->first('message_text') }}</p>
                         @endif
 
                         <!-- Material Editor -->
                         <div class="md-form">
-                          {!! Form::textarea('message', null, array('class'=>'editor')) !!}
+                          {!! Form::textarea('message_text', null, array('class'=>'editor')) !!}
                         </div>
 
                         <div class="text-center my-4">
@@ -200,7 +200,7 @@
               {!! Form::open(['id' => 'edit_message_form', 'method' => 'put', 'route' => ['messages.update', null]]) !!}
                 <div id="edit_message_alert"></div>
                 <div class="md-form">
-                  {!! Form::textarea('message', null, array('class'=>'editor', 'id'=>'edit_message_textarea')) !!}
+                  {!! Form::textarea('message_text', null, array('class'=>'editor', 'id'=>'edit_message_textarea')) !!}
                 </div>
                 <div class="text-center my-4">
                 {!! Form::submit('Update', array('class' =>'btn btn-primary', 'id'=>'update_message_button', 'disabled'=>'true')) !!}
