@@ -40,7 +40,7 @@
                       <p class="text-center h6">Messages</p>
                       <div class="dropdown-divider"></div>
                       <div id="all_new_messages"></div>
-                      <a class="dropdown-item" href="{{ route('messages.index') }}">Click here to show all new messages</a>
+                      <a class="dropdown-item" href="{{ route('messages.index') }}">Click here to show all messages</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

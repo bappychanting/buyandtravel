@@ -46,6 +46,19 @@ class MessageController extends Controller
         return $allParticipants;
     }
 
+
+    /**
+     * Save viewer
+     *
+     * @return \Illuminate\Http\Response
+     */
+    private function saveViewer($message_id, $user_id){
+        $view = $this->messageView;
+        $view->message_id = $message_id;
+        $view->user_id = $user_id;
+        $view->save();
+    }
+
     /**
      * Get new messages.
      *
@@ -58,8 +71,8 @@ class MessageController extends Controller
                                     $query->select('message_subject_id')->from('message_participants')->where('user_id','=', Auth::user()->id);
                                 })->get();
         foreach($allMessageSubjects as $messageSubject){
-            $message = $this->message->where('message_subject_id','=', $messageSubject->id)->orderBy('id', 'DESC')->first();
-            if((isset($message) && count($message->viewers) == 0) || (isset($message) && count($message->viewers) > 0 && !in_array(Auth::user()->id, $message->viewers->pluck('user_id')->toArray()))){
+            $message = $this->message->where('message_subject_id','=', $messageSubject->id)->orderBy('created_at', 'DESC')->first();
+            if((isset($message) && count($message->viewers) == 0) || (isset($message) && count($message->viewers) > 0 && !$message->viewers->contains('user_id', Auth::user()->id))){
                 $unreadMessages[] = array(
                     'user'=>$message->user->name, 
                     'user_id'=>$message->user->id, 
@@ -84,6 +97,10 @@ class MessageController extends Controller
         $search = \Request::get('search');
         $user = $this->user->find(Auth::user()->id);
         $messages = $user->messages()->search($search)->orderBy('created_at', 'desc')->paginate(30);
+
+        /*$messages = $user->messages()->search($search)->whereHas('message_subject', function ($query) {
+                        $query->with('messages')->latest()->limit(1);
+                    })->paginate(30);*/
         return view('profile.messages.index', compact('user', 'messages', 'search'));
     }
 
@@ -125,6 +142,7 @@ class MessageController extends Controller
         ]);
         $input = $request->all();
         $this->message->create($input);
+        $this->saveViewer($this->message->orderBy('created_at', 'DESC')->first()->id, Auth::user()->id);
         return redirect()->route('messages.show', $request->message_subject_id)->with('success', array('Success'=>'Message has been added!'));
     }
 
@@ -138,12 +156,9 @@ class MessageController extends Controller
     {
         $user = Auth::user();
         $conversation = $this->messageSubject->findOrFail($id);
-        $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
+        $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(5);
         if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('user_id', Auth::user()->id)){
-            $view = $this->messageView;
-            $view->message_id = $messages->first()->id;
-            $view->user_id = Auth::user()->id;
-            $view->save();
+            $this->saveViewer($messages->first()->id, Auth::user()->id);
         } 
         return view('profile.messages.messages', compact('user', 'conversation', 'messages'));
     }
