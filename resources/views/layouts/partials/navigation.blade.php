@@ -39,7 +39,7 @@
                     <div class="dropdown-menu dropdown-wide">
                       <p class="text-center h6">Messages</p>
                       <div class="dropdown-divider"></div>
-                      <div id="all_new_messages"></div>
+                      <div id="all_new_messages" data-url="{{url('profile/messages')}}"></div>
                       <a class="dropdown-item" href="{{ route('messages.index') }}">Click here to show all messages</a>
                     </div>
                 </li>

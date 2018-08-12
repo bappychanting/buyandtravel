@@ -55,11 +55,11 @@
                 <a href="{{ route('messages.show', $message->message_subject->id) }}" target="_blank">
                   <div class="row mb-5">
                     <div class="col-lg-1">
-                      <img src="{{ file_exists($message->message_subject->participants->first()->user->avatar) ? asset($message->message_subject->participants->first()->user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
+                      <img src="{{ file_exists($message->message_subject->participants->last()->user->avatar) ? asset($message->message_subject->participants->last()->user->avatar) : 'http://via.placeholder.com/450' }}" class="img-fluid rounded-circle z-depth-0">
                     </div>
                     <div class="col-lg-11">
                       <div class="card">
-                        <div class="card-body {{ $message->message_subject->participants->first()->user->id == $user->id ? 'grey'  : 'blue' }} white-text">
+                        <div class="card-body {{ $message->message_subject->participants->last()->user->id == $user->id ? 'grey'  : 'blue' }} white-text">
                           {{ $message->message_subject->subject }} 
                         </div>
                       </div> 

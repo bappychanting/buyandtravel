@@ -155,7 +155,7 @@ $(document).ready(function(){
       dataType: 'JSON',
       beforeSend: function(){
           $("#modal_offer_details").empty();
-          $("<center><i class='fa fa-spinner fa-spin my-5'></i></center>").show().appendTo("#modal_offer_details");
+          $('<div class="text-center my-5"><i class="fa fa-spinner fa-spin"></i></div>').show().appendTo("#modal_offer_details");
           $("#modal_accept_offer_btn").prop("disabled",true);
       },
       success:function(response){
@@ -252,11 +252,14 @@ $(document).ready(function(){
       },
       success:function(response){
         $("#all_new_messages").empty();
-        for(var i = 0; i<response.length; i++){
-
-            //********* Add link to profile after profile creation! *********//
-
-          $("#all_new_messages").append('<div class="media mb-1"><a class="media-left waves-light" href="'+response[i]['user_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="Generic placeholder image"></a><a class="media-body" href="profile/messages/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
+        if(response.length > 0){
+          redirect = $("#all_new_messages").data('url');
+          for(var i = 0; i<response.length; i++){
+            $("#all_new_messages").append('<div class="media mb-1"><a class="media-left waves-light" href="'+redirect+'/'+response[i]['subject_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="Generic placeholder image"></a><a class="media-body" href="'+redirect+'/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold blue-text">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
+          }
+        }
+        else{
+          $("#all_new_messages").empty().append('<div class="text-center my-5"><h5 class="font-weight-bold light-blue-text">No New Message Found!</h5></div>');
         }
       }
     });

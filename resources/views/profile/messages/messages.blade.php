@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || Conversation || ")
+@section('title', $user->name." || Conversation || ".$conversation->subject." || ")
 
 @section('content')
 

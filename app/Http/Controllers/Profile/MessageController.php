@@ -75,7 +75,6 @@ class MessageController extends Controller
             if((isset($message) && count($message->viewers) == 0) || (isset($message) && count($message->viewers) > 0 && !$message->viewers->contains('user_id', Auth::user()->id))){
                 $unreadMessages[] = array(
                     'user'=>$message->user->name, 
-                    'user_id'=>$message->user->id, 
                     'image'=>file_exists($message->user->avatar) ? asset($message->user->avatar) : 'http://via.placeholder.com/450', 
                     'subject_id'=>$message->message_subject->id, 
                     'message'=>strip_tags(substr($message->message_text,0,20))."...", 
@@ -84,7 +83,13 @@ class MessageController extends Controller
             }
         }
 
-        return json_encode($unreadMessages);
+        if(count($unreadMessages) > 0){
+            $unreadMessages = array_values(array_sort($unreadMessages, function ($value) {
+                return $value['date'];
+            }));            
+        }
+
+        return json_encode(array_reverse($unreadMessages));
     }
 
     /**
@@ -97,11 +102,11 @@ class MessageController extends Controller
         $search = \Request::get('search');
         $user = $this->user->find(Auth::user()->id);
         $messages = $user->messages()->search($search)->orderBy('created_at', 'desc')->paginate(30);
-        /*$messages = $user->messages()->search($search)->whereHas('message_subject', function ($query) {
-                        $query->with(['messages' => function ($q) { 
-                                $q->orderBy('created_at', 'desc')->first();
-                        }]);
-                    })->paginate(30);*/
+        /*$messages = $user->messages()->search($search)
+                    ->join('messages', 'messages.message_subject_id', '=', 'message_subject.id')
+                    ->select('message_subject.*', 'messages.created_at AS latest_message_at')
+                    ->orderByDesc('latest_message_at')
+                    ->paginate(30);*/
         return view('profile.messages.index', compact('user', 'messages', 'search'));
     }
 
