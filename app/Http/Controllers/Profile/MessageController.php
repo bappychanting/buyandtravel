@@ -97,9 +97,10 @@ class MessageController extends Controller
         $search = \Request::get('search');
         $user = $this->user->find(Auth::user()->id);
         $messages = $user->messages()->search($search)->orderBy('created_at', 'desc')->paginate(30);
-
         /*$messages = $user->messages()->search($search)->whereHas('message_subject', function ($query) {
-                        $query->with('messages')->latest()->limit(1);
+                        $query->with(['messages' => function ($q) { 
+                                $q->orderBy('created_at', 'desc')->first();
+                        }]);
                     })->paginate(30);*/
         return view('profile.messages.index', compact('user', 'messages', 'search'));
     }
@@ -156,7 +157,7 @@ class MessageController extends Controller
     {
         $user = Auth::user();
         $conversation = $this->messageSubject->findOrFail($id);
-        $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(5);
+        $messages = $this->message->where('message_subject_id', '=', $id)->orderBy('created_at', 'desc')->paginate(15);
         if($messages->onFirstPage() && $messages->isNotEmpty() && !$messages->first()->viewers->contains('user_id', Auth::user()->id)){
             $this->saveViewer($messages->first()->id, Auth::user()->id);
         } 
