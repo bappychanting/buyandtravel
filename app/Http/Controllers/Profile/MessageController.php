@@ -62,6 +62,7 @@ class MessageController extends Controller
             if((isset($message) && count($message->viewers) == 0) || (isset($message) && count($message->viewers) > 0 && !in_array(Auth::user()->id, $message->viewers->pluck('user_id')->toArray()))){
                 $unreadMessages[] = array(
                     'user'=>$message->user->name, 
+                    'user_image'=>file_exists($message->user->avatar) ? asset($message->user->avatar) : 'http://via.placeholder.com/450', 
                     'message_subject'=>$message->message_subject->subject, 
                     'message'=>$message->message_text, 
                     'date'=>date('l d F Y, h:i A', strtotime($message->created_at))

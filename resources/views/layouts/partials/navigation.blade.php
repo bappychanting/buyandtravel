@@ -32,7 +32,7 @@
             @else
                 <li class="nav-item dropdown" id="messages_navigation_menu">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span id="new_messages_number">1</span>
+                        <span id="new_messages_number">0</span>
                         <i class="fa fa-envelope"></i>
                     </a>
                     <!-- Messages Dropdown -->

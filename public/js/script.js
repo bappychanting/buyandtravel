@@ -20,6 +20,10 @@ $(document).ready(function(){
 
   footerAlign();
 
+    // Get number of new messages
+
+  numberOfNewMessages();
+
     // Set all html selects as material select
 
   $('.mdb-select').material_select();
@@ -244,10 +248,10 @@ $(document).ready(function(){
     }
   });
 
-    // Dropdown for Notification
+    // Dropdown for messages
 
   $('#messages_navigation_menu').on('show.bs.dropdown', function () {
-    alert("show message");
+    // alert("show message");
   })
 
     //  Sweet alert for warning
@@ -327,15 +331,14 @@ function numberOfNewMessages() {
     }
   });
   $.ajax({
-    url: pathname+"/userslist",
-    type: 'POST',
-    data: {'user': user},
+    url: "profile/newmessages",
+    type: 'GET',
     dataType: 'JSON',
+    beforeSend: function(){
+      $("#new_messages_number").empty().append('<i class="fa fa-spinner fa-spin"></i>');
+    },
     success:function(response){
-      $(".jquery_dropdown_result").empty();
-      for( var i = 0; i<response.length; i++){
-        $("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>").hide().appendTo('.jquery_dropdown_result').show('normal');
-      }
+      $("#new_messages_number").empty().append(response.length);
     }
   });
 }
