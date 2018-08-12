@@ -69,7 +69,7 @@
               @endforeach
 
               <!-- Pagination -->
-              <nav aria-label="Page navigation example">
+              <nav aria-label="Page navigation example" class="table-responsive">
                   <ul class="pagination pg-blue justify-content-end">
                     <ul class="pagination pg-blue">
                         {{ $messages->links() }}                 

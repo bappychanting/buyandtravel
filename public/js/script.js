@@ -221,24 +221,6 @@ $(document).ready(function(){
           for( var i = 0; i<response.length; i++){
             $("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>").hide().appendTo('.jquery_dropdown_result').show('normal');
           }
-          /*$(".jquery_dropdown_result").on('click', '.users', function() {
-              user_id = $(this).attr("href");
-              $.ajaxSetup({
-                headers: {
-                  'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
-                }
-              });
-              $.ajax({
-                url:  pathname+"/addparticipant",
-                type: 'POST',
-                data: {user_id:user_id},
-                dataType: 'JSON',
-                success:function(response){
-                  location.reload();  
-                }
-            });
-              event.preventDefault();
-          });*/
         }
       });
     }
@@ -468,3 +450,28 @@ function showNotification(title, text, redirect, colorName, placementFrom, place
 }
 
 /*==================== end of individual functions  ====================*/
+
+
+
+/*==================== collected dump codes  ====================*/
+
+/*$(".jquery_dropdown_result").on('click', '.users', function() {
+    user_id = $(this).attr("href");
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+      }
+    });
+    $.ajax({
+      url:  pathname+"/addparticipant",
+      type: 'POST',
+      data: {user_id:user_id},
+      dataType: 'JSON',
+      success:function(response){
+        location.reload();  
+      }
+  });
+    event.preventDefault();
+});*/
+
+/*==================== end of collected dump codes  ====================*/

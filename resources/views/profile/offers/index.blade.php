@@ -108,7 +108,7 @@
                 </div>
 
                 <!--Pagination-->
-                <nav aria-label="pagination example">
+                <nav aria-label="pagination example" class="table-responsive">
                   <ul class="pagination pg-blue">
                     {{ $offers->appends(Request::only('search'))->links() }}
                   </ul>
