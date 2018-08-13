@@ -255,7 +255,7 @@ $(document).ready(function(){
         if(response.length > 0){
           redirect = $("#all_new_messages").data('url');
           for(var i = 0; i<response.length; i++){
-            $("#all_new_messages").append('<div class="media mb-1"><a class="media-left waves-light" href="'+redirect+'/'+response[i]['subject_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="Generic placeholder image"></a><a class="media-body" href="'+redirect+'/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold blue-text">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
+            $("#all_new_messages").append('<div class="media list_of_jquery_content mb-1"><a class="media-left waves-light" href="'+redirect+'/'+response[i]['subject_id']+'"><img class="rounded-circle" src="'+response[i]['image']+'" width="60" alt="Generic placeholder image"></a><a class="media-body" href="'+redirect+'/'+response[i]['subject_id']+'" target="_blank"><h6 class="media-heading font-weight-bold blue-text">'+response[i]['user']+'</h6><small>'+response[i]['date']+'</small><p>'+response[i]['message']+'</p></a></div><div class="dropdown-divider"></div>');
           }
         }
         else{

@@ -103,6 +103,10 @@ footer {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
+.list_of_jquery_content:hover { 
+  background-color: #f2f2f2;
+}
+
 .btn-social{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
