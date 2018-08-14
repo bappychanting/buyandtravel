@@ -104,7 +104,7 @@ footer {
 }
 
 .list_of_jquery_content:hover { 
-  background-color: #f2f2f2;
+  background: linear-gradient(0deg, #ffffff, #f2f2f2 50%) no-repeat;
 }
 
 .btn-social{

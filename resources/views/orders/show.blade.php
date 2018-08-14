@@ -35,35 +35,50 @@
           <p class="mt-4">
             <i class="fa fa-clock-o fa-sm pr-2"></i><span class="font-weight-bold light-blue-text">{{$order->created_at->format('l d F Y, h:i A')}}</span>
           </p>
-            <div class="row">
-              <div class="col-lg-6 mb-3 mt-3">
-                <div class="item" id="aniimated-thumbnials">         
-                  <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
-                    @foreach($order->images as $image)
-                      <li data-thumb="{{ asset($image->src) }}"> 
-                          <a href="{{ asset($image->src) }}" data-sub-html="{{ $order->product_name.' '.$loop->iteration }}">  
-                            <img src="{{ asset($image->src) }}" alt="{{ $image->alt.' '.$loop->iteration }}"/>
-                          </a>
-                      </li>
-                     @endforeach 
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6 mb-3 mt-3">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><strong>Price Expected:</strong> {{ $order->expected_price }}/=</li>
-                  <li class="list-group-item"><strong>User Contact:</strong> {{ str_replace('-', '', $order->user->contact) }}</li>
-                  <li class="list-group-item"><strong>Handover Location:</strong> {{ $order->delivery_location }}</li>
+          <div class="row">
+            <div class="col-lg-6 mb-3 mt-3">
+              <div class="item" id="aniimated-thumbnials">         
+                <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+                  @foreach($order->images as $image)
+                    <li data-thumb="{{ asset($image->src) }}"> 
+                        <a href="{{ asset($image->src) }}" data-sub-html="{{ $order->product_name.' '.$loop->iteration }}">  
+                          <img src="{{ asset($image->src) }}" alt="{{ $image->alt.' '.$loop->iteration }}"/>
+                        </a>
+                    </li>
+                   @endforeach 
                 </ul>
-                <a class="btn btn-md blue-gradient btn-block mb-4" href="{{ route('front.orders.addOffer', $order->id) }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
-                <div class="btn-group my-3" role="group" aria-label="Basic example">
-                  <a href="{{ $order->reference_link }}" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
-                  <a href="report_order.php" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-3 mt-3">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Price Expected:</strong> {{ $order->expected_price }}/=</li>
+                <li class="list-group-item"><strong>User Contact:</strong> {{ str_replace('-', '', $order->user->contact) }}</li>
+                <li class="list-group-item"><strong>Handover Location:</strong> {{ $order->delivery_location }}</li>
+              </ul>
+              <a class="btn btn-md blue-gradient btn-block" href="{{ route('front.orders.addOffer', $order->id) }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
+              <div class="row">
+                <div class="col-lg-12 text-center my-3">
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{{ $order->reference_link }}" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a>
+                    <a href="report_order.php" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
+                  </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                  <!--Facebook-->
+                  <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>
+                  <!--Twitter-->
+                  <button type="button" class="btn btn-sm btn-tw"><i class="fa fa-twitter"></i></button>
+                  <!--Google +-->
+                  <button type="button" class="btn btn-sm btn-gplus"><i class="fa fa-google-plus"></i></button>
+                  <!--Linkedin-->
                 </div>
               </div>
+            </div>
+            <div class="col-lg-12 mb-3 mt-3">
+              {!! $order->additional_details !!}
+            </div>
           </div>
-          <p class="mb-3 mt-3">{!! $order->additional_details !!}</p>
-          <div class="btn-group mb-4" role="group" aria-label="Basic example">
+          <div class="btn-group my-4" role="group" aria-label="Basic example">
                 <a href="{{ route('front.orders.pdf', $order->id) }}" class="btn btn-light-green btn-sm"><i class="fa fa-file-pdf-o fa-sm pr-2"" aria-hidden="true"></i>Save as PDF</a>
                 <button onclick="printDiv('printableArea')" class="btn btn-dark-green btn-sm"><i class="fa fa-print fa-sm pr-2" aria-hidden="true"></i>Print</button>
           </div>

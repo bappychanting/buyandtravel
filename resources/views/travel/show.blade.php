@@ -51,11 +51,19 @@
             <div class="col-md-12">
               <a class="btn blue-gradient btn-md" href="add_request.php"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Request</a>
             </div>
-            <div class="col-md-12">
-              <div class="btn-group mt-3" role="group" aria-label="Basic example">
+            <div class="col-md-12 mt-3">
+              <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="travel_history.php" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Travel History</a>
                 <a href="report_traveler.php" class="btn btn-warning btn-sm"><i class="fa fa-exclamation-triangle fa-sm pr-2" aria-hidden="true"></i>Report</a>
               </div>
+
+              <!--Facebook-->
+              <button type="button" class="btn btn-sm btn-fb"><i class="fa fa-facebook"></i></button>
+              <!--Twitter-->
+              <button type="button" class="btn btn-sm btn-tw"><i class="fa fa-twitter"></i></button>
+              <!--Google +-->
+              <button type="button" class="btn btn-sm btn-gplus"><i class="fa fa-google-plus"></i></button>
+              <!--Linkedin-->
             </div>
           </div>
           <p class="mb-3 mt-3">
