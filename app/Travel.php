@@ -18,7 +18,7 @@ class Travel extends Model
     public function scopeSearch($query, $search='')
     {
         if (empty($search)) {
-            return $query->whereNull("deleted_at");
+            return $query;
         } else {
     		return $query->where('destination', 'LIKE', '%' . $search . '%')
                     ->orWhere('city', 'LIKE', '%' . $search . '%')
@@ -28,8 +28,7 @@ class Travel extends Model
 					})
                     ->orWhereHas('user', function ($query) use($search){
                         $query->where('name', 'LIKE', '%' . $search . '%');
-                    })
-                    ->whereNull("deleted_at");
+                    });
         }
     }
 

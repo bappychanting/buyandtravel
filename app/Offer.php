@@ -18,7 +18,7 @@ class Offer extends Model
     public function scopeSearch($query, $search='')
     {
         if (empty($search)) {
-            return $query->WhereHas('order')->whereNull("deleted_at");
+            return $query->WhereHas('order');
         } else {
     		return $query->WhereHas('order', function ($query) use($search){
 					       $query->where('product_name', 'LIKE', '%' . $search . '%'
@@ -28,8 +28,7 @@ class Offer extends Model
 	                    ->orWhereHas('user', function ($query) use($search){
                         	$query->where('name', 'LIKE', '%' . $search . '%');
                     	});
-					})
-					->whereNull("deleted_at");
+					});
         }
     }
 
