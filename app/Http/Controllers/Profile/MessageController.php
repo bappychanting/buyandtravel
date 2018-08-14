@@ -101,10 +101,10 @@ class MessageController extends Controller
     {
         $search = \Request::get('search');
         $user = $this->user->find(Auth::user()->id);
-        $messages = $user->messageSubjects()->withCount(['messages as latest_message' => function($query) {
+        $subjects = $user->messageSubjects()->withCount(['messages as latest_message' => function($query) {
                                                 $query->select(DB::raw('max(messages.created_at)'));
                                             }])->search($search)->orderByDesc('latest_message')->paginate(30);
-        return view('profile.messages.index', compact('user', 'messages', 'search'));
+        return view('profile.messages.index', compact('user', 'subjects', 'search'));
     }
 
     /**
