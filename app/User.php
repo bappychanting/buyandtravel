@@ -56,6 +56,11 @@ class User extends Authenticatable
         return $this->hasMany(MessageParticipant::class);
     }
 
+        // A User perticipated in many messages subjects
+    public function messageSubjects() {
+        return $this->belongsToMany(MessageSubject::class, 'message_participants');
+    }
+
         // A User viewed many messages
     public function viewed()
     {

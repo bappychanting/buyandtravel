@@ -13,18 +13,17 @@ class MessageParticipant extends Model
 
     use SoftDeletes;
 
-    public function scopeSearch($query, $search='')
+    /*public function scopeSearch($query, $search='')
     {
         if (empty($search)) {
             return $query->WhereHas('message_subject')->whereNull("deleted_at");
         } else {
     		return $query->WhereHas('message_subject', function ($query) use($search){
-					       $query->where('subject', 'LIKE', '%' . $search . '%'
-                        );
-					})
-					->whereNull("deleted_at");
+					       $query->where('subject', 'LIKE', '%' . $search . '%');
+    					})
+    					->whereNull("deleted_at");
         }
-    }
+    }*/
 
     	// Each MessageParticipant belongs to a subject
 	public function message_subject()
