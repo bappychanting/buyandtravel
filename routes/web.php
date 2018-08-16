@@ -56,6 +56,8 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::resource('offers', 'OfferController');
 	
 	Route::resource('travel', 'TravelController');
+	
+	Route::resource('requests', 'RequestController');
 
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/', 'ProfileController@userinfo')->name('user.userinfo');
