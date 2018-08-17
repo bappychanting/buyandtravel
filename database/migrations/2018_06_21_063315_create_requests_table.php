@@ -20,7 +20,10 @@ class CreateRequestsTable extends Migration
             $table->string('expected_price')->nullable();
             $table->string('image')->default('default.jpg');
             $table->string('reference_link')->nullable();
-            $table->text('additinoal_details')->nullable();
+            $table->text('additional_details')->nullable();
+            $table->date('accepted')->nullable();
+            $table->date('delivered')->nullable();
+            $table->date('recieved')->nullable();
             $table->integer('travel_schedule_id')->unsigned();
             $table->foreign('travel_schedule_id')->references('id')->on('travel_schedules');
             $table->integer('user_id')->unsigned();

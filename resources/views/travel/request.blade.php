@@ -94,12 +94,12 @@
                   <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <!-- Material input text -->
                     <div class="md-form">
-                      {!! Form::text('asking_price', null, array('class' =>'form-control', 'id'=>'asking_price')) !!}
-                      {!! Form::label('asking_price', 'Asking Price') !!}
+                      {!! Form::text('expected_price', null, array('class' =>'form-control', 'id'=>'expected_price')) !!}
+                      {!! Form::label('expected_price', 'Expected Price') !!}
                     </div>
 
-                    @if ($errors->has('asking_price'))
-                        <p class="red-text">{{ $errors->first('asking_price') }}</p>
+                    @if ($errors->has('expected_price'))
+                        <p class="red-text">{{ $errors->first('expected_price') }}</p>
                     @endif
                   </div>
 
