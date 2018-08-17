@@ -27,6 +27,7 @@ Route::group(['prefix' => 'travel'], function(){
 	Route::get('/', 'TravelerController@index')->name('front.travel.index');
 	Route::get('/{id}', 'TravelerController@show')->name('front.travel.show');
 	Route::get('/downloadPDF/{id}', 'TravelerController@downloadPDF')->name('front.travel.pdf');
+	Route::get('/{id}/addRequest', 'TravelerController@addRequest')->name('front.travel.addRequest');
 });
 
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {

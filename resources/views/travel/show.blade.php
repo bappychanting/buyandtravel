@@ -49,7 +49,7 @@
           </div>
           <div class="row my-3">
             <div class="col-md-12">
-              <a class="btn blue-gradient btn-md" href="add_request.php"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Request</a>
+              <a class="btn blue-gradient btn-md" href="{{ route('front.travel.addRequest', $traveler->id) }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Request</a>
             </div>
             <div class="col-md-12 mt-3">
               <div class="btn-group" role="group" aria-label="Basic example">

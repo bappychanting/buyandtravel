@@ -13,6 +13,7 @@ class TravelerController extends Controller
 
     public function __construct(Travel $travel)
     {
+        $this->middleware('auth')->only('addRequest');
         $this->travel = $travel;
     }
 
@@ -47,5 +48,13 @@ class TravelerController extends Controller
         $traveler = $this->travel->findOrFail($id);
         $pdf = PDF::loadView('pdf.travel', compact('traveler'));
         return $pdf->download($traveler->user->name.'_'.$traveler->city.'_'.$traveler->country->name.'_'.date('F Y', strtotime($traveler->arrival_date)).'.pdf');
+    }
+
+    public function addRequest($id)
+    {
+        $traveler = $this->travel->findOrFail($id);
+        $user = Auth::user();
+        $countries = Countries::getListForSelect();
+        return view('travel.request', compact('traveler', 'user', 'countries'));
     }
 }
