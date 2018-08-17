@@ -7,7 +7,7 @@
               <a href="{{ route('orders.index') }}" class="list-group-item {{Route::is('orders*')? 'active':'list-group-item-action'}}">Orders</a>
               <a href="{{ route('travel.index') }}" class="list-group-item {{Route::is('travel*')? 'active':'list-group-item-action'}}">Travel History</a>
               <a href="{{ route('offers.index') }}" class="list-group-item {{Route::is('offers*')? 'active':'list-group-item-action'}}">Offers</a>
-              <a href="#" class="list-group-item disabled">Requests</a>
+              <a href="{{ route('requests.index') }}" class="list-group-item  {{Route::is('requests*')? 'active':'list-group-item-action'}}">Requests</a>
               <a href="{{ route('user.userinfo') }}" class="list-group-item {{Route::is('user*')? 'active':'list-group-item-action'}}">View Profile</a>
               <a href="#" class="list-group-item disabled">Following Users</a>
               <a href="#" class="list-group-item disabled">Followed Users</a>

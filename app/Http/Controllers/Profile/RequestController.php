@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Profile;
 use App\User;
-use Illuminate\Http\Request;
+use App\TravelRequest;
+use Illuminate\Http\TrequestRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,10 +11,11 @@ class RequestController extends Controller
 {
     protected $user;
 
-    public function __construct(User $user)
+    public function __construct(User $user, TravelRequest $travelRequest)
     {
         $this->middleware('auth');
         $this->user = $user;
+        $this->travelRequest = $travelRequest;
     }
 
     /**
@@ -34,7 +36,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        //
+        return redirect(route('front.travel.index'))->with('info', array('To Add Request'=>'Please select one of the following travelers to add request!'));
     }
 
     /**
@@ -43,9 +45,12 @@ class RequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TrequestRequest $request)
     {
-        //
+        $input = $request->all();
+        $input['message_subject_id'] = $this->createMessage($input['request_message_subject'], array($input['user_id'], $input['traveler_id']));
+        $this->travelRequest->create($input);
+        return redirect(route('requests.index'))->with('success', array('Request Added'=>'Request has been sent to the traveler!'));
     }
 
     /**
@@ -77,7 +82,7 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TrequestRequest $request, $id)
     {
         //
     }
