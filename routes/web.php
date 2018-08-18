@@ -61,6 +61,7 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/requests/accepted', 'RequestController@accepted')->name('requests.accepted');
 	Route::post('/requests/accepted', 'RequestController@accepted');
 	Route::resource('requests', 'RequestController');
+	Route::post('/requests/image/add', 'RequestController@addImage')->name('requests.image.add');
 
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/', 'ProfileController@userinfo')->name('user.userinfo');

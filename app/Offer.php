@@ -10,7 +10,7 @@ class Offer extends Model
     protected $table = "offers";
 
     protected $fillable = [
-        'product_quantity', 'asking_price', 'delivery_date', 'additional_details', 'accepted', 'rejected','delivered', 'recieved', 'message_subject_id', 'order_id', 'user_id',
+        'product_quantity', 'asking_price', 'delivery_date', 'additional_details', 'message_subject_id', 'order_id', 'user_id',
     ];
 
     use SoftDeletes;

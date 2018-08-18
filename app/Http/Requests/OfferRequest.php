@@ -25,7 +25,7 @@ class OfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'offer_message_subject' => 'required|max:200',
+            'offer_message_subject' => 'max:200',
             'product_quantity' => 'required|numeric|max:100|min:1',
             'asking_price' => 'required|numeric|digits_between:2,6',
             'delivery_date' => 'required|date|after:'.Carbon::now()->format('l d F Y'),

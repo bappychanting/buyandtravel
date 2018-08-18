@@ -24,8 +24,8 @@ class RequestTravelerRequest extends FormRequest
     public function rules()
     {
         return [
+            'request_message_subject' => 'max:200',
             'product_name' => 'required|max:100|min:2',
-            'request_message_subject' => 'required|max:200',
             'quantity' => 'required|numeric|max:100|min:1',
             'expected_price' => 'digits_between:2,6',
             'reference_link' => 'url|max:255|min:10',
