@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Profile;
+use Session;
 use App\User;
 use App\ProductRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\RequestTravelerRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -80,18 +82,16 @@ class RequestController extends Controller
 
 
 
-    public function addImage(Request $request)
+    public function updateImage(Request $request, $id)
     {
-        /*$this->validate(request(),[
+        $productRequest = $this->productRequest->findOrFail($id);
+        $this->validate(request(),[
             'image' => 'required|image|dimensions:min_width=100,min_height=200|max:500'
-        ]);
-        $order_image = $this->order_image;
-        $image = $this->uploadImage($request->file('image'), 'all_images/order_images/', 350, 300);
-        $order_image->src = $image;
-        $order_image->alt = "Order Image ".md5(uniqid(rand(), true));
-        $order_image->order_id = $request->id;
-        $order_image->save();
-        Session::flash('success', array('Image has been added!'=>''));*/
+        ]);  
+        $image = $this->uploadImage($request->file('image'), 'all_images/request_images/', 450, 450);
+        $productRequest->image = $image;
+        $productRequest->save();
+        Session::flash('success', array('Product request image has been updated!'=>''));
     }  
 
     /**

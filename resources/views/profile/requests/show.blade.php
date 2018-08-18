@@ -58,9 +58,14 @@
                   <!--Grid column-->
                   <div class="col-xl-4 col-lg-4 col-md-3 col-sm-6 col-12">
                       <!--Featured image-->
-                      <div class="z-depth-1-half">
-                          <img src="{{ file_exists(array_get($request->images, 'src')) ? asset(array_get($request->images, 'src')) : 'http://via.placeholder.com/450?text=Product+Image' }}" class="img-fluid rounded" alt="{{ array_get($request->images, 'alt') }}">
+                      <div class="z-depth-1-half" id="aniimated-thumbnials">
+                        <a href="{{ file_exists($request->image) ? asset($request->image) : 'http://via.placeholder.com/450?text=Product+Image' }}" data-sub-html="{{ $user->name }} Profile Picture"> 
+                          <img src="{{ file_exists($request->image) ? asset($request->image) : 'http://via.placeholder.com/450?text=Product+Image' }}" class="img-fluid rounded" alt="{{ $request->image }} Request Image">
+                        </a>
                       </div>
+                      @if ($errors->has('image'))
+                          <p class="red-text mt-4">{{ $errors->first('image') }}</p>
+                      @endif
                       <button class="btn blue-gradient btn-sm mt-4" data-toggle="modal" data-target="#updateimage">
                         <i class="fa fa-cloud-upload fa-sm pr-2" aria-hidden="true"></i>Upload An Image
                       </button>
@@ -106,7 +111,7 @@
                     <img src="http://placehold.it/200" class="img-fluid z-depth-1 preview_input" alt="Responsive image">
                     <p class="text-center mt-4">Maximum Allowed Size: 500 KB</p>
                   </div>
-                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'post', 'route' => ['requests.image.add'], 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['class'=>'md-form upload_image', 'method' => 'put', 'route' => ['requests.image.update', $request->id], 'enctype' => 'multipart/form-data']) !!}
                       {!! Form::hidden('id', $request->id) !!}
                       <div class="file-field">
                           <div class="btn btn-primary btn-sm float-left">
