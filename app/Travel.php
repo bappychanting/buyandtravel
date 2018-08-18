@@ -47,6 +47,6 @@ class Travel extends Model
         // Each Travel Schedule has many product requests
     public function requests()
     {
-        return $this->hasMany(ProductRequest::class);
+        return $this->hasMany(ProductRequest::class, 'travel_schedule_id');
     }
 }
