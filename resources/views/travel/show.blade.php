@@ -15,7 +15,7 @@
       <div class="bc-icons">
           <ol class="breadcrumb blue-gradient">
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('buyandtravel') }}">Home</a></li>
-              <li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Orders</li>
+              <li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Travelers</li>
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('front.travel.index') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>All Travelers</a></li>
               <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>View Travel Schedule</li>
           </ol>

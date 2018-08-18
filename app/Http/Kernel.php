@@ -64,6 +64,9 @@ class Kernel extends HttpKernel
         'offer.added' => \App\Http\Middleware\OfferAdded::class,
         'offer.owner' => \App\Http\Middleware\MustBeOwnerOfOffer::class,
         'travel.owner' => \App\Http\Middleware\MustbeOwnerofTravelSchedule::class,
+        'travel.not.owner' => \App\Http\Middleware\MustNotBeOwnerOfTravelSchedule::class,
+        'request.added' => \App\Http\Middleware\ProductRequestAdded::class,
+        'request.owner' => \App\Http\Middleware\MustBeOwnerOfProductRequest::class,
         'message.participant' => \App\Http\Middleware\MessageAccessControl::class,
     ];
 }

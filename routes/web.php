@@ -58,6 +58,8 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	
 	Route::resource('travel', 'TravelController');
 	
+	Route::get('/requests/accepted', 'RequestController@accepted')->name('requests.accepted');
+	Route::post('/requests/accepted', 'RequestController@accepted');
 	Route::resource('requests', 'RequestController');
 
 	Route::group(['prefix' => 'user'], function(){

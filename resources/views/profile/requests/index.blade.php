@@ -60,7 +60,7 @@
                         <a class="nav-link waves-light active" data-toggle="tab" href="#allRequests" role="tab">Added Requests</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-light" href="{{ route('offers.accepted') }}">Approved Requests</a>
+                        <a class="nav-link waves-light" href="{{ route('requests.accepted') }}">Approved Requests</a>
                     </li>
                 </ul>
             </div>
@@ -94,7 +94,7 @@
                                       </button>
                                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         <a class="dropdown-item" href="{{ route('requests.show', $request->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Request</a>
-                                        <a class="dropdown-item" href="{{ route('front.travel.show', $request->travel_schedule->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Request</a>
+                                        <a class="dropdown-item" href="{{ route('front.travel.show', $request->travel_schedule->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Travel Schedule</a>
                                         {!! Form::open(['route' => ['requests.destroy', $request->id], 'method'=>'delete']) !!}
                                           {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your request will disappear!', 'confirmButtonText'=>'Yes, delete request!', 'type'=>'submit')) !!}
                                         {!! Form::close() !!}

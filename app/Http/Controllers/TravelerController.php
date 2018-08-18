@@ -14,6 +14,8 @@ class TravelerController extends Controller
     public function __construct(Travel $travel)
     {
         $this->middleware('auth')->only('addRequest');
+        $this->middleware('travel.not.owner')->only('addRequest');
+        $this->middleware('request.added')->only('addRequest');
         $this->travel = $travel;
     }
 

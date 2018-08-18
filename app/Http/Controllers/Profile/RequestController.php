@@ -15,6 +15,7 @@ class RequestController extends Controller
     public function __construct(User $user, ProductRequest $productRequest)
     {
         $this->middleware('auth');
+        $this->middleware('request.owner')->only('show', 'edit');
         $this->user = $user;
         $this->productRequest = $productRequest;
     }
@@ -32,6 +33,14 @@ class RequestController extends Controller
         return view('profile.requests.index', compact('requests', 'user', 'search'));
     }
 
+    public function accepted()
+    {
+        $user = $this->user->find(Auth::user()->id);
+        $search = \Request::get('search');
+        $requests = $user->requests()->whereNotNull('accepted')->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        return view('profile.requests.approved', compact('requests', 'user', 'search'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,7 +48,7 @@ class RequestController extends Controller
      */
     public function create()
     {
-        return redirect(route('front.travel.index'))->with('info', array('To Add Request'=>'Please select one of the following travelers to add request!'));
+        return redirect(route('front.travel.index'))->with('info', array('To Add Request'=>'Please select one of the following travel schedules to add request!'));
     }
 
     /**
@@ -64,7 +73,9 @@ class RequestController extends Controller
      */
     public function show($id)
     {
-        //
+        $request = $this->productRequest->findOrFail($id);
+        $user = Auth::user();
+        return view('profile.requests.show', compact('user', 'request'));
     }
 
     /**

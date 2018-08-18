@@ -21,7 +21,7 @@ class ProductRequest extends Model
             return $query->WhereHas('travel_schedule');
         } else {
     		return $query->where('product_name', 'LIKE', '%' . $search . '%')
-	                    ->whereHas('travel_schedule', function ($query) use($search){
+	                    ->orWhereHas('travel_schedule', function ($query) use($search){
 	                    	$query->where('destination', 'LIKE', '%' . $search . '%')
 		                    ->orWhere('city', 'LIKE', '%' . $search . '%')
 		                    ->orWhere('tags', 'LIKE', '%' . $search . '%')

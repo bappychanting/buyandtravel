@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $user->name." || View Requests || ")
+@section('title', $user->name." || View Request || ")
 
 @section('content')
 
@@ -16,7 +16,8 @@
           <ol class="breadcrumb blue-gradient">
               <li class="breadcrumb-item"><a class="white-text" href="{{ route('buyandtravel') }}">Home</a></li>
               <li class="breadcrumb-item"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>User Content</li>
-              <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Requests</li>
+              <li class="breadcrumb-item"><a class="white-text" href="{{ route('requests.index') }}"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>Requests</a></li>
+              <li class="breadcrumb-item active"><i class="fa fa-hand-o-right mx-2 white-text" aria-hidden="true"></i>View Request</li>
           </ol>
       </div>
 
@@ -28,6 +29,8 @@
 
             <!-- Content Column -->
             <div class="col-lg-10 mb-4">
+                <h2>View Request</h2>
+                <hr class="my-3">
            
             </div>
         </div>
