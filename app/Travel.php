@@ -43,4 +43,10 @@ class Travel extends Model
 	{
 		return $this->belongsTo(Country::class);
 	}
+
+        // Each Travel Schedule has many product requests
+    public function requests()
+    {
+        return $this->hasMany(ProductRequest::class);
+    }
 }

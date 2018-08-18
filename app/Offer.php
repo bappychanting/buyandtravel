@@ -25,8 +25,8 @@ class Offer extends Model
                         )
 	                    ->orWhere('delivery_location', 'LIKE', '%' . $search . '%')
 	                    ->orWhere('tags', 'LIKE', '%' . $search . '%')
-	                    ->orWhereHas('user', function ($query) use($search){
-                        	$query->where('name', 'LIKE', '%' . $search . '%');
+	                    ->orWhereHas('user', function ($q) use($search){
+                        	$q->where('name', 'LIKE', '%' . $search . '%');
                     	});
 					});
         }

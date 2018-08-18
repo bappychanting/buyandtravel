@@ -50,6 +50,12 @@ class User extends Authenticatable
         return $this->hasMany(Offer::class);
     }
 
+        // A User has many Requests
+    public function requests()
+    {
+        return $this->hasMany(ProductRequest::class);
+    }
+
         // A User perticipated in many messages
     public function messages()
     {

@@ -31,9 +31,9 @@
                 <h2>{{ empty($search) ? 'List of ' : 'Search' }} Offers</h2>
                 <p>Following are the list of offers {{ empty($search) ? 'you have added' : 'based on your search' }}.</p>
                 @if(empty($search))
-                    <a class="btn btn-md blue-gradient mb-4" href="{{ route('offers.create') }}"><i class="fa fa-plus fa-sm pr-2"" aria-hidden="true"></i> Add Offer</a>
+                    <a class="btn btn-md blue-gradient mb-4" href="{{ route('offers.create') }}"><i class="fa fa-plus fa-sm pr-2" aria-hidden="true"></i> Add Offer</a>
                 @else
-                    <a class="btn btn-sm btn-blue" href="{{ route('offers.index') }}"><i class="fa fa-refresh fa-sm pr-2"" aria-hidden="true"></i> Refresh List</a>
+                    <a class="btn btn-sm btn-blue" href="{{ route('offers.index') }}"><i class="fa fa-refresh fa-sm pr-2" aria-hidden="true"></i> Refresh List</a>
                 @endif
           
             {!! Form::open(['url' => '/profile/offers', 'method'=>'get']) !!}

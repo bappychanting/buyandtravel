@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Profile;
 use App\User;
-use App\TravelRequest;
-use Illuminate\Http\TrequestRequest;
+use App\ProductRequest;
+use App\Http\Requests\RequestTravelerRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class RequestController extends Controller
 {
     protected $user;
+    protected $productRequest;
 
-    public function __construct(User $user, TravelRequest $travelRequest)
+    public function __construct(User $user, ProductRequest $productRequest)
     {
         $this->middleware('auth');
         $this->user = $user;
-        $this->travelRequest = $travelRequest;
+        $this->productRequest = $productRequest;
     }
 
     /**
@@ -26,7 +27,9 @@ class RequestController extends Controller
     public function index()
     {
         $user = $this->user->find(Auth::user()->id);
-        return view('profile.requests.index', compact('user'));
+        $search = \Request::get('search');
+        $requests = $user->requests()->whereNull('accepted')->search($search)->orderBy('created_at', 'desc')->paginate(30);
+        return view('profile.requests.index', compact('requests', 'user', 'search'));
     }
 
     /**
@@ -45,11 +48,11 @@ class RequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TrequestRequest $request)
+    public function store(RequestTravelerRequest $request)
     {
         $input = $request->all();
         $input['message_subject_id'] = $this->createMessage($input['request_message_subject'], array($input['user_id'], $input['traveler_id']));
-        $this->travelRequest->create($input);
+        $this->productRequest->create($input);
         return redirect(route('requests.index'))->with('success', array('Request Added'=>'Request has been sent to the traveler!'));
     }
 
