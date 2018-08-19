@@ -176,7 +176,6 @@ $(document).ready(function(){
 
   $('.view_request_details_button').click(function() {
     var request = $(this).data('request');
-    var travel = $(this).data('travel');
     $.ajaxSetup({
       headers: {
         'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
@@ -186,8 +185,7 @@ $(document).ready(function(){
       url: "request/details",
       type: 'POST',
       data: {
-        'request_id': request,
-        'travel_id': travel
+        'request_id': request
       },
       dataType: 'JSON',
       beforeSend: function(){
@@ -197,9 +195,11 @@ $(document).ready(function(){
       },
       success:function(response){
         $('#modal_request_id').val(request);
-        $('#modal_travel_id').val(travel);
-        $("#modal_accept_request_btn").prop("disabled",false);
-        // $("#modal_request_details").empty().append('Details found!');
+        if(response['accepted'] == 'yes'){
+          $("#modal_accept_request_btn").prop("disabled",true);
+        }else{
+          $("#modal_accept_request_btn").prop("disabled",false);
+        }
         $("#modal_request_details").empty().append('<div class="row mb-4"><div class="col-xl-4 col-lg-4 col-md-3 col-sm-6 col-12"><img class="img-fluid rounded" src="'+response['image']+'" alt="'+response['product_name']+'"></div><div class="col-xl-8 col-lg-8 col-md-9 col-sm-6 col-12"><ul class="list-group list-group-flush mb-3"><li class="list-group-item"><i class="fa fa-user fa-sm pr-2"></i><strong>Added By: </strong>'+response['user']+'</li><li class="list-group-item"><i class="fa fa-cart-plus fa-sm pr-2"></i><strong>Quantity: </strong>'+response['quantity']+'</li><li class="list-group-item"><i class="fa fa-dollar fa-sm pr-2"></i><strong>Expected Price: </strong>'+response['price']+'/=</li><li class="list-group-item"><a href="'+response['reference_link']+'" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a></li></ul></div></div>'+response['details']);
       },
       error: function(response){

@@ -77,6 +77,8 @@
                               <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
                               <th><i class="fa fa-user fa-sm pr-2"></i>User</th>
                               <th><i class="fa fa-clock-o fa-sm pr-2"></i>Create Date</th>
+                              <th><i class="fa fa-clock-o fa-sm pr-2"></i>Approve Date</th>
+                              <th><i class="fa fa-clock-o fa-sm pr-2"></i>Status</th>
                               <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                           </tr>
                       </thead>
@@ -87,17 +89,17 @@
                               <td>{{ $request->product_name }}</td>
                               <td>{{ $request->travel_schedule->user->name }}</td>
                               <td>{{ $request->created_at->format('l d F Y, h:i A') }}</td>
+                              <td>{{ date('l d F Y', strtotime($request->accepted)) }}</td>
+                              <td><p class="red-text">Not Recieved</p></td>
                               <td>
                                   <div class="dropdown" role="group">
                                       <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Actions
                                       </button>
                                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <a class="dropdown-item" href="#"><i class="fa fa-truck fa-sm pr-2" aria-hidden="true"></i>Product Recieved!</a>
                                         <a class="dropdown-item" href="{{ route('requests.show', $request->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Request</a>
                                         <a class="dropdown-item" href="{{ route('front.travel.show', $request->travel_schedule->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Travel Schedule</a>
-                                        {!! Form::open(['route' => ['requests.destroy', $request->id], 'method'=>'delete']) !!}
-                                          {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your request will disappear!', 'confirmButtonText'=>'Yes, delete request!', 'type'=>'submit')) !!}
-                                        {!! Form::close() !!}
                                       </div>
                                   </div>
                               </td>

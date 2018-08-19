@@ -114,7 +114,7 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestTravelerRequest $request, $id)
+    public function update(RequestTravelerRequest $request, $request_id)
     {
         $input = $request->all();
         $productRequest = $this->productRequest->findOrFail($id);

@@ -84,6 +84,10 @@
                           <i class="fa fa-sort float-right" aria-hidden="true"></i>
                         </th>
                         <th>
+                          <i class="fa fa-info fa-sm pr-2"></i>Status
+                          <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                        </th>
+                        <th>
                           <i class="fa fa-gears fa-sm pr-2"></i>Actions
                           <i class="fa fa-sort float-right" aria-hidden="true"></i>
                         </th>
@@ -98,6 +102,10 @@
                         <td>{{ $request->quantity }}</td>
                         <td>{{ $request->expected_price }}/=</td>
                         <td>
+                          {!! empty($request->accepted) ? '<p class="red-text font-weight-bold">Not accepted!</p>' : '<p class="green-text font-weight-bold">Accepted '.date('l d F Y', strtotime($request->accepted)).'</p>' !!}
+                          {{ empty($request->recieved) ? '' : 'Delivered '.date('l d F Y', strtotime($request->recieved)) }}
+                        </td>
+                        <td>
                             <div class="dropdown" role="group">
                                 <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Actions
@@ -110,7 +118,7 @@
                                   {!! Form::open() !!}
                                   {!! Form::hidden('request_id', $request->id) !!}
                                   {!! Form::hidden('travel_schedule_id', $travel->id) !!}
-                                    {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit')) !!}
+                                    {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit', empty($request->accepted) ? '' : 'disabled'=> 'disabled')) !!}
                                   {!! Form::close() !!} 
                                 </div>
                             </div>
@@ -121,10 +129,11 @@
                   <tfoot>
                     <tr>
                       <th>#</th>
-                      <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Added By</th>
                       <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Product Name</th>
-                      <th><i class="fa fa-dollar fa-sm pr-2"></i>Quantity</th>
-                      <th><i class="fa fa-calendar-check-o fa-sm pr-2"></i>Expected Price</th>
+                      <th><i class="fa fa-user fa-sm pr-2"></i>Added By</th>
+                      <th><i class="fa fa-cart-plus fa-sm pr-2"></i>Quantity</th>
+                      <th><i class="fa fa-dollar fa-sm pr-2"></i>Expected Price</th>
+                      <th><i class="fa fa-info fa-sm pr-2"></i>Status</th>
                       <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                     </tr>
                   </tfoot>
@@ -152,9 +161,8 @@
             <div id="modal_request_details"></div>
           </div>
           <div class="modal-footer">
-            {!! Form::open(['route' => ['travel.request.accept'], 'method'=>'post']) !!}
+            {!! Form::open(['route' => ['travel.request.accept', $travel->id], 'method'=>'put']) !!}
               {!! Form::hidden('request_id', '', ['id'=>'modal_request_id']) !!}
-              {!! Form::hidden('travel_id', '', ['id'=>'modal_travel_id']) !!}
               {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'btn btn-indigo btn-sm form_warning_sweet_alert', 'id'=>'modal_accept_request_btn', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit', 'disabled'=>'true')) !!}
               <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
             {!! Form::close() !!}

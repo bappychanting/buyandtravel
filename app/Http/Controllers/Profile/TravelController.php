@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Profile;
 use Countries;
 use App\Travel;
 use App\User;
+use App\ProductRequest;
 use Carbon\Carbon;
 use App\Http\Requests\TravelRequest;
 use Illuminate\Http\Request;
@@ -80,13 +81,17 @@ class TravelController extends Controller
 
     public function requestDetails(Request $request)
     {
-        $travel = $this->travel->findOrFail($request->travel_id);
-        foreach($travel->requests as $productRequest){
-            if($productRequest->id == $request->request_id){
-                $request_details = array('id'=> $productRequest->id, 'user'=>$productRequest->user->name, 'name'=>$productRequest->product_name, 'quantity'=>$productRequest->quantity, 'price'=>$productRequest->expected_price, 'link'=>$productRequest->reference_link, 'image'=> file_exists($productRequest->image) ? asset($productRequest->image) : 'http://via.placeholder.com/450?text=Product+Image', 'details'=>$productRequest->additional_details);
-                return json_encode($request_details);
-            }
-        }
+        $productRequest = ProductRequest::findOrFail($request->request_id); 
+        $request_details = array('id'=> $productRequest->id, 'user'=>$productRequest->user->name, 'name'=>$productRequest->product_name, 'quantity'=>$productRequest->quantity, 'price'=>$productRequest->expected_price, 'link'=>$productRequest->reference_link, 'image'=> file_exists($productRequest->image) ? asset($productRequest->image) : 'http://via.placeholder.com/450?text=Product+Image', 'accepted'=> empty($productRequest->accepted) ? 'no' : 'yes' , 'details'=>$productRequest->additional_details);
+        return json_encode($request_details);
+    }
+
+    public function approveRequest(Request $request)
+    {
+        $productRequest = ProductRequest::findOrFail($request->request_id); 
+        $productRequest->accepted = date('Y-m-d');
+        $productRequest->save();
+        return redirect()->back()->with('success', array('Success'=>'Request has been accepted!'));
     }
 
     /**
