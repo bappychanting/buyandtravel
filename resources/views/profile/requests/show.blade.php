@@ -35,8 +35,12 @@
               {!! Form::open(['route' => ['requests.destroy', $request->id], 'method'=>'delete']) !!}
                   <a href="{{ route('front.travel.show', $request->travel_schedule->id) }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>Open Travel Schedule</a>
                   <a href="{{ route('messages.show', $request->message_subject_id) }}" class="btn btn-blue btn-sm" target="_blank"><i class="fa fa-comments fa-sm pr-2"" aria-hidden="true"></i>Request Conversation</a>
+                @if(empty($request->accepted))
                   <a href="{{ route('requests.edit', $request->id) }}" class="btn btn-indigo btn-sm"><i class="fa fa-edit fa-sm pr-2" aria-hidden="true"></i>Update Request</a>
                   {!! Form::button('<i class="fa fa-trash fa-sm pr-2"" aria-hidden="true"></i>Delete', array('class' => 'btn btn-unique btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Your request will disappear!', 'confirmButtonText'=>'Yes, delete request!', 'type'=>'submit')) !!}
+                @else
+                  <a class="btn btn-dark-green btn-sm">Request Accepted: {{ date('l, d F Y', strtotime($request->accepted)) }}!</a>
+                @endif
               {!! Form::close() !!}
 
               <h5 class="my-4">Travel Schedule Overview</h5>

@@ -103,16 +103,14 @@ class TravelController extends Controller
     {
         $productRequest = $this->productRequest->findOrFail($request->request_id); 
         if(strtotime($productRequest->accepted) + 86400 > time()){
-            $productRequest->accepted = NULL;
-            $productRequest->save();
-            return redirect()->back()->with('warning', array('Warning'=>'Approved request has been removed!'));     
+            if(strtotime($productRequest->travel_schedule->leave_date) > time()){
+                $productRequest->accepted = NULL;
+                $productRequest->save();
+                return redirect()->back()->with('warning', array('Warning'=>'Approved request has been removed!'));
+            }     
+            return redirect()->back()->with('error', array('Error'=>'Accpeted request can not be removed after the travel schedule is over!')); 
         }
-        elseif(strtotime($productRequest->travel_schedule->leave_date) < time()){
-            return redirect()->back()->with('error', array('Error'=>'Request can not be removed after the travel schedule is over!')); 
-        }
-        else{  
-            return redirect()->back()->with('error', array('Error'=>'Approved request can not be removed after 24 hours have passed since accepted!')); 
-        }
+        return redirect()->back()->with('error', array('Error'=>'Approved request can not be removed after 24 hours have passed since accepted!')); 
     }
 
     /**
