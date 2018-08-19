@@ -77,6 +77,17 @@ class TravelController extends Controller
         return view('profile.travel.show', compact('user', 'travel'));
     }
 
+    public function requestDetails(Request $request)
+    {
+        $travel = $this->travel->findOrFail($request->travel_id);
+        foreach($travel->requests as $productRequest){
+            if($productRequest->id == $request->request_id){
+                $request_details = array('id'=> $productRequest->id, 'user'=>$productRequest->user->name, 'name'=>$productRequest->product_name, 'quantity'=>$productRequest->quantity, 'price'=>$productRequest->expected_price, 'link'=>$productRequest->reference_link, 'image'=>$productRequest->image, 'details'=>$productRequest->additional_details);
+                return json_encode($offer_details);
+            }
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

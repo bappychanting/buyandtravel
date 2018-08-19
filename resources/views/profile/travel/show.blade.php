@@ -138,5 +138,31 @@
     </div>
     <!-- Contents -->
 
+    <!-- Product Request Details Modal -->
+    <div class="modal fade" id="viewRequestDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="viewDetailsTitle">View Request Details</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="modal_request_details"></div>
+          </div>
+          <div class="modal-footer">
+            {!! Form::open(['route' => ['travel.request.accept'], 'method'=>'post']) !!}
+              {!! Form::hidden('request_id', '', ['id'=>'modal_request_id']) !!}
+              {!! Form::hidden('travel_id', '', ['id'=>'modal_travel_id']) !!}
+              {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'btn btn-indigo btn-sm form_warning_sweet_alert', 'id'=>'modal_accept_offer_btn', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit', 'disabled'=>'true')) !!}
+              <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
+            {!! Form::close() !!}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Product Request Details Modal -->
+
 @endsection
 
