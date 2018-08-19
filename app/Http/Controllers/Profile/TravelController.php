@@ -15,13 +15,15 @@ class TravelController extends Controller
 {
 
     protected $travel;
+    protected $productRequest;
     protected $user;
 
-    public function __construct(Travel $travel, User $user)
+    public function __construct(Travel $travel, ProductRequest $productRequest, User $user)
     {
         $this->middleware('auth');
         $this->middleware('travel.owner', ['only' => ['show', 'edit']]);
         $this->travel = $travel;
+        $this->productRequest = $productRequest;
         $this->user = $user;
     }
     
@@ -81,17 +83,36 @@ class TravelController extends Controller
 
     public function requestDetails(Request $request)
     {
-        $productRequest = ProductRequest::findOrFail($request->request_id); 
+        $productRequest = $this->productRequest->findOrFail($request->request_id); 
         $request_details = array('id'=> $productRequest->id, 'user'=>$productRequest->user->name, 'name'=>$productRequest->product_name, 'quantity'=>$productRequest->quantity, 'price'=>$productRequest->expected_price, 'link'=>$productRequest->reference_link, 'image'=> file_exists($productRequest->image) ? asset($productRequest->image) : 'http://via.placeholder.com/450?text=Product+Image', 'accepted'=> empty($productRequest->accepted) ? 'no' : 'yes' , 'details'=>$productRequest->additional_details);
         return json_encode($request_details);
     }
 
-    public function approveRequest(Request $request)
+    public function approveRequest(Request $request, $id)
     {
-        $productRequest = ProductRequest::findOrFail($request->request_id); 
-        $productRequest->accepted = date('Y-m-d');
-        $productRequest->save();
-        return redirect()->back()->with('success', array('Success'=>'Request has been accepted!'));
+        $productRequest = $this->productRequest->findOrFail($request->request_id); 
+        if(strtotime($productRequest->travel_schedule->leave_date) > time()){
+            $productRequest->accepted = date('Y-m-d');
+            $productRequest->save();
+            return redirect()->back()->with('success', array('Success'=>'Request has been accepted!')); 
+        }
+        return redirect()->back()->with('error', array('Error'=>'Request can not be accepted after the travel schedule is over!'));
+    }
+
+    public function removeApprovedRequest(Request $request, $id)
+    {
+        $productRequest = $this->productRequest->findOrFail($request->request_id); 
+        if(strtotime($productRequest->accepted) + 86400 > time()){
+            $productRequest->accepted = NULL;
+            $productRequest->save();
+            return redirect()->back()->with('success', array('Warning'=>'Approved request has been removed!'));     
+        }
+        elseif(strtotime($productRequest->travel_schedule->leave_date) < time()){
+            return redirect()->back()->with('warning', array('Error'=>'Request can not be removed after the travel schedule is over!')); 
+        }
+        else{  
+            return redirect()->back()->with('error', array('Error'=>'Approved request can not be removed after 24 hours have passed since accepted!')); 
+        }
     }
 
     /**

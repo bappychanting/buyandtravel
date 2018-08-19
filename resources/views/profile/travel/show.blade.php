@@ -102,7 +102,7 @@
                         <td>{{ $request->quantity }}</td>
                         <td>{{ $request->expected_price }}/=</td>
                         <td>
-                          {!! empty($request->accepted) ? '<p class="red-text font-weight-bold">Not accepted!</p>' : '<p class="green-text font-weight-bold">Accepted '.date('l d F Y', strtotime($request->accepted)).'</p>' !!}
+                          {!! empty($request->accepted) ? '<p class="red-text font-weight-bold">Not accepted!</p>' : '<p class="font-weight-bold"><span class="green-text">Accepted: </span>'.date('l, d F Y', strtotime($request->accepted)).'</p>' !!}
                           {{ empty($request->recieved) ? '' : 'Delivered '.date('l d F Y', strtotime($request->recieved)) }}
                         </td>
                         <td>
@@ -115,10 +115,17 @@
                                     <i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Details
                                   </button>
                                   <a class="dropdown-item" href="{{ route('messages.show', $request->message_subject_id) }}" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Request Conversation</a>
-                                  {!! Form::open(['route' => ['travel.request.accept', $travel->id], 'method'=>'put']) !!}
-                                  {!! Form::hidden('request_id', $request->id) !!}
-                                    {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit', empty($request->accepted) ? '' : 'disabled'=> 'disabled')) !!}
-                                  {!! Form::close() !!} 
+                                  @if(!empty($request->accepted))
+                                    {!! Form::open(['route' => ['travel.request.remove', $travel->id], 'method'=>'put']) !!}
+                                    {!! Form::hidden('request_id', $request->id) !!}
+                                      {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Remove Accepted Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to remove this accepted request?', 'text'=>'Make sure you have informed the user who made the request!', 'confirmButtonText'=>'Yes, remove accepted request!', 'type'=>'submit')) !!}
+                                    {!! Form::close() !!} 
+                                  @else
+                                    {!! Form::open(['route' => ['travel.request.accept', $travel->id], 'method'=>'put']) !!}
+                                    {!! Form::hidden('request_id', $request->id) !!}
+                                      {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit')) !!}
+                                    {!! Form::close() !!} 
+                                  @endif
                                 </div>
                             </div>
                         </td>
