@@ -6,6 +6,7 @@ use App\Travel;
 use App\User;
 use Carbon\Carbon;
 use App\Http\Requests\TravelRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -82,8 +83,8 @@ class TravelController extends Controller
         $travel = $this->travel->findOrFail($request->travel_id);
         foreach($travel->requests as $productRequest){
             if($productRequest->id == $request->request_id){
-                $request_details = array('id'=> $productRequest->id, 'user'=>$productRequest->user->name, 'name'=>$productRequest->product_name, 'quantity'=>$productRequest->quantity, 'price'=>$productRequest->expected_price, 'link'=>$productRequest->reference_link, 'image'=>$productRequest->image, 'details'=>$productRequest->additional_details);
-                return json_encode($offer_details);
+                $request_details = array('id'=> $productRequest->id, 'user'=>$productRequest->user->name, 'name'=>$productRequest->product_name, 'quantity'=>$productRequest->quantity, 'price'=>$productRequest->expected_price, 'link'=>$productRequest->reference_link, 'image'=> file_exists($productRequest->image) ? asset($productRequest->image) : 'http://via.placeholder.com/450?text=Product+Image', 'details'=>$productRequest->additional_details);
+                return json_encode($request_details);
             }
         }
     }

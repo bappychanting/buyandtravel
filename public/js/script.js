@@ -171,6 +171,44 @@ $(document).ready(function(){
     });
   });
 
+
+      //  Show request details on modal popup
+
+  $('.view_request_details_button').click(function() {
+    var request = $(this).data('request');
+    var travel = $(this).data('travel');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+      }
+    });
+    $.ajax({
+      url: "request/details",
+      type: 'POST',
+      data: {
+        'request_id': request,
+        'travel_id': travel
+      },
+      dataType: 'JSON',
+      beforeSend: function(){
+          $("#modal_request_details").empty();
+          $('<div class="text-center my-5"><i class="fa fa-spinner fa-spin"></i></div>').show().appendTo("#modal_request_details");
+          $("#modal_accept_request_btn").prop("disabled",true);
+      },
+      success:function(response){
+        $('#modal_request_id').val(request);
+        $('#modal_travel_id').val(travel);
+        $("#modal_accept_request_btn").prop("disabled",false);
+        // $("#modal_request_details").empty().append('Details found!');
+        $("#modal_request_details").empty().append('<div class="row mb-4"><div class="col-xl-4 col-lg-4 col-md-3 col-sm-6 col-12"><img class="img-fluid rounded" src="'+response['image']+'" alt="'+response['product_name']+'"></div><div class="col-xl-8 col-lg-8 col-md-9 col-sm-6 col-12"><ul class="list-group list-group-flush mb-3"><li class="list-group-item"><i class="fa fa-user fa-sm pr-2"></i><strong>Added By: </strong>'+response['user']+'</li><li class="list-group-item"><i class="fa fa-cart-plus fa-sm pr-2"></i><strong>Quantity: </strong>'+response['quantity']+'</li><li class="list-group-item"><i class="fa fa-dollar fa-sm pr-2"></i><strong>Expected Price: </strong>'+response['price']+'/=</li><li class="list-group-item"><a href="'+response['reference_link']+'" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a></li></ul></div></div>'+response['details']);
+      },
+      error: function(response){
+        $("#modal_accept_request_btn").prop("disabled",true);
+        $("#modal_request_details").empty().append('<p class="font-weight-bold text-center">Sorry, no data returned from server...</p>');
+      }
+    });
+  });
+
     //  Edit message  
 
   var action = $('#edit_message_form').attr('action');

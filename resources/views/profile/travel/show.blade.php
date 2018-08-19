@@ -103,14 +103,14 @@
                                     Actions
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                  <button class="dropdown-item view_request_details_button" data-offer="{{ $request->id }}" data-order="{{ $travel->id }}" data-toggle="modal" data-target="#viewRequestDetails">
+                                  <button class="dropdown-item view_request_details_button" data-request="{{ $request->id }}" data-travel="{{ $travel->id }}" data-toggle="modal" data-target="#viewRequestDetails">
                                     <i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Details
                                   </button>
                                   <a class="dropdown-item" href="{{ route('messages.show', $request->message_subject_id) }}" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Request Conversation</a>
                                   {!! Form::open() !!}
                                   {!! Form::hidden('request_id', $request->id) !!}
                                   {!! Form::hidden('travel_schedule_id', $travel->id) !!}
-                                    {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this offer?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit')) !!}
+                                    {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit')) !!}
                                   {!! Form::close() !!} 
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
             {!! Form::open(['route' => ['travel.request.accept'], 'method'=>'post']) !!}
               {!! Form::hidden('request_id', '', ['id'=>'modal_request_id']) !!}
               {!! Form::hidden('travel_id', '', ['id'=>'modal_travel_id']) !!}
-              {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'btn btn-indigo btn-sm form_warning_sweet_alert', 'id'=>'modal_accept_offer_btn', 'title'=>'Are you sure to accept this offer?', 'text'=>'Rest of the offers will disappear and updating or deleting the order will be disabled! Make sure you have read the offer thoroughly and confirmed the deal with the offerer!', 'confirmButtonText'=>'Yes, accept offer!', 'type'=>'submit', 'disabled'=>'true')) !!}
+              {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'btn btn-indigo btn-sm form_warning_sweet_alert', 'id'=>'modal_accept_request_btn', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit', 'disabled'=>'true')) !!}
               <button type="button" class="btn btn-warning btn-sm" data-dismiss="modal">Close</button>
             {!! Form::close() !!}
           </div>
