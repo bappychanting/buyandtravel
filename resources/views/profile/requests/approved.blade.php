@@ -76,7 +76,6 @@
                               <th>#</th>
                               <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
                               <th><i class="fa fa-user fa-sm pr-2"></i>User</th>
-                              <th><i class="fa fa-clock-o fa-sm pr-2"></i>Create Date</th>
                               <th><i class="fa fa-clock-o fa-sm pr-2"></i>Approve Date</th>
                               <th><i class="fa fa-clock-o fa-sm pr-2"></i>Status</th>
                               <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
@@ -88,7 +87,6 @@
                               <th scope="row">{{ $loop->iteration }}</th>
                               <td>{{ $request->product_name }}</td>
                               <td>{{ $request->travel_schedule->user->name }}</td>
-                              <td>{{ $request->created_at->format('l d F Y, h:i A') }}</td>
                               <td>{{ date('l d F Y', strtotime($request->accepted)) }}</td>
                               <td><p class="red-text">Not Recieved</p></td>
                               <td>
