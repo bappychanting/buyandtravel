@@ -28,7 +28,7 @@
 
           <!-- Content Column -->
           <div class="col-lg-10 mb-4">
-            <h2 class="animated bounceInRight">{{ $user->name }}</h2>
+            <h2>{{ $user->name }}</h2>
 
             <!-- Nav tabs -->
             <div class="tabs-wrapper"> 

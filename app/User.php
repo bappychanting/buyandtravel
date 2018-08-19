@@ -72,4 +72,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(MessageViewer::class);
     }
+
+        // A User perticipated has many notifications
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }
