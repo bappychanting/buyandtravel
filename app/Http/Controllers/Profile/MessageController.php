@@ -173,14 +173,22 @@ class MessageController extends Controller
      */
     public function getUsersList(Request $request, $id)
     {
-        return $this->user->whereNotIn('id', $this->getParticipants($id))
+
+        $usersList = $this->user->whereNotIn('id', $this->getParticipants($id))
                             ->where(function ($query) use ($request) {
                                 $query
                                     ->where('username', $request->user)
                                     ->orWhere('email', $request->user)
                                     ->orWhere('name', 'LIKE', '%' . $request->user . '%');
                             })
-                            ->take(30)->get()->toJson();
+                            ->take(30)->get()/*->toJson()*/;
+        if(count($usersList) > 0){
+            $list = array();
+            foreach($usersList as $user){
+                $list[] = array('id'=>$user->id, 'name'=> $user->name, 'image'=>file_exists($user->avatar) ? asset($user->avatar) : 'http://via.placeholder.com/450');
+            }
+            return json_encode($list);
+        }
     }
 
     /**

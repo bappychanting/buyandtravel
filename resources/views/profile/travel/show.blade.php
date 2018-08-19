@@ -115,9 +115,8 @@
                                     <i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Details
                                   </button>
                                   <a class="dropdown-item" href="{{ route('messages.show', $request->message_subject_id) }}" target="_blank"><i class="fa fa-comments fa-sm pr-2" aria-hidden="true"></i>Request Conversation</a>
-                                  {!! Form::open() !!}
+                                  {!! Form::open(['route' => ['travel.request.accept', $travel->id], 'method'=>'put']) !!}
                                   {!! Form::hidden('request_id', $request->id) !!}
-                                  {!! Form::hidden('travel_schedule_id', $travel->id) !!}
                                     {!! Form::button('<i class="fa fa-check fa-sm pr-2" aria-hidden="true"></i>Accept Request', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure to accept this request?', 'text'=>'Make sure you have read the request details thoroughly and confirmed the deal with the user!', 'confirmButtonText'=>'Yes, accept request!', 'type'=>'submit', empty($request->accepted) ? '' : 'disabled'=> 'disabled')) !!}
                                   {!! Form::close() !!} 
                                 </div>

@@ -263,7 +263,7 @@ $(document).ready(function(){
         success:function(response){
           $(".jquery_dropdown_result").empty();
           for( var i = 0; i<response.length; i++){
-            $("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'>"+response[i]['name']+"</a>").hide().appendTo('.jquery_dropdown_result').show('normal');
+            $("<a class='list-group-item' href='"+pathname+"/addparticipant/"+response[i]['id']+"'><div class='chip'><img src='"+response[i]['image']+"'>"+response[i]['name']+"</div></a>").hide().appendTo('.jquery_dropdown_result').show('normal');
           }
         }
       });
