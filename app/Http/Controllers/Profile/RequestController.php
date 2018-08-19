@@ -103,8 +103,11 @@ class RequestController extends Controller
     public function edit($id)
     {
         $request = $this->productRequest->findOrFail($id);
-        $user = Auth::user();
-        return view('profile.requests.edit', compact('user', 'request'));
+        if(empty($request->accepted)){
+            $user = Auth::user();
+            return view('profile.requests.edit', compact('user', 'request'));
+        }
+        return redirect()->route('requests.show', $id)->with('warning', array('Warning'=>'Request can not be updated once accepted!'));
     }
 
     /**
@@ -114,7 +117,7 @@ class RequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestTravelerRequest $request, $request_id)
+    public function update(RequestTravelerRequest $request, $id)
     {
         $input = $request->all();
         $productRequest = $this->productRequest->findOrFail($id);
@@ -131,7 +134,10 @@ class RequestController extends Controller
     public function destroy($id)
     {
         $productRequest = $this->productRequest->findOrFail($id);
-        $productRequest->delete();
-        return redirect()->route('requests.index')->with('success', array('Success'=>'Request has been deleted!'));
+        if(empty($productRequest->accepted)){
+            $productRequest->delete();
+            return redirect()->route('requests.index')->with('success', array('Success'=>'Request has been deleted!'));
+        }
+        return redirect()->route('requests.show', $id)->with('warning', array('Warning'=>'Request can not be deleted once accpeted!'));
     }
 }

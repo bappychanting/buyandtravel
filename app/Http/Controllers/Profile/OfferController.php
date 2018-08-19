@@ -94,7 +94,7 @@ class OfferController extends Controller
             $user = Auth::user();
             return view('profile.offers.edit', compact('user', 'offer'));
         }
-        return redirect()->back()->with('warning', array('This offer can not be edited'=>'Once an offer has been accepted it cannot be edited anymore!  Request the orderer to remove accepted offer to update it.'));
+        return redirect()->back()->with('warning', array('Warning'=>'Once an offer has been accepted it cannot be edited anymore!  Request the orderer to remove accepted offer to update it.'));
     }
 
     /**
@@ -126,6 +126,6 @@ class OfferController extends Controller
             $offer->delete();
             return redirect()->route('offers.index')->with('success', array('Success'=>'Offer has been deleted!'));
         }
-        return redirect()->back()->with('warning', array('This offer can not be deleted'=>'Once an offer has been accepted it cannot be deleted anymore! Request the orderer to remove accepted offer to delete it.'));
+        return redirect()->back()->with('warning', array('Warning'=>'Once an offer has been accepted it cannot be deleted anymore! Request the orderer to remove accepted offer to delete it.'));
     }
 }

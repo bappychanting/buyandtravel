@@ -66,9 +66,11 @@
                       @if ($errors->has('image'))
                           <p class="red-text mt-4">{{ $errors->first('image') }}</p>
                       @endif
+                      @if (empty($request->accepted))
                       <button class="btn blue-gradient btn-sm mt-4" data-toggle="modal" data-target="#updateimage">
                         <i class="fa fa-cloud-upload fa-sm pr-2" aria-hidden="true"></i>Upload An Image
                       </button>
+                      @endif
                   </div>
                   <!--Grid column-->
 
