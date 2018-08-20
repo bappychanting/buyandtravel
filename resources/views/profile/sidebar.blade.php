@@ -2,7 +2,7 @@
           <div class="col-lg-2 mb-4">
             <div class="list-group">
               <a href="{{ route('profile.summery') }}" class="list-group-item {{Route::is('profile.summery')? 'active':'list-group-item-action'}}">Summery</a>
-              <a href="#" class="list-group-item disabled">Notifications</a>
+              <a href="{{ route('notifications.index') }}" class="list-group-item {{Route::is('notifications*')? 'active':'list-group-item-action'}}">Notifications</a>
               <a href="{{ route('messages.index') }}" class="list-group-item {{Route::is('messages*')? 'active':'list-group-item-action'}}">Messages</a>
               <a href="{{ route('orders.index') }}" class="list-group-item {{Route::is('orders*')? 'active':'list-group-item-action'}}">Orders</a>
               <a href="{{ route('travel.index') }}" class="list-group-item {{Route::is('travel*')? 'active':'list-group-item-action'}}">Travel History</a>

@@ -64,6 +64,7 @@ class RequestController extends Controller
         $input = $request->all();
         $input['message_subject_id'] = $this->createMessage((empty($input['request_message_subject']) ? "Request for ".$input['product_name']  : $input['request_message_subject']), array($input['user_id'], $input['traveler_id']));
         $this->productRequest->create($input);
+        $this->send_notification(array($request->traveler_id), 'You have recieved a product request! Click here to check out!', route('travel.show', $request->travel_schedule_id));
         return redirect(route('requests.index'))->with('success', array('Request Added'=>'Request has been sent to the traveler!'));
     }
 
@@ -97,15 +98,19 @@ class RequestController extends Controller
         $productRequest = $this->productRequest->findOrFail($id);
         $productRequest->recieved = date('Y-m-d');
         $productRequest->save();
+        $this->send_notification(array($productRequest->travel_schedule->user->id), 'One of your accepted requests has been marked as recieved!', route('travel.show', $productRequest->travel_schedule->id));
         return redirect()->back()->with('success', array('Success'=>'Product has been recieved!')); 
     } 
 
     public function resetRecieption(Request $request, $id)
     {
         $productRequest = $this->productRequest->findOrFail($id);
-        $productRequest->recieved = NULL;
-        $productRequest->save();
-        return redirect()->back()->with('warning', array('Warning'=>'Product request has been marked as not recieved!')); 
+        if(strtotime($productRequest->accepted) + 86400 > time()){
+            $productRequest->recieved = NULL;
+            $productRequest->save();
+            return redirect()->back()->with('warning', array('Warning'=>'Product request has been marked as not recieved!')); 
+        }
+        return redirect()->back()->with('error', array('Error'=>'Recieved product can not be reset after 24 hours have passed!'));
     } 
 
     /**

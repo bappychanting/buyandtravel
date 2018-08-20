@@ -65,6 +65,7 @@ class OfferController extends Controller
         $input['delivery_date'] = Carbon::parse($input['delivery_date'])->format('Y-m-d');
         $input['message_subject_id'] = $this->createMessage((empty($input['offer_message_subject']) ? "Conversation of Offer for Order #".$input['order_id']." By User #".$input['user_id'] : $input['offer_message_subject']), array($input['user_id'], $input['orderer_id']));
         $this->offer->create($input);
+        $this->send_notification(array($request->orderer_id), 'Your have recieved an offer for your product! Click here to check out!', route('orders.show', $request->order_id));
         return redirect(route('offers.index'))->with('success', array('Offer Added'=>'Offer has been added and delivered to the ordering user!'));
     }
 

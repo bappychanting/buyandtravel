@@ -41,8 +41,8 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/messages/{id}/addparticipant/{user}', 'MessageController@addParticipant');
 	Route::delete('/messages/{id}/removeparticipant', 'MessageController@removeParticipant')->name('message.remove');
 
-	Route::get('/notifications', 'NotificationController@allNotifications');
-	Route::post('/notifications/{id}/redirect', 'NotificationController@notificationRedirect');
+	Route::get('/notifications', 'NotificationController@allNotifications')->name('notifications.index');
+	Route::post('/notifications/{id}/redirect', 'NotificationController@notificationRedirect')->name('notification.redirect');
 
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
 	Route::get('/user/verify/{token}', 'ProfileController@verifyUser')->name('user.verify');

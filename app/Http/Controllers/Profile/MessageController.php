@@ -204,6 +204,7 @@ class MessageController extends Controller
             $messageParticipant->user_id = $user;
             $messageParticipant->save();
             $user = $this->user->findOrFail($user);
+            $this->send_notification(array($user->id), 'Your have been added to a message group!', route('messages.show', $id));
             return redirect()->back()->with('success', array('Success'=> $user->name.' has been added to this conversation!'));
         }
         return redirect()->back()->with('error', array('Error'=> 'There has been a problem while performing this action!'));

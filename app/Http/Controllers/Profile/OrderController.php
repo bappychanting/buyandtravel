@@ -126,8 +126,7 @@ class OrderController extends Controller
         $accepted_offer = $this->accepted_offer->findOrFail($id);
         $accepted_offer->recieved = date("Y-m-d");
         $accepted_offer->save();
-        $user = $this->user->findOrFail($accepted_offer->offer->user->id);
-        $this->send_notification(array($user->id), 'Your accepted offer has been marked as recieved! Click here to check out!', route('offers.show', $accepted_offer->offer->order->id));
+        $this->send_notification(array($accepted_offer->offer->user->id), 'Your accepted offer has been marked as recieved! Click here to check out!', route('offers.show', $accepted_offer->offer->order->id));
         return redirect()->route('orders.show', $accepted_offer->order_id)->with('success', array('Product Recieved!'=>'The product recieve date has been updated to current date!'));
     }
 
@@ -135,8 +134,7 @@ class OrderController extends Controller
     {
         $accepted_offer = $this->accepted_offer->findOrFail($id);
         $accepted_offer->delete();
-        $user = $this->user->findOrFail($accepted_offer->offer->user->id);
-        $this->send_notification(array($user->id), 'Your accepted offer has been removed! Click here to check out!', route('offers.show', $accepted_offer->offer->order->id));
+        $this->send_notification(array($accepted_offer->offer->user->id), 'Your accepted offer has been removed! Click here to check out!', route('offers.show', $accepted_offer->offer->order->id));
         return redirect()->route('orders.show', $accepted_offer->order_id)->with('warning', array('Warning'=>'Accepted Offer has been Removed!'));
     }
 
