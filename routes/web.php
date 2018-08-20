@@ -33,6 +33,7 @@ Route::group(['prefix' => 'travel'], function(){
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
 	Route::get('/newmessages', 'MessageController@newMessages');
+	Route::get('/newnotifications', 'MessageController@newNotifications');
 
 	Route::get('/notifications', 'NotificationController@allNotifications');
 	Route::post('/notifications/{id}/redirect', 'NotificationController@notificationRedirect');

@@ -8,7 +8,7 @@ class Notification extends Model
 {
     protected $table = "notifications";
 
-    protected $fillable = ['notification_details', 'icon', 'user_id', 'viewed'];
+    protected $fillable = ['notification_details', 'icon', 'redirect_link', 'user_id', 'viewed'];
 
     	// Each notification belongs to a user
 	public function user()

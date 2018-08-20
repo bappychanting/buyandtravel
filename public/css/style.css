@@ -98,9 +98,11 @@ footer {
 } 
 
 .jquery_dropdown_result {
-    position: absolute;
-    z-index: 1050;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  position: absolute;
+  z-index: 1050;
+  max-height: 50vh; 
+  overflow: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
 }
 
 .list_of_jquery_content:hover { 
