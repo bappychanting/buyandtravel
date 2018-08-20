@@ -172,7 +172,7 @@
                         {!! Form::button('<i class="fa fa-question-circle fa-sm pr-2"" aria-hidden="true"></i>Set reciept status', array('class' => 'btn btn-blue btn-sm', 'type'=>'submit')) !!}
                       {!! Form::close() !!}
                     @else
-                      <button class="btn btn-green btn-sm disabled">
+                      <button class="btn btn-green btn-sm">
                         <i class="fa fa-check fa-sm pr-2"" aria-hidden="true"></i>Received {{ date('l d F Y', strtotime($order->accepted->recieved)) }}
                       </button>
                     @endif
