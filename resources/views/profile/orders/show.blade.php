@@ -169,7 +169,7 @@
                   <div class="col-xl-5 col-lg-5 col-sm-5">
                     @if(empty($order->accepted->recieved))
                       {!! Form::open(['route' => ['order.offer.recieve', $order->accepted->id], 'method'=>'put']) !!}
-                        {!! Form::button('<i class="fa fa-question-circle fa-sm pr-2"" aria-hidden="true"></i>Set reciept status', array('class' => 'btn btn-blue btn-sm', 'type'=>'submit')) !!}
+                        {!! Form::button('<i class="fa fa-question-circle fa-sm pr-2"" aria-hidden="true"></i>Set reciept status', array('class' => 'btn btn-warning btn-sm', 'type'=>'submit')) !!}
                       {!! Form::close() !!}
                     @else
                       <button class="btn btn-green btn-sm">

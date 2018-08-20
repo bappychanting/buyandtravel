@@ -94,6 +94,7 @@ class TravelController extends Controller
         if(strtotime($productRequest->travel_schedule->leave_date) > time()){
             $productRequest->accepted = date('Y-m-d');
             $productRequest->save();
+            $this->send_notification(array($productRequest->user->id), 'Your product request has been approved! Click here to check out!', route('requests.show', $productRequest->id));
             return redirect()->back()->with('success', array('Success'=>'Request has been accepted!')); 
         }
         return redirect()->back()->with('error', array('Error'=>'Request can not be accepted after the travel schedule is over!'));
@@ -106,6 +107,7 @@ class TravelController extends Controller
             if(strtotime($productRequest->travel_schedule->leave_date) > time()){
                 $productRequest->accepted = NULL;
                 $productRequest->save();
+                $this->send_notification(array($productRequest->user->id), 'Your approved product request has been removed! Click here to check out!', route('requests.show', $productRequest->id));
                 return redirect()->back()->with('warning', array('Warning'=>'Approved request has been removed!'));
             }     
             return redirect()->back()->with('error', array('Error'=>'Accpeted request can not be removed after the travel schedule is over!')); 
