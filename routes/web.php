@@ -68,7 +68,9 @@ Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 	Route::get('/requests/accepted', 'RequestController@accepted')->name('requests.accepted');
 	Route::post('/requests/accepted', 'RequestController@accepted');
 	Route::resource('requests', 'RequestController');
-	Route::put('/requests/image/update/{id}', 'RequestController@updateImage')->name('requests.image.update');
+	Route::put('/requests/{id}/image/update', 'RequestController@updateImage')->name('requests.image.update');
+	Route::put('/requests/{id}/recieve/', 'RequestController@recieveProduct')->name('requests.recieve');
+	Route::put('/requests/{id}/recieve/reset', 'RequestController@resetRecieption')->name('requests.recieve.reset');
 
 	Route::group(['prefix' => 'user'], function(){
 		Route::get('/', 'ProfileController@userinfo')->name('user.userinfo');

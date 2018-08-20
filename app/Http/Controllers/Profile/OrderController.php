@@ -111,7 +111,7 @@ class OrderController extends Controller
     {
         $input = $request->all();
         $this->accepted_offer->create($input);
-        $order = $this->order->findOrFail($request->order_id);
+        /*$order = $this->order->findOrFail($request->order_id);
         if(!empty($order)){
             foreach($order->offers as $offer){
                 if($offer->id == $request->offer_id){
@@ -119,7 +119,7 @@ class OrderController extends Controller
                     break;
                 }
             }
-        }
+        }*/
         return redirect()->back()->with('success', array('Offer Accepted'=>'Offer has been accepted! The order will disappear from the front list! Rest of the offers will also disappear, remove this offer to make them reappear!'));
     }
 

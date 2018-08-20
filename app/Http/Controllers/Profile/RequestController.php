@@ -80,8 +80,6 @@ class RequestController extends Controller
         return view('profile.requests.show', compact('user', 'request'));
     }
 
-
-
     public function updateImage(Request $request, $id)
     {
         $productRequest = $this->productRequest->findOrFail($id);
@@ -92,7 +90,23 @@ class RequestController extends Controller
         $productRequest->image = $image;
         $productRequest->save();
         Session::flash('success', array('Product request image has been updated!'=>''));
-    }  
+    } 
+
+    public function recieveProduct(Request $request, $id)
+    {
+        $productRequest = $this->productRequest->findOrFail($id);
+        $productRequest->recieved = date('Y-m-d');
+        $productRequest->save();
+        return redirect()->back()->with('success', array('Success'=>'Product has been recieved!')); 
+    } 
+
+    public function resetRecieption(Request $request, $id)
+    {
+        $productRequest = $this->productRequest->findOrFail($id);
+        $productRequest->recieved = NULL;
+        $productRequest->save();
+        return redirect()->back()->with('warning', array('Warning'=>'Product request has been marked as not recieved!')); 
+    } 
 
     /**
      * Show the form for editing the specified resource.

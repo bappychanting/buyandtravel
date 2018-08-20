@@ -77,7 +77,7 @@
                               <th><i class="fa fa-shopping-bag fa-sm pr-2"></i>Product Name</th>
                               <th><i class="fa fa-user fa-sm pr-2"></i>User</th>
                               <th><i class="fa fa-clock-o fa-sm pr-2"></i>Approve Date</th>
-                              <th><i class="fa fa-clock-o fa-sm pr-2"></i>Status</th>
+                              <th><i class="fa fa-truck fa-sm pr-2"></i>Recieved</th>
                               <th><i class="fa fa-gears fa-sm pr-2"></i>Actions</th>
                           </tr>
                       </thead>
@@ -88,14 +88,22 @@
                               <td>{{ $request->product_name }}</td>
                               <td>{{ $request->travel_schedule->user->name }}</td>
                               <td>{{ date('l d F Y', strtotime($request->accepted)) }}</td>
-                              <td><p class="red-text">Not Recieved</p></td>
+                              <td>{!! empty($request->recieved) ? '<p class="red-text">Not Recieved!</p>' : date('l d F Y', strtotime($request->recieved)) !!}</td>
                               <td>
                                   <div class="dropdown" role="group">
                                       <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Actions
                                       </button>
                                       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        <a class="dropdown-item" href="#"><i class="fa fa-truck fa-sm pr-2" aria-hidden="true"></i>Product Recieved!</a>
+                                      @if(empty($request->recieved))
+                                        {!! Form::open(['route' => ['requests.recieve', $request->id], 'method'=>'put']) !!}
+                                          {!! Form::button('<i class="fa fa-truck fa-sm pr-2"" aria-hidden="true"></i>Mark product as recieved!', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Make sure to mark this item only after it has been recieved!', 'confirmButtonText'=>'Yes, I am sure!', 'type'=>'submit')) !!}
+                                        {!! Form::close() !!}
+                                      @else
+                                        {!! Form::open(['route' => ['requests.recieve.reset', $request->id], 'method'=>'put']) !!}
+                                          {!! Form::button('<i class="fa fa-truck fa-sm pr-2"" aria-hidden="true"></i>Product was not recieved!', array('class' => 'dropdown-item form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Continue only if you are sure the product was not recieved!', 'confirmButtonText'=>'Yes, I am sure!', 'type'=>'submit')) !!}
+                                        {!! Form::close() !!}
+                                      @endif
                                         <a class="dropdown-item" href="{{ route('requests.show', $request->id) }}"><i class="fa fa-eye fa-sm pr-2" aria-hidden="true"></i>View Request</a>
                                         <a class="dropdown-item" href="{{ route('front.travel.show', $request->travel_schedule->id) }}"><i class="fa fa-external-link fa-sm pr-2" aria-hidden="true"></i>Open Travel Schedule</a>
                                       </div>

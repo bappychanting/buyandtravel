@@ -84,6 +84,18 @@
                     <p><strong>Product Quantity:</strong> {{ $request->quantity }}/=</p>
                     <p><strong>Expected Price:</strong> {{ $request->expected_price }}/=</p>
                     <p><a href="{{ $request->reference_link }}" target="_blank" class="btn btn-blue btn-sm"><i class="fa fa-external-link fa-sm pr-2"" aria-hidden="true"></i>View Reference</a></p>
+                  @if(!empty($request->accepted))
+                    @if(empty($request->recieved))
+                      {!! Form::open(['route' => ['requests.recieve', $request->id], 'method'=>'put']) !!}
+                        {!! Form::button('<i class="fa fa-truck fa-sm pr-2"" aria-hidden="true"></i>Mark product as recieved!', array('class' => 'btn btn-green btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Make sure to mark this item only after it has been recieved!', 'confirmButtonText'=>'Yes, I am sure!', 'type'=>'submit')) !!}
+                      {!! Form::close() !!}
+                    @else
+                      <button class="btn btn-dark-green btn-sm">Product recieved: {{ date('l, d F Y', strtotime($request->recieved)) }}!</button>
+                      {!! Form::open(['route' => ['requests.recieve.reset', $request->id], 'method'=>'put']) !!}
+                        {!! Form::button('<i class="fa fa-truck fa-sm pr-2"" aria-hidden="true"></i>Product was not recieved!', array('class' => 'btn btn-warning btn-sm form_warning_sweet_alert', 'title'=>'Are you sure?', 'text'=>'Continue only if you are sure the product was not recieved!', 'confirmButtonText'=>'Yes, I am sure!', 'type'=>'submit')) !!}
+                      {!! Form::close() !!}
+                    @endif
+                  @endif
                   </div>
                   <!--Grid column-->
               </div>
