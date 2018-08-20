@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Profile;
 use Session;
+use App\User;
 use App\Order;
 use App\OrderImage;
-use App\AcceptedOffer;
 use App\ProductType;
-use App\User;
+use App\AcceptedOffer;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Support\Facades\Auth;
@@ -111,6 +111,15 @@ class OrderController extends Controller
     {
         $input = $request->all();
         $this->accepted_offer->create($input);
+        $order = $this->order->findOrFail($request->order_id);
+        if(!empty($order)){
+            foreach($order->offers as $offer){
+                if($offer->id == $request->offer_id){
+                    $this->send_notification(array($offer->user->id), 'Your offer has been accepted! Click here to check out!', route('offers.show', $offer->id));
+                    break;
+                }
+            }
+        }
         return redirect()->back()->with('success', array('Offer Accepted'=>'Offer has been accepted! The order will disappear from the front list! Rest of the offers will also disappear, remove this offer to make them reappear!'));
     }
 

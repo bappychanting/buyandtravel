@@ -24,6 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->command->info('Seeded the users!');
 
+            // Seed the notifications
+        $this->call(NotificationSeeder::class);
+        $this->command->info('Seeded the notifications!');
+
             // Seed the message subjects
         $this->call(MessageSubjectsTableSeeder::class);
         $this->command->info('Seeded the message subjects!');

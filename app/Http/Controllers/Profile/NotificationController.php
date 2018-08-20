@@ -5,21 +5,17 @@ use App\Notification;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
-    protected $Notification;
+    protected $notification;
 
-    public function __construct(Notification $Notification, User $user)
+    public function __construct(Notification $notification, User $user)
     {
         $this->middleware('auth');
-        $this->Notification = $Notification;        
+        $this->notification = $notification;        
         $this->user = $user;
-    }
-
-    public function generateNotification(Request $request)
-    {
-        
     }
     
     public function allNotifications(Request $request)
