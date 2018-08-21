@@ -33,16 +33,16 @@ Route::group(['prefix' => 'travel'], function(){
 Route::group(['prefix' => 'profile', 'namespace' => 'Profile'], function () {
 
 	Route::get('/newmessages', 'MessageController@newMessages');
-	Route::get('/newnotifications', 'MessageController@newNotifications');
 
 	Route::resource('messages', 'MessageController');
 	Route::post('/messages/storesubject', 'MessageController@storeSubject')->name('messages.store.subject');
 	Route::post('/messages/{id}/userslist', 'MessageController@getUsersList');
 	Route::get('/messages/{id}/addparticipant/{user}', 'MessageController@addParticipant');
 	Route::delete('/messages/{id}/removeparticipant', 'MessageController@removeParticipant')->name('message.remove');
+	
+	Route::get('/newnotifications', 'NotificationController@newNotifications');
 
 	Route::get('/notifications', 'NotificationController@allNotifications')->name('notifications.index');
-	Route::get('/notifications/{id}/redirect', 'NotificationController@notificationRedirect')->name('notifications.redirect');
 
 	Route::get('/summery', 'ProfileController@index')->name('profile.summery');
 	Route::get('/user/verify/{token}', 'ProfileController@verifyUser')->name('user.verify');

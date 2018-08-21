@@ -23,16 +23,17 @@ class NotificationController extends Controller
     {
         $user = $this->user->find(Auth::user()->id);
         $notifications = $user->notifications()->paginate(30);
+    	$user->unreadNotifications->markAsRead();
         return view('profile.notification', compact('user', 'notifications'));
     }
 
     public function newNotifications(Request $request)
     {
-
-    }
-    
-    public function notificationRedirect(Request $request)
-    {
-        
+    	$user = $this->user->find(Auth::user()->id);
+    	$notifications = $user->unreadNotifications()->pluck('data');
+    	if($request->markAsRead == 'yes'){
+    		$user->unreadNotifications->markAsRead();
+    	}
+        return json_encode($notifications);
     }
 }

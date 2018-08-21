@@ -68,6 +68,5 @@ class Kernel extends HttpKernel
         'request.added' => \App\Http\Middleware\ProductRequestAdded::class,
         'request.owner' => \App\Http\Middleware\MustBeOwnerOfProductRequest::class,
         'message.participant' => \App\Http\Middleware\MessageAccessControl::class,
-        'notifcation.owner' => \App\Http\Middleware\MustBeOwnerOfNotification::class,
     ];
 }

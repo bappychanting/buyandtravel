@@ -97,6 +97,11 @@ footer {
   overflow: auto;
 } 
 
+#all_new_notifications{
+  max-height: 50vh; 
+  overflow: auto;
+} 
+
 .jquery_dropdown_result {
   position: absolute;
   z-index: 1050;

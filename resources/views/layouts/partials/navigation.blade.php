@@ -52,10 +52,7 @@
                     <div class="dropdown-menu dropdown-menu-right dropdown-wide">
                         <p class="text-center h6">Notifications</p>
                         <div class="dropdown-divider"></div>
-                        <div id="all_new_messages" data-url="{{url('profile/notifications')}}"></div>
-                        <a class="dropdown-item" href="#">Notification 1</a>
-                        <a class="dropdown-item" href="#">Notification 2</a>
-                        <div class="dropdown-divider"></div>
+                        <div id="all_new_notifications"></div>
                         <a class="dropdown-item text-center" href="{{ route('notifications.index') }}">All Notifications</a>
                     </div>
                     <!-- Notification Dropdown -->
