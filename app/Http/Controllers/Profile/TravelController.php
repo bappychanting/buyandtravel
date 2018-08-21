@@ -21,7 +21,7 @@ class TravelController extends Controller
     public function __construct(Travel $travel, ProductRequest $productRequest, User $user)
     {
         $this->middleware('auth');
-        $this->middleware('travel.owner', ['only' => ['show', 'edit']]);
+        $this->middleware('travel.owner')->only('show', 'edit');
         $this->travel = $travel;
         $this->productRequest = $productRequest;
         $this->user = $user;

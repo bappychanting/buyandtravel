@@ -14,6 +14,7 @@ class NotificationController extends Controller
     public function __construct(GeneralNotification $notification, User $user)
     {
         $this->middleware('auth');
+        $this->middleware('notifcation.owner')->only('notificationRedirect');
         $this->notification = $notification;        
         $this->user = $user;
     }
@@ -21,7 +22,8 @@ class NotificationController extends Controller
     public function allNotifications(Request $request)
     {
         $user = $this->user->find(Auth::user()->id);
-        return view('profile.notification', compact('user'));
+        $notifications = $user->notifications()->paginate(30);
+        return view('profile.notification', compact('user', 'notifications'));
     }
 
     public function newNotifications(Request $request)

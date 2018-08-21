@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function __construct(Order $order, OrderImage $order_image, AcceptedOffer $accepted_offer, ProductType $category, User $user)
     {
         $this->middleware('auth');
-        $this->middleware('order.owner', ['only' => ['show', 'edit']]);
+        $this->middleware('order.owner')->only('show', 'edit');
         $this->order = $order;
         $this->order_image = $order_image;
         $this->accepted_offer = $accepted_offer;

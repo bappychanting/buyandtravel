@@ -46,11 +46,11 @@ class Controller extends BaseController
         return $message->id;
     }
 
-    protected function send_notification($recievers, $notification_details='You have got a new notification!', $redirect_link='javascript:void(0)', $icon='bell'){
+    protected function send_notification($recievers, $text='You have got a new notification!', $link='javascript:void(0)', $icon='bell'){
         if(is_array($recievers) && count($recievers) > 0){
             foreach($recievers as $reciever){
                 $user = $this->user->findOrFail($reciever);
-                $user->notify(new GeneralNotification(['notification_details' => $notification_details, 'redirect_link' => $redirect_link, 'icon' => '<i class="fa fa-'.$icon.'"></i>']));
+                $user->notify(new GeneralNotification(['text' => $text, 'link' => $link, 'icon' => $icon]));
             }
         }
     }

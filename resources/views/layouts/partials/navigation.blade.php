@@ -43,19 +43,20 @@
                       <a class="dropdown-item" href="{{ route('messages.index') }}">Click here to show all messages</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown" id="notifications_navigation_menu" data-url="{{url('profile/newnotifications')}}">
                     <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span id="new_notification_number">2</span>
+                      <span id="new_notification_number">0</span>
                       <i class="fa fa-bell"></i>
                     </a>
                     <!-- Notification Dropdown -->
                     <div class="dropdown-menu dropdown-menu-right dropdown-wide">
                         <p class="text-center h6">Notifications</p>
                         <div class="dropdown-divider"></div>
+                        <div id="all_new_messages" data-url="{{url('profile/notifications')}}"></div>
                         <a class="dropdown-item" href="#">Notification 1</a>
                         <a class="dropdown-item" href="#">Notification 2</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-center" href="user_notifications.php">All Notifications</a>
+                        <a class="dropdown-item text-center" href="{{ route('notifications.index') }}">All Notifications</a>
                     </div>
                     <!-- Notification Dropdown -->
                 </li>  

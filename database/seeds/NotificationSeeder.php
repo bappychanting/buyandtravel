@@ -17,9 +17,9 @@ class NotificationSeeder extends Seeder
 		foreach ($users as $user) {	  
 			$count = 0;
 			while($count <= 20) {
-            	$user->notify(new GeneralNotification(['notification_details' => join("\n\n", $faker->paragraphs(mt_rand(3, 6))), 
-            										'redirect_link' => $faker->url(), 
-            										'icon' => '<i class="fa fa-bell"></i>']));
+            	$user->notify(new GeneralNotification(['text' => join("\n\n", $faker->paragraphs(mt_rand(3, 6))), 
+            										'link' => $faker->url(), 
+            										'icon' => 'bell']));
 				$count++;
 			}              
 		}
