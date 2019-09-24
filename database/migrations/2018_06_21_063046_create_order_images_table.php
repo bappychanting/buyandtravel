@@ -16,7 +16,7 @@ class CreateOrderImagesTable extends Migration
         Schema::create('order_images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('src');
-            $table->string('alt');
+            $table->string('alt')->nullable();
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();

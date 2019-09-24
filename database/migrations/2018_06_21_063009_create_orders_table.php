@@ -19,13 +19,15 @@ class CreateOrdersTable extends Migration
             $table->integer('product_type_id')->unsigned();
             $table->foreign('product_type_id')->references('id')->on('product_types');
             $table->string('delivery_location');
-            $table->string('expected_price');
-            $table->string('referenceLink');
-            $table->string('additinoal_details', 5000);
+            $table->string('expected_price')->nullable();
+            $table->string('reference_link')->nullable();
+            $table->string('tags')->nullable();
+            $table->mediumText('additional_details')->nullable();
+            $table->integer('views')->default(0);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

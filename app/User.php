@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'username', 'contact', 'dob', 'gender', 'address', 'role', 'password', 'avatar',
     ];
 
     /**
@@ -26,4 +26,50 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function verifyUser()
+    {
+        return $this->hasOne('App\VerifyUser');
+    }
+
+        // A User has many Orders
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+        // A User has many Travel Schedules
+    public function travels()
+    {
+        return $this->hasMany(Travel::class);
+    }
+
+        // A User has many Offers
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+        // A User has many Requests
+    public function requests()
+    {
+        return $this->hasMany(ProductRequest::class);
+    }
+
+        // A User perticipated in many messages
+    public function messages()
+    {
+        return $this->hasMany(MessageParticipant::class);
+    }
+
+        // A User perticipated in many messages subjects
+    public function messageSubjects() {
+        return $this->belongsToMany(MessageSubject::class, 'message_participants');
+    }
+
+        // A User viewed many messages
+    public function viewed()
+    {
+        return $this->hasMany(MessageViewer::class);
+    }
 }

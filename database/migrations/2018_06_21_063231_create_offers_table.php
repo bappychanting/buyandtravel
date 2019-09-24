@@ -15,19 +15,18 @@ class CreateOffersTable extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('product_quantity');
-            $table->string('asking_price');
-            $table->integer('delivery_date')->unsigned()->nullable();
-            $table->string('additinoal_details', 5000);
-            $table->tinyInteger('accepted')->default(0);
-            $table->tinyInteger('delivered')->default(0);
-            $table->tinyInteger('received')->default(0);
+            $table->tinyInteger('product_quantity')->nullable()->default(1);
+            $table->string('asking_price')->nullable();
+            $table->date('delivery_date');
+            $table->text('additional_details')->nullable();
             $table->integer('order_id')->unsigned();
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->integer('offering_user_id')->unsigned();
-            $table->foreign('offering_user_id')->references('id')->on('users');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('message_subject_id')->unsigned();
+            $table->foreign('message_subject_id')->references('id')->on('message_subjects');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

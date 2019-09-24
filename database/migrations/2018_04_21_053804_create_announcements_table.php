@@ -16,11 +16,11 @@ class CreateAnnouncementsTable extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->increments('id');
             $table->string('announcement_title');
-            $table->string('announcement_image');
-            $table->string('announcement_details', 1000);
+            $table->string('announcement_image')->nullable();
+            $table->text('announcement_details');
             $table->string('valid_till');
             $table->timestamps();
-            $table->integer('delete_date')->unsigned()->nullable();
+            $table->softDeletes();
         });
     }
 

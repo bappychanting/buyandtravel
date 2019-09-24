@@ -59,5 +59,14 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'order.owner' => \App\Http\Middleware\MustbeOwnerofOrder::class,
+        'order.not.owner' => \App\Http\Middleware\MustnotbeOwnerofOrder::class,
+        'offer.added' => \App\Http\Middleware\OfferAdded::class,
+        'offer.owner' => \App\Http\Middleware\MustBeOwnerOfOffer::class,
+        'travel.owner' => \App\Http\Middleware\MustbeOwnerofTravelSchedule::class,
+        'travel.not.owner' => \App\Http\Middleware\MustNotBeOwnerOfTravelSchedule::class,
+        'request.added' => \App\Http\Middleware\ProductRequestAdded::class,
+        'request.owner' => \App\Http\Middleware\MustBeOwnerOfProductRequest::class,
+        'message.participant' => \App\Http\Middleware\MessageAccessControl::class,
     ];
 }

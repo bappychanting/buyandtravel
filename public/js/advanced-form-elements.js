@@ -14,7 +14,7 @@ $(function () {
     $demoMaskedInput.find('.datetime').inputmask('d/m/y h:s', { placeholder: '__/__/____ __:__', alias: "datetime", hourFormat: '24' });
 
     //Mobile Phone Number
-    $demoMaskedInput.find('.mobile-phone-number').inputmask('+99 (999) 999-99-99', { placeholder: '+__ (___) ___-__-__' });
+    $demoMaskedInput.find('.mobile-phone-number').inputmask('+999-99-9999-9999', { placeholder: '+880-1_-____-____' });
     //Phone Number
     $demoMaskedInput.find('.phone-number').inputmask('+99 (999) 999-99-99', { placeholder: '+__ (___) ___-__-__' });
 
@@ -22,6 +22,8 @@ $(function () {
     $demoMaskedInput.find('.money-dollar').inputmask('99,99 $', { placeholder: '__,__ $' });
     //Euro Money
     $demoMaskedInput.find('.money-euro').inputmask('99,99 â‚¬', { placeholder: '__,__ â‚¬' });
+    //Taka Money
+    $demoMaskedInput.find('.money-taka').inputmask('999.99 /=', { placeholder: '___.__ /=' });
 
     //IP Address
     $demoMaskedInput.find('.ip').inputmask('999.999.999.999', { placeholder: '___.___.___.___' });
