@@ -6,7 +6,7 @@ An e-commerce site to trade products from overseas by travelers. High level func
 - Send Requests to Travelers
 - Personal Messaging with Users
 
-[Live Website Link](https://buyandtravel.amarneta.com/)
+[Live Website Link](http://buyandtravel.amrameghnabasi.org/)
 
 Login Credentials:
 - Role: User (Username: bappy, Password: secret)
