@@ -58,8 +58,8 @@
 
 	    <!--Copyright-->
 	    <div class="footer-copyright py-3 text-center">
-	        © 2018 Copyright:
-	        <a href="https://mdbootstrap.com/material-design-for-bootstrap/"> Buy&#38;travel.com </a>
+	        © 2018 Copyright:&nbsp;
+	        <a href="http://mhasan.infinityfreeapp.com" target="_blank">Mahadi Hasan</a>
 	    </div>
 	    <!--/.Copyright-->
 	</footer>
